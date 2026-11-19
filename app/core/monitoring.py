@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 """Privacy-safe operational telemetry. Evidence text is never an event field."""
 
@@ -8,7 +8,7 @@ from typing import Any
 
 from app.config import Settings
 
-logger = logging.getLogger("surakshai.monitoring")
+logger = logging.getLogger("parakh.monitoring")
 
 _SENSITIVE_KEYS = {"message", "text", "body", "raw_eml", "media", "content", "authorization", "cookie", "otp", "password", "pin", "cvv"}
 
@@ -46,3 +46,4 @@ def record_event(name: str, **fields: str | int | float | bool | None) -> None:
 
     safe = {"event": name, **{key: value for key, value in fields.items() if value is not None}}
     logger.info("telemetry=%s", json.dumps(safe, separators=(",", ":"), sort_keys=True))
+

@@ -1,17 +1,17 @@
-import os
+﻿import os
 import sys
 import subprocess
 import threading
 
 """
 ========================================================================
-Project Name: SurakshAI-India
+Project Name: PARAKH
 Developer   : Himanshu Yadav
 Email ID    : himanshu.btmtcs4242906@nfsu.ac.in
-Purpose     : Local development launcher for SurakshAI-India
+Purpose     : Local development launcher for PARAKH
 
 Brief Description:
-SurakshAI-India is an AI-powered scam detection tool tailored for the
+PARAKH is an AI-powered scam detection tool tailored for the
 Indian context. It analyzes SMS, WhatsApp, and email messages using 
 Gemini AI to identify phishing attempts, financial fraud, and 
 manipulation tactics (like false urgency or fake authority). It provides
@@ -99,14 +99,14 @@ def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
     print("======================================================================")
-    print(" SurakshAI-India Orchestrator")
+    print(" PARAKH Orchestrator")
     print(" Developed by Himanshu Yadav (himanshu.btmtcs4242906@nfsu.ac.in)")
     print(" Privacy-first scam awareness and recovery support")
     print("======================================================================")
 
     # Make sure we are at the root
     if not os.path.exists("app") or not os.path.exists("frontend"):
-        print("Error: run.py must be executed from the root of the SurakshAI project containing 'app' and 'frontend' directories.")
+        print("Error: run.py must be executed from the root of the PARAKH project containing 'app' and 'frontend' directories.")
         sys.exit(1)
 
     # 1. Check Dependencies
@@ -140,8 +140,9 @@ def main():
         backend_thread.join()
         frontend_thread.join()
     except KeyboardInterrupt:
-        print("\n[Orchestrator] Shutting down SurakshAI services...")
+        print("\n[Orchestrator] Shutting down PARAKH services...")
         sys.exit(0)
 
 if __name__ == "__main__":
     main()
+

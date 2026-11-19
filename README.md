@@ -1,526 +1,193 @@
-<div align="center">
+# PARAKH — परख
 
-<img src="https://img.shields.io/badge/AI-Gemini%20API-orange?style=for-the-badge&logo=google" />
-<img src="https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi" />
-<img src="https://img.shields.io/badge/Frontend-React%20%2B%20Vite-646CFF?style=for-the-badge&logo=vite" />
-<img src="https://img.shields.io/badge/Deployment-Vercel-black?style=for-the-badge&logo=vercel" />
+> **परखो, फिर भरोसो | Test Before You Trust**
 
-# 🛡️ SurakshAI-India
-### *Privacy-first scam awareness and recovery support for India*
-**"Think before you click."**
-
-Developed by **Himanshu Yadav** · [himanshu.btmtcs4242906@nfsu.ac.in](mailto:himanshu.btmtcs4242906@nfsu.ac.in)  
-Built for **Novate India – National Hackathon 2026** 🇮🇳
-
-</div>
+**Rajasthan Police Hackathon 2026 — Problem Statement PS01**
+*Scam Message & Phishing Link Detection with Fake Loan / Investment App and Fraudulent Website Analysis*
 
 ---
 
-## 📌 Problem Statement
+## What is PARAKH?
 
-SurakshAI-India helps people make a safer decision when a suspicious SMS,
-WhatsApp message, email, link, screenshot, or voice note creates pressure to
-click, share information, install an app, or send money. It offers cautious
-guidance and recovery support; it is not a substitute for a bank, law
-enforcement agency, or official reporting portal.
+*Parakh* (परख) means *the touchstone test* — the gold-purity test a jeweler uses before accepting a piece. PARAKH applies that same rigour to digital fraud: every suspicious message, URL, APK or website is tested on the touchstone before you trust it.
 
-India loses over **₹10,000 crore annually** to cyber fraud. In 2023, the Indian Cybercrime Coordination Centre (I4C) recorded **15.56 lakh cybercrime complaints** — a 60% jump from the previous year. The average victim loses **₹34,000 per incident**.
+PARAKH is a **dual-mode** investigation and citizen-safety platform:
 
-The most devastating part: **85% of victims say they had a gut feeling something was wrong** but couldn't confirm it fast enough before acting.
-
-### Why Existing Tools Fail Indians
-
-| Tool | What it does | What it misses |
+| Mode | Who uses it | What it stores |
 |---|---|---|
-| **Truecaller** | Identifies spam callers | Cannot read or analyse message content |
-| **Google Safe Browsing** | Flags known phishing URLs | Misses text-only scams (OTP theft, KBC lottery fraud) |
-| **Cybercrime.gov.in** | Lets you report a scam | Prevention — you file *after* being scammed |
-| **ScamAdviser / PhishTank** | Western scam patterns | No understanding of UPI, KYC, PM Awas, Hinglish |
-
-**SurakshAI-India fills the gap**: it reads the *content* of a suspicious message, understands the Indian linguistic and cultural context (English, Hindi, Hinglish), identifies the psychological manipulation tactic used, and tells you exactly what to do next — all in seconds.
+| **Citizen Mode** | Public-facing — anyone can submit a suspicious message or link | Nothing. Fully ephemeral. |
+| **Investigation Mode** | Rajasthan Police officers (bearer-token gated) | All analyses, with full case history, linking and export |
 
 ---
 
-## 🔍 Why We Chose This Problem
+## PS01 Compliance
 
-- **Personal relevance**: Every Indian has received a suspicious SMS or WhatsApp message. This problem is universally felt.
-- **Underfilled gap**: No existing tool analyses message *content* in Hindi or Hinglish with Indian scam context.
-- **Measurable impact**: The harm is quantified (₹10,000 Cr/year) and the prevention moment is clear — catch it *before* the user clicks.
-- **Empowerment over alarm**: Instead of just saying "SCAM", we explain *how* it tries to manipulate you, helping users build long-term scam literacy.
-
----
-
-## ✨ Key Features
-
-### 🧠 AI Analysis (Gemini-Powered)
-- Detects **11 Indian and global scam categories**: UPI Fraud, KYC Scam, Government Impersonation, Lottery Prize, Fake Job, Investment Fraud, OTP Theft, Phishing Link, Courier Scam, Tech Support, Romance Scam.
-- Identifies **8 psychological manipulation tactics**: False Urgency, Authority Impersonation, Fear Induction, Too Good To Be True, OTP Social Engineering, Processing Fee Trap, Social Proof Fabrication, Reciprocity Trap.
-- Returns a structured **Verdict** (`SCAM` / `SUSPICIOUS` / `SAFE`) with a **0–100 confidence score**.
-- Extracts **exact red-flag phrases** from the original message and highlights them in the UI.
-- Provides a **plain Hindi summary** (Devanagari) for non-English users.
-- Gives **specific action steps** (e.g., "Call 1930", "Report at cybercrime.gov.in").
-
-### 🔗 URL Intelligence (No Link is Opened)
-- Analyses URL structure, registered domain, subdomain abuse, and look-alike patterns.
-- Checks **TLS certificate** status (valid HTTPS ≠ legitimate site).
-- Optionally integrates with **Google Web Risk** and **VirusTotal** (when API keys are provided).
-- Provides a risk score (0–100) and risk level (LOW / MEDIUM / HIGH / CRITICAL).
-
-### 📧 Email Analysis (.eml Support)
-- Parses raw `.eml` files — preserves `From`, `Reply-To`, `Authentication-Results`, DKIM signatures, and attachment metadata.
-- Checks **SPF, DKIM, DMARC, and header alignment**.
-- Never opens links, renders HTML, executes attachments, or connects to your inbox.
-
-### 🔒 Privacy-First Architecture
-- **Gemini API key stays on the server** — never exposed to the browser.
-- Message texts are **never written to application logs**.
-- Input is capped, CORS is restricted, and there is a per-IP rate limit.
-- The model's response is **schema-validated** before it reaches the browser.
-
-### 🛡️ Offline Fallback
-- If the AI provider is unavailable (no key or network error), a transparent **rule-based fallback analyser** still provides a useful, clearly-labelled response. Its reviewed rule packs cover OTP/PIN theft, UPI collect requests, QR-payment tricks, KYC, remote-access apps, fake jobs, courier, government, investment, customer-care, romance, and sextortion scams.
-
-### 🧭 Immediate Safety Tools
-- **Safe to do next?** gives deterministic answers for links, calls, payments, app installs, OTPs, QR payments, and attachments. It is deliberately not AI-generated.
-- **Hindi + Hinglish voice guidance** uses the browser’s built-in speech synthesis; narration never leaves the device and never autoplays.
-- **QR-code safety scan** decodes a QR image or camera frame locally in the browser. Only the decoded UPI URI or URL is sent for analysis; the image is not uploaded.
-- **Organisation claim checker** recognises claims involving banks, UIDAI, Income Tax, EPFO, India Post, police/cybercrime, and telecom/KYC, then directs users to independently known official domains. It never certifies a message as genuine.
-- **Explain this simply** converts the verdict into plain English, Hindi, and Hinglish with deterministic Do/Don't guidance.
-- **Official help directory** contains first-party reporting and recovery routes without collecting account numbers, card details, passwords, PINs, or OTPs.
-
-### 🔐 Evidence Locker and Report Pack
-- Stores user-selected analysed evidence in **browser-only IndexedDB**, encrypted with a non-extractable **AES-GCM Web Crypto** key.
-- The backend intentionally has **no endpoint** for evidence contents or report packs; raw evidence is never retained by SurakshAI's server.
-- Exports a downloadable PDF Evidence Pack with case ID, time, analysis outcome, red flags, indicators, rescue actions, and official reporting links.
-- Masks sensitive values by default. An unredacted PDF needs an explicit confirmation from the user.
-
----
-
-## 🏗️ Architecture & How It Works
-
-### System Flowchart
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     USER (Browser)                               │
-│  [ Paste SMS / WhatsApp / Email / Link ]                        │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │  POST /api/v1/surakshai/analyze
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                  FastAPI Backend (app/)                          │
-│                                                                  │
-│  1. Input Validation & Rate Limiting                            │
-│     └─ Pydantic schema, per-IP limiter, max 5 KB input          │
-│                                                                  │
-│  2. URL Intelligence (Parallel)                                  │
-│     └─ Domain/TLS/Reputation checks — no link is opened         │
-│                                                                  │
-│  3. Gemini AI Analysis                                           │
-│     └─ Model auto-discovery (Flash preferred)                   │
-│     └─ System prompt: Indian scam categories + JSON schema      │
-│     └─ Structured JSON output with strict Pydantic validation   │
-│                                                                  │
-│  4. Fallback (if AI unavailable)                                 │
-│     └─ Rule-based analyser, clearly labelled RULE_FALLBACK      │
-│                                                                  │
-│  5. Response Normalisation                                       │
-│     └─ Red flags verified against original text                  │
-│     └─ Safe results capped at 75% confidence                    │
-└───────────────────────┬─────────────────────────────────────────┘
-                        │  JSON response
-                        ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                 React Frontend (frontend/)                        │
-│                                                                  │
-│  ┌─ Verdict Card ─────────────────────────────────────────────┐ │
-│  │  SCAM / SUSPICIOUS / SAFE + Confidence Ring + Severity     │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│  ┌─ Red Flag Highlighter ─────────────────────────────────────┐ │
-│  │  Original message text with exact phrases marked in red    │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│  ┌─ Manipulation Tactics ─────────────────────────────────────┐ │
-│  │  Pill badges: FALSE URGENCY · AUTHORITY IMPERSONATION      │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│  ┌─ Hindi Summary ─────────────────────────────────────────────┐ │
-│  │  यह संदेश एक धोखा है... (Noto Sans Devanagari font)        │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│  ┌─ Action Steps ─────────────────────────────────────────────┐ │
-│  │  1. Do NOT click any links                                 │ │
-│  │  2. Block this number                                      │ │
-│  │  3. Report at cybercrime.gov.in / Call 1930                │ │
-│  └────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Tech Stack
-
-| Layer | Technology |
+| Requirement | How PARAKH addresses it |
 |---|---|
-| Backend framework | FastAPI + Uvicorn |
-| AI provider | Google Gemini (Flash family, auto-discovered) |
-| Input validation | Pydantic v2 |
-| Frontend | React 19 + Vite 8 |
-| Styling | Tailwind CSS v4 |
-| Animations | Framer Motion |
-| UI Icons | Lucide React |
-| Notifications | React Hot Toast |
-| Fonts | Inter + Noto Sans Devanagari |
+| Analyse a message or URL, return risk level + reasons | `POST /api/v1/parakh/analyze`, `POST /api/v1/parakh/url/analyze` — Low / Medium / High with per-finding explanations |
+| Analyse at least one APK **or** one website and extract identifiers | APK static analysis (permissions, manifest, signing cert, dHash) **and** website analysis (guarded fetch, identifier harvesting) — both implemented |
+| Extract URLs, phone numbers, UPI IDs from artifacts | 14 identifier types: UPI, phone, URL, domain, IP, email, bank account, Telegram, WhatsApp, crypto wallet, certificate fingerprint, package name, app label, QR payload |
+| Dashboard with case history, search, downloadable report | Officer console at `/investigate` — paginated search, identifier linking, heat-list, JSON/HTML/CSV export |
+| Identifier linking across messages, apps, websites | `GET /api/v1/investigate/identifier/{value}/cases` — weighted linking by identifier type |
+| Heat-list of trending scam domains and numbers | `GET /api/v1/investigate/heat-list` |
 
 ---
 
-## 🚀 Quick Start
+## Architecture
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- A [Google Gemini API key](https://aistudio.google.com/app/apikey)
+```
+Browser
+  ├── Citizen SPA  (React 19 + Tailwind v4)
+  │     └──  POST /api/v1/parakh/*          ← ephemeral, no auth
+  └── Officer SPA  (same build, /investigate routes)
+        └──  POST/GET /api/v1/investigate/* ← bearer-token gated
 
-### Option A — One-command start (recommended)
+FastAPI backend
+  ├── ScamAnalyzer      — rule engine + Gemini (deterministic fallback)
+  ├── ArtifactAnalyzer  — message / URL / email
+  ├── ApkAnalyzer       — static APK inspection (pyaxmlparser, asn1crypto)
+  ├── WebsiteAnalyzer   — guarded fetch, identifier harvest
+  ├── IdentifierExtractor — 14 types, span-based overlap resolution
+  ├── CaseService       — create / search / link / export
+  └── LinkService       — identifier linking, similarity (SimHash), heat-list
+
+SQLite (aiosqlite + SQLAlchemy 2 async)
+  └── users · cases · findings · identifiers · blacklist · domain_intel
+```
+
+---
+
+## Quick Start
+
+### Option A — Full stack (recommended for the demo)
 
 ```bash
-# Clone the repo
-git clone https://github.com/YaduvanshiHimanshunfsu/SurakshAI-India.git
-cd SurakshAI-India
-
-# Set up your environment
-cp .env.example .env
-# Edit .env and add: GEMINI_API_KEY=your_key_here
-
-# Run the orchestrator — it handles venv creation, dep install, and starts both servers
-python run.py
-```
-
-The script will:
-1. Create a `.venv` Python virtual environment if one doesn't exist.
-2. Ask to install Python dependencies (`requirements.txt`) if missing.
-3. Ask to install frontend dependencies (`npm install`) if `node_modules` is missing.
-4. Start the **FastAPI backend** on `http://127.0.0.1:8000`.
-5. Start the **Vite React frontend** on `http://localhost:5173`.
-
-### Option B — Manual setup
-
-```powershell
-# Backend
+# 1. Backend
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.venv\Scripts\activate        # Windows
 pip install -r requirements.txt
-cp .env.example .env          # then add GEMINI_API_KEY
-uvicorn app.main:app --reload --port 8000
 
-# Frontend (new terminal)
+cp .env.example .env
+# Edit .env: set OFFICER_USERNAME and OFFICER_PASSWORD
+
+python -m app.db.seed          # seed blacklist
+python -m app.db.demo_seed     # 14 demo cases (10 SMS, 2 websites, 2 APKs)
+uvicorn app.main:app --reload
+
+# 2. Frontend (separate terminal)
 cd frontend
 npm install
 npm run dev
+# → http://localhost:5173  (citizen)
+# → http://localhost:5173/investigate  (officer console)
 ```
 
-Open `http://localhost:5173` in your browser.  
-API docs (development only): `http://localhost:8000/docs`
+### Option B — Backend only (API + Swagger UI)
+
+```bash
+uvicorn app.main:app --reload
+# → http://localhost:8000/docs
+```
 
 ---
 
-## 🔌 API Reference
+## Officer Console
 
-All endpoints are under `/api/v1/`:
+Navigate to `/investigate/login`. Default credentials are set in `.env` (`OFFICER_USERNAME` / `OFFICER_PASSWORD`).
 
-| Method | Endpoint | Description |
+**Change the password before any public demo.** The default value in `.env` is intentionally weak and must be replaced.
+
+### Investigation API
+
+All routes require `Authorization: Bearer <token>` obtained from `POST /api/v1/investigate/login`.
+
+| Method | Path | Purpose |
 |---|---|---|
-| `POST` | `/surakshai/analyze` | Analyse SMS, WhatsApp, social media, or any pasted text |
-| `POST` | `/surakshai/url/analyze` | Inspect a URL for phishing signals, TLS, and reputation |
-| `POST` | `/surakshai/email/analyze` | Analyse a pasted email body or raw `.eml` file |
-| `POST` | `/surakshai/media/validate` | Validate a consented image/audio upload in memory without saving it |
-| `POST` | `/surakshai/media/extract` | Extract reviewable text from a consented screenshot or short voice note |
-| `POST` | `/surakshai/rescue-plan` | Return deterministic, exposure-specific safety and evidence guidance |
-| `POST` | `/surakshai/safe-next-step` | Give a reviewed immediate decision before a risky action |
-| `POST` | `/surakshai/qr/analyze` | Analyse a browser-decoded QR payload without receiving the image |
-| `POST` | `/surakshai/organisation/verify` | Find claimed organisations and safe independent verification routes |
-| `GET` | `/surakshai/trusted-channels` | List official reporting and recovery guidance without collecting secrets |
-| `POST` | `/surakshai/explain-simply` | Return deterministic plain English, Hindi, and Hinglish guidance |
-| `GET` | `/health` | Returns provider status and fallback availability |
-
-### Example request
-
-```bash
-curl -X POST http://localhost:8000/api/v1/surakshai/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"message": "Dear customer, your SBI UPI ID will be blocked in 24 hours. Verify: sbi-verify-kyc.in/urgent", "language": "auto"}'
-```
-
-### Example response
-
-```json
-{
-  "verdict": "SCAM",
-  "confidence": 97,
-  "scam_category": "UPI_FRAUD",
-  "severity": "HIGH",
-  "psychological_tactics": ["FALSE_URGENCY", "AUTHORITY_IMPERSONATION", "FEAR_INDUCTION"],
-  "red_flags": [
-    {"phrase": "blocked in 24 hours", "explanation": "Fake urgency designed to stop you thinking clearly."},
-    {"phrase": "sbi-verify-kyc.in", "explanation": "Look-alike domain mimicking SBI — not an official bank URL."}
-  ],
-  "action_steps": [
-    "Do NOT click any links in this message.",
-    "Block this number immediately.",
-    "Report at cybercrime.gov.in or call the National Cyber Helpline 1930."
-  ],
-  "hindi_summary": "यह संदेश एक धोखा है। आपके UPI खाते को ब्लॉक करने की झूठी धमकी देकर आपकी जानकारी चुराने की कोशिश की जा रही है।",
-  "analysis_source": "AI"
-}
-```
-
-### Rescue Mode
-
-After an analysis, choose what happened: only received the message, opened a
-link, shared information, disclosed a security secret, installed a remote-access
-app/shared your screen, or sent money. SurakshAI returns a reviewed, deterministic
-plan with the right urgency and evidence checklist. It never asks for an OTP, PIN,
-password, CVV, card number, or other secret.
-
-For a completed financial fraud, call **1930** immediately and file or track the
-complaint through [cybercrime.gov.in](https://cybercrime.gov.in/).
-
-Example:
-
-```bash
-curl -X POST http://localhost:8000/api/v1/surakshai/rescue-plan \
-  -H "Content-Type: application/json" \
-  -d '{"exposure_state":"SENT_MONEY","verdict":"SCAM","scam_category":"UPI_FRAUD"}'
-```
-
-### Screenshot and voice-note analysis
-
-Users can upload a screenshot or a short voice note (or record up to 45 seconds
-in the browser). After explicit consent, the app verifies the declared MIME type
-against the actual file structure and keeps the upload in memory only. Screenshots
-are re-encoded without metadata before Gemini OCR. Gemini returns only extracted
-text/transcription, which the user must review and can correct before the existing
-scam analysis and Rescue Mode run. If extraction fails, SurakshAI asks the user to
-paste or type the text instead; it never invents a transcript.
-
-### Multi-page user flow
-
-The React client now uses privacy-safe routes: `/` (landing), `/check`
-(analysis workspace), `/result` (risk signals and immediate guidance),
-`/rescue`, `/evidence`, `/help`, and `/learn`. Analysed content is kept only in
-an in-memory React session while moving between pages; it is never placed in a
-route, query string, or browser storage. The separate Evidence Locker remains
-the only persistence mechanism, using encrypted IndexedDB.
-
-### Evidence Locker and PDF Evidence Pack
-
-After an analysis, the user can preserve the analysed text in the **Evidence
-Locker**. It uses browser-only IndexedDB storage encrypted with Web Crypto
-AES-GCM and a non-extractable device key. The API has no endpoint for evidence,
-so raw evidence is never sent to or retained by SurakshAI's server.
-
-The downloadable Evidence Pack includes a case ID, timestamp, verdict, red
-flags, extracted indicators, recovery actions, saved local evidence, and the
-official 1930 / NCRP reporting information. Exports mask phone numbers, email
-usernames, UPI IDs, cards, identity numbers, secrets, and private URL query data
-by default. An unredacted export is possible only after an explicit confirmation.
-
-### QR, voice, and clear guidance
-
-QR decoding uses the browser’s native `BarcodeDetector` when available. A QR
-image is never sent to the server merely to discover its value. If the browser
-does not support local QR decoding, the user can paste the decoded content or
-choose the existing, explicitly consented screenshot-text workflow.
-
-Voice guidance uses browser-native speech synthesis with explicit Hindi and
-Hinglish play controls, plus pause, resume, and stop. It does not autoplay or
-send content to a third-party narration service.
-
-### Link Profile and legitimacy signals
-
-For a pasted URL, SurakshAI shows the registered domain, URL-risk signals,
-HTTPS/TLS status, and configured threat-intelligence matches. A small reviewed
-directory can also identify an exact official registered domain (for example,
-`google.com`, `unicef.org`, or `cybercrime.gov.in`) and explain what organisation
-that domain belongs to. This is deliberately **not** a claim that a particular
-page, download, message, or payment request is genuine. Unrecognised domains are
-shown as “not in reviewed directory”, never automatically labelled fraudulent.
-The service does not open the page, execute its code, follow redirects, or fetch
-its visible content just to create this profile.
-
-### Browser and device compatibility
-
-Essential message, link, and email checks target current Chromium, Edge,
-Firefox, Android Chrome, and iOS Safari. Advanced capabilities always expose a
-safe fallback rather than blocking the user:
-
-| Capability | Preferred browser feature | Safe fallback |
-|---|---|---|
-| QR scan | `BarcodeDetector` and camera | Upload a QR image where supported, paste the decoded UPI/URL payload, or use consented screenshot text extraction |
-| Hindi/Hinglish narration | `speechSynthesis` | Readable Hindi and Hinglish scripts are shown in the page |
-| Voice note recording | `MediaRecorder` and microphone | Upload an existing short audio file |
-| Evidence locker | IndexedDB + Web Crypto | A clear storage warning; masked PDF export still works without saving evidence |
-| Clipboard | Clipboard API | Manual paste remains available in every text field |
-| Motion | Framer Motion | `prefers-reduced-motion` disables route/card animation |
-
-Camera and microphone controls require a secure origin (HTTPS, or localhost in
-development) and explicit browser permission. The client keeps clear upload or
-text alternatives visible when access is unavailable.
+| POST | `/investigate/login` | Officer sign-in → bearer token |
+| GET | `/investigate/health` | Liveness check |
+| POST | `/investigate/submit` | Analyse message / URL / email and persist as a case |
+| POST | `/investigate/apk/analyze` | Static APK analysis (upload) |
+| POST | `/investigate/website/analyze` | Guarded website fetch and analysis |
+| GET | `/investigate/cases` | Paginated case list (search, filter) |
+| GET | `/investigate/cases/{id}` | Full case detail |
+| PATCH | `/investigate/cases/{id}/status` | Update status + officer note |
+| DELETE | `/investigate/cases/{id}` | Soft delete |
+| GET | `/investigate/identifier/{value}/cases` | All cases sharing an identifier |
+| GET | `/investigate/cases/{id}/linked` | Cases linked by shared identifiers |
+| GET | `/investigate/cases/{id}/similar` | Cases with near-duplicate content (SimHash) |
+| GET | `/investigate/heat-list` | Most-seen identifiers across all cases |
+| GET | `/investigate/export/cases.json` | Bulk JSON export (filtered) |
+| GET | `/investigate/export/cases.csv` | Bulk CSV export (filtered) |
+| GET | `/investigate/export/identifiers.csv` | Identifier dump |
+| GET | `/investigate/cases/{id}/report.json` | Per-case JSON report |
+| GET | `/investigate/cases/{id}/report.html` | Per-case print-ready HTML report |
+| POST | `/investigate/url/precheck` | Fast blacklist + TLS check (no case created) |
 
 ---
 
-## 🧪 Real Indian Scam Examples (Built into the App)
+## Citizen API
 
-The app ships with demo examples you can try with one click:
+No authentication. Anonymous. Stores nothing.
 
-| Demo | Message pattern |
+| Path | Purpose |
 |---|---|
-| **UPI Account Blocked** | "Dear customer, your SBI UPI ID will be blocked in 24 hours…" |
-| **Fake Job Offer** | "Work from home! Earn ₹800-1500/hr by liking YouTube videos…" |
-| **KBC Lottery Prize** | "Congratulations! You have won ₹45,00,000 in KBC Season 15…" |
-| **Email Demo** | HDFC Bank impersonation email with forged security@hdfc domain |
+| `POST /parakh/analyze` | Analyse a message or Hinglish/English text |
+| `POST /parakh/url/analyze` | Analyse a URL |
+| `POST /parakh/email/analyze` | Analyse a raw .eml or email headers |
+| `POST /parakh/check-before-open` | Quick pre-open risk check |
+| `POST /parakh/report-to-police` | Citizen report (consent-gated, ephemeral) |
 
 ---
 
-## 📁 Project Structure
+## Privacy & Security Design
 
-```
-SurakshAI-India/
-├── app/                        # FastAPI backend
-│   ├── main.py                 # App factory, CORS, static file serving
-│   ├── config.py               # Pydantic settings (env vars)
-│   ├── schemas.py              # Full Pydantic request/response models
-│   ├── prompts.py              # Gemini system prompt + user message builder
-│   ├── api/
-│   │   └── routes.py           # API route handlers
-│   ├── services/
-│   │   ├── scam_analyzer.py    # Gemini orchestration + model auto-discovery
-│   │   ├── email_analyzer.py   # .eml parsing + auth header analysis
-│   │   ├── url_intelligence.py # URL structural + TLS + reputation checks
-│   │   ├── fallback_analyzer.py# Rule-based offline fallback
-│   │   ├── media_analyzer.py   # In-memory Gemini OCR/transcription extraction
-│   │   └── rescue_planner.py   # Deterministic post-exposure safety plans
-│   ├── data/
-│   │   └── recovery_playbooks.py # Reviewed safety and evidence playbooks
-│   ├── core/
-│   │   ├── limiter.py          # In-memory per-IP rate limiter
-│   │   └── middleware.py       # Security headers + request size limit
-│   └── utils/
-│       └── json_output.py      # Safe JSON parser for model output
-│
-├── frontend/                   # React + Vite + Tailwind SPA
-│   ├── index.html              # Entry HTML
-│   ├── vite.config.js
-│   ├── package.json
-│   └── src/
-│       ├── App.jsx             # Main UI and analysis flow
-│       ├── features/rescue/
-│       │   └── RescueMode.jsx  # Post-analysis exposure selector and plan
-│       ├── features/MediaScanner.jsx      # Consent, upload, and short recording
-│       ├── features/TranscriptReview.jsx  # Editable OCR/transcription review
-│       ├── features/evidence/
-│       │   ├── EvidenceLocker.jsx # Encrypted, local-only evidence workflow
-│       │   └── ReportPack.jsx     # Masked-by-default PDF export
-│       ├── main.jsx            # React entry point
-│       ├── index.css           # Tailwind + Google Fonts import
-│       ├── lib/
-│       │   ├── api.js          # API client (fetch wrapper)
-│       │   ├── vault.js        # AES-GCM IndexedDB evidence vault
-│       │   ├── redaction.js    # Privacy-safe report masking
-│       │   └── report.js       # Dependency-free PDF report generator
-│       └── data/
-│           └── demo.js         # Preloaded Indian scam demo examples
-│
-├── tests/                      # Pytest test suite (no API key required)
-│   ├── test_api.py
-│   ├── test_fallback_analyzer.py
-│   ├── test_json_output.py
-│   └── test_url_intelligence.py
-│
-├── .env.example                # Environment variable template
-├── requirements.txt            # Python dependencies
-├── run.py                      # 🚀 One-command orchestrator script
-└── README.md
-```
+| Property | Mechanism |
+|---|---|
+| **Citizen Mode never persists** | `create_case()` is never called from citizen routes; enforced by `test_citizen_mode_analysis_persists_nothing` |
+| **SSRF guard** | Every outbound URL (including redirect hops) is checked against RFC-1918, loopback, link-local and ::1 before connecting |
+| **APK analysis is offline** | Static only — no APK is executed, no Android SDK required, no emulator |
+| **Website analysis is guarded** | 2 MB stream cap, 10 s timeout, 3 redirect hops max, no JavaScript execution |
+| **Passwords use scrypt** | `hashlib.scrypt` — no native-wheel dependency, no passlib/bcrypt |
+| **Tokens are hashed** | Only `SHA-256(token)` is stored; the raw token is never persisted |
+| **No foreign-key silent failures** | SQLite `PRAGMA foreign_keys=ON` set per connection via SQLAlchemy connect-event |
+| **APK size limit** | 60 MB hard cap (`MAX_APK_UPLOAD_BYTES`), enforced before parse |
+| **Report content is HTML-escaped** | `html.escape()` on all user-supplied fields in `report_builder.py` |
 
 ---
 
-## 🔐 Security Design
+## Known Limitations
 
-- **API key isolation**: `GEMINI_API_KEY` is read from server environment only; it never appears in frontend code, HTTP responses, or logs.
-- **Prompt injection protection**: User-submitted text is wrapped in `<untrusted_message>` delimiters and the system prompt explicitly instructs the model to treat it as untrusted data.
-- **No URL execution**: URL intelligence never follows redirects, downloads page content, runs JavaScript, or submits unknown links to external scanners unless VirusTotal/Web Risk keys are configured.
-- **No inbox access**: Email analysis accepts pasted text or `.eml` files only. No OAuth, no IMAP, no inbox connection of any kind.
-- **Shared rate limiting in production**: configure Upstash Redis to enforce anonymous limits across Vercel instances; development falls back to an in-memory limiter.
-- **Privacy-safe monitoring**: optional Sentry receives only operational metadata after evidence-related fields are scrubbed.
-
----
-
-## 🧪 Running Tests
-
-```bash
-# No API key required — tests use the offline fallback and deterministic checks
-pytest -q
-
-# Browser-side privacy and report-generation unit tests
-cd frontend
-npm test
-
-# Browser workflow tests (Chromium, Firefox, WebKit, and mobile Chrome profile)
-npx playwright install
-npm run test:e2e
-```
-
-The Playwright suite covers empty Rescue/Evidence states, the message-to-result
-flow, screenshot/voice review entry points, masked Evidence Pack controls,
-keyboard focus, reduced-motion styling, and mobile navigation. Run it on a
-machine where browsers can start and access the local Vite preview server.
-
-
-Before deploying to Vercel, build the SPA with `npm run build`. The generated
-`frontend/dist` directory is served by the FastAPI entrypoint referenced by
-`vercel.json`; no evidence vault or report data is included in a server API.
+| Limitation | Consequence |
+|---|---|
+| SQLite single-writer | Not suitable for concurrent production write load; swap `DATABASE_URL` for `postgresql+asyncpg://` for deployment |
+| No runtime sandbox | APK analysis is static only — a highly obfuscated APK may not reveal its true behaviour |
+| AI provider dependency | Gemini is used for natural-language analysis; a full rule-based fallback runs when the provider is unavailable |
+| RDAP coverage | Some registrars do not publish RDAP; domain age may read as "unknown" for those |
+| Windows asyncio limitation | 6 tests are skipped on Windows due to asyncio self-pipe constraints (B-4); they pass on Linux/macOS |
 
 ---
 
-## ▲ Vercel Deployment
+## Tech Stack
 
-This repository is ready for a single Vercel deployment:
-
-- `api/index.py` is the Vercel FastAPI serverless entrypoint; `vercel.json` uses the current `functions` configuration and excludes only test/development folders.
-- `frontend/dist` is intentionally committed and is served by FastAPI in production.
-- `frontend/.env.production` uses `VITE_API_BASE_URL=/api/v1`, so the deployed browser talks to the same deployed origin, never `localhost`.
-- Vite proxies `/api` to FastAPI during local development.
-
-### Deploy checklist
-
-1. Run `cd frontend; npm run build` and commit the updated `frontend/dist` folder.
-2. Push the repository and import it in Vercel. Select **Other** if Vercel asks for a framework preset.
-3. Add `GEMINI_API_KEY` in **Vercel → Settings → Environment Variables**. Add optional `WEB_RISK_API_KEY` or `VIRUSTOTAL_API_KEY` only if needed. For shared production rate limits, set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`; set `SENTRY_DSN` only if privacy-scrubbed error monitoring is required.
-4. Set `ENVIRONMENT=production` and set `ALLOWED_ORIGINS` to the deployment URL, for example `https://your-project.vercel.app`.
-5. Deploy, then open `/api/v1/health`, analyse a test message, and download a masked PDF Evidence Pack.
-
-Never create `VITE_GEMINI_API_KEY`, `VITE_VIRUSTOTAL_API_KEY`, or any other frontend-prefixed secret. Vite embeds `VITE_*` values in the browser bundle.
+| Layer | Technology |
+|---|---|
+| Backend | Python 3.14, FastAPI, Pydantic v2, SQLAlchemy 2 async |
+| Database | SQLite + aiosqlite (dev/demo), PostgreSQL-ready |
+| AI | Google Gemini via `google-genai` |
+| APK parsing | `pyaxmlparser`, `asn1crypto`, `Pillow` (dHash) |
+| URL intelligence | `tldextract`, RDAP, SSRF-guarded HTTP client |
+| Frontend | React 19, Vite 8, Tailwind v4, Framer Motion |
+| Testing | pytest-asyncio, httpx, Playwright (E2E) |
 
 ---
 
-## 👨‍💻 Developer
+## Hackathon
 
-**Himanshu Yadav**  
-B.Tech (MTCS), National Forensic Sciences University (NFSU)  
-📧 [himanshu.btmtcs4242906@nfsu.ac.in](mailto:himanshu.btmtcs4242906@nfsu.ac.in)
+Built for **Rajasthan Police Hackathon 2026 — PS01**
+*Scam Message & Phishing Link Detection with Fake Loan / Investment App and Fraudulent Website Analysis*
 
-Built for **Novate India – National Hackathon 2026**.
-
----
-
-## 🙏 Acknowledgements
-
-- [Google Gemini API](https://ai.google.dev/) — AI analysis engine
-- [FastAPI](https://fastapi.tiangolo.com/) — Backend framework
-- [React](https://react.dev/) + [Vite](https://vitejs.dev/) — Frontend tooling
-- [Tailwind CSS](https://tailwindcss.com/) — Styling
-- [cybercrime.gov.in](https://cybercrime.gov.in) — National cybercrime reporting portal (referenced in action steps)
-- National Cyber Helpline **1930** — Referenced for victims of financial fraud
+PARAKH was developed as a conversion of the SurakshAI-India codebase, adapted end-to-end for PS01's investigation-first requirements while preserving a citizen-safety mode so the public can also benefit from the detection engine.
 
 ---
 
-<div align="center">
-<strong>SurakshAI-India provides safety guidance, not a guarantee.<br>Always verify sensitive requests through official channels.</strong><br><br>
-© 2026 SurakshAI-India · Built for a safer digital India 🇮🇳
-</div>
+*PARAKH — परख | परखो, फिर भरोसो*

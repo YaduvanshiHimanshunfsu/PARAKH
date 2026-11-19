@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import asyncio
 import base64
@@ -214,14 +214,14 @@ class UrlIntelligenceService:
                 name=known["name"],
                 description=known["description"],
                 verification_note=(
-                    "The registered domain matches SurakshAI’s reviewed official-domain directory. "
+                    "The registered domain matches PARAKHâ€™s reviewed official-domain directory. "
                     "This does not authenticate this exact page, download, message, or request."
                 ),
             )
         return SiteProfile(
             status="NOT_IN_REVIEWED_DIRECTORY",
             name=None,
-            description="This registered domain is not in SurakshAI’s small reviewed official-domain directory.",
+            description="This registered domain is not in PARAKHâ€™s small reviewed official-domain directory.",
             verification_note=(
                 "That is not proof that the site is unsafe. Verify the exact domain through an independently known official source before entering information or making a payment."
             ),
@@ -259,9 +259,12 @@ class UrlIntelligenceService:
             raise UrlValidationError("The hostname cannot be converted safely") from exc
 
         extracted = _EXTRACT(host)
-        registered_domain = getattr(extracted, "top_domain_under_public_suffix", "") or getattr(
-            extracted, "registered_domain", ""
-        ) or host
+        # tldextract renamed this property; the old name emits a DeprecationWarning
+        # on access, so the fallback is only reached when the new one is absent.
+        registered_domain = getattr(extracted, "top_domain_under_public_suffix", "")
+        if not registered_domain and not hasattr(extracted, "top_domain_under_public_suffix"):
+            registered_domain = getattr(extracted, "registered_domain", "")
+        registered_domain = registered_domain or host
         suffix = extracted.suffix.lower()
         netloc = host if port is None else f"{host}:{port}"
         normalized = urlunsplit((parsed.scheme.lower(), netloc, parsed.path or "/", parsed.query, ""))
@@ -340,6 +343,18 @@ class UrlIntelligenceService:
                 Severity.MEDIUM,
                 "The path contains terms commonly used in login, KYC, password, refund, or verification lures.",
                 15,
+            )
+        # A lure word in the registered domain itself is a stronger signal than
+        # one in the path: the attacker chose and paid for that name. Matching
+        # only the path rated 'sbi-verify-kyc.in' as MEDIUM. (DECISIONS.md B-2)
+        if SENSITIVE_PATH_TERMS.search(target.registered_domain):
+            score += self._add_signal(
+                signals,
+                "CREDENTIAL_OR_KYC_DOMAIN",
+                Severity.HIGH,
+                "The domain name itself contains a login, KYC, verification, or refund term. Legitimate "
+                "organisations serve these from their main domain, not a purpose-registered look-alike.",
+                24,
             )
         if any(term in target.host for term in BRAND_TERMS) and target.registered_domain not in KNOWN_BRAND_DOMAINS:
             score += self._add_signal(
@@ -536,3 +551,4 @@ class UrlIntelligenceService:
             summary="The URL could not be analysed at this time.",
             limitations="No conclusion should be drawn from an unavailable URL analysis.",
         )
+

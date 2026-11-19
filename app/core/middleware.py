@@ -42,12 +42,20 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
 
 class RequestSizeLimitMiddleware(BaseHTTPMiddleware):
-    def __init__(self, app, max_request_bytes: int) -> None:
+    def __init__(self, app, max_request_bytes: int, exempt_path_suffixes: tuple[str, ...] = ()) -> None:
         super().__init__(app)
         self._max_request_bytes = max_request_bytes
+        # APK uploads legitimately exceed the global cap. Rather than raising
+        # the limit for every text endpoint — which would widen the DoS surface
+        # across the whole API — those routes are exempted here and enforce
+        # their own ceiling. See DECISIONS.md ADR-004.
+        self._exempt_path_suffixes = exempt_path_suffixes
 
     async def dispatch(self, request: Request, call_next) -> Response:
         if request.method not in {"POST", "PUT", "PATCH"}:
+            return await call_next(request)
+
+        if any(request.url.path.endswith(suffix) for suffix in self._exempt_path_suffixes):
             return await call_next(request)
 
         content_length = request.headers.get("content-length")

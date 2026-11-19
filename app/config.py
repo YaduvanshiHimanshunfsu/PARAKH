@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from functools import lru_cache
 from typing import Literal
@@ -68,6 +68,32 @@ class Settings(BaseSettings):
     email_dkim_verification_enabled: bool = True
     email_dns_timeout_seconds: float = 4.0
 
+    # --- PS01 investigation layer (DECISIONS.md ADR-001, ADR-003, ADR-004) ---
+    # Citizen Mode never writes here. Investigation Mode persists cases so they
+    # can be searched, linked, and exported for police investigation.
+    database_url: str = "sqlite+aiosqlite:///./parakh_cases.db"
+    db_echo: bool = False
+
+    # Officer bootstrap. A single seeded account is created at startup when both
+    # values are set; there is deliberately no self-registration.
+    officer_username: str | None = None
+    officer_password: SecretStr | None = None
+    auth_token_ttl_hours: int = Field(default=12, ge=1, le=720)
+
+    # APKs exceed the global request ceiling, so the APK route carries its own
+    # limit rather than widening the limit on every text endpoint (ADR-004).
+    max_apk_upload_bytes: int = Field(default=60_000_000, ge=1_000_000, le=200_000_000)
+
+    # Domain-age lookups use RDAP over HTTPS (JSON, no WHOIS parsing).
+    domain_age_enabled: bool = True
+    domain_age_timeout_seconds: float = Field(default=4.0, ge=0.5, le=20.0)
+    domain_intel_cache_hours: int = Field(default=168, ge=1, le=8_760)
+
+    # Redirect chains are resolved hop-by-hop with the SSRF guard re-applied at
+    # every hop. Never set this high; each hop is a separate network request.
+    redirect_following_enabled: bool = True
+    max_redirect_hops: int = Field(default=5, ge=1, le=10)
+
     @field_validator("allowed_origins")
     @classmethod
     def validate_origins(cls, value: str) -> str:
@@ -115,3 +141,4 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
+

@@ -12,6 +12,21 @@ Pillow>=11.0,<12.0
 # Optional privacy-scrubbed error monitoring. It does nothing unless SENTRY_DSN is set.
 sentry-sdk[fastapi]>=2.0,<3.0
 
+# Investigation case store (PS01). SQLite for development and the demo; the ORM
+# is written so PostgreSQL is a connection-string change plus asyncpg.
+# See DECISIONS.md ADR-003.
+sqlalchemy>=2.0,<3.0
+aiosqlite>=0.20,<1.0
+# Required by SQLAlchemy's asyncio support; not pulled in automatically.
+greenlet>=3.0,<4.0
+
+# Static APK inspection (PS01 Android app analysis). Parses binary
+# AndroidManifest.xml and v1 signing certificates. Deliberately NOT androguard:
+# it is far heavier and slower, and nothing here needs full DEX disassembly.
+# Icon perceptual hashing is implemented on Pillow directly rather than via
+# imagehash, which would pull in scipy and numpy (~50 MB) for one function.
+pyaxmlparser>=0.3.31,<1.0
+
 # Development and verification
 pytest>=8.3,<9.0
 httpx>=0.27,<1.0

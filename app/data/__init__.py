@@ -1,1 +1,2 @@
-"""Static, version-controlled public-safety guidance used by SurakshAI."""
+﻿"""Static, version-controlled public-safety guidance used by PARAKH."""
+

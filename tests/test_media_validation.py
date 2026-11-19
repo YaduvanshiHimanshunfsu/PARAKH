@@ -1,4 +1,4 @@
-import io
+﻿import io
 import asyncio
 
 from fastapi.testclient import TestClient
@@ -22,7 +22,7 @@ def _valid_png() -> bytes:
 def test_media_validation_accepts_a_consented_valid_screenshot() -> None:
     with TestClient(create_app()) as client:
         response = client.post(
-            "/api/v1/surakshai/media/validate",
+            "/api/v1/parakh/media/validate",
             data={"media_kind": "SCREENSHOT", "consent": "true"},
             files={"media": ("sample.png", _valid_png(), "image/png")},
         )
@@ -38,7 +38,7 @@ def test_media_validation_accepts_a_consented_valid_screenshot() -> None:
 def test_media_validation_requires_explicit_consent() -> None:
     with TestClient(create_app()) as client:
         response = client.post(
-            "/api/v1/surakshai/media/validate",
+            "/api/v1/parakh/media/validate",
             data={"media_kind": "SCREENSHOT", "consent": "false"},
             files={"media": ("sample.png", _valid_png(), "image/png")},
         )
@@ -50,7 +50,7 @@ def test_media_validation_requires_explicit_consent() -> None:
 def test_media_validation_rejects_a_disguised_file() -> None:
     with TestClient(create_app()) as client:
         response = client.post(
-            "/api/v1/surakshai/media/validate",
+            "/api/v1/parakh/media/validate",
             data={"media_kind": "SCREENSHOT", "consent": "true"},
             files={"media": ("not-an-image.png", b"not a PNG", "image/png")},
         )
@@ -103,10 +103,11 @@ def test_screenshot_sanitisation_removes_exif_metadata() -> None:
 def test_media_extraction_never_fakes_text_without_an_ai_provider() -> None:
     with TestClient(create_app()) as client:
         response = client.post(
-            "/api/v1/surakshai/media/extract",
+            "/api/v1/parakh/media/extract",
             data={"media_kind": "SCREENSHOT", "consent": "true"},
             files={"media": ("sample.png", _valid_png(), "image/png")},
         )
 
     assert response.status_code == 503
     assert "paste or type" in response.json()["detail"].lower()
+

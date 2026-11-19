@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -148,6 +149,12 @@ class ScamCategory(str, Enum):
     COURIER_SCAM = "COURIER_SCAM"
     TECH_SUPPORT = "TECH_SUPPORT"
     ROMANCE_SCAM = "ROMANCE_SCAM"
+    # PS01 fraud families: predatory instant-loan apps, Ponzi/MLM referral
+    # schemes, illegal betting platforms, and utility-disconnection lures.
+    LOAN_APP_FRAUD = "LOAN_APP_FRAUD"
+    PONZI_MLM = "PONZI_MLM"
+    BETTING_GAMBLING = "BETTING_GAMBLING"
+    UTILITY_BILL_SCAM = "UTILITY_BILL_SCAM"
     UNKNOWN = "UNKNOWN"
 
 
@@ -544,6 +551,288 @@ class ReportPackDraft(BaseModel):
 
 
 class HealthResponse(BaseModel):
+    """Operational status. Never contains configuration values or secrets."""
+
     status: str
     provider_configured: bool
     offline_fallback_enabled: bool
+    investigation_store_ready: bool = False
+    case_count: int | None = None
+    apk_analysis_available: bool = True
+    website_analysis_available: bool = True
+    domain_age_enabled: bool = True
+
+
+# ---------------------------------------------------------------------------
+# PS01 investigation layer
+#
+# Citizen Mode keeps every contract above unchanged and persists nothing.
+# The types below belong to Investigation Mode, where a submission becomes a
+# durable, searchable case. See DECISIONS.md ADR-001.
+# ---------------------------------------------------------------------------
+
+
+class RiskLevel(str, Enum):
+    """PS01 asks for Low/Medium/High. Derived from verdict + score in one place."""
+
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+
+
+class ArtifactType(str, Enum):
+    MESSAGE = "MESSAGE"
+    URL = "URL"
+    EMAIL = "EMAIL"
+    APK = "APK"
+    WEBSITE = "WEBSITE"
+
+
+class IdentifierType(str, Enum):
+    """Actionable identifiers PS01 wants extracted and linked across sources."""
+
+    PHONE = "PHONE"
+    UPI = "UPI"
+    EMAIL = "EMAIL"
+    DOMAIN = "DOMAIN"
+    URL = "URL"
+    IP = "IP"
+    IFSC = "IFSC"
+    BANK_ACCOUNT = "BANK_ACCOUNT"
+    CRYPTO_BTC = "CRYPTO_BTC"
+    CRYPTO_ETH = "CRYPTO_ETH"
+    TELEGRAM = "TELEGRAM"
+    PACKAGE = "PACKAGE"
+    CERT_SHA256 = "CERT_SHA256"
+    ICON_PHASH = "ICON_PHASH"
+
+
+class CaseStatus(str, Enum):
+    NEW = "NEW"
+    UNDER_REVIEW = "UNDER_REVIEW"
+    CLOSED = "CLOSED"
+
+
+class CaseSource(str, Enum):
+    CITIZEN = "CITIZEN"
+    OFFICER = "OFFICER"
+
+
+class UserRole(str, Enum):
+    CITIZEN = "CITIZEN"
+    OFFICER = "OFFICER"
+    ADMIN = "ADMIN"
+
+
+class Identifier(BaseModel):
+    """One extracted actionable identifier, with the text that surrounded it."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    raw_value: str = Field(min_length=1, max_length=512)
+    context: str | None = Field(default=None, max_length=300)
+    confidence: int = Field(default=100, ge=0, le=100)
+
+
+class Finding(BaseModel):
+    """One triggered indicator. This is what makes a risk score explainable."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    code: str = Field(min_length=2, max_length=64)
+    severity: Severity
+    explanation: str = Field(min_length=5, max_length=500)
+    evidence: str | None = Field(default=None, max_length=500)
+
+
+class AnalysisBundle(BaseModel):
+    """Common shape every analyser emits so one pipeline can persist them all."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    artifact_type: ArtifactType
+    risk_level: RiskLevel
+    risk_score: int = Field(ge=0, le=100)
+    verdict: Verdict | None = None
+    summary: str = Field(min_length=5, max_length=1_000)
+    findings: list[Finding] = Field(default_factory=list, max_length=60)
+    identifiers: list[Identifier] = Field(default_factory=list, max_length=300)
+    content_text: str | None = Field(default=None, max_length=200_000)
+    content_sha256: str | None = Field(default=None, min_length=64, max_length=64)
+    simhash: str | None = Field(default=None, max_length=32)
+    details: dict = Field(default_factory=dict)
+
+
+class InvestigateSubmitRequest(BaseModel):
+    """Officer or opted-in citizen submission of a message, URL, or email."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    artifact_type: ArtifactType
+    content: str = Field(min_length=3, max_length=100_000)
+    language: InputLanguage = InputLanguage.AUTO
+    reporter_note: str | None = Field(default=None, max_length=1_000)
+    source: CaseSource = CaseSource.OFFICER
+
+    @field_validator("content")
+    @classmethod
+    def reject_null_bytes(cls, value: str) -> str:
+        if "\x00" in value:
+            raise ValueError("Content contains an invalid character")
+        return value
+
+
+class CaseSummary(BaseModel):
+    """Row shape for the investigation dashboard case list."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    case_id: str = Field(min_length=6, max_length=40)
+    artifact_type: ArtifactType
+    risk_level: RiskLevel
+    risk_score: int = Field(ge=0, le=100)
+    status: CaseStatus
+    source: CaseSource
+    summary: str = Field(min_length=1, max_length=1_000)
+    preview: str = Field(default="", max_length=300)
+    identifier_count: int = Field(default=0, ge=0)
+    finding_count: int = Field(default=0, ge=0)
+    created_at: str = Field(max_length=40)
+
+
+class CaseDetail(CaseSummary):
+    """Full case view, including every triggered indicator and identifier."""
+
+    content_text: str | None = Field(default=None, max_length=200_000)
+    reporter_note: str | None = Field(default=None, max_length=1_000)
+    officer_note: str | None = Field(default=None, max_length=4_000)
+    findings: list[Finding] = Field(default_factory=list, max_length=60)
+    identifiers: list[Identifier] = Field(default_factory=list, max_length=300)
+    details: dict = Field(default_factory=dict)
+
+
+class CaseSearchResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    total: int = Field(ge=0)
+    limit: int = Field(ge=1, le=200)
+    offset: int = Field(ge=0)
+    cases: list[CaseSummary] = Field(default_factory=list)
+
+
+class CaseStatusUpdate(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    status: CaseStatus | None = None
+    officer_note: str | None = Field(default=None, max_length=4_000)
+
+
+class CitizenReportRequest(BaseModel):
+    """A citizen forwarding an analysed item to the police queue.
+
+    ``consent`` must be true. Citizen Mode writes nothing without it.
+    """
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    artifact_type: ArtifactType = ArtifactType.MESSAGE
+    content: str = Field(min_length=3, max_length=100_000)
+    language: InputLanguage = InputLanguage.AUTO
+    reporter_note: str | None = Field(default=None, max_length=1_000)
+    consent: bool = False
+
+    @field_validator("content")
+    @classmethod
+    def reject_null_bytes(cls, value: str) -> str:
+        if "\x00" in value:
+            raise ValueError("Content contains an invalid character")
+        return value
+
+
+class CitizenReportResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    reference: str = Field(min_length=6, max_length=40)
+    message: str = Field(min_length=10, max_length=500)
+    helpline: str = Field(max_length=16)
+    official_portal: str = Field(max_length=200)
+
+
+class LinkedCase(BaseModel):
+    """Another case connected to this one by a shared identifier."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    case: CaseSummary
+    shared_identifiers: list[str] = Field(default_factory=list, max_length=10)
+    link_strength: int = Field(ge=0, le=100)
+
+
+class SimilarCase(BaseModel):
+    """A repeat-content match: the same template, or a reworded variant."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    case: CaseSummary
+    match_type: Literal["EXACT_TEMPLATE", "NEAR_DUPLICATE"]
+    distance: int = Field(ge=0, le=64)
+    similarity: int = Field(ge=0, le=100)
+
+
+class HeatListEntry(BaseModel):
+    """One row of the most-reported identifiers list."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    case_count: int = Field(ge=0)
+    recent_case_count: int = Field(default=0, ge=0)
+    first_seen: str = Field(default="", max_length=40)
+    last_seen: str = Field(default="", max_length=40)
+
+
+class WebsiteAnalyzeRequest(BaseModel):
+    """A URL to fetch and analyse. Fetching is never implicit."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    url: str = Field(min_length=4, max_length=2_048)
+    reporter_note: str | None = Field(default=None, max_length=1_000)
+    source: CaseSource = CaseSource.OFFICER
+
+
+class PreCheckRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    url: str = Field(min_length=4, max_length=2_048)
+
+
+class PreCheckResponse(BaseModel):
+    """Fast warning used before a user opens a link."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    url: str = Field(max_length=2_048)
+    risk_level: RiskLevel
+    should_warn: bool
+    reasons: list[str] = Field(default_factory=list, max_length=6)
+    previously_reported: int = Field(default=0, ge=0)
+
+
+class LoginRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    username: str = Field(min_length=3, max_length=64)
+    password: str = Field(min_length=8, max_length=256)
+
+
+class LoginResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    token: str = Field(min_length=20, max_length=200)
+    username: str = Field(min_length=3, max_length=64)
+    role: UserRole
+    expires_at: str = Field(max_length=40)

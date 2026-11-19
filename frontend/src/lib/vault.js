@@ -1,4 +1,4 @@
-const DATABASE = 'surakshai-evidence-vault'
+const DATABASE = 'parakh-evidence-vault'
 const VERSION = 1
 const KEY_ID = 'device-key-v1'
 const MAX_TEXT_BYTES = 50_000

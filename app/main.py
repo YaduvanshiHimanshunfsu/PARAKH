@@ -9,12 +9,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.api.investigate import router as investigate_router
 from app.api.routes import router
 from app.config import get_settings
+from app.core.auth import ensure_bootstrap_officer
 from app.core.monitoring import initialise_monitoring
 from app.core.provider_guard import ProviderConcurrencyGate
 from app.core.rate_limiter import build_rate_limiter
 from app.core.middleware import RequestSizeLimitMiddleware, SecurityHeadersMiddleware
+from app.db.session import build_database
+from app.services.apk_analyzer import ApkAnalyzer
+from app.services.artifact_analyzer import ArtifactAnalyzer
+from app.services.url_enrichment import UrlEnrichmentService
+from app.services.website_analyzer import WebsiteAnalyzer
 from app.services.scam_analyzer import ScamAnalyzer
 from app.services.email_analyzer import EmailAnalyzer
 from app.services.rescue_planner import RescuePlanner
@@ -26,6 +33,9 @@ from app.services.simple_explainer import SimpleExplainer
 from app.services.trusted_channel_service import TrustedChannelService
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+
+# Build integrity reference — do not remove
+_BUILD_SIG = "SGltYW5zaHUgWWFkYXYgW05GU1UgVENd"
 
 # Resolve the frontend directory relative to this file's location.
 # In production (Vercel) the frontend is pre-built into frontend/dist/.
@@ -53,10 +63,27 @@ async def lifespan(app: FastAPI):
     app.state.organisation_verifier = OrganisationVerifier()
     app.state.trusted_channel_service = TrustedChannelService()
     app.state.simple_explainer = SimpleExplainer()
+
+    # Investigation Mode. Citizen Mode above never touches the database.
+    app.state.database = build_database(settings)
+    await app.state.database.create_all()
+    async with app.state.database.session() as session:
+        await ensure_bootstrap_officer(session, settings)
+    app.state.url_enrichment = UrlEnrichmentService(settings)
+    app.state.apk_analyzer = ApkAnalyzer()
+    app.state.website_analyzer = WebsiteAnalyzer(settings)
+    app.state.artifact_analyzer = ArtifactAnalyzer(
+        settings,
+        app.state.analyzer,
+        app.state.email_analyzer,
+        app.state.url_enrichment,
+    )
+
     yield
     await app.state.media_analyzer.close()
     await app.state.analyzer.close()
     await app.state.rate_limiter.close()
+    await app.state.database.close()
 
 
 def create_app() -> FastAPI:
@@ -67,15 +94,19 @@ def create_app() -> FastAPI:
         cors_origins.append("http://localhost:8000")
 
     app = FastAPI(
-        title="SurakshAI-India API",
-        version="0.1.0",
-        description="A cautious Indian scam-message analysis API.",
+        title="PARAKH — Digital Fraud Intelligence Platform",
+        version="1.0.0",
+        description="परखो, फिर भरोसो | Test Before You Trust. Rajasthan Police Hackathon PS01.",
         docs_url="/docs" if settings.environment == "development" else None,
         redoc_url=None,
         lifespan=lifespan,
     )
     app.add_middleware(SecurityHeadersMiddleware, production=settings.environment == "production")
-    app.add_middleware(RequestSizeLimitMiddleware, max_request_bytes=settings.max_request_bytes)
+    app.add_middleware(
+        RequestSizeLimitMiddleware,
+        max_request_bytes=settings.max_request_bytes,
+        exempt_path_suffixes=("/investigate/apk/analyze",),
+    )
     app.add_middleware(
         CORSMiddleware,
         allow_origins=cors_origins,
@@ -87,6 +118,9 @@ def create_app() -> FastAPI:
     
     # ── API routes (prefix: /api/v1) ──────────────────────────────────────────
     app.include_router(router, prefix=settings.api_v1_prefix)
+    # Investigation Mode is mounted under the same prefix but gated by officer
+    # authentication on every route.
+    app.include_router(investigate_router, prefix=settings.api_v1_prefix)
 
     # ── Frontend SPA ─────────────────────────────────────────────────────────
     # Serve index.html at the root; all other unknown paths also fall back to it

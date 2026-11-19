@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 """Deterministic citizen-safety playbooks.
 
@@ -94,7 +94,8 @@ PLAYBOOKS: dict[ExposureState, tuple[RescueUrgency, str, tuple[RescueAction, ...
 }
 
 LIMITATIONS = (
-    "SurakshAI provides safety guidance, not legal, banking, or police action on your behalf.",
+    "PARAKH provides safety guidance, not legal, banking, or police action on your behalf.",
     "Use only independently known official apps, websites, or support numbers; do not use contacts supplied by the suspected scammer.",
-    "Never enter or upload OTPs, PINs, passwords, CVVs, card numbers, or other authentication secrets into SurakshAI.",
+    "Never enter or upload OTPs, PINs, passwords, CVVs, card numbers, or other authentication secrets into PARAKH.",
 )
+

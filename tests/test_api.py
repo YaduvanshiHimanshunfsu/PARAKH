@@ -1,4 +1,4 @@
-from fastapi.testclient import TestClient
+﻿from fastapi.testclient import TestClient
 
 from app.main import create_app
 
@@ -18,7 +18,7 @@ def test_analysis_endpoint_returns_valid_fallback_contract_without_key() -> None
         "language": "en",
     }
     with TestClient(create_app()) as client:
-        response = client.post("/api/v1/surakshai/analyze", json=payload)
+        response = client.post("/api/v1/parakh/analyze", json=payload)
 
     body = response.json()
     assert response.status_code == 200
@@ -30,9 +30,9 @@ def test_analysis_endpoint_returns_valid_fallback_contract_without_key() -> None
 
 def test_analysis_endpoint_rejects_extra_and_empty_inputs() -> None:
     with TestClient(create_app()) as client:
-        empty = client.post("/api/v1/surakshai/analyze", json={"message": "   "})
+        empty = client.post("/api/v1/parakh/analyze", json={"message": "   "})
         extra = client.post(
-            "/api/v1/surakshai/analyze",
+            "/api/v1/parakh/analyze",
             json={"message": "hello", "debug": True},
         )
 
@@ -43,7 +43,7 @@ def test_analysis_endpoint_rejects_extra_and_empty_inputs() -> None:
 def test_rescue_plan_is_deterministic_and_does_not_accept_extra_data() -> None:
     with TestClient(create_app()) as client:
         response = client.post(
-            "/api/v1/surakshai/rescue-plan",
+            "/api/v1/parakh/rescue-plan",
             json={
                 "exposure_state": "SENT_MONEY",
                 "verdict": "SCAM",
@@ -51,7 +51,7 @@ def test_rescue_plan_is_deterministic_and_does_not_accept_extra_data() -> None:
             },
         )
         extra = client.post(
-            "/api/v1/surakshai/rescue-plan",
+            "/api/v1/parakh/rescue-plan",
             json={"exposure_state": "RECEIVED_ONLY", "verdict": "SCAM", "otp": "123456"},
         )
 
@@ -59,3 +59,4 @@ def test_rescue_plan_is_deterministic_and_does_not_accept_extra_data() -> None:
     assert response.json()["urgency"] == "CRITICAL"
     assert "1930" in response.text
     assert extra.status_code == 422
+

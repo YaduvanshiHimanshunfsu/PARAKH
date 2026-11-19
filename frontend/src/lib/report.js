@@ -22,7 +22,7 @@ export function buildEvidenceReport({ caseId, analysis, sourceText, sourceKind, 
   const indicators = extractIndicators(sourceText)
   const displayedIndicators = includeUnredacted ? indicators : indicators.map(redactIndicator)
   return {
-    title: 'SurakshAI Evidence Pack',
+    title: 'PARAKH Evidence Pack',
     caseId,
     createdAt: new Date().toISOString(),
     privacy: includeUnredacted ? 'Unredacted export confirmed by the user.' : 'Privacy-safe export: sensitive values are masked.',

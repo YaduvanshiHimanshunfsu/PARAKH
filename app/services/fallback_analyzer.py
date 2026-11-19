@@ -63,7 +63,14 @@ class RuleBasedFallbackAnalyzer:
                 category_points[ScamCategory.PHISHING_LINK] += 12
                 score += 12
 
-        category = category_points.most_common(1)[0][0] if category_points else ScamCategory.UNKNOWN
+        # UNKNOWN is carried by cross-cutting tactic rules (advance fee, urgency)
+        # that add real risk but identify no fraud family. It must never outrank
+        # a rule that does, or an advance-fee demand would mask a fake-job scam.
+        identified = Counter(
+            {name: points for name, points in category_points.items() if name is not ScamCategory.UNKNOWN}
+        )
+        ranked = identified or category_points
+        category = ranked.most_common(1)[0][0] if ranked else ScamCategory.UNKNOWN
         if score >= 55:
             verdict = Verdict.SCAM
             severity = Severity.HIGH

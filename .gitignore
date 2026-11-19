@@ -10,6 +10,13 @@ htmlcov/
 # Vendored / local packages directory (not committed)
 .packages/
 
+# Investigation case store. Never commit: it holds analysed artifacts,
+# extracted identifiers, and officer notes.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
 # Node / frontend — don't commit dependencies, but DO commit the built output
 node_modules/
 # frontend/dist/ is intentionally committed so Vercel can serve the built SPA
