@@ -5,7 +5,12 @@
 // Desktop Chrome/Edge on Windows does not, so jsQR (pure JS, offline) is the
 // fallback — without it the QR check would fail on the demo laptop.
 
-import jsQR from 'jsqr'
+// jsQR (~130 KB) is loaded on first use so the Check screen stays light.
+let jsQRModule = null
+async function loadJsQR() {
+  jsQRModule ??= import('jsqr').then((m) => m.default)
+  return jsQRModule
+}
 
 const MAX_EDGE = 1600
 
@@ -39,7 +44,8 @@ async function detectNative(source) {
   }
 }
 
-function detectJs(source, width, height) {
+async function detectJs(source, width, height) {
+  const jsQR = await loadJsQR()
   const image = pixelsFrom(source, width, height)
   const code = jsQR(image.data, image.width, image.height, { inversionAttempts: 'attemptBoth' })
   return code?.data || null
@@ -50,7 +56,7 @@ export async function decodeQrFile(file) {
   const bitmap = await createImageBitmap(file)
   try {
     const value =
-      (nativeDetectorAvailable() && (await detectNative(bitmap))) || detectJs(bitmap, bitmap.width, bitmap.height)
+      (nativeDetectorAvailable() && (await detectNative(bitmap))) || (await detectJs(bitmap, bitmap.width, bitmap.height))
     if (!value) throw new Error('No QR code was found in this image. Try a sharper, closer photo.')
     return value
   } finally {

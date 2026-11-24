@@ -30,9 +30,9 @@ test('citizen shell renders with brand, helpline and language toggle', async ({ 
   const helpline = page.getByRole('link', { name: 'Call the National Cyber Crime Helpline 1930' })
   await expect(helpline).toHaveAttribute('href', 'tel:1930')
 
-  await page.getByRole('button', { name: 'हिं' }).click()
+  await page.getByRole('button', { name: 'हिं', exact: true }).click()
   await expect(page.locator('html')).toHaveAttribute('lang', 'hi')
-  await page.getByRole('button', { name: 'EN' }).click()
+  await page.getByRole('button', { name: 'EN', exact: true }).click()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
 
   if (testInfo.project.name === 'mobile') {
@@ -43,7 +43,7 @@ test('citizen shell renders with brand, helpline and language toggle', async ({ 
 })
 
 test('unbuilt screens say so honestly', async ({ page }) => {
-  await page.goto('/check')
+  await page.goto('/evidence')
   await expect(page.getByText('This screen is being built')).toBeVisible()
 })
 
@@ -59,7 +59,7 @@ test('dev-only states gallery is not in the production build', async ({ page }) 
 
 // Every visible element must fit inside the viewport (not just the document),
 // checked after web fonts load so icon ligatures have their real width.
-for (const path of ['/', '/check', '/apk', '/rescue', '/help', '/learn', '/evidence', '/investigate/login', '/no-such-page']) {
+for (const path of ['/', '/check', '/check?mode=email', '/check?mode=qr', '/check?mode=screenshot', '/result', '/apk', '/rescue', '/help', '/learn', '/evidence', '/investigate/login', '/no-such-page']) {
   test(`no element overflows the viewport on ${path}`, async ({ page }) => {
     await page.goto(path)
     await page.evaluate(() => document.fonts.ready)
@@ -67,7 +67,14 @@ for (const path of ['/', '/check', '/apk', '/rescue', '/help', '/learn', '/evide
       [...document.querySelectorAll('body *')]
         .filter((el) => {
           const box = el.getBoundingClientRect()
-          return box.width > 0 && box.right > window.innerWidth + 1
+          if (box.width === 0 || box.right <= window.innerWidth + 1) return false
+          // Content inside a horizontal scroller (mode pickers, tables) is allowed
+          // to extend past the edge; the scroller itself must still fit.
+          for (let parent = el.parentElement; parent && parent !== document.body; parent = parent.parentElement) {
+            const style = getComputedStyle(parent)
+            if (['auto', 'scroll', 'hidden', 'clip'].includes(style.overflowX)) return false
+          }
+          return true
         })
         .map((el) => `${el.tagName.toLowerCase()} "${(el.textContent || '').trim().slice(0, 30)}"`)
         .slice(0, 5),

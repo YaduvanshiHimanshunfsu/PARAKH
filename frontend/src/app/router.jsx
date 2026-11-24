@@ -7,6 +7,11 @@ import { NotFound, WorkInProgress } from './pages'
 
 // The officer console is a separate chunk: citizens never download it.
 const OfficerLayout = lazy(() => import('./OfficerLayout').then((m) => ({ default: m.OfficerLayout })))
+const page = (loader, name) => lazy(() => loader().then((m) => ({ default: m[name] })))
+const HomePage = page(() => import('../features/citizen/home/HomePage'), 'HomePage')
+const CheckPage = page(() => import('../features/citizen/check/CheckPage'), 'CheckPage')
+const ResultPage = page(() => import('../features/citizen/result/ResultPage'), 'ResultPage')
+const ApkPage = page(() => import('../features/citizen/apk/ApkPage'), 'ApkPage')
 const StatesGallery = import.meta.env.DEV ? lazy(() => import('../dev/StatesGallery')) : null
 
 const wip = (title, phase, source) => <WorkInProgress title={title} phase={phase} source={source} />
@@ -31,10 +36,10 @@ export const routes = [
   {
     element: <CitizenLayout />,
     children: [
-      { path: '/', element: wip('Home', 'H.2', 'parakh_citizen_cyber_safety_portal') },
-      { path: '/check', element: wip('Check something suspicious', 'H.2', 'parakh_check_something_suspicious_forensic_multi_modal_triage') },
-      { path: '/result', element: wip('Verdict', 'H.2', 'parakh_verification_result_high_risk_scam_alert') },
-      { path: '/apk', element: wip('App check', 'H.2', 'parakh_app_check_apk_forensic_scanner') },
+      { path: '/', element: <Lazy><HomePage /></Lazy> },
+      { path: '/check', element: <Lazy><CheckPage /></Lazy> },
+      { path: '/result', element: <Lazy><ResultPage /></Lazy> },
+      { path: '/apk', element: <Lazy><ApkPage /></Lazy> },
       { path: '/rescue', element: wip('Emergency rescue', 'H.3', 'parakh_cyber_victim_rescue_emergency_sop') },
       { path: '/help', element: wip('Official help directory', 'H.3', 'parakh_official_help_directory_organisation_verifier') },
       { path: '/learn', element: wip('Scam explorer', 'H.3', 'parakh_scam_explorer_cyber_defence_academy') },

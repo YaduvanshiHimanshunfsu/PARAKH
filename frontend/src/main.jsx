@@ -16,6 +16,7 @@ import './design/tokens.css'
 import { I18nProvider } from './lib/i18n'
 import { ToastProvider } from './design/ui'
 import { AuthProvider } from './app/AuthContext'
+import { ResultProvider } from './app/ResultContext'
 import { createRouter } from './app/router'
 import { ApiError } from './lib/api'
 
@@ -39,7 +40,9 @@ createRoot(document.getElementById('root')).render(
       <I18nProvider>
         <ToastProvider>
           <AuthProvider>
-            <RouterProvider router={router} />
+            <ResultProvider>
+              <RouterProvider router={router} />
+            </ResultProvider>
           </AuthProvider>
         </ToastProvider>
       </I18nProvider>

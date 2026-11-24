@@ -180,6 +180,8 @@ export const citizenApi = {
   verifyOrganisation: (text) => request('/parakh/organisation/verify', { method: 'POST', json: { text } }),
   trustedChannels: () => request('/parakh/trusted-channels'),
   reportToPolice: (payload) => request('/parakh/report-to-police', { method: 'POST', json: payload }),
+  identifierCheck: (value) => request('/parakh/identifier/check', { method: 'POST', json: { value } }),
+  meta: () => request('/parakh/meta'),
 }
 
 // --- officer API (bearer token, scoped server-side) --------------------------
@@ -189,6 +191,7 @@ export const officerApi = {
     request('/investigate/auth/login', { method: 'POST', json: { username, password } }),
   logout: () => request('/investigate/auth/logout', { method: 'POST', auth: true }),
   me: () => request('/investigate/me', { auth: true }),
+  dashboardSummary: (days = 30) => request(`/investigate/dashboard/summary?days=${Number(days)}`, { auth: true }),
 
   searchCases: (filters) => request(`/investigate/cases${query(filters)}`, { auth: true }),
   getCase: (caseId) => request(checked(route`/investigate/cases/${caseId}`), { auth: true }),

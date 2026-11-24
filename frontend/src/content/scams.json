@@ -1,0 +1,113 @@
+{
+  "note": "Education content for Home and Learn. Categories match the rule-engine typologies (planversionalpha.md B.3). Examples are synthetic paraphrases of public police / CERT-In advisories; they contain no real victim data.",
+  "types": [
+    {
+      "id": "utility_bill", "group": "financial", "icon": "bolt", "tag": "Most reported",
+      "title": "Electricity bill disconnection", "hindi": "बिजली बिल कटौती ठगी",
+      "example": "Dear consumer, your electricity will be disconnected tonight at 9:30 PM as last month's bill is not updated. Call the electricity officer on 98XXXXXXXX.",
+      "red_flag": "A private 10-digit mobile number and a same-night deadline. Discoms send bills from official sender IDs and never ask you to call a personal number.",
+      "red_flag_hi": "निजी 10 अंकों का नंबर और आज रात की समय-सीमा। डिस्कॉम कभी निजी नंबर पर कॉल करने को नहीं कहता।",
+      "safety": "Check your bill only on the official discom portal or app, or dial 1912.",
+      "safety_hi": "बिल केवल आधिकारिक डिस्कॉम पोर्टल या ऐप पर जाँचें, या 1912 डायल करें।"
+    },
+    {
+      "id": "digital_arrest", "group": "identity", "icon": "local_police", "tag": "Extreme danger",
+      "title": "\"Digital arrest\" video call", "hindi": "डिजिटल अरेस्ट वीडियो कॉल",
+      "example": "This is CBI. A parcel in your name had drugs. You are under digital arrest — stay on the video call and transfer your savings for verification.",
+      "red_flag": "There is no such thing as a digital arrest in Indian law. Police, CBI or ED never ask for money on a video call.",
+      "red_flag_hi": "भारतीय कानून में डिजिटल अरेस्ट जैसा कुछ नहीं है। पुलिस, सीबीआई या ईडी कभी वीडियो कॉल पर पैसे नहीं माँगते।",
+      "safety": "Disconnect immediately, tell your family, and report the number at 1930.",
+      "safety_hi": "तुरंत कॉल काटें, परिवार को बताएँ और 1930 पर नंबर की रिपोर्ट करें।"
+    },
+    {
+      "id": "rto_challan_apk", "group": "identity", "icon": "directions_car", "tag": "Trojan APK",
+      "title": "Fake RTO e-challan app", "hindi": "फर्जी ई-चालान ऐप",
+      "example": "Your vehicle challan of Rs 500 is pending. Download RTO_Challan.apk to view the photo and pay.",
+      "red_flag": "A challan never comes as an .apk file. These apps read your SMS and forward bank OTPs to the scammer.",
+      "red_flag_hi": "चालान कभी .apk फ़ाइल के रूप में नहीं आता। ऐसे ऐप आपके एसएमएस पढ़कर बैंक ओटीपी भेज देते हैं।",
+      "safety": "Check challans only on echallan.parivahan.gov.in. Never install apps sent on WhatsApp.",
+      "safety_hi": "चालान केवल echallan.parivahan.gov.in पर जाँचें। व्हाट्सऐप पर आए ऐप कभी इंस्टॉल न करें।"
+    },
+    {
+      "id": "kyc_block", "group": "financial", "icon": "account_balance", "tag": "Banking",
+      "title": "Bank KYC / account block", "hindi": "बैंक केवाईसी ठगी",
+      "example": "Your SBI account will be blocked in 24 hours. Update KYC immediately at sbi-verify-kyc.in.",
+      "red_flag": "Banks never ask you to update KYC through an SMS link. Look-alike domains copy the bank's name.",
+      "red_flag_hi": "बैंक कभी एसएमएस लिंक से केवाईसी अपडेट करने को नहीं कहते। नकली डोमेन बैंक के नाम की नकल करते हैं।",
+      "safety": "Open the official bank app yourself, or visit the branch.",
+      "safety_hi": "स्वयं आधिकारिक बैंक ऐप खोलें या शाखा जाएँ।"
+    },
+    {
+      "id": "loan_app", "group": "financial", "icon": "payments", "tag": "Blackmail",
+      "title": "Predatory instant-loan apps", "hindi": "फर्जी इंस्टेंट लोन ऐप",
+      "example": "Instant loan in 5 minutes, no CIBIL, only Aadhaar. Download our app and allow contacts access.",
+      "red_flag": "Lenders that need your contacts and SMS use them to harass and shame you later.",
+      "red_flag_hi": "जो लोन ऐप आपके संपर्क और एसएमएस माँगते हैं, वे बाद में उनसे परेशान करते हैं।",
+      "safety": "Borrow only from RBI-regulated lenders; never grant contacts or SMS permission to a loan app.",
+      "safety_hi": "केवल आरबीआई-नियंत्रित संस्थाओं से लोन लें; लोन ऐप को संपर्क या एसएमएस अनुमति न दें।"
+    },
+    {
+      "id": "task_job", "group": "jobs", "icon": "work", "tag": "Telegram pyramid",
+      "title": "Part-time task / rating jobs", "hindi": "पार्ट-टाइम टास्क जॉब ठगी",
+      "example": "Earn Rs 3,000 daily by rating hotels on Google Maps. Join our Telegram group to start.",
+      "red_flag": "Small payouts first, then a 'prepaid task' that needs your deposit. The money never comes back.",
+      "red_flag_hi": "पहले छोटी कमाई, फिर 'प्रीपेड टास्क' के लिए जमा राशि। पैसा कभी वापस नहीं आता।",
+      "safety": "Real jobs never ask you to pay. Leave the group and report it.",
+      "safety_hi": "असली नौकरी में पैसे नहीं माँगे जाते। समूह छोड़ें और रिपोर्ट करें।"
+    },
+    {
+      "id": "guaranteed_returns", "group": "jobs", "icon": "trending_up", "tag": "Ponzi",
+      "title": "Guaranteed daily returns", "hindi": "गारंटीड रिटर्न योजना",
+      "example": "Earn 10% daily, guaranteed. Referral bonus on every new member. Joining package Rs 5,000.",
+      "red_flag": "No lawful investment guarantees daily returns. Income from recruiting others is a Ponzi scheme.",
+      "red_flag_hi": "कोई वैध निवेश रोज़ाना रिटर्न की गारंटी नहीं देता। दूसरों को जोड़ने से कमाई पोंज़ी योजना है।",
+      "safety": "Check SEBI registration before investing anything.",
+      "safety_hi": "निवेश से पहले सेबी पंजीकरण अवश्य जाँचें।"
+    },
+    {
+      "id": "sextortion", "group": "social", "icon": "videocam_off", "tag": "Blackmail",
+      "title": "Video call sextortion", "hindi": "वीडियो कॉल ब्लैकमेल",
+      "example": "We recorded your video call. Pay Rs 25,000 in 15 minutes or it goes viral and to your family.",
+      "red_flag": "Paying once never ends it; blackmailers keep demanding more.",
+      "red_flag_hi": "एक बार भुगतान करने से यह खत्म नहीं होता; ब्लैकमेलर और माँगते रहते हैं।",
+      "safety": "Do not pay. Keep screenshots, block the number and report at 1930.",
+      "safety_hi": "भुगतान न करें। स्क्रीनशॉट रखें, नंबर ब्लॉक करें और 1930 पर रिपोर्ट करें।"
+    },
+    {
+      "id": "upi_collect", "group": "financial", "icon": "qr_code_2", "tag": "UPI trap",
+      "title": "QR / collect request \"refund\"", "hindi": "क्यूआर / कलेक्ट रिक्वेस्ट रिफंड ठगी",
+      "example": "Scan this QR to receive your cashback of Rs 1,000 and enter your UPI PIN to confirm.",
+      "red_flag": "Receiving money never needs a UPI PIN. Entering it sends money out.",
+      "red_flag_hi": "पैसे पाने के लिए यूपीआई पिन कभी नहीं लगता। पिन डालने से पैसा जाता है।",
+      "safety": "Never scan a QR or approve a collect request to receive money.",
+      "safety_hi": "पैसे पाने के लिए कभी क्यूआर स्कैन न करें या कलेक्ट रिक्वेस्ट स्वीकार न करें।"
+    },
+    {
+      "id": "courier", "group": "identity", "icon": "local_shipping", "tag": "Delivery",
+      "title": "Courier / parcel hold", "hindi": "कूरियर / पार्सल ठगी",
+      "example": "Your parcel is held at the hub due to an incomplete address. Pay Rs 25 redelivery charge at the link.",
+      "red_flag": "Tiny fees are used to steal card details on fake payment pages.",
+      "red_flag_hi": "छोटे शुल्क के बहाने नकली भुगतान पेज पर कार्ड विवरण चुराए जाते हैं।",
+      "safety": "Track parcels only on the courier's official website or app.",
+      "safety_hi": "पार्सल केवल कूरियर की आधिकारिक वेबसाइट या ऐप पर ट्रैक करें।"
+    },
+    {
+      "id": "marketplace", "group": "social", "icon": "storefront", "tag": "OLX",
+      "title": "\"Army officer\" buyer / seller", "hindi": "आर्मी अफसर बनकर ठगी",
+      "example": "I am an Army officer, transferred, buying your sofa. I will send an advance — scan this QR and enter PIN.",
+      "red_flag": "Uniform photos and urgency are used to build trust; the QR takes money from you.",
+      "red_flag_hi": "वर्दी की फोटो और जल्दबाज़ी से भरोसा जीता जाता है; क्यूआर से आपका पैसा जाता है।",
+      "safety": "Meet in person, never scan QR codes to receive money.",
+      "safety_hi": "व्यक्तिगत रूप से मिलें, पैसे पाने के लिए क्यूआर स्कैन न करें।"
+    },
+    {
+      "id": "jan_aadhaar", "group": "identity", "icon": "badge", "tag": "Govt schemes",
+      "title": "Jan Aadhaar / SSO ID lures", "hindi": "जन आधार / एसएसओ आईडी ठगी",
+      "example": "Your Jan Aadhaar card will be cancelled today. Update details at janaadhaar-update.in to keep benefits.",
+      "red_flag": "Government services are on rajasthan.gov.in domains; look-alike domains collect your ID and OTP.",
+      "red_flag_hi": "सरकारी सेवाएँ rajasthan.gov.in डोमेन पर हैं; नकली डोमेन आपकी आईडी और ओटीपी चुराते हैं।",
+      "safety": "Use only the official portal or an e-Mitra kiosk.",
+      "safety_hi": "केवल आधिकारिक पोर्टल या ई-मित्र केंद्र का उपयोग करें।"
+    }
+  ]
+}
