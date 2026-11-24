@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Cross-source linking, similarity, and heat-list tests (Phase 5).
 

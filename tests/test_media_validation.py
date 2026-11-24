@@ -1,4 +1,4 @@
-﻿import io
+import io
 import asyncio
 
 from fastapi.testclient import TestClient

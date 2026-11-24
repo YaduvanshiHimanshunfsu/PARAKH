@@ -47,7 +47,7 @@ India is in the middle of a **digital fraud epidemic**. Every day, millions of c
 
 1. **Analyzes** any suspicious artifact — message, URL, email, APK, or website
 2. **Extracts** 14 types of identifiers (UPI IDs, phone numbers, crypto wallets, etc.)
-3. **Links** cases automatically when they share identifiers — revealing fraud campaigns
+3. **Links** cases automatically when they share identifiers — revealing fraud campaigns on an interactive **Campaign map**
 4. **Stores** everything searchable for officers while **storing nothing** for citizens
 
 ```
@@ -98,7 +98,8 @@ python run.py
 ```bash
 # After first run.py, in a new terminal:
 .venv\Scripts\python -m app.db.seed          # Seed blacklist database
-.venv\Scripts\python -m app.db.demo_seed     # Load 14 cross-linked demo cases
+.venv\Scripts\python -m app.db.demo_seed     # Load 16 cross-linked demo cases (3 campaigns)
+.venv\Scripts\python -m app.db.demo_seed --export-apks samples   # Sample APKs to upload in App check
 ```
 
 ---
@@ -146,9 +147,29 @@ Every analysis automatically extracts and indexes:
 When a phone number appears in an SMS, inside an APK, and on a fraudulent website — PARAKH **automatically links all three cases** and surfaces the full campaign picture.
 
 - Weighted linking: shared UPI ID scores higher than a shared `bit.ly` link
-- Near-duplicate detection using SimHash (character 5-grams) with ≤ 3-bit threshold
-- Campaign clustering via connected components over the identifier graph
+- Near-duplicate detection using SimHash (character 5-grams) with a ≤ 16-bit Hamming threshold
+- Campaign clustering via connected components over shared operator identifiers and reworded templates
 - Heat-list of trending scam identifiers (domains, phones, UPI IDs) with 7-day trend
+
+### 🗺️ Campaign Map (`/investigate/campaigns`)
+
+Every group of connected cases is drawn as one cluster — one suspected operation.
+
+- **Interactive network graph** — cases coloured by risk, shared UPI IDs / phones / servers / app signatures as hubs, dashed edges for reworded templates. Click any node to open it; keyboard accessible.
+- **How the campaign evolved** — a dated timeline of every sighting, with word-level diffs between variants (`10% → 12%`, `Rs 5000 → Rs 9000`) and the first appearance of each new identifier, so a rotated phone number is visible the day it changes.
+- **Honest links only** — platform hosts (`t.me`, `bit.ly`, `wa.me` …), full URLs and IFSC branch codes never merge campaigns; a template alone can, and the page says so.
+- **Deterministic layout** — the same data always draws the same picture, so the map does not reshuffle mid-briefing.
+
+### 📱 App Check for Citizens (`/apk`)
+
+A public page, in the main navigation, to check an `.apk` before installing it. The file is read in memory, **never installed, run or stored**.
+
+- Plain-language verdict, risk score and what to do now (1930, cybercrime.gov.in)
+- Every permission explained — *"Read every text message on the phone, including bank OTPs"* — ranked Powerful / Sensitive / Normal
+- Signing certificate, target Android version, hidden URLs, server IPs, phone numbers and UPI IDs found inside the code
+- **"Already seen in police cases"** — a read-only check of the package, signature and embedded identifiers against high-risk cases (benign apps an officer once analysed never count)
+
+The same APK breakdown now also appears on the officer case page.
 
 ### 🛡️ Unique Features
 
@@ -326,27 +347,31 @@ Identifier Extraction (14 types)
 | `POST` | `/api/v1/parakh/url/analyze` | Analyze a suspicious URL |
 | `POST` | `/api/v1/parakh/email/analyze` | Analyze a raw `.eml` or email headers |
 | `POST` | `/api/v1/parakh/check-before-open` | Pre-click risk check (fast, cached) |
+| `POST` | `/api/v1/parakh/apk/analyze` | App check — static APK analysis, nothing stored |
 | `POST` | `/api/v1/parakh/report-to-police` | Forward to officer queue (consent-gated) |
 
 ### Investigation API (Bearer Token Required)
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `POST` | `/api/v1/investigate/login` | Officer sign-in → bearer token |
+| `POST` | `/api/v1/investigate/auth/login` | Officer sign-in → bearer token |
+| `POST` | `/api/v1/investigate/auth/logout` | Revoke the current token |
+| `GET` | `/api/v1/investigate/me` | Current officer identity |
 | `POST` | `/api/v1/investigate/submit` | Analyze + persist as a case |
 | `POST` | `/api/v1/investigate/apk/analyze` | Static APK analysis (upload) |
 | `POST` | `/api/v1/investigate/website/analyze` | Guarded website fetch and analysis |
 | `GET` | `/api/v1/investigate/cases` | Paginated case list (search, filter) |
 | `GET` | `/api/v1/investigate/cases/{id}` | Full case detail |
-| `PATCH` | `/api/v1/investigate/cases/{id}/status` | Update status + officer note |
-| `DELETE` | `/api/v1/investigate/cases/{id}` | Soft delete |
-| `GET` | `/api/v1/investigate/identifier/{value}/cases` | All cases sharing this identifier |
+| `PATCH` | `/api/v1/investigate/cases/{id}` | Update status + officer note |
+| `GET` | `/api/v1/investigate/identifiers/{type}/cases?value=` | All cases sharing this identifier |
 | `GET` | `/api/v1/investigate/cases/{id}/linked` | Cases linked by shared identifiers |
 | `GET` | `/api/v1/investigate/cases/{id}/similar` | Near-duplicate content (SimHash) |
-| `GET` | `/api/v1/investigate/heat-list` | Trending scam identifiers |
-| `GET` | `/api/v1/investigate/export/cases.json` | Bulk JSON export |
-| `GET` | `/api/v1/investigate/export/cases.csv` | Bulk CSV export |
-| `GET` | `/api/v1/investigate/cases/{id}/report.html` | Print-ready HTML investigation report |
+| `GET` | `/api/v1/investigate/heatlist` | Trending scam identifiers |
+| `GET` | `/api/v1/investigate/campaigns` | Campaigns: grouped cases, network graph, variant timeline |
+| `GET` | `/api/v1/investigate/export/cases.csv` | Bulk CSV export of the filtered case list |
+| `GET` | `/api/v1/investigate/export/identifiers.csv` | Every identifier across the filtered cases |
+| `GET` | `/api/v1/investigate/cases/{id}/report` | Print-ready HTML investigation report |
+| `GET` | `/api/v1/investigate/cases/{id}/report.json` | Structured JSON export of one case |
 
 > **Full interactive docs:** `http://localhost:8000/docs` (Swagger UI) after starting the app.
 
@@ -402,8 +427,10 @@ No code changes needed — SQLAlchemy handles the rest.
 | Analyze at least one APK **or** one website | APK static analysis (permissions, manifest, certs, dHash) **AND** website analysis (guarded fetch, identifier harvesting) — **both** implemented |
 | Extract URLs, phone numbers, UPI IDs from artifacts | 14 identifier types including UPI, phone, URL, domain, email, bank account, Telegram, crypto wallet |
 | Dashboard with case history, search, downloadable report | Officer console at `/investigate` — paginated search, identifier linking, heat-list, JSON/HTML/CSV export |
-| Cross-source identifier linking | `GET /investigate/identifier/{value}/cases` — weighted linking by identifier rarity |
-| Heat-list of trending scam identifiers | `GET /investigate/heat-list` — ranked with 7-day trend delta |
+| Cross-source identifier linking | `GET /investigate/identifiers/{type}/cases?value=` — weighted linking by identifier rarity |
+| Heat-list of trending scam identifiers | `GET /investigate/heatlist` — ranked with 7-day trend delta |
+| Repeat-content and similarity detection | Campaign map — template variants linked with word-level diffs of what changed |
+| Compare app package, icon and signature with known suspicious apps | App check and officer APK analysis match package, signing certificate and icon hash against high-risk cases and the blacklist |
 
 ---
 
@@ -450,12 +477,14 @@ PARAKH/
 │   │   ├── identifier_extractor.py ← 14-type extractor
 │   │   ├── case_service.py   ← Case CRUD + persistence
 │   │   ├── link_service.py   ← Identifier linking + SimHash
+│   │   ├── campaign_service.py ← Campaign clustering + variant timeline
 │   │   ├── url_enrichment.py ← RDAP, redirects, blacklist
 │   │   └── report_builder.py ← HTML investigation reports
 │   │
 │   ├── data/                 ← Detection rules (version-controlled)
 │   │   ├── scam_rules.py     ← 17 offline scam rules
 │   │   ├── apk_permission_rules.py ← APK danger permissions
+│   │   ├── android_permissions.py ← Plain-language permission catalogue
 │   │   ├── website_rules.py  ← Ponzi/MLM/betting patterns
 │   │   └── blacklists.py     ← Domain/phone/UPI blacklists
 │   │
@@ -463,7 +492,7 @@ PARAKH/
 │   │   ├── models.py         ← SQLAlchemy ORM models
 │   │   ├── session.py        ← Async session factory
 │   │   ├── seed.py           ← Blacklist seeder
-│   │   └── demo_seed.py      ← 14 cross-linked demo cases
+│   │   └── demo_seed.py      ← 16 cross-linked demo cases, 3 campaigns
 │   │
 │   ├── core/                 ← Cross-cutting concerns
 │   │   ├── auth.py           ← Officer auth (scrypt + SHA-256)
@@ -506,7 +535,7 @@ source .venv/bin/activate     # Linux/macOS
 # Run the full test suite
 pytest
 
-# Expected: 246 passed, 6 skipped (Windows asyncio), 0 failed
+# Expected: 274 passed, 6 skipped (Windows asyncio), 0 failed
 ```
 
 ---

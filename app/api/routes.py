@@ -1,8 +1,11 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import logging
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile, status
+from fastapi.concurrency import run_in_threadpool
+
+from app.api.uploads import read_apk_upload
 
 from app.config import Settings, get_settings
 from app.schemas import (
@@ -10,7 +13,9 @@ from app.schemas import (
     AnalysisResponse,
     EmailAnalyzeRequest,
     EmailAnalysisResponse,
+    Finding,
     HealthResponse,
+    IdentifierType,
     MediaKind,
     MediaExtractionResponse,
     MediaValidationResponse,
@@ -27,16 +32,20 @@ from app.schemas import (
     SimpleExplainResponse,
     ArtifactType,
     CaseSource,
+    CitizenApkAnalysis,
     CitizenReportRequest,
     CitizenReportResponse,
     PreCheckRequest,
     PreCheckResponse as SafePreCheckResponse,
+    ReportedIdentifier,
     RiskLevel,
+    Severity,
     UrlAnalysis,
     UrlAnalyzeRequest,
     UrlRiskLevel,
 )
 from app.services import case_service, link_service
+from app.services.apk_analyzer import ApkAnalyzer, ApkParsingError
 from app.services.artifact_analyzer import ArtifactAnalyzer
 from app.services.email_analyzer import EmailAnalyzer
 from app.services.scam_analyzer import ProviderUnavailableError, ScamAnalyzer
@@ -48,6 +57,7 @@ from app.services.organisation_verifier import OrganisationVerifier
 from app.services.qr_analyzer import QrAnalyzer
 from app.services.simple_explainer import SimpleExplainer
 from app.services.trusted_channel_service import TrustedChannelService
+from app.services.url_enrichment import UrlEnrichmentService
 
 logger = logging.getLogger(__name__)
 
@@ -96,13 +106,17 @@ def get_artifact_analyzer_public(request: Request) -> ArtifactAnalyzer:
     return request.app.state.artifact_analyzer
 
 
+def get_apk_analyzer(request: Request) -> ApkAnalyzer:
+    return request.app.state.apk_analyzer
+
+
 async def enforce_rate_limit(request: Request) -> None:
     await request.app.state.rate_limiter.check(request)
 
 
 @router.get("/health", response_model=HealthResponse, include_in_schema=False)
 async def health(request: Request, settings: Settings = Depends(get_settings)) -> HealthResponse:
-    """Operational status only â€” never configuration values or secrets.
+    """Operational status only — never configuration values or secrets.
 
     Reports per-subsystem availability so a demo problem is diagnosable at a
     glance. Every analyser except live AI works without its dependency, so a
@@ -407,7 +421,7 @@ async def report_to_police(
         reference=reference,
         message=(
             "Your report has been added to the review queue. Keep this reference. "
-            "For money already lost, call 1930 immediately â€” this tool does not replace that."
+            "For money already lost, call 1930 immediately — this tool does not replace that."
         ),
         helpline="1930",
         official_portal="https://cybercrime.gov.in/",
@@ -463,6 +477,134 @@ def _precheck_risk(url_risk: UrlRiskLevel, reported: int) -> RiskLevel:
     if url_risk is UrlRiskLevel.MEDIUM or reported >= 1:
         return RiskLevel.MEDIUM
     return RiskLevel.LOW
+
+
+@router.post(
+    "/parakh/apk/analyze",
+    response_model=CitizenApkAnalysis,
+    dependencies=[Depends(enforce_rate_limit)],
+    summary="Check an Android app file before installing it (nothing is stored)",
+)
+async def citizen_apk_analyze(
+    request: Request,
+    apk: UploadFile = File(..., description="Android package (.apk)"),
+    settings: Settings = Depends(get_settings),
+    analyzer: ApkAnalyzer = Depends(get_apk_analyzer),
+) -> CitizenApkAnalysis:
+    """Static inspection in memory — the file is never installed, run, or saved.
+
+    The case store is only *read*, to say whether this app or anything inside
+    it already appears in high-risk police cases. ADR-001 holds: Citizen Mode
+    writes nothing.
+    """
+
+    data = await read_apk_upload(apk, settings.max_apk_upload_bytes)
+    try:
+        bundle = await run_in_threadpool(analyzer.analyze, data, apk.filename)
+    except ApkParsingError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc)) from exc
+
+    findings = list(bundle.findings)
+    score = bundle.risk_score
+    reported: list[ReportedIdentifier] = []
+    database = getattr(request.app.state, "database", None)
+    if database is not None:
+        try:
+            async with database.session() as session:
+                blacklisted = await UrlEnrichmentService.match_blacklist(session, bundle.identifiers)
+                reported = await link_service.reported_matches(session, bundle.identifiers)
+        except Exception as exc:
+            # History is a bonus; the static verdict must still be returned.
+            logger.warning("apk_history_unavailable error=%s", type(exc).__name__)
+            blacklisted = []
+        if blacklisted:
+            findings = blacklisted + findings
+            score = max(score, 80)
+        history = _reported_findings(reported)
+        if history:
+            findings = history + findings
+            same_app = any(
+                item.type in {IdentifierType.PACKAGE, IdentifierType.CERT_SHA256} for item in reported
+            )
+            score = max(score, 80 if same_app else 45)
+
+    risk = case_service.derive_risk_level(min(100, score))
+    logger.info("citizen_apk_checked risk=%s reported=%d", risk.value, len(reported))
+    return CitizenApkAnalysis(
+        risk_level=risk,
+        risk_score=min(100, score),
+        summary=bundle.summary,
+        findings=findings[:60],
+        identifiers=bundle.identifiers,
+        details=bundle.details,
+        reported_identifiers=reported,
+        advice=list(_APK_ADVICE[risk]),
+    )
+
+
+_APK_ADVICE: dict[RiskLevel, tuple[str, ...]] = {
+    RiskLevel.HIGH: (
+        "Do not install this app.",
+        "If it is already installed, switch off mobile data and Wi-Fi, then uninstall it from Settings → Apps.",
+        "From a different, trusted phone, change your UPI PIN and net-banking password, and tell your bank.",
+        "Warn your family and contacts: fake loan apps copy the phonebook and may message them.",
+        "If money was taken or you are being threatened, call 1930 or report at cybercrime.gov.in.",
+    ),
+    RiskLevel.MEDIUM: (
+        "Install apps only from the Google Play Store, and check the developer name and reviews.",
+        "Do not allow SMS, contacts or 'display over other apps' access unless the app clearly needs it.",
+        "Never share an OTP, UPI PIN, or photos of your Aadhaar or PAN through an app you are unsure about.",
+        "If you are unsure, ask someone you trust before installing.",
+    ),
+    RiskLevel.LOW: (
+        "No strong fraud indicators were found in this file.",
+        "This is a static check: it cannot see what the app downloads or does after it is installed.",
+        "Install apps only from the Google Play Store, and review the permissions it asks for.",
+    ),
+}
+
+
+_IDENTIFIER_PHRASE: dict[IdentifierType, str] = {
+    IdentifierType.UPI: "a UPI ID",
+    IdentifierType.BANK_ACCOUNT: "a bank account number",
+    IdentifierType.PHONE: "a phone number",
+    IdentifierType.TELEGRAM: "a Telegram link",
+    IdentifierType.IP: "a server IP address",
+    IdentifierType.DOMAIN: "a web domain",
+    IdentifierType.EMAIL: "an email address",
+    IdentifierType.ICON_PHASH: "the same icon as an app",
+    IdentifierType.CRYPTO_BTC: "a Bitcoin wallet",
+    IdentifierType.CRYPTO_ETH: "an Ethereum wallet",
+}
+
+
+def _reported_findings(reported: list[ReportedIdentifier]) -> list[Finding]:
+    findings: list[Finding] = []
+    for item in reported[:5]:
+        cases = f"{item.case_count} high-risk reported case{'s' if item.case_count != 1 else ''}"
+        if item.type in {IdentifierType.PACKAGE, IdentifierType.CERT_SHA256}:
+            what = "package name" if item.type is IdentifierType.PACKAGE else "signing certificate"
+            findings.append(
+                Finding(
+                    code="MATCHES_REPORTED_APP",
+                    severity=Severity.HIGH,
+                    explanation=f"This app's {what} matches an app already seen in {cases}.",
+                    evidence=item.value[:500],
+                )
+            )
+        else:
+            findings.append(
+                Finding(
+                    code="SHARES_REPORTED_IDENTIFIER",
+                    severity=Severity.MEDIUM,
+                    explanation=(
+                        f"The app contains {_IDENTIFIER_PHRASE.get(item.type, 'an identifier')} "
+                        f"that appears in {cases}."
+                    ),
+                    evidence=item.value[:500],
+                )
+            )
+    return findings
 
 
 @router.post(

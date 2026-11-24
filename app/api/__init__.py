@@ -1,2 +1,2 @@
-﻿"""HTTP routes for PARAKH."""
+"""HTTP routes for PARAKH."""
 

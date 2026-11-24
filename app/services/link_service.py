@@ -26,8 +26,11 @@ from app.db.models import CaseRecord, IdentifierRecord
 from app.schemas import (
     CaseSummary,
     HeatListEntry,
+    Identifier,
     IdentifierType,
     LinkedCase,
+    ReportedIdentifier,
+    RiskLevel,
     SimilarCase,
 )
 from app.services.case_service import to_summary
@@ -57,6 +60,40 @@ _IDENTIFIER_WEIGHT: dict[IdentifierType, int] = {
 _DEFAULT_WEIGHT = 4
 
 _SIMILARITY_SCAN_LIMIT = 2_000
+
+
+def identifier_weight(identifier_type: IdentifierType) -> int:
+    return _IDENTIFIER_WEIGHT.get(identifier_type, _DEFAULT_WEIGHT)
+
+
+_NON_LINKING_TYPES = frozenset({IdentifierType.URL, IdentifierType.IFSC})
+
+GENERIC_HOSTS = frozenset({
+    "t.me", "telegram.me", "telegram.org", "wa.me", "whatsapp.com", "chat.whatsapp.com",
+    "api.whatsapp.com", "bit.ly", "tinyurl.com", "goo.gl", "rb.gy", "cutt.ly", "is.gd",
+    "shorturl.at", "tiny.cc", "youtube.com", "youtu.be", "google.com", "play.google.com",
+    "docs.google.com", "drive.google.com", "forms.gle", "facebook.com", "fb.me",
+    "instagram.com", "x.com", "twitter.com", "linkedin.com", "github.com", "gmail.com",
+    "yahoo.com", "outlook.com", "hotmail.com",
+})
+
+
+def _identifier_type(value: str) -> IdentifierType | None:
+    try:
+        return IdentifierType(value)
+    except ValueError:
+        return None
+
+
+def links_cases(type_value: str, value: str) -> bool:
+    """Whether a shared identifier of this kind means a shared operator."""
+
+    identifier_type = _identifier_type(type_value)
+    if identifier_type is None or identifier_type in _NON_LINKING_TYPES:
+        return False
+    if identifier_type is IdentifierType.DOMAIN and value.lower().removeprefix("www.") in GENERIC_HOSTS:
+        return False
+    return identifier_weight(identifier_type) >= 5
 
 
 async def cases_for_identifier(
@@ -144,8 +181,8 @@ async def linked_cases(
             )
         )
 
-    linked.sort(key=lambda item: (-item.link_strength, item.case.created_at), reverse=False)
-    linked.sort(key=lambda item: item.link_strength, reverse=True)
+    # Strongest links first; within equal strength, the most recent case first.
+    linked.sort(key=lambda item: (item.link_strength, item.case.created_at), reverse=True)
     return linked[:limit]
 
 
@@ -331,6 +368,49 @@ async def precheck_url(session: AsyncSession, url: str) -> tuple[int, list[str]]
         reasons.append(f"It is on the reviewed blacklist ({listed.source}). {listed.reason}".strip())
 
     return reported, reasons
+
+
+async def reported_matches(
+    session: AsyncSession, identifiers: list[Identifier], *, limit: int = 20
+) -> list[ReportedIdentifier]:
+    """Which of these identifiers already appear in HIGH-risk cases, and how often.
+
+    Read-only, so Citizen Mode can call it without storing anything. Only
+    HIGH-risk cases count: a benign app that an officer once analysed must not
+    make an unrelated upload look "previously reported".
+    """
+
+    keys = {
+        (identifier.type.value, identifier.value)
+        for identifier in identifiers
+        if links_cases(identifier.type.value, identifier.value)
+    }
+    if not keys:
+        return []
+
+    rows = (
+        await session.execute(
+            select(
+                IdentifierRecord.type,
+                IdentifierRecord.value,
+                func.count(func.distinct(CaseRecord.id)),
+            )
+            .join(CaseRecord, CaseRecord.id == IdentifierRecord.case_id)
+            .where(
+                IdentifierRecord.value.in_({value for _, value in keys}),
+                CaseRecord.risk_level == RiskLevel.HIGH.value,
+            )
+            .group_by(IdentifierRecord.type, IdentifierRecord.value)
+        )
+    ).all()
+
+    matches = [
+        ReportedIdentifier(type=IdentifierType(type_value), value=value, case_count=count)
+        for type_value, value, count in rows
+        if (type_value, value) in keys
+    ]
+    matches.sort(key=lambda item: (-identifier_weight(item.type), -item.case_count, item.value))
+    return matches[:limit]
 
 
 def _as_type(value: str) -> IdentifierType:

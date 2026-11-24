@@ -822,6 +822,121 @@ class PreCheckResponse(BaseModel):
     previously_reported: int = Field(default=0, ge=0)
 
 
+class ReportedIdentifier(BaseModel):
+    """An identifier from the analysed item that already appears in high-risk cases."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    case_count: int = Field(ge=1)
+
+
+class CitizenApkAnalysis(BaseModel):
+    """Citizen Mode APK result. Analysed in memory; nothing is stored."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    risk_level: RiskLevel
+    risk_score: int = Field(ge=0, le=100)
+    summary: str = Field(max_length=1_000)
+    findings: list[Finding] = Field(default_factory=list, max_length=60)
+    identifiers: list[Identifier] = Field(default_factory=list, max_length=300)
+    details: dict = Field(default_factory=dict)
+    reported_identifiers: list[ReportedIdentifier] = Field(default_factory=list, max_length=20)
+    advice: list[str] = Field(default_factory=list, max_length=10)
+    helpline: str = Field(default="1930", max_length=20)
+    official_portal: str = Field(default="https://cybercrime.gov.in/", max_length=200)
+
+
+class CampaignIdentifier(BaseModel):
+    """An identifier that ties two or more cases of a campaign together."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    case_count: int = Field(ge=2)
+
+
+class CampaignTextChange(BaseModel):
+    """One wording change between a scam message and its earlier variant."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    before: str = Field(default="", max_length=120)
+    after: str = Field(default="", max_length=120)
+
+
+class CampaignTimelineEntry(BaseModel):
+    """One case in a campaign, in the order it was seen."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    case_id: str = Field(max_length=40)
+    created_at: str = Field(max_length=40)
+    artifact_type: ArtifactType
+    risk_level: RiskLevel
+    summary: str = Field(default="", max_length=1_000)
+    preview: str = Field(default="", max_length=300)
+    variant_of: str | None = Field(default=None, max_length=40)
+    similarity: int | None = Field(default=None, ge=0, le=100)
+    changes: list[CampaignTextChange] = Field(default_factory=list, max_length=8)
+    new_identifiers: list[str] = Field(default_factory=list, max_length=8)
+
+
+class Campaign(BaseModel):
+    """A connected group of cases that appear to come from one operation."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    campaign_id: str = Field(max_length=48)
+    name: str = Field(max_length=200)
+    case_count: int = Field(ge=2)
+    risk_level: RiskLevel
+    artifact_mix: dict[str, int] = Field(default_factory=dict)
+    first_seen: str = Field(default="", max_length=40)
+    last_seen: str = Field(default="", max_length=40)
+    key_identifiers: list[CampaignIdentifier] = Field(default_factory=list, max_length=12)
+    timeline: list[CampaignTimelineEntry] = Field(default_factory=list)
+
+
+class CampaignNode(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(max_length=600)
+    kind: Literal["case", "identifier"]
+    label: str = Field(max_length=200)
+    campaign_id: str = Field(max_length=48)
+    case_id: str | None = Field(default=None, max_length=40)
+    artifact_type: ArtifactType | None = None
+    risk_level: RiskLevel | None = None
+    identifier_type: IdentifierType | None = None
+    value: str | None = Field(default=None, max_length=512)
+    case_count: int | None = Field(default=None, ge=0)
+
+
+class CampaignEdge(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source: str = Field(max_length=600)
+    target: str = Field(max_length=600)
+    kind: Literal["identifier", "similar"]
+    weight: int = Field(ge=0, le=100)
+
+
+class CampaignGraph(BaseModel):
+    """Every campaign found, plus the node-link graph that draws them."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    campaigns: list[Campaign] = Field(default_factory=list)
+    nodes: list[CampaignNode] = Field(default_factory=list)
+    edges: list[CampaignEdge] = Field(default_factory=list)
+    cases_scanned: int = Field(default=0, ge=0)
+    linked_case_count: int = Field(default=0, ge=0)
+
+
 class LoginRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Investigation Mode API.
 
@@ -11,10 +11,12 @@ import logging
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Request, Response, UploadFile, status
 from fastapi.responses import HTMLResponse
+from fastapi.concurrency import run_in_threadpool
 from fastapi.security import HTTPAuthorizationCredentials
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.uploads import read_apk_upload
 from app.config import Settings, get_settings
 from app.core.auth import (
     bearer_scheme,
@@ -27,6 +29,7 @@ from app.db.models import UserRecord
 from app.db.session import get_session
 from app.schemas import (
     ArtifactType,
+    CampaignGraph,
     CaseDetail,
     CaseSearchResponse,
     CaseSource,
@@ -45,7 +48,7 @@ from app.schemas import (
     UserRole,
     WebsiteAnalyzeRequest,
 )
-from app.services import case_service, link_service, report_builder
+from app.services import campaign_service, case_service, link_service, report_builder
 from app.services.apk_analyzer import ApkAnalyzer, ApkParsingError
 from app.services.artifact_analyzer import ArtifactAnalyzer
 from app.services.scam_analyzer import ProviderUnavailableError
@@ -179,34 +182,15 @@ async def analyze_apk(
     session: AsyncSession = Depends(get_session),
     user: UserRecord = Depends(require_officer),
 ) -> CaseDetail:
-    """Static inspection only â€” the package is never installed or executed.
+    """Static inspection only — the package is never installed or executed.
 
     This route is exempt from the global request-size middleware and enforces
     its own ceiling while streaming (DECISIONS.md ADR-004).
     """
 
-    limit = settings.max_apk_upload_bytes
-    chunks: list[bytes] = []
-    total = 0
+    data = await read_apk_upload(apk, settings.max_apk_upload_bytes)
     try:
-        while chunk := await apk.read(1_048_576):
-            total += len(chunk)
-            if total > limit:
-                raise HTTPException(
-                    status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-                    detail=f"The APK exceeds the {limit // 1_000_000} MB upload limit.",
-                )
-            chunks.append(chunk)
-    finally:
-        await apk.close()
-
-    if total == 0:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="The uploaded file is empty."
-        )
-
-    try:
-        bundle = analyzer.analyze(b"".join(chunks), filename=apk.filename)
+        bundle = await run_in_threadpool(analyzer.analyze, data, apk.filename)
     except ApkParsingError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc)) from exc
 
@@ -245,7 +229,7 @@ async def analyze_website(
 ) -> CaseDetail:
     """Fetch the page under SSRF and size guards, then score its content.
 
-    Fetching is a deliberate officer action â€” it is never triggered implicitly
+    Fetching is a deliberate officer action — it is never triggered implicitly
     by citizen-facing analysis (DECISIONS.md ADR-002).
     """
 
@@ -270,6 +254,22 @@ async def analyze_website(
 
 
 # --- linking, similarity, heat-list (Phase 5) ------------------------------
+
+
+@router.get(
+    "/campaigns",
+    response_model=CampaignGraph,
+    summary="Group linked cases into campaigns, with a graph and variant timeline",
+)
+async def campaigns(
+    max_cases: int = Query(default=1_000, ge=10, le=2_000),
+    min_cases: int = Query(default=2, ge=2, le=50),
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_officer),
+) -> CampaignGraph:
+    return await campaign_service.build_campaign_graph(
+        session, max_cases=max_cases, min_cases=min_cases
+    )
 
 
 @router.get(

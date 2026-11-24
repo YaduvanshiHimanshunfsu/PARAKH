@@ -14,6 +14,7 @@ verdict; APK analysis is built to that standard from the start (ADR-005).
 import logging
 import re
 
+from app.data.android_permissions import describe_permissions
 from app.data.apk_permission_rules import (
     COMBINATION_RULES,
     MIN_EXPECTED_TARGET_SDK,
@@ -62,6 +63,7 @@ _FINANCE_TERMS = frozenset({
 })
 
 _MAX_IDENTIFIER_STRINGS = 4_000
+_MAX_COMPONENT_NAMES = 40
 
 
 class ApkAnalyzer:
@@ -492,9 +494,12 @@ class ApkAnalyzer:
             "target_sdk": facts.target_sdk,
             "permissions": facts.permissions,
             "permission_count": len(facts.permissions),
+            "permission_profile": describe_permissions(facts.permissions),
             "activity_count": len(facts.activities),
             "service_count": len(facts.services),
             "receiver_count": len(facts.receivers),
+            "services": facts.services[:_MAX_COMPONENT_NAMES],
+            "receivers": facts.receivers[:_MAX_COMPONENT_NAMES],
             "dex_count": facts.dex_count,
             "entry_count": facts.entry_count,
             "certificate": {

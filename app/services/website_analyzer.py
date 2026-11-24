@@ -44,7 +44,7 @@ from app.schemas import (
     Severity,
 )
 from app.services.identifier_extractor import extract_identifiers, merge_identifiers
-from app.services.url_enrichment import is_safe_target
+from app.services.url_enrichment import PinnedResolverTransport, validate_and_pin
 from app.utils.fingerprint import content_hash, simhash
 
 logger = logging.getLogger(__name__)
@@ -100,16 +100,23 @@ class WebsiteAnalyzer:
         current = url if "://" in url else f"https://{url}"
         hops: list[str] = []
 
+        # Pin every validated hop to its resolved public IP so httpx cannot be
+        # steered to a private address by DNS rebinding after the safety check.
+        pin_map: dict[str, str] = {}
         async with httpx.AsyncClient(
             timeout=_FETCH_TIMEOUT_SECONDS,
             follow_redirects=False,
             max_redirects=0,
             headers={"User-Agent": _USER_AGENT, "Accept": "text/html,text/plain"},
+            transport=PinnedResolverTransport(pin_map),
         ) as client:
             for _ in range(_MAX_REDIRECTS + 1):
-                safe, reason = await is_safe_target(current)
+                safe, reason, pinned = await validate_and_pin(current)
                 if not safe:
                     raise WebsiteFetchError(reason or "The address is not safe to fetch.")
+                hop_host = urlsplit(current).hostname
+                if pinned and hop_host:
+                    pin_map[hop_host] = pinned
                 hops.append(current)
 
                 try:

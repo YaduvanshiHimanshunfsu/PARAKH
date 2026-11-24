@@ -1,2 +1,2 @@
-﻿"""PARAKH API package."""
+"""PARAKH API package."""
 

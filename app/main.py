@@ -105,7 +105,7 @@ def create_app() -> FastAPI:
     app.add_middleware(
         RequestSizeLimitMiddleware,
         max_request_bytes=settings.max_request_bytes,
-        exempt_path_suffixes=("/investigate/apk/analyze",),
+        exempt_path_suffixes=("/investigate/apk/analyze", "/parakh/apk/analyze"),
     )
     app.add_middleware(
         CORSMiddleware,

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import asyncio
 import base64
@@ -214,14 +214,14 @@ class UrlIntelligenceService:
                 name=known["name"],
                 description=known["description"],
                 verification_note=(
-                    "The registered domain matches PARAKHâ€™s reviewed official-domain directory. "
+                    "The registered domain matches PARAKH’s reviewed official-domain directory. "
                     "This does not authenticate this exact page, download, message, or request."
                 ),
             )
         return SiteProfile(
             status="NOT_IN_REVIEWED_DIRECTORY",
             name=None,
-            description="This registered domain is not in PARAKHâ€™s small reviewed official-domain directory.",
+            description="This registered domain is not in PARAKH’s small reviewed official-domain directory.",
             verification_note=(
                 "That is not proof that the site is unsafe. Verify the exact domain through an independently known official source before entering information or making a payment."
             ),

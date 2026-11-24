@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import hashlib
 from typing import Any
@@ -26,7 +26,7 @@ class RedisRateLimiter:
     @staticmethod
     def _key(identifier: str, scope: str) -> str:
         digest = hashlib.sha256(identifier.encode("utf-8")).hexdigest()
-        return f"parakh:"
+        return f"parakh:rate:{scope}:{digest}"
 
     async def _increment(self, identifier: str, scope: str, limit: int, seconds: int) -> None:
         try:

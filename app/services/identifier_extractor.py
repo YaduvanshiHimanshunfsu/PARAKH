@@ -54,6 +54,13 @@ _BANK_CONTEXT = re.compile(
     re.IGNORECASE,
 )
 
+# A label written directly before a number. "A/c 918273645501" is an account
+# whose digits happen to fit the "91 + mobile" shape.
+_ACCOUNT_LABEL = re.compile(
+    r"(?:\ba/?c|\bacc(?:oun)?t|\bacct|\bbeneficiary)(?:\s*(?:no|number|num))?\.?\s*[:#\-]?\s*$",
+    re.IGNORECASE,
+)
+
 # Tokens that look like Indian mobile numbers but are structurally something
 # else. Checked against the surrounding text, not the number itself.
 _NON_PHONE_CONTEXT = re.compile(r"(?:order|invoice|txn|transaction|ref(?:erence)?|utr|pin\s*code)", re.IGNORECASE)
@@ -232,6 +239,8 @@ def _accept(kind: IdentifierType, raw: str, value: str, text: str, start: int, e
 
     if kind is IdentifierType.PHONE:
         if len(_digits(raw)) not in {10, 11, 12}:
+            return False, 0
+        if "+" not in raw and _ACCOUNT_LABEL.search(text[max(0, start - 30): start]):
             return False, 0
         if _NON_PHONE_CONTEXT.search(window):
             return True, -25
