@@ -638,6 +638,12 @@ class IdentifierType(str, Enum):
     PACKAGE = "PACKAGE"
     CERT_SHA256 = "CERT_SHA256"
     ICON_PHASH = "ICON_PHASH"
+    # Phase B.5. TELEGRAM_BOT stores only the bot id; the token itself is kept
+    # masked in the evidence and is never used to call the Telegram API.
+    TELEGRAM_BOT = "TELEGRAM_BOT"
+    CRYPTO_TRON = "CRYPTO_TRON"
+    IMEI = "IMEI"
+    FIREBASE_DB = "FIREBASE_DB"
 
 
 class CaseStatus(str, Enum):
@@ -667,6 +673,10 @@ class Identifier(BaseModel):
     raw_value: str = Field(min_length=1, max_length=512)
     context: str | None = Field(default=None, max_length=300)
     confidence: int = Field(default=100, ge=0, le=100)
+    # What this identifier is in the case (app/services/identifier_roles.py).
+    # Only SUSPECT and UNKNOWN feed linking and the heat-list. Absent on a
+    # freshly extracted identifier that has not been stored yet.
+    role: str | None = Field(default=None, max_length=20)
 
 
 class Finding(BaseModel):

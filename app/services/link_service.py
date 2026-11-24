@@ -24,6 +24,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import CaseRecord, IdentifierRecord
 from app.data.protected_brands import is_official_domain
+from app.services.identifier_roles import LINKING_ROLES
 from app.schemas import (
     CaseSummary,
     HeatListEntry,
@@ -53,6 +54,12 @@ _IDENTIFIER_WEIGHT: dict[IdentifierType, int] = {
     IdentifierType.ICON_PHASH: 7,
     IdentifierType.PACKAGE: 8,
     IdentifierType.TELEGRAM: 8,
+    # A bot token belongs to exactly one operator, so it is the strongest
+    # link available; a Firebase project is nearly as specific.
+    IdentifierType.TELEGRAM_BOT: 10,
+    IdentifierType.FIREBASE_DB: 9,
+    IdentifierType.CRYPTO_TRON: 10,
+    IdentifierType.IMEI: 9,
     IdentifierType.IP: 7,
     IdentifierType.EMAIL: 6,
     IdentifierType.DOMAIN: 5,
@@ -68,6 +75,16 @@ def identifier_weight(identifier_type: IdentifierType) -> int:
 
 
 _NON_LINKING_TYPES = frozenset({IdentifierType.URL, IdentifierType.IFSC})
+
+# Only these roles represent the other side of the fraud, so only these may
+# link cases or appear on the heat-list (planversionalpha.md B.6).
+_LINKING_ROLE_VALUES = tuple(sorted(role.value for role in LINKING_ROLES))
+
+
+def _linking_roles_only(statement):
+    """Restrict a query to identifiers that may tie cases together."""
+
+    return statement.where(IdentifierRecord.role.in_(_LINKING_ROLE_VALUES))
 
 GENERIC_HOSTS = frozenset({
     "t.me", "telegram.me", "telegram.org", "wa.me", "whatsapp.com", "chat.whatsapp.com",
@@ -86,13 +103,19 @@ def _identifier_type(value: str) -> IdentifierType | None:
         return None
 
 
-def links_cases(type_value: str, value: str) -> bool:
+def links_cases(type_value: str, value: str, role: str | None = None) -> bool:
     """Whether a shared identifier of this kind means a shared operator.
 
     An impersonated brand's real domain is evidence of *impersonation*, not a
     link between two operators: ten unrelated gangs all name "sbi.co.in"
     (planversionalpha.md B.4 step 7, defect D6).
+
+    ``role`` is the stored :class:`IdentifierRole`. A victim's own number and
+    an official helpline never link cases (B.6).
     """
+
+    if role is not None and role not in _LINKING_ROLE_VALUES:
+        return False
 
     identifier_type = _identifier_type(type_value)
     if identifier_type is None or identifier_type in _NON_LINKING_TYPES:
@@ -140,7 +163,7 @@ async def linked_cases(
     if case is None:
         return []
 
-    own = [(row.type, row.value) for row in case.identifiers]
+    own = [(row.type, row.value) for row in case.identifiers if row.role in _LINKING_ROLE_VALUES]
     if not own:
         return []
 
@@ -148,8 +171,11 @@ async def linked_cases(
     rows = (
         (
             await session.execute(
-                select(IdentifierRecord)
-                .where(IdentifierRecord.value.in_(values), IdentifierRecord.case_id != case.id)
+                _linking_roles_only(
+                    select(IdentifierRecord).where(
+                        IdentifierRecord.value.in_(values), IdentifierRecord.case_id != case.id
+                    )
+                )
             )
         )
         .scalars()
@@ -288,6 +314,7 @@ async def heat_list(
         func.min(IdentifierRecord.created_at).label("first_seen"),
         func.max(IdentifierRecord.created_at).label("last_seen"),
     ).group_by(IdentifierRecord.type, IdentifierRecord.value)
+    statement = _linking_roles_only(statement)
 
     if identifier_type is not None:
         statement = statement.where(IdentifierRecord.type == identifier_type.value)
@@ -311,7 +338,10 @@ async def heat_list(
                 IdentifierRecord.value,
                 func.count(func.distinct(IdentifierRecord.case_id)),
             )
-            .where(IdentifierRecord.created_at >= recent_cutoff)
+            .where(
+                IdentifierRecord.created_at >= recent_cutoff,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
+            )
             .group_by(IdentifierRecord.type, IdentifierRecord.value)
         )
     ).all()
@@ -328,6 +358,7 @@ async def heat_list(
             .where(
                 IdentifierRecord.created_at >= previous_cutoff,
                 IdentifierRecord.created_at < recent_cutoff,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
             )
             .group_by(IdentifierRecord.type, IdentifierRecord.value)
         )
@@ -425,6 +456,7 @@ async def reported_matches(
             .where(
                 IdentifierRecord.value.in_({value for _, value in keys}),
                 CaseRecord.risk_level == RiskLevel.HIGH.value,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
             )
             .group_by(IdentifierRecord.type, IdentifierRecord.value)
         )

@@ -24,7 +24,16 @@ import re
 from dataclasses import dataclass
 from typing import Callable, Iterable
 
+import phonenumbers
+import tldextract
+
 from app.schemas import Identifier, IdentifierType
+from app.utils.checksums import is_bitcoin_address, is_tron_address, luhn_ok
+
+# Embedded Public Suffix List snapshot: no hidden network call while handling
+# a user message. Replaces the old fixed TLD list, so .cyou, .sbs and .bond
+# are recognised as soon as they appear in the snapshot.
+_SUFFIXES = tldextract.TLDExtract(suffix_list_urls=())
 
 _CONTEXT_WINDOW = 60
 _MAX_IDENTIFIERS = 300
@@ -68,6 +77,11 @@ _NON_PHONE_CONTEXT = re.compile(r"(?:order|invoice|txn|transaction|ref(?:erence)
 # Dotted quads inside a version string are not network addresses.
 _VERSION_CONTEXT = re.compile(r"(?:version|v\d|build|release|sdk|schema)\s*$", re.IGNORECASE)
 
+# A bare @handle is only a Telegram handle when Telegram is being talked about.
+_TELEGRAM_CONTEXT = re.compile(r"(?:telegram|tg|t\.me|join|channel|group|\u091f\u0947\u0932\u0940\u0917\u094d\u0930\u093e\u092e)", re.IGNORECASE)
+# A 15-digit run is only an IMEI when it is labelled as one.
+_IMEI_CONTEXT = re.compile(r"(?:imei|handset|device\s*id|\u0906\u0908\u090f\u092e\u0908\u0906\u0908)", re.IGNORECASE)
+
 
 @dataclass(frozen=True)
 class _Span:
@@ -86,7 +100,7 @@ def _digits(value: str) -> str:
 
 # --- normalisers -----------------------------------------------------------
 
-def _normalise_phone(raw: str) -> str:
+def _normalise_phone_digits(raw: str) -> str:
     digits = _digits(raw)
     if len(digits) > 10 and digits.startswith("91"):
         digits = digits[2:]
@@ -104,6 +118,18 @@ def _normalise_url(raw: str) -> str:
 
 def _normalise_domain(raw: str) -> str:
     return raw.strip().rstrip(".").lower()
+
+
+def _normalise_phone(raw_number: str) -> str:
+    """Kept for callers that normalise a value outside a match context."""
+
+    return _normalise_phone_digits(raw_number)
+
+
+def _mask_token(token: str) -> str:
+    """Keep a bot token recognisable in evidence without reproducing it."""
+
+    return token if len(token) <= 8 else f"{token[:4]}\u2026{token[-3:]}"
 
 
 # --- pattern table ---------------------------------------------------------
@@ -136,6 +162,15 @@ _PATTERNS: tuple[tuple[IdentifierType, re.Pattern[str], int, int, Callable[[str]
         lambda raw: raw.strip().lower().replace("https://", "").replace("http://", ""),
     ),
     (
+        # A bare @handle, accepted only with Telegram context nearby so an
+        # ordinary "@someone" mention is not harvested.
+        IdentifierType.TELEGRAM,
+        re.compile(r"(?<![\w@.])@([A-Za-z][A-Za-z0-9_]{4,31})(?![\w.])"),
+        80,
+        108,
+        lambda raw: f"t.me/{raw.lstrip('@').lower()}",
+    ),
+    (
         IdentifierType.CRYPTO_ETH,
         re.compile(r"\b0x[a-fA-F0-9]{40}\b"),
         96,
@@ -147,6 +182,29 @@ _PATTERNS: tuple[tuple[IdentifierType, re.Pattern[str], int, int, Callable[[str]
         re.compile(r"\b(?:bc1[ac-hj-np-z02-9]{11,71}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})\b"),
         94,
         90,
+        lambda raw: raw.strip(),
+    ),
+    (
+        # Ranked above PHONE: a bot token starts with 8-10 digits, which the
+        # old extractor reported as "+917012345678" (defect D5).
+        IdentifierType.TELEGRAM_BOT,
+        re.compile(r"(?:(?<=bot)|(?<![\w:]))(\d{8,10}):([A-Za-z0-9_\-]{35})(?![\w])"),
+        97,
+        120,
+        lambda raw: raw.split(":", 1)[0],
+    ),
+    (
+        IdentifierType.CRYPTO_TRON,
+        re.compile(r"\bT[1-9A-HJ-NP-Za-km-z]{33}\b"),
+        96,
+        96,
+        lambda raw: raw.strip(),
+    ),
+    (
+        IdentifierType.IMEI,
+        re.compile(r"(?<!\d)\d{15}(?!\d)"),
+        98,
+        92,
         lambda raw: raw.strip(),
     ),
     (
@@ -164,15 +222,6 @@ _PATTERNS: tuple[tuple[IdentifierType, re.Pattern[str], int, int, Callable[[str]
         lambda raw: raw.strip().lower(),
     ),
     (
-        IdentifierType.PHONE,
-        # The trailing guard rejects a longer digit run or a dotted-decimal
-        # continuation, but must still allow a number ending a sentence.
-        re.compile(r"(?<![\d@])(?<!\d\.)(?:\+?91[\s\-]?)?[6-9]\d{4}[\s\-]?\d{5}(?![\d@])(?!\.\d)"),
-        75,
-        90,
-        _normalise_phone,
-    ),
-    (
         IdentifierType.IP,
         re.compile(r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])"),
         75,
@@ -187,10 +236,11 @@ _PATTERNS: tuple[tuple[IdentifierType, re.Pattern[str], int, int, Callable[[str]
         lambda raw: raw.strip().lower(),
     ),
     (
+        # Any host whose public suffix the embedded PSL snapshot knows. This
+        # replaces the old fixed TLD list, so new abused TLDs work at once.
         IdentifierType.DOMAIN,
         re.compile(
-            r"\b(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.)+"
-            r"(?:com|in|net|org|co|io|xyz|top|click|link|info|biz|online|site|app|shop|live|club|vip|win|bet|me|ru|cn|uk|us|tk|ml|gq|work|pro)\b",
+            r"\b(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.)+[a-z][a-z0-9\-]{1,23}\b",
             re.IGNORECASE,
         ),
         50,
@@ -263,7 +313,79 @@ def _accept(kind: IdentifierType, raw: str, value: str, text: str, start: int, e
     if kind is IdentifierType.IFSC:
         return value[4] == "0", 0
 
+    if kind is IdentifierType.CRYPTO_BTC:
+        return is_bitcoin_address(value), 0
+
+    if kind is IdentifierType.CRYPTO_TRON:
+        return is_tron_address(value), 0
+
+    if kind is IdentifierType.IMEI:
+        # Format alone is far too common (order ids, UTRs), so require both a
+        # valid Luhn check digit and an IMEI/handset word nearby.
+        if not luhn_ok(value):
+            return False, 0
+        return bool(_IMEI_CONTEXT.search(window)), 0
+
+    if kind is IdentifierType.TELEGRAM:
+        if value.startswith("t.me/") and raw.startswith("@"):
+            return bool(_TELEGRAM_CONTEXT.search(window)), 0
+        return True, 0
+
+    if kind is IdentifierType.TELEGRAM_BOT:
+        return value.isdigit() and 8 <= len(value) <= 10, 0
+
+    if kind is IdentifierType.DOMAIN:
+        extracted = _SUFFIXES(value)
+        if not extracted.suffix or not extracted.domain:
+            return False, 0
+        # "file.txt" and "sendMessage" style tokens share the shape of a host;
+        # a known public suffix is what separates them.
+        return True, 0
+
     return True, 0
+
+
+_FIREBASE_HOST = re.compile(r"\b[a-z0-9][a-z0-9\-]{1,62}\.(?:firebaseio\.com|firebaseapp\.com)\b", re.IGNORECASE)
+
+
+def _phone_spans(text: str) -> list[_Span]:
+    """Phone numbers via libphonenumber, replacing the old Indian-mobile regex.
+
+    ``PhoneNumberMatcher`` with ``VALID`` leniency accepts Indian mobiles and
+    landlines with STD codes, and international numbers written in E.164, while
+    rejecting the order ids and UTRs that the regex used to pick up.
+    """
+
+    spans: list[_Span] = []
+    try:
+        matches = list(phonenumbers.PhoneNumberMatcher(text, "IN", leniency=phonenumbers.Leniency.VALID))
+    except Exception:  # pragma: no cover - the library is defensive already
+        return spans
+    for match in matches:
+        raw = match.raw_string
+        value = phonenumbers.format_number(match.number, phonenumbers.PhoneNumberFormat.E164)
+        window = text[max(0, match.start - _CONTEXT_WINDOW): match.end + _CONTEXT_WINDOW]
+        confidence = 90
+        # "A/c 918273645501" is an account number shaped like 91 + mobile.
+        if "+" not in raw and _ACCOUNT_LABEL.search(text[max(0, match.start - 30): match.start]):
+            continue
+        # "9812345670@ybl" is a UPI ID whose left half is a mobile number.
+        if text[match.end: match.end + 1] == "@" or text[max(0, match.start - 1): match.start] == "@":
+            continue
+        if _NON_PHONE_CONTEXT.search(window):
+            confidence -= 25
+        spans.append(
+            _Span(
+                start=match.start,
+                end=match.end,
+                type=IdentifierType.PHONE,
+                raw=raw[:512],
+                value=value[:512],
+                confidence=confidence,
+                specificity=90,
+            )
+        )
+    return spans
 
 
 def _overlaps(a: _Span, b: _Span) -> bool:
@@ -299,17 +421,22 @@ def extract_identifiers(text: str, *, include_context: bool = True) -> list[Iden
             accepted, delta = _accept(kind, raw, value, text, match.start(), match.end())
             if not accepted:
                 continue
+            evidence = raw
+            if kind is IdentifierType.TELEGRAM_BOT and ":" in raw:
+                bot_id, _, token = raw.partition(":")
+                evidence = f"{bot_id}:{_mask_token(token)}"
             spans.append(
                 _Span(
                     start=match.start(),
                     end=match.end(),
                     type=kind,
-                    raw=raw[:512],
+                    raw=evidence[:512],
                     value=value[:512],
                     confidence=max(0, min(100, base_confidence + delta)),
                     specificity=specificity,
                 )
             )
+    spans.extend(_phone_spans(text))
 
     # Resolve overlaps: prefer the more specific pattern, then the longer match.
     spans.sort(key=lambda s: (-s.specificity, -(s.end - s.start), s.start))
@@ -339,6 +466,13 @@ def extract_identifiers(text: str, *, include_context: bool = True) -> list[Iden
             host_type = IdentifierType.IP
         if not any(k.type is host_type and k.value == host for k in kept):
             kept.append(_Span(span.start, span.end, host_type, host, host, 85, 0))
+
+    # A Firebase endpoint is reported in addition to the URL and domain that
+    # contain it: it is the app's backend, which is what an investigator wants.
+    for match in _FIREBASE_HOST.finditer(text):
+        host = match.group(0).lower()
+        if not any(k.type is IdentifierType.FIREBASE_DB and k.value == host for k in kept):
+            kept.append(_Span(match.start(), match.end(), IdentifierType.FIREBASE_DB, host, host, 100, 0))
 
     kept.sort(key=lambda s: s.start)
 

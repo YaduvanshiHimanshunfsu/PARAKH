@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24 11:15 UTC",
+  "generated_at": "2026-11-24 11:44 UTC",
   "test": {
     "split": "test",
     "messages": {
@@ -232,9 +232,9 @@
     },
     "identifiers": {
       "n": 22,
-      "micro_f1": 0.884,
-      "micro_precision": 1.0,
-      "micro_recall": 0.792,
+      "micro_f1": 0.98,
+      "micro_precision": 0.96,
+      "micro_recall": 1.0,
       "per_type": {
         "CRYPTO_ETH": {
           "precision": 1.0,
@@ -243,15 +243,15 @@
           "support": 1
         },
         "CRYPTO_TRON": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 1
         },
         "DOMAIN": {
           "precision": 1.0,
-          "recall": 0.833,
-          "f1": 0.909,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 6
         },
         "EMAIL": {
@@ -267,15 +267,15 @@
           "support": 3
         },
         "PHONE": {
-          "precision": 1.0,
-          "recall": 0.75,
-          "f1": 0.857,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.889,
           "support": 4
         },
         "TELEGRAM": {
           "precision": 1.0,
-          "recall": 0.333,
-          "f1": 0.5,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 3
         },
         "UPI": {
@@ -293,39 +293,11 @@
       },
       "mistakes": [
         {
-          "id": "i006",
-          "missing": [
-            "PHONE:+14155550132"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i023",
-          "missing": [
-            "TELEGRAM:t.me/richplansupport"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i029",
-          "missing": [
-            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i044",
-          "missing": [
-            "DOMAIN:bit.ly"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i058",
-          "missing": [
-            "TELEGRAM:t.me/cashloanagent"
-          ],
-          "extra": []
+          "id": "n014",
+          "missing": [],
+          "extra": [
+            "PHONE:+914523671890"
+          ]
         }
       ]
     },
@@ -364,9 +336,9 @@
       "n": 203,
       "confusion": {
         "SCAM": {
-          "SCAM": 82,
+          "SCAM": 83,
           "SUSPICIOUS": 2,
-          "SAFE": 2
+          "SAFE": 1
         },
         "SUSPICIOUS": {
           "SCAM": 2,
@@ -382,8 +354,8 @@
       "per_class": {
         "SCAM": {
           "precision": 0.943,
-          "recall": 0.953,
-          "f1": 0.948,
+          "recall": 0.965,
+          "f1": 0.954,
           "support": 86
         },
         "SUSPICIOUS": {
@@ -393,17 +365,17 @@
           "support": 11
         },
         "SAFE": {
-          "precision": 0.943,
+          "precision": 0.952,
           "recall": 0.943,
-          "f1": 0.943,
+          "f1": 0.948,
           "support": 106
         }
       },
-      "macro_f1": 0.789,
+      "macro_f1": 0.793,
       "scam_precision": 0.943,
-      "risky_recall": 0.938,
+      "risky_recall": 0.948,
       "safe_specificity": 0.943,
-      "risky_recall_hi_hinglish": 0.944,
+      "risky_recall_hi_hinglish": 0.963,
       "by_language": {
         "en": {
           "n": 102,
@@ -412,7 +384,7 @@
         },
         "hi": {
           "n": 54,
-          "risky_recall": 0.931,
+          "risky_recall": 0.966,
           "false_alarm_rate": 0.08
         },
         "hinglish": {
@@ -480,7 +452,7 @@
         },
         "LOAN_APP_FRAUD": {
           "n": 8,
-          "accuracy": 0.75
+          "accuracy": 0.875
         },
         "LOTTERY_PRIZE": {
           "n": 1,
@@ -554,16 +526,10 @@
       "category_match_on_scams": 0.942,
       "misses": [
         {
-          "id": "m028",
+          "id": "m031",
           "lang": "hi",
           "category": "DIGITAL_ARREST",
-          "text": "मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें "
-        },
-        {
-          "id": "m054",
-          "lang": "hi",
-          "category": "LOAN_APP_FRAUD",
-          "text": "लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।"
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
         },
         {
           "id": "m137",
@@ -695,9 +661,9 @@
     },
     "identifiers": {
       "n": 58,
-      "micro_f1": 0.816,
-      "micro_precision": 0.894,
-      "micro_recall": 0.75,
+      "micro_f1": 0.966,
+      "micro_precision": 0.933,
+      "micro_recall": 1.0,
       "per_type": {
         "BANK_ACCOUNT": {
           "precision": 1.0,
@@ -718,15 +684,15 @@
           "support": 2
         },
         "CRYPTO_TRON": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 2
         },
         "DOMAIN": {
-          "precision": 0.75,
-          "recall": 0.75,
-          "f1": 0.75,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.889,
           "support": 8
         },
         "EMAIL": {
@@ -736,9 +702,9 @@
           "support": 1
         },
         "FIREBASE_DB": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 1
         },
         "IFSC": {
@@ -748,9 +714,9 @@
           "support": 4
         },
         "IMEI": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 2
         },
         "IP": {
@@ -766,21 +732,21 @@
           "support": 2
         },
         "PHONE": {
-          "precision": 0.875,
-          "recall": 0.7,
-          "f1": 0.778,
+          "precision": 0.909,
+          "recall": 1.0,
+          "f1": 0.952,
           "support": 10
         },
         "TELEGRAM": {
           "precision": 1.0,
-          "recall": 0.5,
-          "f1": 0.667,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 4
         },
         "TELEGRAM_BOT": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 2
         },
         "UPI": {
@@ -790,108 +756,19 @@
           "support": 10
         },
         "URL": {
-          "precision": 0.75,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.857,
+          "f1": 1.0,
           "support": 3
         }
       },
       "mistakes": [
         {
-          "id": "i005",
-          "missing": [
-            "PHONE:+923001234567"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i007",
-          "missing": [
-            "PHONE:+971501234567"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i008",
-          "missing": [
-            "PHONE:+911412741234"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i010",
-          "missing": [
-            "DOMAIN:sbi-kyc-help.cyou"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i013",
-          "missing": [
-            "DOMAIN:task-earn.sbs"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i024",
-          "missing": [
-            "TELEGRAM:t.me/task_earn_admin"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i025",
-          "missing": [
-            "TELEGRAM:t.me/sureshottips2026"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i030",
-          "missing": [
-            "CRYPTO_TRON:TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i031",
-          "missing": [
-            "TELEGRAM_BOT:7012345678"
-          ],
-          "extra": [
-            "PHONE:+917012345678"
-          ]
-        },
-        {
           "id": "i032",
-          "missing": [
-            "TELEGRAM_BOT:6543210987"
-          ],
+          "missing": [],
           "extra": [
-            "DOMAIN:api.telegram.org",
-            "URL:https://api.telegram.org/bot6543210987:aafklmnopqrstuvwxyzabcdefghijklmnop/sendmessage"
+            "DOMAIN:api.telegram.org"
           ]
-        },
-        {
-          "id": "i033",
-          "missing": [
-            "IMEI:490154203237518"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i034",
-          "missing": [
-            "IMEI:356938035643809"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i035",
-          "missing": [
-            "FIREBASE_DB:quickcash-abc.firebaseio.com"
-          ],
-          "extra": []
         },
         {
           "id": "i050",
@@ -908,11 +785,11 @@
           ]
         },
         {
-          "id": "i059",
-          "missing": [
-            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
-          ],
-          "extra": []
+          "id": "i055",
+          "missing": [],
+          "extra": [
+            "PHONE:+911800111109"
+          ]
         }
       ]
     },
@@ -992,9 +869,9 @@
       "n": 300,
       "confusion": {
         "SCAM": {
-          "SCAM": 127,
+          "SCAM": 128,
           "SUSPICIOUS": 4,
-          "SAFE": 2
+          "SAFE": 1
         },
         "SUSPICIOUS": {
           "SCAM": 2,
@@ -1010,8 +887,8 @@
       "per_class": {
         "SCAM": {
           "precision": 0.962,
-          "recall": 0.955,
-          "f1": 0.958,
+          "recall": 0.962,
+          "f1": 0.962,
           "support": 133
         },
         "SUSPICIOUS": {
@@ -1021,17 +898,17 @@
           "support": 12
         },
         "SAFE": {
-          "precision": 0.955,
+          "precision": 0.961,
           "recall": 0.948,
-          "f1": 0.951,
+          "f1": 0.955,
           "support": 155
         }
       },
-      "macro_f1": 0.765,
+      "macro_f1": 0.767,
       "scam_precision": 0.962,
-      "risky_recall": 0.952,
+      "risky_recall": 0.959,
       "safe_specificity": 0.948,
-      "risky_recall_hi_hinglish": 0.959,
+      "risky_recall_hi_hinglish": 0.973,
       "by_language": {
         "en": {
           "n": 153,
@@ -1040,7 +917,7 @@
         },
         "hi": {
           "n": 72,
-          "risky_recall": 0.943,
+          "risky_recall": 0.971,
           "false_alarm_rate": 0.081
         },
         "hinglish": {
@@ -1108,7 +985,7 @@
         },
         "LOAN_APP_FRAUD": {
           "n": 13,
-          "accuracy": 0.769
+          "accuracy": 0.846
         },
         "LOTTERY_PRIZE": {
           "n": 4,
@@ -1186,16 +1063,10 @@
       "category_match_on_scams": 0.91,
       "misses": [
         {
-          "id": "m028",
+          "id": "m031",
           "lang": "hi",
           "category": "DIGITAL_ARREST",
-          "text": "मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें "
-        },
-        {
-          "id": "m054",
-          "lang": "hi",
-          "category": "LOAN_APP_FRAUD",
-          "text": "लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।"
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
         },
         {
           "id": "m136",
@@ -1372,9 +1243,9 @@
     },
     "identifiers": {
       "n": 80,
-      "micro_f1": 0.836,
-      "micro_precision": 0.924,
-      "micro_recall": 0.762,
+      "micro_f1": 0.97,
+      "micro_precision": 0.941,
+      "micro_recall": 1.0,
       "per_type": {
         "BANK_ACCOUNT": {
           "precision": 1.0,
@@ -1395,15 +1266,15 @@
           "support": 3
         },
         "CRYPTO_TRON": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 3
         },
         "DOMAIN": {
-          "precision": 0.846,
-          "recall": 0.786,
-          "f1": 0.815,
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933,
           "support": 14
         },
         "EMAIL": {
@@ -1413,9 +1284,9 @@
           "support": 2
         },
         "FIREBASE_DB": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 1
         },
         "IFSC": {
@@ -1425,9 +1296,9 @@
           "support": 4
         },
         "IMEI": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 2
         },
         "IP": {
@@ -1443,21 +1314,21 @@
           "support": 2
         },
         "PHONE": {
-          "precision": 0.909,
-          "recall": 0.714,
-          "f1": 0.8,
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933,
           "support": 14
         },
         "TELEGRAM": {
           "precision": 1.0,
-          "recall": 0.429,
-          "f1": 0.6,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 7
         },
         "TELEGRAM_BOT": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 2
         },
         "UPI": {
@@ -1467,142 +1338,32 @@
           "support": 11
         },
         "URL": {
-          "precision": 0.875,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.933,
+          "f1": 1.0,
           "support": 7
         }
       },
       "mistakes": [
         {
-          "id": "i005",
-          "missing": [
-            "PHONE:+923001234567"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i006",
-          "missing": [
-            "PHONE:+14155550132"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i007",
-          "missing": [
-            "PHONE:+971501234567"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i008",
-          "missing": [
-            "PHONE:+911412741234"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i010",
-          "missing": [
-            "DOMAIN:sbi-kyc-help.cyou"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i013",
-          "missing": [
-            "DOMAIN:task-earn.sbs"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i023",
-          "missing": [
-            "TELEGRAM:t.me/richplansupport"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i024",
-          "missing": [
-            "TELEGRAM:t.me/task_earn_admin"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i025",
-          "missing": [
-            "TELEGRAM:t.me/sureshottips2026"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i029",
-          "missing": [
-            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i030",
-          "missing": [
-            "CRYPTO_TRON:TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i031",
-          "missing": [
-            "TELEGRAM_BOT:7012345678"
-          ],
-          "extra": [
-            "PHONE:+917012345678"
-          ]
-        },
-        {
           "id": "i032",
-          "missing": [
-            "TELEGRAM_BOT:6543210987"
-          ],
+          "missing": [],
           "extra": [
-            "DOMAIN:api.telegram.org",
-            "URL:https://api.telegram.org/bot6543210987:aafklmnopqrstuvwxyzabcdefghijklmnop/sendmessage"
+            "DOMAIN:api.telegram.org"
           ]
-        },
-        {
-          "id": "i033",
-          "missing": [
-            "IMEI:490154203237518"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i034",
-          "missing": [
-            "IMEI:356938035643809"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i035",
-          "missing": [
-            "FIREBASE_DB:quickcash-abc.firebaseio.com"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i044",
-          "missing": [
-            "DOMAIN:bit.ly"
-          ],
-          "extra": []
         },
         {
           "id": "i050",
           "missing": [],
           "extra": [
             "DOMAIN:wa.me"
+          ]
+        },
+        {
+          "id": "n014",
+          "missing": [],
+          "extra": [
+            "PHONE:+914523671890"
           ]
         },
         {
@@ -1613,18 +1374,11 @@
           ]
         },
         {
-          "id": "i058",
-          "missing": [
-            "TELEGRAM:t.me/cashloanagent"
-          ],
-          "extra": []
-        },
-        {
-          "id": "i059",
-          "missing": [
-            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
-          ],
-          "extra": []
+          "id": "i055",
+          "missing": [],
+          "extra": [
+            "PHONE:+911800111109"
+          ]
         }
       ]
     },

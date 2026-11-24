@@ -146,6 +146,11 @@ class IdentifierRecord(Base):
     raw_value: Mapped[str] = mapped_column(String(512))
     context: Mapped[str | None] = mapped_column(Text, nullable=True)
     confidence: Mapped[int] = mapped_column(Integer, default=100)
+    # What this identifier is in the case: SUSPECT, VICTIM, IMPERSONATED_BRAND,
+    # OFFICIAL_CONTACT or UNKNOWN (app/services/identifier_roles.py). Only
+    # SUSPECT and UNKNOWN feed linking, campaigns and the heat-list, so a
+    # bank's own helpline can no longer tie unrelated cases together.
+    role: Mapped[str] = mapped_column(String(20), default="UNKNOWN", index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
 
     case: Mapped[CaseRecord] = relationship(back_populates="identifiers")

@@ -153,7 +153,7 @@ async def build_campaign_graph(
     holders: dict[tuple[str, str], list[int]] = defaultdict(list)
     for index, case in enumerate(cases):
         for row in case.identifiers:
-            if links_cases(row.type, row.value):
+            if links_cases(row.type, row.value, row.role):
                 holders[(row.type, row.value)].append(index)
     shared = {key: indexes for key, indexes in holders.items() if len(indexes) >= 2}
     for indexes in shared.values():
@@ -302,7 +302,7 @@ def _campaign(
             (
                 (row.type, row.value)
                 for row in case.identifiers
-                if links_cases(row.type, row.value)
+                if links_cases(row.type, row.value, row.role)
             ),
             key=lambda key: -identifier_weight(IdentifierType(key[0])),
         )

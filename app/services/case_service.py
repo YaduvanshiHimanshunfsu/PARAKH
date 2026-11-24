@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from sqlalchemy import Select, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.services import identifier_roles
 from app.db.models import CaseRecord, FindingRecord, IdentifierRecord, UserRecord, new_case_id
 from app.schemas import (
     AnalysisBundle,
@@ -118,6 +119,7 @@ def to_detail(case: CaseRecord) -> CaseDetail:
                 raw_value=row.raw_value,
                 context=row.context,
                 confidence=row.confidence,
+                role=row.role,
             )
             for row in case.identifiers
         ],
@@ -182,6 +184,7 @@ async def create_case(
                 raw_value=identifier.raw_value,
                 context=identifier.context,
                 confidence=identifier.confidence,
+                role=identifier_roles.classify(identifier, reporter_note=reporter_note).value,
             )
         )
 

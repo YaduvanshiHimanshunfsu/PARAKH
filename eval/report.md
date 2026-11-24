@@ -1,6 +1,6 @@
 # PARAKH evaluation report
 
-Generated 2026-11-24 11:15 UTC by `scripts/evaluate.py`. Offline: rule engine only, no AI key, no network.
+Generated 2026-11-24 11:44 UTC by `scripts/evaluate.py`. Offline: rule engine only, no AI key, no network.
 
 > The golden set is team-written synthetic data modelled on public police and CERT-In advisory patterns. Add real R4C / cyber-cell samples before quoting these numbers externally.
 
@@ -15,7 +15,7 @@ Generated 2026-11-24 11:15 UTC by `scripts/evaluate.py`. Offline: rule engine on
 | `messages.risky_recall_hi_hinglish` | 1.0 | 0.85 |
 | `urls.phishing_recall` | 0.833 |  |
 | `urls.official_false_positives` | 0 | 0 |
-| `identifiers.micro_f1` | 0.884 | 0.9 |
+| `identifiers.micro_f1` | 0.98 | 0.9 |
 | `websites.accuracy` | 0.75 |  |
 | `apks.accuracy` | 1.0 |  |
 
@@ -27,14 +27,14 @@ Confusion matrix (rows = truth, columns = predicted):
 
 | truth \ predicted | SCAM | SUSPICIOUS | SAFE |
 |---|---|---|---|
-| SCAM | 127 | 4 | 2 |
+| SCAM | 128 | 4 | 1 |
 | SUSPICIOUS | 2 | 5 | 5 |
 | SAFE | 3 | 5 | 147 |
 
 | Language | n | risky recall | false-alarm rate |
 |---|---|---|---|
 | en | 153 | 0.944 | 0.012 |
-| hi | 72 | 0.943 | 0.081 |
+| hi | 72 | 0.971 | 0.081 |
 | hinglish | 75 | 0.974 | 0.108 |
 
 | Category | n | accuracy (risky vs safe) |
@@ -53,7 +53,7 @@ Confusion matrix (rows = truth, columns = predicted):
 | HEALTH | 5 | 1.0 |
 | INVESTMENT_FRAUD | 7 | 1.0 |
 | KYC_SCAM | 20 | 1.0 |
-| LOAN_APP_FRAUD | 13 | 0.769 |
+| LOAN_APP_FRAUD | 13 | 0.846 |
 | LOTTERY_PRIZE | 4 | 1.0 |
 | MALICIOUS_APP | 12 | 1.0 |
 | MARKETPLACE_FRAUD | 3 | 1.0 |
@@ -75,10 +75,9 @@ Confusion matrix (rows = truth, columns = predicted):
 
 Category label match on SCAM items: 0.91
 
-### Missed scams (7)
+### Missed scams (6)
 
-- `m028` [hi, DIGITAL_ARREST] मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें 
-- `m054` [hi, LOAN_APP_FRAUD] लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।
+- `m031` [hi, DIGITAL_ARREST] प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां
 - `m136` [en, LOAN_APP_FRAUD] Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back.
 - `m137` [en, FAKE_JOB] Hiring now! Online work, flexible hours, good pay. Send your name and city to get details.
 - `m139` [en, UNKNOWN] Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal.
@@ -122,43 +121,27 @@ Phishing URLs missed:
 | BANK_ACCOUNT | 1.0 | 1.0 | 1.0 | 3 |
 | CRYPTO_BTC | 1.0 | 1.0 | 1.0 | 2 |
 | CRYPTO_ETH | 1.0 | 1.0 | 1.0 | 3 |
-| CRYPTO_TRON | 0.0 | 0.0 | 0.0 | 3 |
-| DOMAIN | 0.846 | 0.786 | 0.815 | 14 |
+| CRYPTO_TRON | 1.0 | 1.0 | 1.0 | 3 |
+| DOMAIN | 0.875 | 1.0 | 0.933 | 14 |
 | EMAIL | 1.0 | 1.0 | 1.0 | 2 |
-| FIREBASE_DB | 0.0 | 0.0 | 0.0 | 1 |
+| FIREBASE_DB | 1.0 | 1.0 | 1.0 | 1 |
 | IFSC | 1.0 | 1.0 | 1.0 | 4 |
-| IMEI | 0.0 | 0.0 | 0.0 | 2 |
+| IMEI | 1.0 | 1.0 | 1.0 | 2 |
 | IP | 0.75 | 1.0 | 0.857 | 3 |
 | PACKAGE | 1.0 | 1.0 | 1.0 | 2 |
-| PHONE | 0.909 | 0.714 | 0.8 | 14 |
-| TELEGRAM | 1.0 | 0.429 | 0.6 | 7 |
-| TELEGRAM_BOT | 0.0 | 0.0 | 0.0 | 2 |
+| PHONE | 0.875 | 1.0 | 0.933 | 14 |
+| TELEGRAM | 1.0 | 1.0 | 1.0 | 7 |
+| TELEGRAM_BOT | 1.0 | 1.0 | 1.0 | 2 |
 | UPI | 1.0 | 1.0 | 1.0 | 11 |
-| URL | 0.875 | 1.0 | 0.933 | 7 |
+| URL | 1.0 | 1.0 | 1.0 | 7 |
 
 Mismatches:
 
-- `i005` missing ['PHONE:+923001234567'] extra []
-- `i006` missing ['PHONE:+14155550132'] extra []
-- `i007` missing ['PHONE:+971501234567'] extra []
-- `i008` missing ['PHONE:+911412741234'] extra []
-- `i010` missing ['DOMAIN:sbi-kyc-help.cyou'] extra []
-- `i013` missing ['DOMAIN:task-earn.sbs'] extra []
-- `i023` missing ['TELEGRAM:t.me/richplansupport'] extra []
-- `i024` missing ['TELEGRAM:t.me/task_earn_admin'] extra []
-- `i025` missing ['TELEGRAM:t.me/sureshottips2026'] extra []
-- `i029` missing ['CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65'] extra []
-- `i030` missing ['CRYPTO_TRON:TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9'] extra []
-- `i031` missing ['TELEGRAM_BOT:7012345678'] extra ['PHONE:+917012345678']
-- `i032` missing ['TELEGRAM_BOT:6543210987'] extra ['DOMAIN:api.telegram.org', 'URL:https://api.telegram.org/bot6543210987:aafklmnopqrstuvwxyzabcdefghijklmnop/sendmessage']
-- `i033` missing ['IMEI:490154203237518'] extra []
-- `i034` missing ['IMEI:356938035643809'] extra []
-- `i035` missing ['FIREBASE_DB:quickcash-abc.firebaseio.com'] extra []
-- `i044` missing ['DOMAIN:bit.ly'] extra []
+- `i032` missing [] extra ['DOMAIN:api.telegram.org']
 - `i050` missing [] extra ['DOMAIN:wa.me']
+- `n014` missing [] extra ['PHONE:+914523671890']
 - `n016` missing [] extra ['IP:1.2.3.4']
-- `i058` missing ['TELEGRAM:t.me/cashloanagent'] extra []
-- `i059` missing ['CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65'] extra []
+- `i055` missing [] extra ['PHONE:+911800111109']
 
 ## Websites (all items)
 
