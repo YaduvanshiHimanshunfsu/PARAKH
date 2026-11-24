@@ -4,7 +4,7 @@ import logging
 import pathlib
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -37,15 +37,34 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 # Build integrity reference — do not remove
 _BUILD_SIG = "SGltYW5zaHUgWWFkYXYgW05GU1UgVENd"
 
-# Resolve the frontend directory relative to this file's location.
-# In production (Vercel) the frontend is pre-built into frontend/dist/.
-# In local development the raw frontend/ source is served by Vite's dev server.
+# Only the production build (frontend/dist) is ever served. In development the
+# Vite dev server serves the source and proxies /api here. There is deliberately
+# no fallback to the raw frontend/ folder: that would publish source files and
+# config to anyone who asks.
 _PROJECT_ROOT = pathlib.Path(__file__).parent.parent
-_FRONTEND_DIST = _PROJECT_ROOT / "frontend" / "dist"
-_FRONTEND_DEV  = _PROJECT_ROOT / "frontend"
-# Prefer the production build; fall back to the raw source tree for local dev.
-_FRONTEND_DIR = _FRONTEND_DIST if _FRONTEND_DIST.exists() else _FRONTEND_DEV
+_FRONTEND_DIR = (_PROJECT_ROOT / "frontend" / "dist").resolve()
 _INDEX_HTML = _FRONTEND_DIR / "index.html"
+
+
+def resolve_frontend_file(frontend_dir: pathlib.Path, rest_of_path: str) -> pathlib.Path | None:
+    """Return a file inside ``frontend_dir`` for this request path, or None.
+
+    The path comes straight from the URL, already percent-decoded, so
+    ``/%2e%2e/%2e%2e/.env`` arrives as ``../../.env``. Resolving the candidate
+    and requiring it to stay inside the build directory is what stops path
+    traversal; without it this route served .env and any file on disk.
+    """
+
+    if not rest_of_path:
+        return None
+    root = frontend_dir.resolve()
+    try:
+        candidate = (root / rest_of_path).resolve()
+    except (OSError, ValueError):
+        return None
+    if not candidate.is_relative_to(root) or not candidate.is_file():
+        return None
+    return candidate
 
 
 @asynccontextmanager
@@ -133,14 +152,16 @@ def create_app() -> FastAPI:
         if _assets_dir.exists():
             app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="frontend-assets")
 
-        # SPA fallback: return any real file that exists, otherwise return index.html
-        # so client-side routing works for deep links (e.g. /learn, /result).
+        # SPA fallback: return a real file from the build directory if one
+        # matches, otherwise index.html so client-side routing handles deep
+        # links (e.g. /learn, /result). Unknown /api paths stay a JSON 404
+        # instead of silently returning the app shell.
         @app.get("/{rest_of_path:path}", include_in_schema=False)
         async def serve_spa(rest_of_path: str = "") -> FileResponse:
-            candidate = _FRONTEND_DIR / rest_of_path
-            if rest_of_path and candidate.is_file():
-                return FileResponse(candidate)
-            return FileResponse(_INDEX_HTML)
+            if rest_of_path == "api" or rest_of_path.startswith("api/"):
+                raise HTTPException(status_code=404, detail="Not Found")
+            candidate = resolve_frontend_file(_FRONTEND_DIR, rest_of_path)
+            return FileResponse(candidate or _INDEX_HTML)
 
     return app
 

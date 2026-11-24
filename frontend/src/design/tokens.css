@@ -1,0 +1,151 @@
+/*
+ * PARAKH design tokens — "Civic Vigilance Light".
+ * Source of truth: design/stitch/civic_vigilance_light/DESIGN.md.
+ *
+ * Light theme only. Where a DESIGN.md colour fails WCAG AA as text on its
+ * tint, an "-ink" variant is defined and used for text; the original colour is
+ * kept for borders, fills and icons. Every deviation is noted inline.
+ */
+@import "tailwindcss";
+
+@theme {
+  /* ---------- type ---------- */
+  --font-sans: "Plus Jakarta Sans Variable", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hi: "Noto Sans Devanagari", "Plus Jakarta Sans Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Consolas, monospace;
+
+  /* ---------- surfaces ---------- */
+  --color-canvas: #f7f8fb;          /* primary canvas */
+  --color-sand: #fbf7f1;            /* warm section accent */
+  --color-card: #ffffff;            /* elevated card */
+  --color-line: #e2e8f0;            /* 1px perimeter */
+  --color-line-soft: rgb(15 23 42 / 0.06);
+
+  /* ---------- text ---------- */
+  --color-ink: #0f172a;
+  --color-ink-2: #475569;
+  --color-ink-3: #64748b;           /* muted; 4.7:1 on white */
+
+  /* ---------- brand ---------- */
+  --color-primary: #1d4ed8;         /* primary police action */
+  --color-primary-hover: #1e40af;
+  --color-primary-tint: #eef2ff;
+  --color-accent: #e07a2f;          /* sandstone/saffron: fills, icons, borders */
+  --color-accent-strong: #c2410c;   /* white text on #E07A2F is 3.0:1 (fails AA) — buttons use this */
+  --color-accent-tint: #fff1e6;
+
+  /* Stitch / Material surface tokens, kept so markup copied from design/stitch keeps working */
+  --color-surface: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #eaedff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #434655;
+  --color-outline: #747686;
+  --color-outline-variant: #c4c5d7;
+  --color-primary-container: #1d4ed8;
+  --color-on-primary-container: #cad3ff;
+  --color-secondary: #984800;
+  --color-secondary-container: #ff9245;
+  --color-tertiary: #802500;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* ---------- risk tri-signal (tint + ink + icon; never colour alone) ---------- */
+  --color-risk-high: #dc2626;
+  --color-risk-high-bg: #fef2f2;
+  --color-risk-high-ink: #b91c1c;   /* #DC2626 on #FEF2F2 is 4.4:1 — ink darkened for text */
+  --color-risk-medium: #d97706;
+  --color-risk-medium-bg: #fffbeb;
+  --color-risk-medium-ink: #b45309; /* #D97706 on #FFFBEB is 3.0:1 */
+  --color-risk-low: #059669;
+  --color-risk-low-bg: #ecfdf5;
+  --color-risk-low-ink: #047857;    /* #059669 on #ECFDF5 is 3.6:1 */
+
+  /* ---------- forensic identifier palette ---------- */
+  --color-id-upi: #7c3aed;
+  --color-id-phone: #2563eb;
+  --color-id-bank: #b45309;
+  --color-id-ifsc: #a16207;
+  --color-id-domain: #0d9488;
+  --color-id-url: #475569;
+  --color-id-email: #0891b2;
+  --color-id-telegram: #0284c7;
+  --color-id-ip: #e11d48;
+  --color-id-crypto: #ea580c;
+  --color-id-package: #4f46e5;
+  --color-id-cert: #6d28d9;
+
+  /* ---------- shape ---------- */
+  --radius-chip: 10px;
+  --radius-card: 16px;
+  --radius-hero: 24px;
+
+  /* ---------- elevation ---------- */
+  --shadow-l1: 0 1px 3px 0 rgb(15 23 42 / 0.04), 0 1px 2px -1px rgb(15 23 42 / 0.03);
+  --shadow-l2: 0 4px 16px -2px rgb(15 23 42 / 0.05), 0 2px 6px -1px rgb(15 23 42 / 0.03);
+  --shadow-l3: 0 20px 25px -5px rgb(15 23 42 / 0.07), 0 8px 10px -6px rgb(15 23 42 / 0.03);
+
+  /* ---------- motion ---------- */
+  --ease-civic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- type scale (DESIGN.md) ---------- */
+@utility text-display-hero { font-size: 44px; line-height: 52px; font-weight: 800; letter-spacing: -0.03em; }
+@utility text-display-hero-mobile { font-size: 32px; line-height: 40px; font-weight: 800; letter-spacing: -0.02em; }
+@utility text-headline-lg { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em; }
+@utility text-headline-lg-mobile { font-size: 26px; line-height: 34px; font-weight: 700; letter-spacing: -0.015em; }
+@utility text-headline-md { font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em; }
+@utility text-headline-sm { font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: -0.005em; }
+@utility text-title-md { font-size: 16px; line-height: 24px; font-weight: 600; }
+@utility text-body-lg { font-size: 18px; line-height: 28px; }
+@utility text-body-md { font-size: 15px; line-height: 22px; }
+@utility text-body-sm { font-size: 13px; line-height: 18px; }
+@utility text-label-ui { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.04em; }
+@utility text-mono-md { font-family: var(--font-mono); font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: -0.01em; }
+@utility text-mono-sm { font-family: var(--font-mono); font-size: 12px; line-height: 16px; font-weight: 500; }
+
+/* Frosted glass card / sticky header (DESIGN.md elevation level 2). */
+@utility glass {
+  background: rgb(255 255 255 / 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-line-soft);
+}
+
+/* Tabular numerals for tables, KPIs and timestamps. */
+@utility tnum { font-feature-settings: "tnum" on, "cv02" on, "cv03" on, "cv04" on; }
+
+@layer base {
+  html {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { margin: 0; min-height: 100vh; }
+
+  /* Hindi gets Noto Sans Devanagari at 1.05x for equal optical weight. */
+  :lang(hi), .hi { font-family: var(--font-hi); }
+  .hi { font-size: 1.05em; }
+
+  :focus-visible {
+    outline: 1px solid var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-tint);
+    border-radius: 6px;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25em;
+    line-height: 1;
+    vertical-align: -0.2em;
+    user-select: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}

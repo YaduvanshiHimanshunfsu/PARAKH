@@ -32,3 +32,9 @@ samples/
 
 # Stitch export archive (the extracted copy lives in design/stitch/)
 frontend/stitch_parakh_design_system.zip
+
+# Frontend build output and test artefacts (build with `npm run build`;
+# FastAPI serves frontend/dist when it exists).
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
