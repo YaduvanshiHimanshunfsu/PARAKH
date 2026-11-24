@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-11-24 06:24 UTC",
+  "metrics": {
+    "messages.macro_f1": 0.37,
+    "messages.risky_recall": 0.625,
+    "messages.safe_specificity": 0.918,
+    "urls.phishing_recall": 0.5,
+    "urls.official_false_positives": 9,
+    "identifiers.micro_f1": 0.884,
+    "websites.accuracy": 0.75,
+    "apks.accuracy": 1.0
+  }
+}

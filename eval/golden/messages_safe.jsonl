@@ -1,0 +1,155 @@
+{"id":"s001","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Rs.2,500.00 debited from A/c XX4821 on 23-11-26 to VPA grocery.store@okicici. Avl Bal Rs.18,240.55. Not you? Call 1800 1234 -SBI"}
+{"id":"s002","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your A/c XX7712 is credited with Rs.45,000.00 on 01-11-26 by NEFT salary. Available balance Rs.62,118.40 -HDFC Bank"}
+{"id":"s003","lang":"en","label":"SAFE","category":"OTP","text":"123456 is your OTP for login to SBI YONO. Valid for 3 minutes. Do not share this OTP with anyone. -SBI"}
+{"id":"s004","lang":"en","label":"SAFE","category":"OTP","text":"OTP 482913 for your Amazon order delivery. Share it only with the delivery agent at your door."}
+{"id":"s005","lang":"en","label":"SAFE","category":"OTP","text":"Use 739204 as one time password for your Axis Bank transaction of Rs 1,200 at SWIGGY. Never share your OTP with anyone."}
+{"id":"s006","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your ICICI Bank Credit Card XX2210 has been used for Rs 3,499 at FLIPKART on 12-Nov. If not done by you, block the card via iMobile app."}
+{"id":"s007","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Dear Customer, your KYC is due for periodic update. Please visit your home branch or update via the official app. Ignore if already done. -SBI"}
+{"id":"s008","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"UPI transaction of Rs 150 to Ramesh Tea Stall successful. UPI Ref 431298765012. -Google Pay"}
+{"id":"s009","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"EMI of Rs 4,250 for loan account ending 8890 will be debited on 05-Dec. Maintain sufficient balance. -Bajaj Finance"}
+{"id":"s010","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your fixed deposit of Rs 1,00,000 matured on 20-Nov and has been renewed for 1 year at 7.1%. -Kotak Mahindra Bank"}
+{"id":"s011","lang":"en","label":"SAFE","category":"UTILITY","text":"Dear Consumer, your electricity bill for K.No 210492819201 of Rs. 1,420 is due on 28-Nov-2025. Pay online safely at energy.rajasthan.gov.in or dial 1912 for assistance. -JVVNL"}
+{"id":"s012","lang":"en","label":"SAFE","category":"UTILITY","text":"Bill of Rs 890 generated for your mobile number. Due date 15-Dec. Pay via the Airtel Thanks app. Ignore if already paid."}
+{"id":"s013","lang":"en","label":"SAFE","category":"UTILITY","text":"Your Jio plan expires on 30-Nov. Recharge with Rs 299 for 28 days unlimited calls and 2GB/day on MyJio app."}
+{"id":"s014","lang":"en","label":"SAFE","category":"UTILITY","text":"Gas cylinder booking confirmed. Booking ref 7781230. Delivery expected within 3 days. -Indane"}
+{"id":"s015","lang":"en","label":"SAFE","category":"UTILITY","text":"Water bill for November: Rs 340. Pay at the PHED counter or the e-Mitra kiosk before 10 December."}
+{"id":"s016","lang":"en","label":"SAFE","category":"DELIVERY","text":"Your Amazon order of Bluetooth Speaker has been shipped and will arrive by Tuesday. Track it in the Amazon app."}
+{"id":"s017","lang":"en","label":"SAFE","category":"DELIVERY","text":"Out for delivery: your Flipkart package will reach you today between 9 AM and 7 PM. OTP for delivery will be shared by SMS."}
+{"id":"s018","lang":"en","label":"SAFE","category":"DELIVERY","text":"Speed Post article EK123456789IN booked on 18-Nov has been delivered. -India Post"}
+{"id":"s019","lang":"en","label":"SAFE","category":"DELIVERY","text":"Your Swiggy order is on the way. Ravi is your delivery partner and will reach in 15 minutes."}
+{"id":"s020","lang":"en","label":"SAFE","category":"ADVISORY","text":"Rajasthan Police: Never share OTP, PIN or CVV with anyone. Police never conducts a digital arrest over video call. Report cyber fraud at 1930 or cybercrime.gov.in"}
+{"id":"s021","lang":"en","label":"SAFE","category":"ADVISORY","text":"RBI says: banks never ask for your KYC details or OTP over phone, SMS or email. Do not click on unknown links."}
+{"id":"s022","lang":"en","label":"SAFE","category":"ADVISORY","text":"Beware of fake loan apps. Borrow only from RBI-regulated lenders. Never grant contacts or SMS access to a loan app. -Cyber Cell"}
+{"id":"s023","lang":"en","label":"SAFE","category":"ADVISORY","text":"Alert: fraudsters are sending fake electricity disconnection messages. Discoms never ask you to call a personal mobile number. Pay only on official portals."}
+{"id":"s024","lang":"en","label":"SAFE","category":"ADVISORY","text":"Do not install APK files received on WhatsApp, such as fake e-challan or wedding invitation apps. Check challans only on the official Parivahan website."}
+{"id":"s025","lang":"en","label":"SAFE","category":"ADVISORY","text":"If you lost money to cyber fraud, call 1930 within the golden hour so that the money can be frozen. -I4C"}
+{"id":"s026","lang":"en","label":"SAFE","category":"ADVISORY","text":"There is no such thing as digital arrest in Indian law. CBI, ED or police never ask for money on video calls. Stay alert."}
+{"id":"s027","lang":"en","label":"SAFE","category":"PERSONAL","text":"Hi beta, reached Jaipur safely. Will call you after dinner. Take care."}
+{"id":"s028","lang":"en","label":"SAFE","category":"PERSONAL","text":"Meeting moved to 4 pm tomorrow in conference room B. Please bring the quarterly report."}
+{"id":"s029","lang":"en","label":"SAFE","category":"PERSONAL","text":"Can you pick up milk and bread on your way home? Also the kids need notebooks."}
+{"id":"s030","lang":"en","label":"SAFE","category":"PERSONAL","text":"Happy birthday Ankit! Wishing you a wonderful year ahead. Party at our place on Saturday."}
+{"id":"s031","lang":"en","label":"SAFE","category":"PERSONAL","text":"Sir, I have sent the assignment by email. Please let me know if any changes are needed."}
+{"id":"s032","lang":"en","label":"SAFE","category":"PERSONAL","text":"Shaadi ki taiyari kaisi chal rahi hai? Card printing ka order de diya hai, kal tak aa jayenge."}
+{"id":"s033","lang":"en","label":"SAFE","category":"APPOINTMENT","text":"Your appointment with Dr. Sharma at SMS Hospital OPD is confirmed for 26-Nov at 11:30 AM. Token no. 42."}
+{"id":"s034","lang":"en","label":"SAFE","category":"APPOINTMENT","text":"Reminder: Parent teacher meeting on Saturday at 10 AM. Kindly attend. -St. Xavier's School"}
+{"id":"s035","lang":"en","label":"SAFE","category":"APPOINTMENT","text":"Your vehicle service is due. Book a slot at the nearest authorised service centre through the official app."}
+{"id":"s036","lang":"en","label":"SAFE","category":"TRAVEL","text":"PNR 4523671890: Train 12956 JP-MMCT on 02-Dec, coach B2 seat 34 confirmed. Have a safe journey. -IRCTC"}
+{"id":"s037","lang":"en","label":"SAFE","category":"TRAVEL","text":"Your flight 6E 2134 Jaipur to Delhi departs at 07:45. Web check-in is open on the airline app."}
+{"id":"s038","lang":"en","label":"SAFE","category":"TRAVEL","text":"RSRTC: Your bus ticket from Jaipur to Udaipur on 28-Nov is confirmed. Seat 12. Reporting time 21:30."}
+{"id":"s039","lang":"en","label":"SAFE","category":"GOVT","text":"Your Aadhaar was used for authentication at a bank on 20-Nov. If this was not you, lock your biometrics on the official mAadhaar app. -UIDAI"}
+{"id":"s040","lang":"en","label":"SAFE","category":"GOVT","text":"Your income tax return for AY 2026-27 has been processed. Refund, if any, will be credited to your pre-validated bank account. -Income Tax Department"}
+{"id":"s041","lang":"en","label":"SAFE","category":"GOVT","text":"Your e-challan has been generated for no-helmet violation. Check details and pay only at echallan.parivahan.gov.in"}
+{"id":"s042","lang":"en","label":"SAFE","category":"GOVT","text":"PM Kisan instalment of Rs 2000 has been credited to your bank account. -PM Kisan"}
+{"id":"s043","lang":"en","label":"SAFE","category":"GOVT","text":"Your passport application has been received. Police verification is scheduled. Track status on the official Passport Seva portal."}
+{"id":"s044","lang":"en","label":"SAFE","category":"PROMO","text":"Big Diwali sale! Up to 60% off on electronics at our store in Malviya Nagar. Visit this weekend."}
+{"id":"s045","lang":"en","label":"SAFE","category":"PROMO","text":"Get 20% off on your next order with code SAVE20 in the Zomato app. Valid till Sunday."}
+{"id":"s046","lang":"en","label":"SAFE","category":"PROMO","text":"New arrivals at Fabindia. Visit the store or shop online on our official website. T&C apply."}
+{"id":"s047","lang":"en","label":"SAFE","category":"PROMO","text":"Your Reliance Digital loyalty points balance is 340. Redeem on your next purchase in store."}
+{"id":"s048","lang":"en","label":"SAFE","category":"WORK","text":"Interview scheduled for the Junior Accountant role on 27-Nov at our office, MI Road. Please bring original documents. No fee is charged."}
+{"id":"s049","lang":"en","label":"SAFE","category":"WORK","text":"Your salary slip for November is available on the HR portal. Contact HR for any discrepancy."}
+{"id":"s050","lang":"en","label":"SAFE","category":"WORK","text":"Reminder to submit your timesheet by Friday 5 pm."}
+{"id":"s051","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your loan application with SBI is under process. Our branch officer will contact you. SBI never asks for any fee over phone."}
+{"id":"s052","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your mutual fund SIP of Rs 5,000 has been processed on 10-Nov. Units will be allotted at the applicable NAV. -CAMS"}
+{"id":"s053","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Card blocked as requested by you on 22-Nov. A replacement card will be dispatched to your registered address. -HDFC Bank"}
+{"id":"s054","lang":"en","label":"SAFE","category":"OTP","text":"Your DigiLocker verification code is 551209. Do not share it with anyone."}
+{"id":"s055","lang":"en","label":"SAFE","category":"OTP","text":"OTP for your PhonePe registration is 908172. PhonePe never calls to ask for your OTP."}
+{"id":"s056","lang":"en","label":"SAFE","category":"PROMO","text":"Congratulations on your new Jio Fiber connection! Your account is active. Manage it from the MyJio app."}
+{"id":"s057","lang":"en","label":"SAFE","category":"EDUCATION","text":"RBSE Class 12 results will be declared on the official website rajeduboard.rajasthan.gov.in next week."}
+{"id":"s058","lang":"en","label":"SAFE","category":"EDUCATION","text":"Your fee of Rs 12,000 for semester 3 has been received. Receipt no. 4471. -University of Rajasthan"}
+{"id":"s059","lang":"en","label":"SAFE","category":"PERSONAL","text":"The plumber will come at 3 pm. Please keep the bathroom key ready."}
+{"id":"s060","lang":"en","label":"SAFE","category":"PERSONAL","text":"Bhaiya cricket match kal subah 7 baje hai, ground pe time se aa jana."}
+{"id":"s061","lang":"en","label":"SAFE","category":"HEALTH","text":"Your COVID booster certificate is available on CoWIN. Download it using your registered mobile number."}
+{"id":"s062","lang":"en","label":"SAFE","category":"HEALTH","text":"Lab report for sample ID 88123 is ready. Collect from the counter or view in the hospital app."}
+{"id":"s063","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Standing instruction for electricity bill payment of Rs 1,420 executed successfully. -ICICI Bank"}
+{"id":"s064","lang":"en","label":"SAFE","category":"UTILITY","text":"Planned power shutdown in Vaishali Nagar on 27-Nov from 10 AM to 2 PM for maintenance work. Inconvenience regretted. -JVVNL"}
+{"id":"s065","lang":"en","label":"SAFE","category":"UTILITY","text":"Your new electricity connection application no. 66123 has been approved. A lineman will visit within 7 days. -AVVNL"}
+{"id":"s066","lang":"hi","label":"SAFE","category":"BANK_ALERT","text":"आपके खाते XX4821 से ₹2,500 डेबिट हुए। उपलब्ध शेष ₹18,240। यदि यह आपने नहीं किया है तो बैंक के आधिकारिक नंबर पर संपर्क करें। -एसबीआई"}
+{"id":"s067","lang":"hi","label":"SAFE","category":"OTP","text":"आपका ओटीपी 482913 है। यह 3 मिनट तक मान्य है। इसे किसी के साथ साझा न करें।"}
+{"id":"s068","lang":"hi","label":"SAFE","category":"ADVISORY","text":"राजस्थान पुलिस: कोई भी पुलिस अधिकारी वीडियो कॉल पर डिजिटल अरेस्ट नहीं करता। ठगी होने पर तुरंत 1930 पर कॉल करें।"}
+{"id":"s069","lang":"hi","label":"SAFE","category":"ADVISORY","text":"सावधान! बिजली कटने के फर्जी संदेशों से बचें। बिजली विभाग कभी निजी मोबाइल नंबर पर कॉल करने को नहीं कहता।"}
+{"id":"s070","lang":"hi","label":"SAFE","category":"ADVISORY","text":"व्हाट्सऐप पर आई कोई भी एपीके फ़ाइल इंस्टॉल न करें, चाहे वह शादी का कार्ड हो या ई-चालान।"}
+{"id":"s071","lang":"hi","label":"SAFE","category":"ADVISORY","text":"बैंक कभी भी फोन या एसएमएस पर केवाईसी या ओटीपी नहीं मांगता। अनजान लिंक पर क्लिक न करें। -आरबीआई"}
+{"id":"s072","lang":"hi","label":"SAFE","category":"UTILITY","text":"प्रिय उपभोक्ता, के.नं. 210492819201 का बिल ₹1,420 है, देय तिथि 28 नवंबर। भुगतान केवल आधिकारिक पोर्टल से करें या 1912 पर कॉल करें। -जेवीवीएनएल"}
+{"id":"s073","lang":"hi","label":"SAFE","category":"UTILITY","text":"वैशाली नगर में 27 नवंबर को सुबह 10 से दोपहर 2 बजे तक रखरखाव के कारण बिजली बंद रहेगी।"}
+{"id":"s074","lang":"hi","label":"SAFE","category":"PERSONAL","text":"बेटा, मैं सुरक्षित जयपुर पहुँच गया। खाने के बाद फोन करूँगा।"}
+{"id":"s075","lang":"hi","label":"SAFE","category":"PERSONAL","text":"कल सुबह मंदिर चलेंगे, तैयार रहना। नाश्ता घर पर ही करेंगे।"}
+{"id":"s076","lang":"hi","label":"SAFE","category":"PERSONAL","text":"शादी के कार्ड छप गए हैं, कल सबको बाँटने चलेंगे। मिठाई भी ले आना।"}
+{"id":"s077","lang":"hi","label":"SAFE","category":"PERSONAL","text":"दीदी, बच्चों की परीक्षा अगले हफ़्ते है, इसलिए हम दिवाली पर नहीं आ पाएँगे।"}
+{"id":"s078","lang":"hi","label":"SAFE","category":"GOVT","text":"पीएम किसान की ₹2000 की किस्त आपके बैंक खाते में जमा कर दी गई है।"}
+{"id":"s079","lang":"hi","label":"SAFE","category":"GOVT","text":"आपका ई-चालान बिना हेलमेट के लिए बना है। विवरण देखें और भुगतान केवल echallan.parivahan.gov.in पर करें।"}
+{"id":"s080","lang":"hi","label":"SAFE","category":"GOVT","text":"आपका राशन कार्ड नवीनीकृत हो गया है। अगले माह से राशन उचित मूल्य की दुकान पर मिलेगा।"}
+{"id":"s081","lang":"hi","label":"SAFE","category":"GOVT","text":"आपकी पेंशन ₹1,500 खाते में जमा कर दी गई है। - सामाजिक न्याय एवं अधिकारिता विभाग"}
+{"id":"s082","lang":"hi","label":"SAFE","category":"DELIVERY","text":"आपका पार्सल आज डिलीवर होगा। डिलीवरी के समय ओटीपी केवल डिलीवरी एजेंट को दरवाज़े पर बताएं।"}
+{"id":"s083","lang":"hi","label":"SAFE","category":"TRAVEL","text":"पीएनआर 4523671890: ट्रेन 12956, कोच बी2 सीट 34 कन्फर्म। आपकी यात्रा मंगलमय हो।"}
+{"id":"s084","lang":"hi","label":"SAFE","category":"APPOINTMENT","text":"डॉ. शर्मा के साथ आपकी अपॉइंटमेंट 26 नवंबर सुबह 11:30 बजे पक्की है। टोकन नंबर 42।"}
+{"id":"s085","lang":"hi","label":"SAFE","category":"EDUCATION","text":"कक्षा 12 का परिणाम अगले सप्ताह आधिकारिक वेबसाइट पर घोषित होगा।"}
+{"id":"s086","lang":"hi","label":"SAFE","category":"PROMO","text":"दिवाली सेल! हमारी मालवीय नगर दुकान पर इलेक्ट्रॉनिक्स पर 60% तक छूट। इस सप्ताहांत आएं।"}
+{"id":"s087","lang":"hi","label":"SAFE","category":"BANK_ALERT","text":"आपकी एफडी ₹1,00,000 परिपक्व होकर 7.1% ब्याज पर एक वर्ष के लिए नवीनीकृत हो गई है।"}
+{"id":"s088","lang":"hi","label":"SAFE","category":"BANK_ALERT","text":"आपके अनुरोध पर कार्ड ब्लॉक कर दिया गया है। नया कार्ड आपके पंजीकृत पते पर भेजा जाएगा।"}
+{"id":"s089","lang":"hi","label":"SAFE","category":"HEALTH","text":"आपकी लैब रिपोर्ट तैयार है। काउंटर से लें या अस्पताल ऐप में देखें।"}
+{"id":"s090","lang":"hi","label":"SAFE","category":"WORK","text":"जूनियर अकाउंटेंट पद के लिए आपका साक्षात्कार 27 नवंबर को हमारे कार्यालय में है। कोई शुल्क नहीं लिया जाता।"}
+{"id":"s091","lang":"hi","label":"SAFE","category":"UTILITY","text":"आपका जियो प्लान 30 नवंबर को समाप्त होगा। माई जियो ऐप से रिचार्ज करें।"}
+{"id":"s092","lang":"hi","label":"SAFE","category":"UTILITY","text":"गैस सिलेंडर बुकिंग की पुष्टि हो गई है। तीन दिन में डिलीवरी होगी।"}
+{"id":"s093","lang":"hi","label":"SAFE","category":"ADVISORY","text":"ऑनलाइन नौकरी के नाम पर पैसे मांगने वालों से सावधान रहें। असली कंपनियाँ नौकरी के लिए शुल्क नहीं लेतीं।"}
+{"id":"s094","lang":"hi","label":"SAFE","category":"ADVISORY","text":"साइबर ठगी होने पर पहले दो घंटे में 1930 पर कॉल करें ताकि राशि रोकी जा सके।"}
+{"id":"s095","lang":"hi","label":"SAFE","category":"PERSONAL","text":"आज शाम को क्रिकेट मैच देखने चलोगे? टिकट मैंने बुक कर दिए हैं।"}
+{"id":"s096","lang":"hi","label":"SAFE","category":"GOVT","text":"आपके आधार से बैंक में प्रमाणीकरण हुआ। यदि यह आपने नहीं किया तो mAadhaar ऐप से बायोमेट्रिक लॉक करें। -यूआईडीएआई"}
+{"id":"s097","lang":"hi","label":"SAFE","category":"EDUCATION","text":"सेमेस्टर 3 की फीस ₹12,000 प्राप्त हुई। रसीद संख्या 4471।"}
+{"id":"s098","lang":"hi","label":"SAFE","category":"PERSONAL","text":"पापा ने कहा है कि रविवार को सब लोग गाँव चलेंगे, तैयारी कर लेना।"}
+{"id":"s099","lang":"hi","label":"SAFE","category":"PROMO","text":"नए साल पर कपड़ों पर 30% छूट। दुकान पर आएं या आधिकारिक वेबसाइट पर खरीदें।"}
+{"id":"s100","lang":"hi","label":"SAFE","category":"TRAVEL","text":"आरएसआरटीसी: जयपुर से उदयपुर 28 नवंबर का आपका टिकट कन्फर्म है। सीट 12।"}
+{"id":"s101","lang":"hinglish","label":"SAFE","category":"BANK_ALERT","text":"Aapke account XX4821 se Rs 2500 debit hue grocery store ko. Balance Rs 18240. Agar aapne nahi kiya to bank ke official number par call karein."}
+{"id":"s102","lang":"hinglish","label":"SAFE","category":"OTP","text":"Aapka OTP 482913 hai, 3 minute ke liye valid. Kisi ke saath share na karein."}
+{"id":"s103","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Rajasthan Police: koi bhi police video call par digital arrest nahi karti. Thagi hone par turant 1930 par call karein."}
+{"id":"s104","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Bijli katne ke fake message se savdhan rahein. Discom kabhi personal mobile number par call karne ko nahi kehta."}
+{"id":"s105","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"WhatsApp par aayi koi bhi APK file install na karein, chahe shaadi ka card ho ya e-challan."}
+{"id":"s106","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Bank kabhi phone ya SMS par KYC ya OTP nahi maangta. Anjaan link par click na karein."}
+{"id":"s107","lang":"hinglish","label":"SAFE","category":"UTILITY","text":"Aapka bijli bill 1420 rupaye hai, due date 28 Nov. Payment sirf official portal se karein ya 1912 par call karein."}
+{"id":"s108","lang":"hinglish","label":"SAFE","category":"UTILITY","text":"Vaishali Nagar me 27 Nov ko 10 se 2 baje tak maintenance ke liye bijli band rahegi."}
+{"id":"s109","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Beta main Jaipur pahunch gaya, khana khake call karta hoon."}
+{"id":"s110","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Kal subah mandir chalenge, ready rehna. Nashta ghar par hi karenge."}
+{"id":"s111","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Shaadi ke card chhap gaye hain, kal sabko baantne chalenge. Mithai bhi le aana."}
+{"id":"s112","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Yaar kal ka plan pakka hai na? Movie 6 baje ki hai, time pe aa jana."}
+{"id":"s113","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Mummy ne bola hai sabzi le aana, aur doodh bhi khatam ho gaya hai."}
+{"id":"s114","lang":"hinglish","label":"SAFE","category":"GOVT","text":"PM Kisan ki 2000 ki kist aapke bank account me aa gayi hai."}
+{"id":"s115","lang":"hinglish","label":"SAFE","category":"GOVT","text":"Aapka e-challan bina helmet ke liye bana hai, details dekhein aur payment sirf echallan.parivahan.gov.in par karein."}
+{"id":"s116","lang":"hinglish","label":"SAFE","category":"DELIVERY","text":"Aapka Amazon order aaj deliver hoga. OTP sirf delivery boy ko darwaze par batana."}
+{"id":"s117","lang":"hinglish","label":"SAFE","category":"DELIVERY","text":"Flipkart parcel ship ho gaya hai, kal tak aa jayega. App me track kar sakte ho."}
+{"id":"s118","lang":"hinglish","label":"SAFE","category":"TRAVEL","text":"PNR 4523671890 confirm ho gaya hai, coach B2 seat 34. Safe journey!"}
+{"id":"s119","lang":"hinglish","label":"SAFE","category":"APPOINTMENT","text":"Dr Sharma ke saath appointment 26 Nov 11:30 baje confirm hai, token number 42."}
+{"id":"s120","lang":"hinglish","label":"SAFE","category":"WORK","text":"Interview 27 Nov ko office me hai, original documents le aana. Koi fees nahi lagti."}
+{"id":"s121","lang":"hinglish","label":"SAFE","category":"WORK","text":"Sir assignment email kar diya hai, koi change ho to bata dijiye."}
+{"id":"s122","lang":"hinglish","label":"SAFE","category":"PROMO","text":"Diwali sale me electronics par 60% tak off, is weekend dukaan par aao."}
+{"id":"s123","lang":"hinglish","label":"SAFE","category":"PROMO","text":"Zomato app me SAVE20 code lagao aur next order par 20% off pao. Sunday tak valid."}
+{"id":"s124","lang":"hinglish","label":"SAFE","category":"UTILITY","text":"Jio plan 30 Nov ko khatam ho raha hai, MyJio app se recharge kar lo."}
+{"id":"s125","lang":"hinglish","label":"SAFE","category":"UTILITY","text":"Gas cylinder booking confirm, 3 din me delivery ho jayegi."}
+{"id":"s126","lang":"hinglish","label":"SAFE","category":"EDUCATION","text":"Class 12 ka result agle hafte official website par aayega."}
+{"id":"s127","lang":"hinglish","label":"SAFE","category":"HEALTH","text":"Aapki lab report ready hai, counter se le lo ya hospital app me dekho."}
+{"id":"s128","lang":"hinglish","label":"SAFE","category":"BANK_ALERT","text":"Aapki FD mature ho kar 7.1% par 1 saal ke liye renew ho gayi hai."}
+{"id":"s129","lang":"hinglish","label":"SAFE","category":"BANK_ALERT","text":"Aapke request par card block kar diya gaya hai, naya card registered address par aayega."}
+{"id":"s130","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Online job ke naam par paise maangne walon se bacho. Asli company job ke liye fees nahi leti."}
+{"id":"s131","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Cyber thagi hone par pehle 2 ghante me 1930 par call karo taaki paisa roka ja sake."}
+{"id":"s132","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Didi bachchon ke exam agle hafte hain, isliye Diwali par nahi aa paayenge."}
+{"id":"s133","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Bhai cricket match kal subah 7 baje hai, ground par time se aana."}
+{"id":"s134","lang":"hinglish","label":"SAFE","category":"PERSONAL","text":"Plumber 3 baje aayega, bathroom ki chaabi ready rakhna."}
+{"id":"s135","lang":"hinglish","label":"SAFE","category":"GOVT","text":"Aapka ration card renew ho gaya hai, agle mahine se ration dukaan par milega."}
+{"id":"s136","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Dear customer, a new device was registered for your SBI YONO account. If not done by you, call the number on the back of your card."}
+{"id":"s137","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your cheque no. 000412 for Rs 15,000 has been cleared. -Punjab National Bank"}
+{"id":"s138","lang":"en","label":"SAFE","category":"BANK_ALERT","text":"Your account statement for October has been sent to your registered email. -Axis Bank"}
+{"id":"s139","lang":"en","label":"SAFE","category":"OTP","text":"Your verification code for WhatsApp is 381-902. Do not share this code with others."}
+{"id":"s140","lang":"en","label":"SAFE","category":"GOVT","text":"Voter ID card application approved. Your EPIC will be delivered by post. -Election Commission"}
+{"id":"s141","lang":"en","label":"SAFE","category":"GOVT","text":"Your Jan Aadhaar enrolment is complete. Download the e-card from the official Jan Aadhaar portal using your SSO ID."}
+{"id":"s142","lang":"en","label":"SAFE","category":"PROMO","text":"Thank you for shopping at Big Bazaar. You earned 120 reward points on this purchase."}
+{"id":"s143","lang":"en","label":"SAFE","category":"PERSONAL","text":"Uncle, the wedding is on 10 December at Hotel Clarks Amer. Do come with family. Card sent by courier."}
+{"id":"s144","lang":"en","label":"SAFE","category":"PERSONAL","text":"Please send me the photos from yesterday's function on WhatsApp."}
+{"id":"s145","lang":"en","label":"SAFE","category":"WORK","text":"The training session on cyber hygiene is scheduled for Monday at 11 am in the police lines auditorium."}
+{"id":"s146","lang":"en","label":"SAFE","category":"ADVISORY","text":"Rajasthan Police advisory: sextortion callers record video calls to blackmail. Do not pay; report at 1930 and preserve screenshots."}
+{"id":"s147","lang":"en","label":"SAFE","category":"ADVISORY","text":"Guaranteed returns are a red flag. Check if an investment advisor is registered with SEBI before investing."}
+{"id":"s148","lang":"en","label":"SAFE","category":"UTILITY","text":"Your BSNL broadband bill of Rs 499 is generated. Pay through the official BSNL app or website."}
+{"id":"s149","lang":"en","label":"SAFE","category":"DELIVERY","text":"Your DTDC consignment D88213456 has been delivered and signed by Ramesh."}
+{"id":"s150","lang":"en","label":"SAFE","category":"TRAVEL","text":"Your Ola ride is arriving. Driver Suresh, white Dzire RJ14 CA 1234, OTP for ride is 4512."}
+{"id":"s151","lang":"en","label":"SAFE","category":"HEALTH","text":"Ayushman card generated for your family. Show it at any empanelled hospital for cashless treatment."}
+{"id":"s152","lang":"hi","label":"SAFE","category":"ADVISORY","text":"गारंटीड रिटर्न का वादा धोखाधड़ी का संकेत है। निवेश से पहले सेबी पंजीकरण अवश्य जाँचें।"}
+{"id":"s153","lang":"hi","label":"SAFE","category":"GOVT","text":"आपका जन आधार नामांकन पूर्ण हुआ। अपनी एसएसओ आईडी से आधिकारिक पोर्टल पर ई-कार्ड डाउनलोड करें।"}
+{"id":"s154","lang":"hinglish","label":"SAFE","category":"ADVISORY","text":"Guaranteed return ka vaada fraud ka sign hai, invest karne se pehle SEBI registration check karo."}
+{"id":"s155","lang":"hinglish","label":"SAFE","category":"TRAVEL","text":"Ola ride aa rahi hai, driver Suresh, white Dzire, ride OTP 4512 hai."}

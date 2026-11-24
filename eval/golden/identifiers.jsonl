@@ -1,0 +1,80 @@
+{"id": "i001", "text": "Pay richplan@ybl or call 9812345670 now.", "expected": [{"type": "UPI", "value": "richplan@ybl"}, {"type": "PHONE", "value": "+919812345670"}]}
+{"id": "i002", "text": "Call +91 98123 45670 for help.", "expected": [{"type": "PHONE", "value": "+919812345670"}]}
+{"id": "i003", "text": "Contact 098123-45670 or 9812345670.", "expected": [{"type": "PHONE", "value": "+919812345670"}]}
+{"id": "i004", "text": "For help call 9876543210.", "expected": [{"type": "PHONE", "value": "+919876543210"}]}
+{"id": "i005", "text": "WhatsApp our agent on +92 300 1234567 for the bonus.", "expected": [{"type": "PHONE", "value": "+923001234567"}]}
+{"id": "i006", "text": "US support desk +1 (415) 555-0132 will call you back.", "expected": [{"type": "PHONE", "value": "+14155550132"}]}
+{"id": "i007", "text": "Dubai office: +971 50 123 4567", "expected": [{"type": "PHONE", "value": "+971501234567"}]}
+{"id": "i008", "text": "Office landline 0141-2741234, Jaipur.", "expected": [{"type": "PHONE", "value": "+911412741234"}]}
+{"id": "i009", "text": "Visit https://sbi-verify-kyc.in/urgent to verify.", "expected": [{"type": "URL", "value": "https://sbi-verify-kyc.in/urgent"}, {"type": "DOMAIN", "value": "sbi-verify-kyc.in"}]}
+{"id": "i010", "text": "Go to sbi-kyc-help.cyou today", "expected": [{"type": "DOMAIN", "value": "sbi-kyc-help.cyou"}]}
+{"id": "i011", "text": "Register at bet777.vip for bonus", "expected": [{"type": "DOMAIN", "value": "bet777.vip"}]}
+{"id": "i012", "text": "Our portal richplan-invest.xyz is live", "expected": [{"type": "DOMAIN", "value": "richplan-invest.xyz"}]}
+{"id": "i013", "text": "New site: task-earn-daily.live and backup at task-earn.sbs", "expected": [{"type": "DOMAIN", "value": "task-earn-daily.live"}, {"type": "DOMAIN", "value": "task-earn.sbs"}]}
+{"id": "i014", "text": "Mail us at support@richplan-invest.xyz or pay winner@paytm", "expected": [{"type": "EMAIL", "value": "support@richplan-invest.xyz"}, {"type": "UPI", "value": "winner@paytm"}]}
+{"id": "i015", "text": "Send fee to loanapprove@ybl", "expected": [{"type": "UPI", "value": "loanapprove@ybl"}]}
+{"id": "i016", "text": "UPI: discom.bill98@ybl", "expected": [{"type": "UPI", "value": "discom.bill98@ybl"}]}
+{"id": "i017", "text": "Pay to merchant99@oksbi or cashback.refund@axl", "expected": [{"type": "UPI", "value": "merchant99@oksbi"}, {"type": "UPI", "value": "cashback.refund@axl"}]}
+{"id": "i018", "text": "Transfer to A/c 918273645501 IFSC SBIN0001428 beneficiary RichPlan", "expected": [{"type": "BANK_ACCOUNT", "value": "918273645501"}, {"type": "IFSC", "value": "SBIN0001428"}]}
+{"id": "i019", "text": "Account number: 50100234567812, IFSC HDFC0001234", "expected": [{"type": "BANK_ACCOUNT", "value": "50100234567812"}, {"type": "IFSC", "value": "HDFC0001234"}]}
+{"id": "i020", "text": "Deposit in beneficiary account 3456789012 (ICIC0004321)", "expected": [{"type": "BANK_ACCOUNT", "value": "3456789012"}, {"type": "IFSC", "value": "ICIC0004321"}]}
+{"id": "i021", "text": "Join https://t.me/RichPlanOfficial for tips", "expected": [{"type": "TELEGRAM", "value": "t.me/richplanofficial"}]}
+{"id": "i022", "text": "Telegram channel t.me/joinchat/AbCdEf123", "expected": [{"type": "TELEGRAM", "value": "t.me/joinchat/abcdef123"}]}
+{"id": "i023", "text": "Join our Telegram @RichPlanSupport for daily profit", "expected": [{"type": "TELEGRAM", "value": "t.me/richplansupport"}]}
+{"id": "i024", "text": "Message TG @task_earn_admin to start", "expected": [{"type": "TELEGRAM", "value": "t.me/task_earn_admin"}]}
+{"id": "i025", "text": "Join channel @SureShotTips2026 on telegram", "expected": [{"type": "TELEGRAM", "value": "t.me/sureshottips2026"}]}
+{"id": "i026", "text": "Deposit USDT ERC20 to 0x52908400098527886E0F7030069857D2E4169EE7", "expected": [{"type": "CRYPTO_ETH", "value": "0x52908400098527886e0f7030069857d2e4169ee7"}]}
+{"id": "i027", "text": "BTC wallet 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa for payment", "expected": [{"type": "CRYPTO_BTC", "value": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"}]}
+{"id": "i028", "text": "Send BTC to bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq", "expected": [{"type": "CRYPTO_BTC", "value": "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq"}]}
+{"id": "i029", "text": "USDT TRC20 address: TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65", "expected": [{"type": "CRYPTO_TRON", "value": "TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"}]}
+{"id": "i030", "text": "Pay USDT on TRON to TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9 and send screenshot", "expected": [{"type": "CRYPTO_TRON", "value": "TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9"}]}
+{"id": "i031", "text": "bot token 7012345678:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw0", "expected": [{"type": "TELEGRAM_BOT", "value": "7012345678"}]}
+{"id": "i032", "text": "https://api.telegram.org/bot6543210987:AAFkLmNoPqRsTuVwXyZaBcDeFgHiJkLmNoP/sendMessage", "expected": [{"type": "TELEGRAM_BOT", "value": "6543210987"}]}
+{"id": "i033", "text": "Handset IMEI 490154203237518 was used in the fraud", "expected": [{"type": "IMEI", "value": "490154203237518"}]}
+{"id": "i034", "text": "Seized phone IMEI: 356938035643809", "expected": [{"type": "IMEI", "value": "356938035643809"}]}
+{"id": "i035", "text": "Data sent to https://quickcash-abc.firebaseio.com/users.json", "expected": [{"type": "URL", "value": "https://quickcash-abc.firebaseio.com/users.json"}, {"type": "DOMAIN", "value": "quickcash-abc.firebaseio.com"}, {"type": "FIREBASE_DB", "value": "quickcash-abc.firebaseio.com"}]}
+{"id": "i036", "text": "Download http://45.133.1.9/quickcash.apk now", "expected": [{"type": "URL", "value": "http://45.133.1.9/quickcash.apk"}, {"type": "IP", "value": "45.133.1.9"}]}
+{"id": "i037", "text": "C2 server at 185.220.101.44 port 8080", "expected": [{"type": "IP", "value": "185.220.101.44"}]}
+{"id": "i038", "text": "package com.quickcash.instantloan requests SMS access", "expected": [{"type": "PACKAGE", "value": "com.quickcash.instantloan"}]}
+{"id": "i039", "text": "The app com.bijli.jvvnl.update was sideloaded", "expected": [{"type": "PACKAGE", "value": "com.bijli.jvvnl.update"}]}
+{"id": "i040", "text": "आपका बिल भरें jvvnl-bill-pay.in या कॉल करें 9988776655", "expected": [{"type": "DOMAIN", "value": "jvvnl-bill-pay.in"}, {"type": "PHONE", "value": "+919988776655"}]}
+{"id": "i041", "text": "भुगतान करें richplan@ybl पर और संपर्क करें +91 91234 56780", "expected": [{"type": "UPI", "value": "richplan@ybl"}, {"type": "PHONE", "value": "+919123456780"}]}
+{"id": "i042", "text": "टेलीग्राम चैनल से जुड़ें t.me/DailyTaskWork", "expected": [{"type": "TELEGRAM", "value": "t.me/dailytaskwork"}]}
+{"id": "i043", "text": "Paisa bhejo loanapprove@ybl par aur call karo 9123456780", "expected": [{"type": "UPI", "value": "loanapprove@ybl"}, {"type": "PHONE", "value": "+919123456780"}]}
+{"id": "i044", "text": "Short link bit.ly/sbi-kyc-alert", "expected": [{"type": "DOMAIN", "value": "bit.ly"}]}
+{"id": "i045", "text": "Check https://www.hdfcbank.com for offers", "expected": [{"type": "URL", "value": "https://www.hdfcbank.com"}, {"type": "DOMAIN", "value": "hdfcbank.com"}]}
+{"id": "i046", "text": "Visit https://secure-login.hdfcbank.com.verify-account.xyz now", "expected": [{"type": "URL", "value": "https://secure-login.hdfcbank.com.verify-account.xyz"}, {"type": "DOMAIN", "value": "secure-login.hdfcbank.com.verify-account.xyz"}]}
+{"id": "i047", "text": "Two numbers: 9812345670 and 9123456780 and UPI richplan@ybl", "expected": [{"type": "PHONE", "value": "+919812345670"}, {"type": "PHONE", "value": "+919123456780"}, {"type": "UPI", "value": "richplan@ybl"}]}
+{"id": "i048", "text": "Wallet 0xABCDEFabcdef0123456789ABCDEFabcdef012345 receives deposits", "expected": [{"type": "CRYPTO_ETH", "value": "0xabcdefabcdef0123456789abcdefabcdef012345"}]}
+{"id": "i049", "text": "IFSC code PUNB0123400 branch Kota", "expected": [{"type": "IFSC", "value": "PUNB0123400"}]}
+{"id": "i050", "text": "Reach us on WhatsApp wa.me/919812345670", "expected": [{"type": "PHONE", "value": "+919812345670"}]}
+{"id": "n001", "text": "Your OTP is 482913. Do not share it.", "expected": []}
+{"id": "n002", "text": "Order ID 9812345670123 has been shipped.", "expected": []}
+{"id": "n003", "text": "App version 2.4.1.0 build ok", "expected": []}
+{"id": "n004", "text": "Router IP 192.168.1.1 and gateway 10.0.0.1", "expected": []}
+{"id": "n005", "text": "Pin code 302017, Jaipur", "expected": []}
+{"id": "n006", "text": "UTR 431298765012 for your payment of Rs 150", "expected": []}
+{"id": "n007", "text": "Meeting at 10.30 am on 12.11.2026", "expected": []}
+{"id": "n008", "text": "Amount Rs 1,00,000 credited", "expected": []}
+{"id": "n009", "text": "Random text TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq6A looks like a wallet but has a bad checksum", "expected": []}
+{"id": "n010", "text": "Reference number 123456789012345 is not an IMEI", "expected": []}
+{"id": "n011", "text": "Call me after 5 pm today", "expected": []}
+{"id": "n012", "text": "The score was 245/6 in 20 overs", "expected": []}
+{"id": "n013", "text": "Follow us @parakh_alerts on Instagram", "expected": []}
+{"id": "n014", "text": "PNR 4523671890 confirmed", "expected": [], "note": "10-digit PNR starting with 4 is not an Indian mobile number"}
+{"id": "n015", "text": "Invoice INV-2026-00981 total Rs 4,500", "expected": []}
+{"id": "n016", "text": "Version v1.2.3.4 released", "expected": []}
+{"id": "n017", "text": "Temperature 32.5 degrees", "expected": []}
+{"id": "n018", "text": "Aadhaar ending 4821 verified", "expected": []}
+{"id": "n019", "text": "Room 101, Block B, Sector 5", "expected": []}
+{"id": "n020", "text": "Card ending XX2210 used at Flipkart", "expected": []}
+{"id": "i051", "text": "Email from hr.jobs@gmail.com about the interview", "expected": [{"type": "EMAIL", "value": "hr.jobs@gmail.com"}]}
+{"id": "i052", "text": "UPI id ramesh.tea@okicici paid", "expected": [{"type": "UPI", "value": "ramesh.tea@okicici"}]}
+{"id": "i053", "text": "Visit http://avvnl-meter-update.xyz/app for the update", "expected": [{"type": "URL", "value": "http://avvnl-meter-update.xyz/app"}, {"type": "DOMAIN", "value": "avvnl-meter-update.xyz"}]}
+{"id": "i054", "text": "Join group https://chat.whatsapp.com/AbCdEfGhIjK", "expected": [{"type": "URL", "value": "https://chat.whatsapp.com/abcdefghijk"}, {"type": "DOMAIN", "value": "chat.whatsapp.com"}]}
+{"id": "i055", "text": "Call 1800 11 1109 for SBI card blocking", "expected": [], "note": "official toll-free helpline: not a suspect identifier (role OFFICIAL_CONTACT in B.6)"}
+{"id": "i056", "text": "Payment to 9812345670@ybl done", "expected": [{"type": "UPI", "value": "9812345670@ybl"}]}
+{"id": "i057", "text": "Contact @RichPlanSupport", "expected": [], "note": "a bare @handle without Telegram context must not be extracted"}
+{"id": "i058", "text": "Telegram par message karo @CashLoanAgent", "expected": [{"type": "TELEGRAM", "value": "t.me/cashloanagent"}]}
+{"id": "i059", "text": "Deposit to TRON wallet TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65 or ERC20 0x52908400098527886E0F7030069857D2E4169EE7", "expected": [{"type": "CRYPTO_TRON", "value": "TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"}, {"type": "CRYPTO_ETH", "value": "0x52908400098527886e0f7030069857d2e4169ee7"}]}
+{"id": "i060", "text": "Server telemetry-gateway.online and backup 103.251.167.12", "expected": [{"type": "DOMAIN", "value": "telemetry-gateway.online"}, {"type": "IP", "value": "103.251.167.12"}]}

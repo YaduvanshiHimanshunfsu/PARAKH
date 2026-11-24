@@ -7,7 +7,7 @@
 
 This plan sits on top of the existing documents. Read these first: [README.md](README.md), [DECISIONS.md](DECISIONS.md) (ADR-001…005), [PHASES.md](PHASES.md) (Phases 0–7, already delivered), [DEMO.md](DEMO.md), [REMOVALS.md](REMOVALS.md).
 
-> **Revision 2 (24 Nov 2026): new frontend.** The previous React frontend (`frontend/src`, `dist`, e2e tests) was removed on purpose. The new UI is the Google Stitch export in [`frontend/stitch_parakh_design_system/stitch_parakh_design_system/`](frontend/stitch_parakh_design_system/stitch_parakh_design_system/): 31 screens plus the *Civic Vigilance Light* design system. **Phase H has been rewritten** to turn these static designs into the working React app, wired to the existing backend. Until Phase H.0–H.2 land, PARAKH has **no usable UI**, so Phase H is now **P0** and runs in parallel with Phase B. The wireframe sheet ([wireframe.jpg](wireframe.jpg)) remains the reference for screens Stitch has not produced yet.
+> **Revision 2 (24 Nov 2026): new frontend.** The previous React frontend (`frontend/src`, `dist`, e2e tests) was removed on purpose. The new UI is the Google Stitch export in [`design/stitch/`](design/stitch/): 31 screens plus the *Civic Vigilance Light* design system. **Phase H has been rewritten** to turn these static designs into the working React app, wired to the existing backend. Until Phase H.0–H.2 land, PARAKH has **no usable UI**, so Phase H is now **P0** and runs in parallel with Phase B. The wireframe sheet ([wireframe.jpg](wireframe.jpg)) remains the reference for screens Stitch has not produced yet.
 
 ---
 
@@ -123,7 +123,7 @@ So:
 |---|---|
 | `frontend/src`, `frontend/dist`, `frontend/e2e`, `node_modules` | **Removed.** `index.html` still points to `/src/main.jsx`, so `npm run dev` / `npm run build` fail and FastAPI serves no UI (`app/main.py` only mounts the SPA if `frontend/dist/index.html` exists) |
 | `package.json`, `vite.config.js`, `playwright.config.js`, `.env.*` | Kept; reused in H.0 |
-| New design | 31 Stitch screens (`code.html` + `screen.png`) + `civic_vigilance_light/DESIGN.md`, in `frontend/stitch_parakh_design_system/stitch_parakh_design_system/` (+ a 9.4 MB `.zip` of the same) |
+| New design | 31 Stitch screens (`code.html` + `screen.png`) + `civic_vigilance_light/DESIGN.md`, now in [`design/stitch/`](design/stitch/) (the 9.4 MB `.zip` copy is gitignored) |
 | Stitch HTML technology | Static pages using the **Tailwind CDN** (`cdn.tailwindcss.com`), Google Fonts, Material Symbols, and 7 pages with hot-linked AI images (`lh3.googleusercontent.com`). None of this can ship as-is: it needs internet (breaks the offline demo), and **our own CSP (`script-src 'self'`) blocks the Tailwind CDN script** |
 | Reusable old logic in git (commit `2a8e465`) | `lib/api.js`, `lib/investigateApi.js`, `lib/vault.js` (AES-GCM evidence locker), `lib/qrSafety.js` (in-browser QR decode), `lib/redaction.js` (+ tests). Use as reference implementations only: `git show 2a8e465:frontend/src/lib/vault.js` |
 | Untracked backend files at risk | `app/services/campaign_service.py`, `app/api/uploads.py`, `app/data/android_permissions.py`, `tests/test_campaigns_and_citizen_apk.py`, plus `planversionalpha.md`, `wireframe.jpg`. **Commit these before anything else** (H.0 step 1) |
@@ -244,9 +244,24 @@ python scripts/evaluate.py --split test --out eval/report.md
 - Run it on every rehearsal and on demo morning. Any failure is a blocker.
 
 ### A.4 Exit criteria
-- [ ] Golden set reaches the minimum sizes above, with the dev/test split frozen
-- [ ] `eval/report.md` baseline recorded (expect weak numbers on Hindi and new typologies; that is the point)
-- [ ] `demo_check.py` runs and reports pass/fail per case
+- [x] Golden set reaches the minimum sizes above, with the dev/test split frozen (300 messages, 52% hard negatives; 120 URLs; 80 identifier cases; 30 websites; 20 APK specs). All synthetic: real R4C / cyber-cell samples still to be added (see `eval/README.md`)
+- [x] `eval/report.md` baseline recorded, and `tests/test_eval_gate.py` blocks regressions
+- [x] `demo_check.py` runs and reports pass/fail per case: 11/16 pass; the 5 failures are the known Phase B gaps
+
+**Baseline (test split, 24 Nov 2026), the starting point for Phase B:**
+
+| Metric | Baseline | Phase B target |
+|---|---|---|
+| Message macro-F1 | 0.37 | ≥ 0.85 |
+| Risky-message recall | 0.625 | — |
+| Safe-message specificity | 0.918 | — |
+| Official-site false positives | 9 (35 of 60 across all splits) | 0 |
+| Phishing-URL recall | 0.50 | — |
+| Identifier micro-F1 | 0.884 | ≥ 0.90 |
+| Website accuracy | 0.75 | — |
+| APK accuracy (synthetic) | 1.0 on test; a genuine SMS app is flagged HIGH in the full set | 0 benign flagged HIGH |
+
+Across all 300 messages: Hindi risky recall **0.17**, Hinglish **0.50**, English 0.72. Digital-arrest recall is **0 of 15**. Police and RBI advisories are flagged as SCAM.
 
 ---
 
@@ -1025,7 +1040,7 @@ There is no working UI today (Section 1.4). The analysers, linking and reports o
 
 ### H.0 Foundation (do first; everything else depends on it)
 
-**Step 1: protect what exists.** Commit the untracked backend files (`campaign_service.py`, `uploads.py`, `android_permissions.py`, `test_campaigns_and_citizen_apk.py`), `planversionalpha.md` and `wireframe.jpg`. Add `frontend/stitch_parakh_design_system.zip` to `.gitignore` (the extracted folder is enough). Move the Stitch folder to `design/stitch/` so it is clearly *reference*, not app code (keep paths in this plan updated).
+**Step 1: protect what exists.** ✅ *Done 24 Nov 2026 on branch `alpha/frontend-and-eval` (commits `4b97270`, `5a05aef`).* Commit the untracked backend files (`campaign_service.py`, `uploads.py`, `android_permissions.py`, `test_campaigns_and_citizen_apk.py`), `planversionalpha.md` and `wireframe.jpg`. Add `frontend/stitch_parakh_design_system.zip` to `.gitignore` (the extracted folder is enough). Move the Stitch folder to `design/stitch/` so it is clearly *reference*, not app code (keep paths in this plan updated).
 
 **Step 2: scaffold.** Reuse `package.json` / `vite.config.js` (React 19, Vite, Tailwind v4 via `@tailwindcss/vite`, react-router-dom, framer-motion), then:
 ```text

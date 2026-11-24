@@ -1,0 +1,3204 @@
+{
+  "generated_at": "2026-11-24 06:24 UTC",
+  "test": {
+    "split": "test",
+    "messages": {
+      "n": 97,
+      "confusion": {
+        "SCAM": {
+          "SUSPICIOUS": 21,
+          "SAFE": 17,
+          "SCAM": 9
+        },
+        "SUSPICIOUS": {
+          "SAFE": 1
+        },
+        "SAFE": {
+          "SAFE": 45,
+          "SCAM": 3,
+          "SUSPICIOUS": 1
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 0.75,
+          "recall": 0.191,
+          "f1": 0.305,
+          "support": 47
+        },
+        "SUSPICIOUS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "SAFE": {
+          "precision": 0.714,
+          "recall": 0.918,
+          "f1": 0.804,
+          "support": 49
+        }
+      },
+      "macro_f1": 0.37,
+      "scam_precision": 0.75,
+      "risky_recall": 0.625,
+      "safe_specificity": 0.918,
+      "risky_recall_hi_hinglish": 0.368,
+      "by_language": {
+        "en": {
+          "n": 51,
+          "risky_recall": 0.793,
+          "false_alarm_rate": 0.182
+        },
+        "hi": {
+          "n": 18,
+          "risky_recall": 0.167,
+          "false_alarm_rate": 0.0
+        },
+        "hinglish": {
+          "n": 28,
+          "risky_recall": 0.462,
+          "false_alarm_rate": 0.0
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 6,
+          "accuracy": 0.667
+        },
+        "APPOINTMENT": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "BETTING_GAMBLING": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "DELIVERY": {
+          "n": 6,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 5,
+          "accuracy": 0.0
+        },
+        "EDUCATION": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 3,
+          "accuracy": 0.667
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "GOVT": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 4,
+          "accuracy": 0.5
+        },
+        "KYC_SCAM": {
+          "n": 7,
+          "accuracy": 0.429
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 5,
+          "accuracy": 0.8
+        },
+        "LOTTERY_PRIZE": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "MALICIOUS_APP": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "MARKETPLACE_FRAUD": {
+          "n": 3,
+          "accuracy": 0.333
+        },
+        "OTP": {
+          "n": 4,
+          "accuracy": 0.5
+        },
+        "OTP_THEFT": {
+          "n": 1,
+          "accuracy": 0.0
+        },
+        "PERSONAL": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 1,
+          "accuracy": 0.0
+        },
+        "TECH_SUPPORT": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UTILITY": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 3,
+          "accuracy": 0.667
+        },
+        "WORK": {
+          "n": 2,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.426,
+      "misses": [
+        {
+          "id": "m010",
+          "lang": "en",
+          "category": "KYC_SCAM",
+          "text": "PNB: Your credit card limit is being reduced. To stop it, verify card number, expiry and CVV at pnb-card-limit.click"
+        },
+        {
+          "id": "m011",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "प्रिय ग्राहक, आपका SBI खाता 24 घंटे में बंद कर दिया जाएगा। तुरंत KYC अपडेट करें sbi-kyc-help.cyou"
+        },
+        {
+          "id": "m013",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "आपका पैन कार्ड लिंक नहीं है, खाता ब्लॉक किया जा रहा है। ओटीपी बताकर अभी सत्यापन करें: 9876543210"
+        },
+        {
+          "id": "m018",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Aapke paytm wallet ki KYC pending hai, 2 ghante me wallet band. Call karein 9123456780 par turant."
+        },
+        {
+          "id": "m024",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Enforcement Directorate: An arrest warrant is issued against you in a money laundering case. Stay on Skype video call an"
+        },
+        {
+          "id": "m026",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Supreme Court order: Your bank accounts are under investigation. Transfer your balance to the court safe account for aud"
+        },
+        {
+          "id": "m029",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "आपके नाम से भेजे गए पार्सल में ड्रग्स मिले हैं। कस्टम विभाग ने केस दर्ज किया है। गिरफ्तारी से बचने के लिए तुरंत सुरक्षा "
+        },
+        {
+          "id": "m032",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "Main CBI officer bol raha hoon, aapke Aadhaar se money laundering case juda hai. Aap digital arrest me ho, video call ba"
+        },
+        {
+          "id": "m034",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "TRAI se call hai, aapka number 2 ghante me band hoga kyunki illegal activity me use hua hai. Police se baat karne ke liy"
+        },
+        {
+          "id": "m047",
+          "lang": "hinglish",
+          "category": "FAKE_JOB",
+          "text": "Aapke 3 task complete ho gaye, ab next task ke liye 10000 deposit karo, 15000 wapas milega aaj hi."
+        },
+        {
+          "id": "m063",
+          "lang": "en",
+          "category": "INVESTMENT_FRAUD",
+          "text": "IPO allotment guaranteed through our institutional account. Deposit funds in our trading app and get 300% returns."
+        },
+        {
+          "id": "m069",
+          "lang": "hinglish",
+          "category": "INVESTMENT_FRAUD",
+          "text": "VIP stock tips group join karo, pakka profit har hafte. Institutional account se IPO allotment guaranteed."
+        },
+        {
+          "id": "m080",
+          "lang": "en",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "AVVNL alert: smart meter update pending. Install the Bijli Update app from this link or supply will stop tonight."
+        },
+        {
+          "id": "m111",
+          "lang": "hinglish",
+          "category": "OTP_THEFT",
+          "text": "Bhai galti se 5000 bhej diye, abhi jo OTP aaya hai wo bata do reverse kar deta hoon."
+        },
+        {
+          "id": "m117",
+          "lang": "hi",
+          "category": "SEXTORTION",
+          "text": "आपकी अश्लील वीडियो कॉल रिकॉर्ड हो गई है। ₹20000 भेजो वरना वीडियो वायरल कर देंगे।"
+        },
+        {
+          "id": "m120",
+          "lang": "hi",
+          "category": "MARKETPLACE_FRAUD",
+          "text": "मैं आर्मी अफसर हूँ, आपकी बाइक ओएलएक्स पर देखी। एडवांस भेजने के लिए यह क्यूआर स्कैन करें और पिन डालें।"
+        },
+        {
+          "id": "m121",
+          "lang": "hinglish",
+          "category": "MARKETPLACE_FRAUD",
+          "text": "Main army officer hoon, transfer ho gaya hai isliye furniture sasta bech raha hoon. Advance bhejo phir delivery."
+        },
+        {
+          "id": "m136",
+          "lang": "en",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s003",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "123456 is your OTP for login to SBI YONO. Valid for 3 minutes. Do not share this OTP with anyone. -SBI"
+        },
+        {
+          "id": "s005",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Use 739204 as one time password for your Axis Bank transaction of Rs 1,200 at SWIGGY. Never share your OTP with anyone."
+        },
+        {
+          "id": "s020",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Rajasthan Police: Never share OTP, PIN or CVV with anyone. Police never conducts a digital arrest over video call. Repor"
+        },
+        {
+          "id": "s023",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Alert: fraudsters are sending fake electricity disconnection messages. Discoms never ask you to call a personal mobile n"
+        }
+      ]
+    },
+    "urls": {
+      "n": 36,
+      "phishing_recall": 0.5,
+      "precision": 0.5,
+      "official_false_positives": 9,
+      "official_total": 18,
+      "official_fp_list": [
+        {
+          "id": "u002",
+          "url": "https://rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u006",
+          "url": "https://myaadhaar.uidai.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u007",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u010",
+          "url": "https://echallan.parivahan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u013",
+          "url": "https://www.sebi.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u027",
+          "url": "https://www.sbicard.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u054",
+          "url": "https://www.pineapple-recipes.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u055",
+          "url": "https://www.governmentjobs-guide.org",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u058",
+          "url": "https://www.rajeduboard.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "DEEP_SUBDOMAIN_CHAIN",
+            "BRAND_LIKE_DOMAIN"
+          ]
+        }
+      ],
+      "phishing_missed": [
+        {
+          "id": "u072",
+          "url": "https://jvvnl-bill-pay.in",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u079",
+          "url": "https://mparivahan-challan.top/download",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u089",
+          "url": "https://onlinesbl.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u093",
+          "url": "https://jvvn1.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u095",
+          "url": "https://arnazon-offers.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u103",
+          "url": "https://quickcash-loan.top/app.apk",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u106",
+          "url": "https://task-earn-daily.live/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u107",
+          "url": "https://aviator-hack-predictor.top",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u119",
+          "url": "https://sebi-registered-advisor.club",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 22,
+      "micro_f1": 0.884,
+      "micro_precision": 1.0,
+      "micro_recall": 0.792,
+      "per_type": {
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "CRYPTO_TRON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "DOMAIN": {
+          "precision": 1.0,
+          "recall": 0.833,
+          "f1": 0.909,
+          "support": 6
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "IP": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "PHONE": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.857,
+          "support": 4
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 0.333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "URL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        }
+      },
+      "mistakes": [
+        {
+          "id": "i006",
+          "missing": [
+            "PHONE:+14155550132"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i023",
+          "missing": [
+            "TELEGRAM:t.me/richplansupport"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i029",
+          "missing": [
+            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i044",
+          "missing": [
+            "DOMAIN:bit.ly"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i058",
+          "missing": [
+            "TELEGRAM:t.me/cashloanagent"
+          ],
+          "extra": []
+        }
+      ]
+    },
+    "websites": {
+      "n": 8,
+      "accuracy": 0.75,
+      "wrong": [
+        {
+          "id": "w006",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 28,
+          "findings": [
+            "INSTANT_LOAN_NO_CHECKS"
+          ]
+        },
+        {
+          "id": "w009",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 0,
+          "findings": []
+        }
+      ]
+    },
+    "apks": {
+      "n": 5,
+      "accuracy": 1.0,
+      "benign_flagged_high": 0,
+      "wrong": []
+    }
+  },
+  "dev": {
+    "split": "dev",
+    "messages": {
+      "n": 203,
+      "confusion": {
+        "SCAM": {
+          "SCAM": 23,
+          "SUSPICIOUS": 24,
+          "SAFE": 39
+        },
+        "SUSPICIOUS": {
+          "SAFE": 11
+        },
+        "SAFE": {
+          "SAFE": 101,
+          "SUSPICIOUS": 3,
+          "SCAM": 2
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 0.92,
+          "recall": 0.267,
+          "f1": 0.414,
+          "support": 86
+        },
+        "SUSPICIOUS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "SAFE": {
+          "precision": 0.669,
+          "recall": 0.953,
+          "f1": 0.786,
+          "support": 106
+        }
+      },
+      "macro_f1": 0.4,
+      "scam_precision": 0.92,
+      "risky_recall": 0.485,
+      "safe_specificity": 0.953,
+      "risky_recall_hi_hinglish": 0.333,
+      "by_language": {
+        "en": {
+          "n": 102,
+          "risky_recall": 0.674,
+          "false_alarm_rate": 0.068
+        },
+        "hi": {
+          "n": 54,
+          "risky_recall": 0.172,
+          "false_alarm_rate": 0.0
+        },
+        "hinglish": {
+          "n": 47,
+          "risky_recall": 0.52,
+          "false_alarm_rate": 0.045
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 17,
+          "accuracy": 0.765
+        },
+        "APPOINTMENT": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 15,
+          "accuracy": 0.933
+        },
+        "BETTING_GAMBLING": {
+          "n": 2,
+          "accuracy": 0.5
+        },
+        "COURIER_SCAM": {
+          "n": 4,
+          "accuracy": 0.5
+        },
+        "DELIVERY": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 10,
+          "accuracy": 0.0
+        },
+        "EDUCATION": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 11,
+          "accuracy": 0.364
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 5,
+          "accuracy": 0.6
+        },
+        "GOVT": {
+          "n": 12,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 3,
+          "accuracy": 0.0
+        },
+        "KYC_SCAM": {
+          "n": 13,
+          "accuracy": 0.692
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 8,
+          "accuracy": 0.5
+        },
+        "LOTTERY_PRIZE": {
+          "n": 1,
+          "accuracy": 0.0
+        },
+        "MALICIOUS_APP": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "OTP": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "OTP_THEFT": {
+          "n": 3,
+          "accuracy": 0.667
+        },
+        "PERSONAL": {
+          "n": 14,
+          "accuracy": 1.0
+        },
+        "PHISHING_LINK": {
+          "n": 4,
+          "accuracy": 0.0
+        },
+        "PONZI_MLM": {
+          "n": 7,
+          "accuracy": 0.714
+        },
+        "PROMO": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 2,
+          "accuracy": 0.5
+        },
+        "TECH_SUPPORT": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UNKNOWN": {
+          "n": 2,
+          "accuracy": 0.0
+        },
+        "UPI_FRAUD": {
+          "n": 4,
+          "accuracy": 0.75
+        },
+        "UTILITY": {
+          "n": 13,
+          "accuracy": 1.0
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 8,
+          "accuracy": 0.375
+        },
+        "WORK": {
+          "n": 5,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.384,
+      "misses": [
+        {
+          "id": "m009",
+          "lang": "en",
+          "category": "KYC_SCAM",
+          "text": "Dear SBI user, 7,450 reward points expire today. Redeem now at sbi-rewards-point.xyz by entering your card details."
+        },
+        {
+          "id": "m015",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "आपका डेबिट कार्ड बंद होने वाला है। कार्ड नंबर और सीवीवी भेजें ताकि कार्ड चालू रहे।"
+        },
+        {
+          "id": "m017",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Sir aapka account band ho jayega, OTP bata dijiye abhi verify kar dete hain. Bank se bol raha hoon."
+        },
+        {
+          "id": "m019",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Aapka credit card limit kam ho raha hai, rokne ke liye card number aur CVV is link par bharein pnb-limit-help.in"
+        },
+        {
+          "id": "m021",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "This is Inspector from CBI Mumbai. Your Aadhaar is linked to a money laundering case. You are under digital arrest, do n"
+        },
+        {
+          "id": "m022",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "FedEx: A parcel in your name containing drugs and fake passports was seized by customs. Press 9 to speak to Mumbai Crime"
+        },
+        {
+          "id": "m023",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "TRAI notice: Your mobile number is involved in illegal activity and will be disconnected in 2 hours. A case is registere"
+        },
+        {
+          "id": "m025",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "NCB officer speaking. Your courier to Taiwan had 200 grams of MDMA. You are under digital arrest until verification. Sen"
+        },
+        {
+          "id": "m027",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Delhi Police cyber cell: your SIM was used for harassment complaints. Join the video statement now or a warrant will be "
+        },
+        {
+          "id": "m028",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें "
+        },
+        {
+          "id": "m030",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "ट्राई: आपका नंबर अवैध गतिविधियों में शामिल है, 2 घंटे में बंद होगा। पुलिस अधिकारी से बात करने के लिए 1 दबाएँ।"
+        },
+        {
+          "id": "m031",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
+        },
+        {
+          "id": "m033",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "Aapke naam ka parcel customs ne pakda hai usme drugs mile hain. Arrest se bachna hai to abhi security deposit bhejo."
+        },
+        {
+          "id": "m035",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "ED ka warrant nikla hai aapke naam par. Kisi ko mat batana, Skype par bane raho aur bail amount transfer karo."
+        },
+        {
+          "id": "m036",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hi, I am Priya from HR. Part time job, rate hotels on Google Maps and earn Rs 3000 per day. Reply YES on WhatsApp."
+        },
+        {
+          "id": "m039",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Your first 3 tasks are complete and Rs 450 credited. For the next merchant task deposit Rs 5000, you will get Rs 7500 ba"
+        },
+        {
+          "id": "m042",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "घर बैठे कमाएँ ₹3000 रोज़! सिर्फ़ होटल को रेटिंग दें और स्क्रीनशॉट भेजें। पार्ट टाइम जॉब के लिए टेलीग्राम पर जुड़ें।"
+        },
+        {
+          "id": "m043",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "आपका चयन वर्क फ्रॉम होम नौकरी के लिए हुआ है। आईडी सक्रिय करने के लिए ₹1500 पंजीकरण शुल्क जमा करें।"
+        },
+        {
+          "id": "m044",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "अगला टास्क पूरा करने के लिए ₹5000 जमा करें, एक घंटे में ₹8000 वापस मिलेंगे।"
+        },
+        {
+          "id": "m054",
+          "lang": "hi",
+          "category": "LOAN_APP_FRAUD",
+          "text": "लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।"
+        },
+        {
+          "id": "m055",
+          "lang": "hi",
+          "category": "LOAN_APP_FRAUD",
+          "text": "बिना दस्तावेज़ ₹50000 का तुरंत लोन। प्रोसेसिंग शुल्क ₹999 जमा करें और राशि खाते में पाएं।"
+        },
+        {
+          "id": "m057",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Loan time par nahi chukaya, ab tumhare saare contacts ko photo bhej denge. 2 ghante me payment karo."
+        },
+        {
+          "id": "m065",
+          "lang": "hi",
+          "category": "PONZI_MLM",
+          "text": "गारंटीड रिटर्न! रोज़ाना 10% मुनाफ़ा। हर नए सदस्य पर रेफरल बोनस। जॉइनिंग पैकेज ₹5000 जमा करें richplan@ybl"
+        },
+        {
+          "id": "m066",
+          "lang": "hi",
+          "category": "INVESTMENT_FRAUD",
+          "text": "हमारे वीआईपी ट्रेडिंग ग्रुप से जुड़ें, हर हफ्ते पक्का मुनाफ़ा। संस्थागत खाते से आईपीओ आवंटन की गारंटी।"
+        },
+        {
+          "id": "m067",
+          "lang": "hi",
+          "category": "PONZI_MLM",
+          "text": "30 दिन में पैसा डबल! लेवल इनकम और डाउनलाइन कमीशन। आज ही अपनी आईडी एक्टिवेट करें।"
+        },
+        {
+          "id": "m074",
+          "lang": "hi",
+          "category": "BETTING_GAMBLING",
+          "text": "आईपीएल सट्टा आईडी 2 मिनट में! 100% पक्की जीत, तुरंत निकासी और पहले डिपॉज़िट पर बोनस।"
+        },
+        {
+          "id": "m082",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "प्रिय उपभोक्ता, पिछला बिल अपडेट न होने से आज रात 9:30 बजे आपकी बिजली काट दी जाएगी। तुरंत बिजली अधिकारी से संपर्क करें 99"
+        },
+        {
+          "id": "m083",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "जयपुर डिस्कॉम: आपका बिजली कनेक्शन आज बंद होगा। ₹10 का भुगतान इस लिंक से करें jvvnl-bill-pay.in"
+        },
+        {
+          "id": "m084",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "आपका स्मार्ट मीटर अपडेट नहीं हुआ है। बिजली अपडेट ऐप डाउनलोड करें वरना आज रात सप्लाई बंद।"
+        },
+        {
+          "id": "m085",
+          "lang": "hinglish",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "Aapki bijli aaj raat 9:30 baje kat jayegi kyunki pichla bill update nahi hua. Turant call karein 9988776655."
+        },
+        {
+          "id": "m086",
+          "lang": "hinglish",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "JVVNL se message: aapka connection aaj band ho jayega, 10 rupaye ka token is link se bharo jvvnl-bill-pay.in"
+        },
+        {
+          "id": "m102",
+          "lang": "hi",
+          "category": "COURIER_SCAM",
+          "text": "इंडिया पोस्ट: अधूरे पते के कारण आपका पार्सल रुका है। ₹25 शुल्क इस लिंक पर भरें indiapost-redeliver.top"
+        },
+        {
+          "id": "m103",
+          "lang": "hinglish",
+          "category": "COURIER_SCAM",
+          "text": "Aapka parcel hub par ruka hai, address galat hai. 25 rupaye redelivery charge bharo is link par indiapost-redeliver.top"
+        },
+        {
+          "id": "m106",
+          "lang": "hi",
+          "category": "LOTTERY_PRIZE",
+          "text": "बधाई हो! आपने केबीसी लॉटरी में 25 लाख जीते हैं। इनाम पाने के लिए आज ₹12500 प्रोसेसिंग शुल्क जमा करें।"
+        },
+        {
+          "id": "m110",
+          "lang": "hi",
+          "category": "OTP_THEFT",
+          "text": "गलती से आपके खाते में ₹5000 चले गए, कृपया अभी आया ओटीपी बताएं ताकि वापस कर सकें।"
+        },
+        {
+          "id": "m114",
+          "lang": "hi",
+          "category": "UPI_FRAUD",
+          "text": "रिफंड पाने के लिए यूपीआई कलेक्ट रिक्वेस्ट स्वीकार करें और अपना पिन डालें।"
+        },
+        {
+          "id": "m118",
+          "lang": "hinglish",
+          "category": "SEXTORTION",
+          "text": "Tumhara video call record ho gaya hai, 20000 bhejo warna video viral kar denge aur family ko bhej denge."
+        },
+        {
+          "id": "m126",
+          "lang": "hi",
+          "category": "GOVERNMENT_IMPERSONATION",
+          "text": "जन आधार कार्ड आज रद्द हो जाएगा। योजना का लाभ जारी रखने के लिए janaadhaar-update.in पर विवरण अपडेट करें।"
+        },
+        {
+          "id": "m127",
+          "lang": "hi",
+          "category": "GOVERNMENT_IMPERSONATION",
+          "text": "आपकी एसएसओ आईडी 24 घंटे में ब्लॉक होगी। अभी सत्यापन करें sso-rajasthan-verify.online"
+        },
+        {
+          "id": "m134",
+          "lang": "en",
+          "category": "PHISHING_LINK",
+          "text": "Your package could not be delivered. Track and reschedule here: bit.ly/3xTrack9"
+        },
+        {
+          "id": "m135",
+          "lang": "en",
+          "category": "INVESTMENT_FRAUD",
+          "text": "Join our free stock market learning group on WhatsApp. Daily tips from experts, link in bio."
+        },
+        {
+          "id": "m137",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hiring now! Online work, flexible hours, good pay. Send your name and city to get details."
+        },
+        {
+          "id": "m138",
+          "lang": "en",
+          "category": "PHISHING_LINK",
+          "text": "Hi, is this you in this photo? lol check it out: tinyurl.com/yourphoto22"
+        },
+        {
+          "id": "m139",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal."
+        },
+        {
+          "id": "m140",
+          "lang": "hi",
+          "category": "PHISHING_LINK",
+          "text": "आपका पार्सल डिलीवर नहीं हो सका। दोबारा शेड्यूल करने के लिए लिंक खोलें bit.ly/3xTrack9"
+        },
+        {
+          "id": "m141",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "ऑनलाइन काम, अच्छी कमाई। विवरण के लिए अपना नाम और शहर भेजें।"
+        },
+        {
+          "id": "m142",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Personal loan chahiye? Jaldi approval, kam byaj. LOAN likh ke reply karo."
+        },
+        {
+          "id": "m143",
+          "lang": "hinglish",
+          "category": "PHISHING_LINK",
+          "text": "Ye photo tumhari hai kya? dekho tinyurl.com/yourphoto22"
+        },
+        {
+          "id": "m144",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Your account shows unusual activity. If this was not you, contact support."
+        },
+        {
+          "id": "m145",
+          "lang": "hinglish",
+          "category": "INVESTMENT_FRAUD",
+          "text": "Free stock market group join karo, roz experts ke tips milenge WhatsApp par."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s021",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "RBI says: banks never ask for your KYC details or OTP over phone, SMS or email. Do not click on unknown links."
+        },
+        {
+          "id": "s053",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Card blocked as requested by you on 22-Nov. A replacement card will be dispatched to your registered address. -HDFC Bank"
+        },
+        {
+          "id": "s146",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Rajasthan Police advisory: sextortion callers record video calls to blackmail. Do not pay; report at 1930 and preserve s"
+        },
+        {
+          "id": "s147",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Guaranteed returns are a red flag. Check if an investment advisor is registered with SEBI before investing."
+        },
+        {
+          "id": "s154",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Guaranteed return ka vaada fraud ka sign hai, invest karne se pehle SEBI registration check karo."
+        }
+      ]
+    },
+    "urls": {
+      "n": 84,
+      "phishing_recall": 0.69,
+      "precision": 0.527,
+      "official_false_positives": 26,
+      "official_total": 42,
+      "official_fp_list": [
+        {
+          "id": "u001",
+          "url": "https://police.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u003",
+          "url": "https://sso.rajasthan.gov.in/signin",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_LURE",
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u004",
+          "url": "https://cybercrime.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u005",
+          "url": "https://uidai.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u008",
+          "url": "https://www.epfindia.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u009",
+          "url": "https://parivahan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u011",
+          "url": "https://sancharsaathi.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u015",
+          "url": "https://www.india.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u016",
+          "url": "https://www.mygov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u017",
+          "url": "https://www.digilocker.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u018",
+          "url": "https://pmkisan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u019",
+          "url": "https://www.indiapost.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u020",
+          "url": "https://energy.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u021",
+          "url": "https://jaipur.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u023",
+          "url": "https://www.passportindia.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u025",
+          "url": "https://www.onlinesbi.sbi",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u028",
+          "url": "https://www.hdfcbank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u029",
+          "url": "https://www.icicibank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u030",
+          "url": "https://www.axisbank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u033",
+          "url": "https://www.bankofbaroda.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u040",
+          "url": "https://www.firstpost.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u053",
+          "url": "https://www.irs-tax-help.example",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u056",
+          "url": "https://www.jiosaavn.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u057",
+          "url": "https://www.taxishop.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u059",
+          "url": "https://emitra.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u060",
+          "url": "https://janaadhaar.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        }
+      ],
+      "phishing_missed": [
+        {
+          "id": "u069",
+          "url": "https://pnb-card-limit.click",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u078",
+          "url": "https://echallan-parivahan-pay.in/challan",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u080",
+          "url": "https://indiapost-redeliver.top",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u090",
+          "url": "https://paytrn.com/kyc",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": [
+            "CREDENTIAL_OR_KYC_LURE"
+          ]
+        },
+        {
+          "id": "u092",
+          "url": "https://phonepay.co.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u094",
+          "url": "https://rnicrosoft-support.com",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u101",
+          "url": "https://richplan-invest.xyz/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u102",
+          "url": "https://bet777.vip/register",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u104",
+          "url": "https://colour-prediction-win.online",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u105",
+          "url": "https://double-money-plan.site",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u108",
+          "url": "https://instant-loan-noncibil.shop/apply",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u114",
+          "url": "https://google-pay-cashback.store",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u118",
+          "url": "https://rajasthan-police-challan.xyz",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 58,
+      "micro_f1": 0.816,
+      "micro_precision": 0.894,
+      "micro_recall": 0.75,
+      "per_type": {
+        "BANK_ACCOUNT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_BTC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_TRON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "DOMAIN": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "support": 8
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "FIREBASE_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "IFSC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "IMEI": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "IP": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "PACKAGE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "PHONE": {
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.778,
+          "support": 10
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.667,
+          "support": 4
+        },
+        "TELEGRAM_BOT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 10
+        },
+        "URL": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.857,
+          "support": 3
+        }
+      },
+      "mistakes": [
+        {
+          "id": "i005",
+          "missing": [
+            "PHONE:+923001234567"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i007",
+          "missing": [
+            "PHONE:+971501234567"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i008",
+          "missing": [
+            "PHONE:+911412741234"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i010",
+          "missing": [
+            "DOMAIN:sbi-kyc-help.cyou"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i013",
+          "missing": [
+            "DOMAIN:task-earn.sbs"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i024",
+          "missing": [
+            "TELEGRAM:t.me/task_earn_admin"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i025",
+          "missing": [
+            "TELEGRAM:t.me/sureshottips2026"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i030",
+          "missing": [
+            "CRYPTO_TRON:TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i031",
+          "missing": [
+            "TELEGRAM_BOT:7012345678"
+          ],
+          "extra": [
+            "PHONE:+917012345678"
+          ]
+        },
+        {
+          "id": "i032",
+          "missing": [
+            "TELEGRAM_BOT:6543210987"
+          ],
+          "extra": [
+            "DOMAIN:api.telegram.org",
+            "URL:https://api.telegram.org/bot6543210987:aafklmnopqrstuvwxyzabcdefghijklmnop/sendmessage"
+          ]
+        },
+        {
+          "id": "i033",
+          "missing": [
+            "IMEI:490154203237518"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i034",
+          "missing": [
+            "IMEI:356938035643809"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i035",
+          "missing": [
+            "FIREBASE_DB:quickcash-abc.firebaseio.com"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i050",
+          "missing": [],
+          "extra": [
+            "DOMAIN:wa.me"
+          ]
+        },
+        {
+          "id": "n016",
+          "missing": [],
+          "extra": [
+            "IP:1.2.3.4"
+          ]
+        },
+        {
+          "id": "i059",
+          "missing": [
+            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
+          ],
+          "extra": []
+        }
+      ]
+    },
+    "websites": {
+      "n": 22,
+      "accuracy": 0.864,
+      "wrong": [
+        {
+          "id": "w015",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 16,
+          "findings": [
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w022",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 72,
+          "findings": [
+            "REFERRAL_CHAIN_INCOME",
+            "JOINING_PACKAGE_FEE",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w025",
+          "label": "SAFE",
+          "risk": "MEDIUM",
+          "score": 41,
+          "findings": [
+            "PAGE_COLLECTS_PAYMENT_IDENTIFIER",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        }
+      ]
+    },
+    "apks": {
+      "n": 15,
+      "accuracy": 0.867,
+      "benign_flagged_high": 2,
+      "wrong": [
+        {
+          "id": "a015",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 100,
+          "findings": [
+            "PERM_READ_SMS",
+            "PERM_RECEIVE_SMS",
+            "PERM_READ_CONTACTS",
+            "PERM_SEND_SMS",
+            "COMBO_LOAN_APP_HARVESTING",
+            "COMBO_OTP_EXFILTRATION",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        },
+        {
+          "id": "a018",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 71,
+          "findings": [
+            "PERM_READ_CONTACTS",
+            "PERM_READ_CALL_LOG",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        }
+      ]
+    }
+  },
+  "all": {
+    "split": "all",
+    "messages": {
+      "n": 300,
+      "confusion": {
+        "SCAM": {
+          "SCAM": 32,
+          "SUSPICIOUS": 45,
+          "SAFE": 56
+        },
+        "SUSPICIOUS": {
+          "SAFE": 12
+        },
+        "SAFE": {
+          "SAFE": 146,
+          "SCAM": 5,
+          "SUSPICIOUS": 4
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 0.865,
+          "recall": 0.241,
+          "f1": 0.376,
+          "support": 133
+        },
+        "SUSPICIOUS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 12
+        },
+        "SAFE": {
+          "precision": 0.682,
+          "recall": 0.942,
+          "f1": 0.791,
+          "support": 155
+        }
+      },
+      "macro_f1": 0.389,
+      "scam_precision": 0.865,
+      "risky_recall": 0.531,
+      "safe_specificity": 0.942,
+      "risky_recall_hi_hinglish": 0.342,
+      "by_language": {
+        "en": {
+          "n": 153,
+          "risky_recall": 0.722,
+          "false_alarm_rate": 0.099
+        },
+        "hi": {
+          "n": 72,
+          "risky_recall": 0.171,
+          "false_alarm_rate": 0.0
+        },
+        "hinglish": {
+          "n": 75,
+          "risky_recall": 0.5,
+          "false_alarm_rate": 0.027
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 23,
+          "accuracy": 0.739
+        },
+        "APPOINTMENT": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 20,
+          "accuracy": 0.95
+        },
+        "BETTING_GAMBLING": {
+          "n": 6,
+          "accuracy": 0.833
+        },
+        "COURIER_SCAM": {
+          "n": 4,
+          "accuracy": 0.5
+        },
+        "DELIVERY": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 15,
+          "accuracy": 0.0
+        },
+        "EDUCATION": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 14,
+          "accuracy": 0.429
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 7,
+          "accuracy": 0.714
+        },
+        "GOVT": {
+          "n": 16,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 7,
+          "accuracy": 0.286
+        },
+        "KYC_SCAM": {
+          "n": 20,
+          "accuracy": 0.6
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 13,
+          "accuracy": 0.615
+        },
+        "LOTTERY_PRIZE": {
+          "n": 4,
+          "accuracy": 0.75
+        },
+        "MALICIOUS_APP": {
+          "n": 12,
+          "accuracy": 1.0
+        },
+        "MARKETPLACE_FRAUD": {
+          "n": 3,
+          "accuracy": 0.333
+        },
+        "OTP": {
+          "n": 8,
+          "accuracy": 0.75
+        },
+        "OTP_THEFT": {
+          "n": 4,
+          "accuracy": 0.5
+        },
+        "PERSONAL": {
+          "n": 24,
+          "accuracy": 1.0
+        },
+        "PHISHING_LINK": {
+          "n": 4,
+          "accuracy": 0.0
+        },
+        "PONZI_MLM": {
+          "n": 7,
+          "accuracy": 0.714
+        },
+        "PROMO": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 3,
+          "accuracy": 0.333
+        },
+        "TECH_SUPPORT": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "UNKNOWN": {
+          "n": 2,
+          "accuracy": 0.0
+        },
+        "UPI_FRAUD": {
+          "n": 4,
+          "accuracy": 0.75
+        },
+        "UTILITY": {
+          "n": 16,
+          "accuracy": 1.0
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 11,
+          "accuracy": 0.455
+        },
+        "WORK": {
+          "n": 7,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.398,
+      "misses": [
+        {
+          "id": "m009",
+          "lang": "en",
+          "category": "KYC_SCAM",
+          "text": "Dear SBI user, 7,450 reward points expire today. Redeem now at sbi-rewards-point.xyz by entering your card details."
+        },
+        {
+          "id": "m010",
+          "lang": "en",
+          "category": "KYC_SCAM",
+          "text": "PNB: Your credit card limit is being reduced. To stop it, verify card number, expiry and CVV at pnb-card-limit.click"
+        },
+        {
+          "id": "m011",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "प्रिय ग्राहक, आपका SBI खाता 24 घंटे में बंद कर दिया जाएगा। तुरंत KYC अपडेट करें sbi-kyc-help.cyou"
+        },
+        {
+          "id": "m013",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "आपका पैन कार्ड लिंक नहीं है, खाता ब्लॉक किया जा रहा है। ओटीपी बताकर अभी सत्यापन करें: 9876543210"
+        },
+        {
+          "id": "m015",
+          "lang": "hi",
+          "category": "KYC_SCAM",
+          "text": "आपका डेबिट कार्ड बंद होने वाला है। कार्ड नंबर और सीवीवी भेजें ताकि कार्ड चालू रहे।"
+        },
+        {
+          "id": "m017",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Sir aapka account band ho jayega, OTP bata dijiye abhi verify kar dete hain. Bank se bol raha hoon."
+        },
+        {
+          "id": "m018",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Aapke paytm wallet ki KYC pending hai, 2 ghante me wallet band. Call karein 9123456780 par turant."
+        },
+        {
+          "id": "m019",
+          "lang": "hinglish",
+          "category": "KYC_SCAM",
+          "text": "Aapka credit card limit kam ho raha hai, rokne ke liye card number aur CVV is link par bharein pnb-limit-help.in"
+        },
+        {
+          "id": "m021",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "This is Inspector from CBI Mumbai. Your Aadhaar is linked to a money laundering case. You are under digital arrest, do n"
+        },
+        {
+          "id": "m022",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "FedEx: A parcel in your name containing drugs and fake passports was seized by customs. Press 9 to speak to Mumbai Crime"
+        },
+        {
+          "id": "m023",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "TRAI notice: Your mobile number is involved in illegal activity and will be disconnected in 2 hours. A case is registere"
+        },
+        {
+          "id": "m024",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Enforcement Directorate: An arrest warrant is issued against you in a money laundering case. Stay on Skype video call an"
+        },
+        {
+          "id": "m025",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "NCB officer speaking. Your courier to Taiwan had 200 grams of MDMA. You are under digital arrest until verification. Sen"
+        },
+        {
+          "id": "m026",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Supreme Court order: Your bank accounts are under investigation. Transfer your balance to the court safe account for aud"
+        },
+        {
+          "id": "m027",
+          "lang": "en",
+          "category": "DIGITAL_ARREST",
+          "text": "Delhi Police cyber cell: your SIM was used for harassment complaints. Join the video statement now or a warrant will be "
+        },
+        {
+          "id": "m028",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें "
+        },
+        {
+          "id": "m029",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "आपके नाम से भेजे गए पार्सल में ड्रग्स मिले हैं। कस्टम विभाग ने केस दर्ज किया है। गिरफ्तारी से बचने के लिए तुरंत सुरक्षा "
+        },
+        {
+          "id": "m030",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "ट्राई: आपका नंबर अवैध गतिविधियों में शामिल है, 2 घंटे में बंद होगा। पुलिस अधिकारी से बात करने के लिए 1 दबाएँ।"
+        },
+        {
+          "id": "m031",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
+        },
+        {
+          "id": "m032",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "Main CBI officer bol raha hoon, aapke Aadhaar se money laundering case juda hai. Aap digital arrest me ho, video call ba"
+        },
+        {
+          "id": "m033",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "Aapke naam ka parcel customs ne pakda hai usme drugs mile hain. Arrest se bachna hai to abhi security deposit bhejo."
+        },
+        {
+          "id": "m034",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "TRAI se call hai, aapka number 2 ghante me band hoga kyunki illegal activity me use hua hai. Police se baat karne ke liy"
+        },
+        {
+          "id": "m035",
+          "lang": "hinglish",
+          "category": "DIGITAL_ARREST",
+          "text": "ED ka warrant nikla hai aapke naam par. Kisi ko mat batana, Skype par bane raho aur bail amount transfer karo."
+        },
+        {
+          "id": "m036",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hi, I am Priya from HR. Part time job, rate hotels on Google Maps and earn Rs 3000 per day. Reply YES on WhatsApp."
+        },
+        {
+          "id": "m039",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Your first 3 tasks are complete and Rs 450 credited. For the next merchant task deposit Rs 5000, you will get Rs 7500 ba"
+        },
+        {
+          "id": "m042",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "घर बैठे कमाएँ ₹3000 रोज़! सिर्फ़ होटल को रेटिंग दें और स्क्रीनशॉट भेजें। पार्ट टाइम जॉब के लिए टेलीग्राम पर जुड़ें।"
+        },
+        {
+          "id": "m043",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "आपका चयन वर्क फ्रॉम होम नौकरी के लिए हुआ है। आईडी सक्रिय करने के लिए ₹1500 पंजीकरण शुल्क जमा करें।"
+        },
+        {
+          "id": "m044",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "अगला टास्क पूरा करने के लिए ₹5000 जमा करें, एक घंटे में ₹8000 वापस मिलेंगे।"
+        },
+        {
+          "id": "m047",
+          "lang": "hinglish",
+          "category": "FAKE_JOB",
+          "text": "Aapke 3 task complete ho gaye, ab next task ke liye 10000 deposit karo, 15000 wapas milega aaj hi."
+        },
+        {
+          "id": "m054",
+          "lang": "hi",
+          "category": "LOAN_APP_FRAUD",
+          "text": "लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।"
+        },
+        {
+          "id": "m055",
+          "lang": "hi",
+          "category": "LOAN_APP_FRAUD",
+          "text": "बिना दस्तावेज़ ₹50000 का तुरंत लोन। प्रोसेसिंग शुल्क ₹999 जमा करें और राशि खाते में पाएं।"
+        },
+        {
+          "id": "m057",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Loan time par nahi chukaya, ab tumhare saare contacts ko photo bhej denge. 2 ghante me payment karo."
+        },
+        {
+          "id": "m063",
+          "lang": "en",
+          "category": "INVESTMENT_FRAUD",
+          "text": "IPO allotment guaranteed through our institutional account. Deposit funds in our trading app and get 300% returns."
+        },
+        {
+          "id": "m065",
+          "lang": "hi",
+          "category": "PONZI_MLM",
+          "text": "गारंटीड रिटर्न! रोज़ाना 10% मुनाफ़ा। हर नए सदस्य पर रेफरल बोनस। जॉइनिंग पैकेज ₹5000 जमा करें richplan@ybl"
+        },
+        {
+          "id": "m066",
+          "lang": "hi",
+          "category": "INVESTMENT_FRAUD",
+          "text": "हमारे वीआईपी ट्रेडिंग ग्रुप से जुड़ें, हर हफ्ते पक्का मुनाफ़ा। संस्थागत खाते से आईपीओ आवंटन की गारंटी।"
+        },
+        {
+          "id": "m067",
+          "lang": "hi",
+          "category": "PONZI_MLM",
+          "text": "30 दिन में पैसा डबल! लेवल इनकम और डाउनलाइन कमीशन। आज ही अपनी आईडी एक्टिवेट करें।"
+        },
+        {
+          "id": "m069",
+          "lang": "hinglish",
+          "category": "INVESTMENT_FRAUD",
+          "text": "VIP stock tips group join karo, pakka profit har hafte. Institutional account se IPO allotment guaranteed."
+        },
+        {
+          "id": "m074",
+          "lang": "hi",
+          "category": "BETTING_GAMBLING",
+          "text": "आईपीएल सट्टा आईडी 2 मिनट में! 100% पक्की जीत, तुरंत निकासी और पहले डिपॉज़िट पर बोनस।"
+        },
+        {
+          "id": "m080",
+          "lang": "en",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "AVVNL alert: smart meter update pending. Install the Bijli Update app from this link or supply will stop tonight."
+        },
+        {
+          "id": "m082",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "प्रिय उपभोक्ता, पिछला बिल अपडेट न होने से आज रात 9:30 बजे आपकी बिजली काट दी जाएगी। तुरंत बिजली अधिकारी से संपर्क करें 99"
+        },
+        {
+          "id": "m083",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "जयपुर डिस्कॉम: आपका बिजली कनेक्शन आज बंद होगा। ₹10 का भुगतान इस लिंक से करें jvvnl-bill-pay.in"
+        },
+        {
+          "id": "m084",
+          "lang": "hi",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "आपका स्मार्ट मीटर अपडेट नहीं हुआ है। बिजली अपडेट ऐप डाउनलोड करें वरना आज रात सप्लाई बंद।"
+        },
+        {
+          "id": "m085",
+          "lang": "hinglish",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "Aapki bijli aaj raat 9:30 baje kat jayegi kyunki pichla bill update nahi hua. Turant call karein 9988776655."
+        },
+        {
+          "id": "m086",
+          "lang": "hinglish",
+          "category": "UTILITY_BILL_SCAM",
+          "text": "JVVNL se message: aapka connection aaj band ho jayega, 10 rupaye ka token is link se bharo jvvnl-bill-pay.in"
+        },
+        {
+          "id": "m102",
+          "lang": "hi",
+          "category": "COURIER_SCAM",
+          "text": "इंडिया पोस्ट: अधूरे पते के कारण आपका पार्सल रुका है। ₹25 शुल्क इस लिंक पर भरें indiapost-redeliver.top"
+        },
+        {
+          "id": "m103",
+          "lang": "hinglish",
+          "category": "COURIER_SCAM",
+          "text": "Aapka parcel hub par ruka hai, address galat hai. 25 rupaye redelivery charge bharo is link par indiapost-redeliver.top"
+        },
+        {
+          "id": "m106",
+          "lang": "hi",
+          "category": "LOTTERY_PRIZE",
+          "text": "बधाई हो! आपने केबीसी लॉटरी में 25 लाख जीते हैं। इनाम पाने के लिए आज ₹12500 प्रोसेसिंग शुल्क जमा करें।"
+        },
+        {
+          "id": "m110",
+          "lang": "hi",
+          "category": "OTP_THEFT",
+          "text": "गलती से आपके खाते में ₹5000 चले गए, कृपया अभी आया ओटीपी बताएं ताकि वापस कर सकें।"
+        },
+        {
+          "id": "m111",
+          "lang": "hinglish",
+          "category": "OTP_THEFT",
+          "text": "Bhai galti se 5000 bhej diye, abhi jo OTP aaya hai wo bata do reverse kar deta hoon."
+        },
+        {
+          "id": "m114",
+          "lang": "hi",
+          "category": "UPI_FRAUD",
+          "text": "रिफंड पाने के लिए यूपीआई कलेक्ट रिक्वेस्ट स्वीकार करें और अपना पिन डालें।"
+        },
+        {
+          "id": "m117",
+          "lang": "hi",
+          "category": "SEXTORTION",
+          "text": "आपकी अश्लील वीडियो कॉल रिकॉर्ड हो गई है। ₹20000 भेजो वरना वीडियो वायरल कर देंगे।"
+        },
+        {
+          "id": "m118",
+          "lang": "hinglish",
+          "category": "SEXTORTION",
+          "text": "Tumhara video call record ho gaya hai, 20000 bhejo warna video viral kar denge aur family ko bhej denge."
+        },
+        {
+          "id": "m120",
+          "lang": "hi",
+          "category": "MARKETPLACE_FRAUD",
+          "text": "मैं आर्मी अफसर हूँ, आपकी बाइक ओएलएक्स पर देखी। एडवांस भेजने के लिए यह क्यूआर स्कैन करें और पिन डालें।"
+        },
+        {
+          "id": "m121",
+          "lang": "hinglish",
+          "category": "MARKETPLACE_FRAUD",
+          "text": "Main army officer hoon, transfer ho gaya hai isliye furniture sasta bech raha hoon. Advance bhejo phir delivery."
+        },
+        {
+          "id": "m126",
+          "lang": "hi",
+          "category": "GOVERNMENT_IMPERSONATION",
+          "text": "जन आधार कार्ड आज रद्द हो जाएगा। योजना का लाभ जारी रखने के लिए janaadhaar-update.in पर विवरण अपडेट करें।"
+        },
+        {
+          "id": "m127",
+          "lang": "hi",
+          "category": "GOVERNMENT_IMPERSONATION",
+          "text": "आपकी एसएसओ आईडी 24 घंटे में ब्लॉक होगी। अभी सत्यापन करें sso-rajasthan-verify.online"
+        },
+        {
+          "id": "m134",
+          "lang": "en",
+          "category": "PHISHING_LINK",
+          "text": "Your package could not be delivered. Track and reschedule here: bit.ly/3xTrack9"
+        },
+        {
+          "id": "m135",
+          "lang": "en",
+          "category": "INVESTMENT_FRAUD",
+          "text": "Join our free stock market learning group on WhatsApp. Daily tips from experts, link in bio."
+        },
+        {
+          "id": "m136",
+          "lang": "en",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back."
+        },
+        {
+          "id": "m137",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hiring now! Online work, flexible hours, good pay. Send your name and city to get details."
+        },
+        {
+          "id": "m138",
+          "lang": "en",
+          "category": "PHISHING_LINK",
+          "text": "Hi, is this you in this photo? lol check it out: tinyurl.com/yourphoto22"
+        },
+        {
+          "id": "m139",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal."
+        },
+        {
+          "id": "m140",
+          "lang": "hi",
+          "category": "PHISHING_LINK",
+          "text": "आपका पार्सल डिलीवर नहीं हो सका। दोबारा शेड्यूल करने के लिए लिंक खोलें bit.ly/3xTrack9"
+        },
+        {
+          "id": "m141",
+          "lang": "hi",
+          "category": "FAKE_JOB",
+          "text": "ऑनलाइन काम, अच्छी कमाई। विवरण के लिए अपना नाम और शहर भेजें।"
+        },
+        {
+          "id": "m142",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Personal loan chahiye? Jaldi approval, kam byaj. LOAN likh ke reply karo."
+        },
+        {
+          "id": "m143",
+          "lang": "hinglish",
+          "category": "PHISHING_LINK",
+          "text": "Ye photo tumhari hai kya? dekho tinyurl.com/yourphoto22"
+        },
+        {
+          "id": "m144",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Your account shows unusual activity. If this was not you, contact support."
+        },
+        {
+          "id": "m145",
+          "lang": "hinglish",
+          "category": "INVESTMENT_FRAUD",
+          "text": "Free stock market group join karo, roz experts ke tips milenge WhatsApp par."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s003",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "123456 is your OTP for login to SBI YONO. Valid for 3 minutes. Do not share this OTP with anyone. -SBI"
+        },
+        {
+          "id": "s005",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Use 739204 as one time password for your Axis Bank transaction of Rs 1,200 at SWIGGY. Never share your OTP with anyone."
+        },
+        {
+          "id": "s020",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Rajasthan Police: Never share OTP, PIN or CVV with anyone. Police never conducts a digital arrest over video call. Repor"
+        },
+        {
+          "id": "s021",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "RBI says: banks never ask for your KYC details or OTP over phone, SMS or email. Do not click on unknown links."
+        },
+        {
+          "id": "s023",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Alert: fraudsters are sending fake electricity disconnection messages. Discoms never ask you to call a personal mobile n"
+        },
+        {
+          "id": "s053",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Card blocked as requested by you on 22-Nov. A replacement card will be dispatched to your registered address. -HDFC Bank"
+        },
+        {
+          "id": "s146",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Rajasthan Police advisory: sextortion callers record video calls to blackmail. Do not pay; report at 1930 and preserve s"
+        },
+        {
+          "id": "s147",
+          "lang": "en",
+          "predicted": "SCAM",
+          "text": "Guaranteed returns are a red flag. Check if an investment advisor is registered with SEBI before investing."
+        },
+        {
+          "id": "s154",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Guaranteed return ka vaada fraud ka sign hai, invest karne se pehle SEBI registration check karo."
+        }
+      ]
+    },
+    "urls": {
+      "n": 120,
+      "phishing_recall": 0.633,
+      "precision": 0.521,
+      "official_false_positives": 35,
+      "official_total": 60,
+      "official_fp_list": [
+        {
+          "id": "u001",
+          "url": "https://police.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u002",
+          "url": "https://rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u003",
+          "url": "https://sso.rajasthan.gov.in/signin",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_LURE",
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u004",
+          "url": "https://cybercrime.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u005",
+          "url": "https://uidai.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u006",
+          "url": "https://myaadhaar.uidai.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u007",
+          "url": "https://www.incometax.gov.in/iec/foportal/",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u008",
+          "url": "https://www.epfindia.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u009",
+          "url": "https://parivahan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u010",
+          "url": "https://echallan.parivahan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u011",
+          "url": "https://sancharsaathi.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u013",
+          "url": "https://www.sebi.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u015",
+          "url": "https://www.india.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u016",
+          "url": "https://www.mygov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u017",
+          "url": "https://www.digilocker.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u018",
+          "url": "https://pmkisan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u019",
+          "url": "https://www.indiapost.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u020",
+          "url": "https://energy.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u021",
+          "url": "https://jaipur.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u023",
+          "url": "https://www.passportindia.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u025",
+          "url": "https://www.onlinesbi.sbi",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u027",
+          "url": "https://www.sbicard.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u028",
+          "url": "https://www.hdfcbank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u029",
+          "url": "https://www.icicibank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u030",
+          "url": "https://www.axisbank.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u033",
+          "url": "https://www.bankofbaroda.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "CREDENTIAL_OR_KYC_DOMAIN"
+          ]
+        },
+        {
+          "id": "u040",
+          "url": "https://www.firstpost.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u053",
+          "url": "https://www.irs-tax-help.example",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u054",
+          "url": "https://www.pineapple-recipes.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u055",
+          "url": "https://www.governmentjobs-guide.org",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u056",
+          "url": "https://www.jiosaavn.com",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u057",
+          "url": "https://www.taxishop.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u058",
+          "url": "https://www.rajeduboard.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "DEEP_SUBDOMAIN_CHAIN",
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u059",
+          "url": "https://emitra.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        },
+        {
+          "id": "u060",
+          "url": "https://janaadhaar.rajasthan.gov.in",
+          "risk": "MEDIUM",
+          "signals": [
+            "BRAND_LIKE_DOMAIN"
+          ]
+        }
+      ],
+      "phishing_missed": [
+        {
+          "id": "u069",
+          "url": "https://pnb-card-limit.click",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u072",
+          "url": "https://jvvnl-bill-pay.in",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u078",
+          "url": "https://echallan-parivahan-pay.in/challan",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u079",
+          "url": "https://mparivahan-challan.top/download",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u080",
+          "url": "https://indiapost-redeliver.top",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u089",
+          "url": "https://onlinesbl.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u090",
+          "url": "https://paytrn.com/kyc",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": [
+            "CREDENTIAL_OR_KYC_LURE"
+          ]
+        },
+        {
+          "id": "u092",
+          "url": "https://phonepay.co.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u093",
+          "url": "https://jvvn1.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u094",
+          "url": "https://rnicrosoft-support.com",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u095",
+          "url": "https://arnazon-offers.in",
+          "kind": "typosquat",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u101",
+          "url": "https://richplan-invest.xyz/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u102",
+          "url": "https://bet777.vip/register",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u103",
+          "url": "https://quickcash-loan.top/app.apk",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u104",
+          "url": "https://colour-prediction-win.online",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u105",
+          "url": "https://double-money-plan.site",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u106",
+          "url": "https://task-earn-daily.live/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u107",
+          "url": "https://aviator-hack-predictor.top",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u108",
+          "url": "https://instant-loan-noncibil.shop/apply",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u114",
+          "url": "https://google-pay-cashback.store",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        },
+        {
+          "id": "u118",
+          "url": "https://rajasthan-police-challan.xyz",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u119",
+          "url": "https://sebi-registered-advisor.club",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": []
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 80,
+      "micro_f1": 0.836,
+      "micro_precision": 0.924,
+      "micro_recall": 0.762,
+      "per_type": {
+        "BANK_ACCOUNT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_BTC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_TRON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "DOMAIN": {
+          "precision": 0.846,
+          "recall": 0.786,
+          "f1": 0.815,
+          "support": 14
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "FIREBASE_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "IFSC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "IMEI": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "IP": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.857,
+          "support": 3
+        },
+        "PACKAGE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "PHONE": {
+          "precision": 0.909,
+          "recall": 0.714,
+          "f1": 0.8,
+          "support": 14
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 0.429,
+          "f1": 0.6,
+          "support": 7
+        },
+        "TELEGRAM_BOT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 11
+        },
+        "URL": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933,
+          "support": 7
+        }
+      },
+      "mistakes": [
+        {
+          "id": "i005",
+          "missing": [
+            "PHONE:+923001234567"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i006",
+          "missing": [
+            "PHONE:+14155550132"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i007",
+          "missing": [
+            "PHONE:+971501234567"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i008",
+          "missing": [
+            "PHONE:+911412741234"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i010",
+          "missing": [
+            "DOMAIN:sbi-kyc-help.cyou"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i013",
+          "missing": [
+            "DOMAIN:task-earn.sbs"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i023",
+          "missing": [
+            "TELEGRAM:t.me/richplansupport"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i024",
+          "missing": [
+            "TELEGRAM:t.me/task_earn_admin"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i025",
+          "missing": [
+            "TELEGRAM:t.me/sureshottips2026"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i029",
+          "missing": [
+            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i030",
+          "missing": [
+            "CRYPTO_TRON:TAzXbaDyfDaC66AsmF3QYs11NpRyot9uR9"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i031",
+          "missing": [
+            "TELEGRAM_BOT:7012345678"
+          ],
+          "extra": [
+            "PHONE:+917012345678"
+          ]
+        },
+        {
+          "id": "i032",
+          "missing": [
+            "TELEGRAM_BOT:6543210987"
+          ],
+          "extra": [
+            "DOMAIN:api.telegram.org",
+            "URL:https://api.telegram.org/bot6543210987:aafklmnopqrstuvwxyzabcdefghijklmnop/sendmessage"
+          ]
+        },
+        {
+          "id": "i033",
+          "missing": [
+            "IMEI:490154203237518"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i034",
+          "missing": [
+            "IMEI:356938035643809"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i035",
+          "missing": [
+            "FIREBASE_DB:quickcash-abc.firebaseio.com"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i044",
+          "missing": [
+            "DOMAIN:bit.ly"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i050",
+          "missing": [],
+          "extra": [
+            "DOMAIN:wa.me"
+          ]
+        },
+        {
+          "id": "n016",
+          "missing": [],
+          "extra": [
+            "IP:1.2.3.4"
+          ]
+        },
+        {
+          "id": "i058",
+          "missing": [
+            "TELEGRAM:t.me/cashloanagent"
+          ],
+          "extra": []
+        },
+        {
+          "id": "i059",
+          "missing": [
+            "CRYPTO_TRON:TKArzRcd5hxJZZ6QtCppxs3D3M7UqPTq65"
+          ],
+          "extra": []
+        }
+      ]
+    },
+    "websites": {
+      "n": 30,
+      "accuracy": 0.833,
+      "wrong": [
+        {
+          "id": "w006",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 28,
+          "findings": [
+            "INSTANT_LOAN_NO_CHECKS"
+          ]
+        },
+        {
+          "id": "w009",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 0,
+          "findings": []
+        },
+        {
+          "id": "w015",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 16,
+          "findings": [
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w022",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 72,
+          "findings": [
+            "REFERRAL_CHAIN_INCOME",
+            "JOINING_PACKAGE_FEE",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w025",
+          "label": "SAFE",
+          "risk": "MEDIUM",
+          "score": 41,
+          "findings": [
+            "PAGE_COLLECTS_PAYMENT_IDENTIFIER",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        }
+      ]
+    },
+    "apks": {
+      "n": 20,
+      "accuracy": 0.9,
+      "benign_flagged_high": 2,
+      "wrong": [
+        {
+          "id": "a015",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 100,
+          "findings": [
+            "PERM_READ_SMS",
+            "PERM_RECEIVE_SMS",
+            "PERM_READ_CONTACTS",
+            "PERM_SEND_SMS",
+            "COMBO_LOAN_APP_HARVESTING",
+            "COMBO_OTP_EXFILTRATION",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        },
+        {
+          "id": "a018",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 71,
+          "findings": [
+            "PERM_READ_CONTACTS",
+            "PERM_READ_CALL_LOG",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        }
+      ]
+    }
+  }
+}
