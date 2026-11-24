@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.api.documents import router as documents_router
 from app.api.investigate import router as investigate_router
 from app.api.routes import router
 from app.config import get_settings
@@ -142,6 +143,8 @@ def create_app() -> FastAPI:
     # Investigation Mode is mounted under the same prefix but gated by officer
     # authentication on every route.
     app.include_router(investigate_router, prefix=settings.api_v1_prefix)
+    # Phase D action layer: requisitions, approval chain, dispatch, MIS.
+    app.include_router(documents_router, prefix=settings.api_v1_prefix)
 
     # ── Frontend SPA ─────────────────────────────────────────────────────────
     # Serve index.html at the root; all other unknown paths also fall back to it

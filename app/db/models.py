@@ -260,3 +260,88 @@ class DomainIntel(Base):
     status: Mapped[str] = mapped_column(String(24), default="UNKNOWN")
     nameservers: Mapped[dict] = mapped_column(JSON, default=dict)
     fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class DocumentRecord(Base):
+    """A legal requisition drafted from a case (planversionalpha.md D.1).
+
+    Every document is a DRAFT until the chain of command approves it. The body
+    hash is stored with each approval, so a document edited after approval is
+    detectably different from the one that was signed off.
+    """
+
+    __tablename__ = "documents"
+    __table_args__ = (Index("ix_document_case_status", "case_id", "status"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    doc_no: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    case_id: Mapped[int] = mapped_column(ForeignKey("cases.id", ondelete="CASCADE"), index=True)
+    doc_type: Mapped[str] = mapped_column(String(32), index=True)
+
+    addressee_key: Mapped[str] = mapped_column(String(64), default="")
+    addressee_display: Mapped[str] = mapped_column(String(240), default="")
+    addressee_is_sample: Mapped[bool] = mapped_column(Boolean, default=True)
+    subject_identifiers: Mapped[list] = mapped_column(JSON, default=list)
+
+    status: Mapped[str] = mapped_column(String(24), default="DRAFT", index=True)
+    current_stage: Mapped[str] = mapped_column(String(16), default="NONE")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    body_html: Mapped[str] = mapped_column(Text, default="")
+    body_sha256: Mapped[str] = mapped_column(String(64), default="")
+
+    unit_path: Mapped[str] = mapped_column(String(400), default="/", index=True)
+    created_by: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
+    # Computed when a stage starts. Overdue is decided on read, so no cron job
+    # is needed for escalation (planversionalpha.md D.5).
+    due_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    dispatched_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    dispatch_ref: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    dispatch_channel: Mapped[str | None] = mapped_column(String(24), nullable=True)
+    response_received_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    response_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    case: Mapped[CaseRecord] = relationship()
+    versions: Mapped[list["DocumentVersionRecord"]] = relationship(
+        back_populates="document", cascade="all, delete-orphan"
+    )
+    approvals: Mapped[list["ApprovalRecord"]] = relationship(
+        back_populates="document", cascade="all, delete-orphan"
+    )
+
+
+class DocumentVersionRecord(Base):
+    """Every edit is kept: a returned document is revised, never overwritten."""
+
+    __tablename__ = "document_versions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    document_id: Mapped[int] = mapped_column(ForeignKey("documents.id", ondelete="CASCADE"), index=True)
+    version: Mapped[int] = mapped_column(Integer)
+    body_html: Mapped[str] = mapped_column(Text, default="")
+    body_sha256: Mapped[str] = mapped_column(String(64), default="")
+    edited_by: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    document: Mapped[DocumentRecord] = relationship(back_populates="versions")
+
+
+class ApprovalRecord(Base):
+    """One decision in the approval chain, with the body hash it applied to."""
+
+    __tablename__ = "approvals"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    document_id: Mapped[int] = mapped_column(ForeignKey("documents.id", ondelete="CASCADE"), index=True)
+    stage: Mapped[str] = mapped_column(String(16))
+    actor_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    actor_name: Mapped[str] = mapped_column(String(64), default="")
+    actor_rank: Mapped[str | None] = mapped_column(String(16), nullable=True)
+    action: Mapped[str] = mapped_column(String(16))
+    comment: Mapped[str | None] = mapped_column(Text, nullable=True)
+    body_sha256: Mapped[str] = mapped_column(String(64), default="")
+    at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    document: Mapped[DocumentRecord] = relationship(back_populates="approvals")

@@ -1153,3 +1153,172 @@ class AuditTrailResponse(BaseModel):
 
     status: AuditChainStatus
     entries: list[AuditEntry] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# Phase D: action layer - requisitions, approval chain, dispatch, MIS
+# ---------------------------------------------------------------------------
+
+
+class DocumentStatus(str, Enum):
+    DRAFT = "DRAFT"
+    RETURNED = "RETURNED"
+    PENDING_STATION = "PENDING_STATION"
+    PENDING_SUPERVISOR = "PENDING_SUPERVISOR"
+    APPROVED = "APPROVED"
+    DISPATCHED = "DISPATCHED"
+    RESPONDED = "RESPONDED"
+    CLOSED = "CLOSED"
+    CANCELLED = "CANCELLED"
+
+
+class DispatchChannel(str, Enum):
+    EMAIL = "EMAIL"
+    PORTAL = "PORTAL"
+    POST = "POST"
+    HAND = "HAND"
+
+
+class ApprovalEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    stage: str
+    actor_name: str
+    actor_rank: str | None = None
+    action: str
+    comment: str | None = None
+    body_sha256: str
+    at: str
+
+
+class DocumentVersionEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    version: int
+    body_sha256: str
+    at: str
+
+
+class DocumentSummary(BaseModel):
+    """One requisition as the queue and case screens show it."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: int
+    doc_no: str
+    case_id: str
+    doc_type: str
+    title: str
+    legal_basis: str
+    addressee_display: str
+    addressee_is_sample: bool
+    status: DocumentStatus
+    current_stage: str
+    version: int
+    subject_identifiers: list[dict] = Field(default_factory=list)
+    created_at: str
+    due_at: str | None = None
+    overdue: bool = False
+    dispatched_at: str | None = None
+    dispatch_ref: str | None = None
+    dispatch_channel: str | None = None
+    response_received_at: str | None = None
+
+
+class DocumentDetail(DocumentSummary):
+    body_html: str
+    body_sha256: str
+    purpose: str
+    sla_hours: float
+    response_note: str | None = None
+    approvals: list[ApprovalEntry] = Field(default_factory=list)
+    versions: list[DocumentVersionEntry] = Field(default_factory=list)
+    # True when the body changed after the last approval, so the printed copy
+    # is not the one that was signed off.
+    edited_after_approval: bool = False
+
+
+class ActionPackResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    case_id: str
+    created: int
+    existing: int
+    documents: list[DocumentSummary] = Field(default_factory=list)
+    notice: str
+
+
+class DocumentEditRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    body_html: str = Field(min_length=40, max_length=400_000)
+
+
+class DocumentCommentRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    comment: str | None = Field(default=None, max_length=2_000)
+
+
+class DocumentReturnRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    comment: str = Field(min_length=3, max_length=2_000)
+
+
+class DocumentDispatchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    channel: DispatchChannel = DispatchChannel.EMAIL
+    reference: str = Field(min_length=2, max_length=120)
+
+
+class DocumentResponseRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    note: str = Field(min_length=2, max_length=4_000)
+
+
+class QueueResponse(BaseModel):
+    """What is waiting for the signed-in officer, most overdue first."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    stage: str
+    total: int
+    overdue: int
+    documents: list[DocumentSummary] = Field(default_factory=list)
+
+
+class MisStationRow(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    unit_code: str
+    unit_name: str
+    cases: int
+    high_risk: int
+    documents: int
+    dispatched: int
+    overdue: int
+
+
+class MisReport(BaseModel):
+    """The numbers a supervisor sends upward, computed from the case store."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    period: str
+    generated_at: str
+    scope: str
+    cases: int
+    high_risk_cases: int
+    citizen_reports: int
+    amount_reported_paise: int
+    documents_drafted: int
+    documents_dispatched: int
+    documents_answered: int
+    documents_overdue: int
+    median_hours_to_approval: float | None = None
+    by_unit: list[MisStationRow] = Field(default_factory=list)
+    top_identifiers: list[dict] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
