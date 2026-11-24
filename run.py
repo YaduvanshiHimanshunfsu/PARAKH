@@ -1,10 +1,14 @@
 import argparse
+import json
 import os
+import signal
 import socket
 import subprocess
 import sys
 import threading
 import time
+import urllib.error
+import urllib.request
 
 """
 ========================================================================
@@ -54,24 +58,39 @@ REQUIRED_IMPORTS = (
 )
 
 
-def run_command(command, cwd=None, prefix=""):
+def run_command(command, cwd=None, prefix="", extra_env=None):
     """Run a command and stream its output, unbuffered.
 
     Streaming matters: a startup failure (a stale database, a missing package)
     prints to the child's stdout, and if that is buffered the launcher looks
     like it is working while nothing is listening.
+
+    shell=False on Windows: we build an explicit argv list so the OS creates
+    the child directly (no intermediate cmd.exe). This means Ctrl+C kills
+    the child cleanly instead of leaving an orphan that holds the port.
     """
 
-    environment = dict(os.environ, PYTHONUNBUFFERED="1")
+    environment = dict(os.environ, PYTHONUNBUFFERED="1", **(extra_env or {}))
+
+    # On Windows, shell=True inserts a hidden cmd.exe between this process and
+    # the real child. When the launcher exits, cmd.exe dies but the grandchild
+    # (uvicorn) survives as an orphan that keeps port 8000 bound. Passing an
+    # explicit list with shell=False avoids that entire problem.
+    if isinstance(command, str):
+        import shlex
+        argv = shlex.split(command, posix=(sys.platform != "win32"))
+    else:
+        argv = command
+
     process = subprocess.Popen(
-        command,
+        argv,
         cwd=cwd,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
         bufsize=1,
         env=environment,
-        shell=sys.platform == "win32",
+        shell=False,
     )
     for line in iter(process.stdout.readline, ""):
         print(f"{prefix}{line}", end="", flush=True)
@@ -172,16 +191,247 @@ def port_is_open(host: str, port: int, timeout: float = 0.6) -> bool:
     return False
 
 
-def wait_for(name: str, host: str, port: int, seconds: int = 25) -> bool:
-    """Wait for a service to listen, so a silent failure is reported."""
+def backend_is_ours(host: str, port: int) -> bool:
+    """Confirm the thing on this port is a PARAKH backend, not something else.
+
+    A TCP connect only proves *something* is listening. If a stale server from
+    an earlier run still holds the port, the new one cannot bind and dies,
+    while a socket check happily reports success - against the wrong database.
+    """
+
+    try:
+        with urllib.request.urlopen(f"http://{host}:{port}/api/v1/health", timeout=2) as response:
+            body = json.loads(response.read().decode())
+        return body.get("status") == "ok" and "offline_fallback_enabled" in body
+    except (urllib.error.URLError, OSError, ValueError, json.JSONDecodeError):
+        return False
+
+
+def _pid_on_port(port: int) -> int | None:
+    """Return the PID of the process listening on *port*, or None.
+
+    Prefers PowerShell Get-NetTCPConnection (reliable, no string parsing);
+    falls back to netstat for environments without that cmdlet.
+    """
+    # PowerShell – most reliable on modern Windows
+    try:
+        result = subprocess.run(
+            [
+                "powershell", "-NoProfile", "-NonInteractive", "-Command",
+                f"(Get-NetTCPConnection -LocalPort {port} -State Listen -ErrorAction SilentlyContinue"
+                f" | Select-Object -First 1 -ExpandProperty OwningProcess)",
+            ],
+            capture_output=True, text=True, timeout=6,
+        )
+        pid_str = result.stdout.strip()
+        if pid_str and pid_str.isdigit():
+            return int(pid_str)
+    except Exception:
+        pass
+
+    # Fallback: parse netstat output
+    try:
+        result = subprocess.run(
+            ["netstat", "-ano"],
+            capture_output=True, text=True, timeout=5,
+        )
+        for line in result.stdout.splitlines():
+            if f":{port}" in line and "LISTENING" in line:
+                parts = line.split()
+                if parts:
+                    try:
+                        return int(parts[-1])
+                    except ValueError:
+                        pass
+    except Exception:
+        pass
+    return None
+
+
+def _find_uvicorn_pids() -> list[int]:
+    """Find PIDs of all Python processes running uvicorn, via WMI.
+
+    This is the reliable way to find orphan uvicorn processes: we search
+    by command-line content rather than by port→PID (which is broken when
+    the socket owner PID has been recycled by the OS).
+    """
+    if sys.platform != "win32":
+        return []
+    try:
+        result = subprocess.run(
+            [
+                "powershell", "-NoProfile", "-NonInteractive", "-Command",
+                "Get-WmiObject Win32_Process -Filter \"Name='python.exe'\" | "
+                "Where-Object { $_.CommandLine -like '*uvicorn*' } | "
+                "Select-Object -ExpandProperty ProcessId",
+            ],
+            capture_output=True, text=True, timeout=8,
+        )
+        pids = []
+        for line in result.stdout.strip().splitlines():
+            line = line.strip()
+            if line.isdigit():
+                pids.append(int(line))
+        return pids
+    except Exception:
+        return []
+
+
+def _kill_pid(pid: int) -> bool:
+    """Kill a process by PID.  Returns True when the kill was sent (not
+    necessarily when the socket is released)."""
+
+    if sys.platform != "win32":
+        try:
+            os.kill(pid, signal.SIGTERM)
+            time.sleep(1)
+            try:
+                os.kill(pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            return True
+        except ProcessLookupError:
+            return True  # Already gone – that is fine.
+        except Exception as exc:
+            print(f"[Orchestrator] Could not kill PID {pid}: {exc}", flush=True)
+            return False
+
+    # Windows: try Stop-Process first (handles protected processes better than
+    # taskkill, and returns 0 when the process no longer exists).
+    ps_result = subprocess.run(
+        [
+            "powershell", "-NoProfile", "-NonInteractive", "-Command",
+            f"Stop-Process -Id {pid} -Force -ErrorAction SilentlyContinue",
+        ],
+        capture_output=True, text=True,
+    )
+    if ps_result.returncode == 0:
+        return True
+
+    # Fallback: taskkill /F /PID
+    tk_result = subprocess.run(
+        ["taskkill", "/F", "/PID", str(pid)],
+        capture_output=True, text=True,
+    )
+    # Exit 128 = process already gone – treat as success.
+    if tk_result.returncode in (0, 128):
+        return True
+
+    print(
+        f"[Orchestrator] Could not kill PID {pid} "
+        f"(taskkill exit {tk_result.returncode}: {tk_result.stderr.strip() or tk_result.stdout.strip()}).\n"
+        "[Orchestrator] Try running this terminal as Administrator.",
+        flush=True,
+    )
+    return False
+
+
+def _kill_by_port(port: int) -> bool:
+    """Nuclear option: kill every process listening on *port* via PowerShell."""
+    try:
+        result = subprocess.run(
+            [
+                "powershell", "-NoProfile", "-NonInteractive", "-Command",
+                f"Get-NetTCPConnection -LocalPort {port} -State Listen -ErrorAction SilentlyContinue"
+                f" | ForEach-Object {{ Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }}",
+            ],
+            capture_output=True, text=True, timeout=8,
+        )
+        return result.returncode == 0
+    except Exception as exc:
+        print(f"[Orchestrator] Kill-by-port failed: {exc}", flush=True)
+        return False
+
+
+def check_port_free(name: str, host: str, port: int) -> bool:
+    """Kill a stale PARAKH process if it owns the port; refuse for anything else."""
+
+    if not port_is_open(host, port):
+        return True
+
+    is_ours = name == "Backend" and backend_is_ours(host, port)
+
+    if is_ours:
+        # Find the REAL uvicorn process by command-line search, not by port→PID.
+        # Port→PID (netstat / Get-NetTCPConnection) is unreliable: on Windows,
+        # the socket creator PID can be recycled while uvicorn's orphan keeps
+        # serving, so the PID in netstat points to a dead or unrelated process.
+        uvicorn_pids = _find_uvicorn_pids()
+        port_pid = _pid_on_port(port)
+
+        # Build a human-readable label for the prompt.
+        if uvicorn_pids:
+            pid_label = f" (uvicorn PID{'s' if len(uvicorn_pids) > 1 else ''}: {', '.join(map(str, uvicorn_pids))})"
+        elif port_pid:
+            pid_label = f" (port owner PID: {port_pid})"
+        else:
+            pid_label = ""
+
+        print(
+            f"\n[Orchestrator] A stale PARAKH backend{pid_label} is still holding port {port}.",
+            flush=True,
+        )
+        answer = input("[Orchestrator] Kill it and restart? [Y/n]: ").strip().lower()
+        if answer not in ("", "y", "yes"):
+            print(
+                f"[Orchestrator] Exiting. Use --backend-port {port + 1} to run on a different port.",
+                flush=True,
+            )
+            return False
+
+        # Kill by uvicorn commandline first (most reliable).
+        killed_any = False
+        for pid in uvicorn_pids:
+            if _kill_pid(pid):
+                killed_any = True
+                print(f"[Orchestrator] Killed uvicorn PID {pid}.", flush=True)
+
+        # Also attempt kill by port-owner PID as belt-and-suspenders.
+        if port_pid and port_pid not in uvicorn_pids:
+            if _kill_pid(port_pid):
+                killed_any = True
+
+        # Last resort: PowerShell kill-by-port.
+        if not killed_any:
+            print("[Orchestrator] Trying kill-by-port as last resort...", flush=True)
+            _kill_by_port(port)
+
+        # Give the OS up to 15 s to release the socket.
+        for _ in range(30):
+            time.sleep(0.5)
+            if not port_is_open(host, port):
+                print(f"[Orchestrator] Port {port} is now free. Continuing...", flush=True)
+                return True
+
+        print(
+            f"[Orchestrator] Port {port} did not release after 15 s.\n"
+            f"[Orchestrator] Use a different port:  python run.py --backend-port {port + 1}",
+            flush=True,
+        )
+        return False
+
+    # Port taken by something unrelated to PARAKH.
+    print(
+        f"\n[Orchestrator] Port {port} is already in use by another process, so {name} cannot start.\n"
+        f"[Orchestrator] Close the other process, or pick another port:\n"
+        f"    python run.py --{name.lower()}-port {port + 1}\n"
+        "[Orchestrator] On Windows, find the owner with:\n"
+        f"    netstat -ano | findstr :{port}",
+        flush=True,
+    )
+    return False
+
+
+def wait_for(name: str, host: str, port: int, seconds: int = 30, verify=None) -> bool:
+    """Wait until the service is genuinely answering, not merely listening."""
 
     deadline = time.time() + seconds
     while time.time() < deadline:
-        if port_is_open(host, port):
+        if port_is_open(host, port) and (verify is None or verify()):
             return True
         time.sleep(0.5)
     print(
-        f"\n[Orchestrator] {name} is not listening on port {port} after {seconds}s.\n"
+        f"\n[Orchestrator] {name} did not come up on port {port} within {seconds}s.\n"
         f"[Orchestrator] Read the [{name}] lines above for the reason.",
         flush=True,
     )
@@ -207,6 +457,8 @@ def parse_args():
         action="store_true",
         help="do not touch the database at all",
     )
+    parser.add_argument("--backend-port", type=int, default=BACKEND_PORT, help="FastAPI port")
+    parser.add_argument("--frontend-port", type=int, default=FRONTEND_PORT, help="Vite dev-server port")
     return parser.parse_args()
 
 
@@ -221,6 +473,13 @@ def main():
 
     if not os.path.exists("app") or not os.path.exists("frontend"):
         print("Error: run.py must be run from the PARAKH project root (it needs 'app' and 'frontend').")
+        sys.exit(1)
+
+    backend_port = args.backend_port
+    frontend_port = args.frontend_port
+    if not check_port_free("Backend", BACKEND_HOST, backend_port):
+        sys.exit(1)
+    if not check_port_free("Frontend", "localhost", frontend_port):
         sys.exit(1)
 
     venv_python = check_backend()
@@ -245,7 +504,8 @@ def main():
     backend = threading.Thread(
         target=run_command,
         args=(
-            f'"{venv_python}" -m uvicorn app.main:app --host {BACKEND_HOST} --port {BACKEND_PORT} --reload',
+            [venv_python, "-m", "uvicorn", "app.main:app",
+             "--host", BACKEND_HOST, "--port", str(backend_port), "--reload"],
             ".",
             "[Backend]  ",
         ),
@@ -256,21 +516,29 @@ def main():
     npm = "npm.cmd" if sys.platform == "win32" else "npm"
     frontend = threading.Thread(
         target=run_command,
-        args=(f"{npm} run dev", "frontend", "[Frontend] "),
+        args=(
+            [npm, "run", "dev", "--", "--port", str(frontend_port), "--strictPort"],
+            "frontend",
+            "[Frontend] ",
+        ),
+        # The dev-server proxy must point at the backend we actually started.
+        kwargs={"extra_env": {"VITE_API_PROXY_TARGET": f"http://{BACKEND_HOST}:{backend_port}"}},
         daemon=True,
     )
     frontend.start()
 
-    backend_up = wait_for("Backend", BACKEND_HOST, BACKEND_PORT)
-    frontend_up = wait_for("Frontend", "localhost", FRONTEND_PORT)
+    backend_up = wait_for(
+        "Backend", BACKEND_HOST, backend_port, verify=lambda: backend_is_ours(BACKEND_HOST, backend_port)
+    )
+    frontend_up = wait_for("Frontend", "localhost", frontend_port)
 
     if backend_up and frontend_up:
         print(
             "\n"
             + "=" * 70
-            + f"\n  Citizen app     http://localhost:{FRONTEND_PORT}/"
-            + f"\n  Officer console http://localhost:{FRONTEND_PORT}/investigate/login"
-            + f"\n  API docs        http://{BACKEND_HOST}:{BACKEND_PORT}/docs"
+            + f"\n  Citizen app     http://localhost:{frontend_port}/"
+            + f"\n  Officer console http://localhost:{frontend_port}/investigate/login"
+            + f"\n  API docs        http://{BACKEND_HOST}:{backend_port}/docs"
             + "\n\n  Demo officers (password ParakhDemo@2026):"
             + "\n    io.si.sharma  SI        drafts requisitions, cannot approve"
             + "\n    sho.cyber     Inspector station approval, assigns cases"

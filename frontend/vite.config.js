@@ -7,9 +7,11 @@ export default defineConfig({
   server: {
     // Same-origin API in development: /api is proxied to FastAPI, so the
     // officer Authorization header never needs a CORS preflight.
+    // The target follows run.py's --backend-port; hardcoding 8000 meant a
+    // custom port silently proxied to whatever already held 8000.
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8000',
+        target: process.env.VITE_API_PROXY_TARGET || 'http://127.0.0.1:8000',
         changeOrigin: true,
       },
     },
