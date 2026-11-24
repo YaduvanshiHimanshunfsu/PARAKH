@@ -6,6 +6,8 @@ import { officerApi } from '../../lib/api'
 import { identifierMeta } from '../../design/vocab'
 import { highlightSegments } from '../../lib/highlight'
 import { ArtifactTag, CaseLink, SourceTag, StatusPill, formatDateTime, openHtmlResponse, saveResponse } from './shared'
+import { ActionPackPanel } from './documents/ActionPackPanel'
+import { CaseCommandPanel } from './CaseCommandPanel'
 
 // Built from design/stitch/parakh_case_detail_forensic_dossier_prk_20261118_k7p2qx.
 // Data: GET /cases/{id}, /linked, /similar; PATCH for status and notes;
@@ -252,9 +254,11 @@ export function CaseDetailPage() {
         <div className="min-w-0 space-y-6">
           <Findings findings={data.findings} />
           <Identifiers identifiers={data.identifiers} />
+          <ActionPackPanel caseId={data.case_id} />
           <ContentPanel detail={data} />
         </div>
         <div className="space-y-4">
+          <CaseCommandPanel detail={data} />
           <Workflow detail={data} />
           <ReportActions caseId={data.case_id} />
         </div>

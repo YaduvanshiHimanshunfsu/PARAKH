@@ -7,7 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev)
 [![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev)
-[![Tests](https://img.shields.io/badge/Tests-320%20passed-brightgreen?style=flat)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-541%20backend%20%7C%20151%20frontend-brightgreen?style=flat)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **🏆 Rajasthan Police Hackathon 2026 — Problem Statement PS01**
@@ -122,11 +122,33 @@ python run.py
 ### Load Demo Data (Recommended)
 
 ```bash
-# After run.py has started the backend (in a new terminal):
-.venv\Scripts\python -m app.db.seed          # Seed fraud blacklists
-.venv\Scripts\python -m app.db.demo_seed     # Load 14 cross-linked demo cases
-.venv\Scripts\python -m app.db.units_seed    # Load demo police units/officers
+# Recreate the schema and load 14 cross-linked demo cases
+.venv\Scripts\python scripts/reset_demo_db.py --yes
+
+# Create the police hierarchy and the officer accounts below
+.venv\Scripts\python scripts/seed_demo_officers.py
 ```
+
+### 👮 Demo officer accounts
+
+> ⚠️ **Demonstration accounts only.** They share one password so a reviewer can
+> switch roles in seconds. A real deployment issues one password per officer,
+> set at first sign-in. PARAKH stores only a hash, and the lockout, MFA and
+> audit controls apply to these accounts exactly as they would to real ones.
+
+**Password for every account: `ParakhDemo@2026`**
+
+| Username | Rank | Role | Unit | What this role can do |
+|---|---|---|---|---|
+| `io.si.sharma` | SI | IO | Cyber PS, Jaipur | Works cases, drafts requisitions — **cannot approve** |
+| `sho.cyber` | Inspector | STATION_HEAD | Cyber PS, Jaipur | Station approval · assigns and transfers cases |
+| `sp.jaipur` | SP | SUPERVISOR | Jaipur Commissionerate | District approval — **required for every freeze** |
+| `dysp.cyber` | DySP | SUPERVISOR | Jaipur Commissionerate | District approval |
+| `op.hc` | HC | OPERATOR | Cyber PS, Jaipur | Submits items; sees only their own submissions |
+| `io.btp` | Inspector | IO | Cyber PS, **Bharatpur** | Different district — **cannot see Jaipur's cases at all** |
+| `viewer.state` | ADG | STATE_VIEWER | State HQ | Read-only across the whole state |
+
+Run `python scripts/seed_demo_officers.py --show` to print this table at any time.
 
 ---
 
@@ -136,7 +158,23 @@ python run.py
 
 The UI is built from the **Civic Vigilance Light** design system (31 screens) covering:
 - Citizen: Home → Check → Result → Evidence Locker → Rescue Guide → Status Tracker
-- Officer: Login → Dashboard → Cases → Case Detail → Campaigns → Heat-list → Reports
+- Officer: Login → Dashboard → Cases → Case Detail → Campaigns → Heat-list → Queue → Reports
+
+### 📸 The running system
+
+*Every screenshot below is the real application, captured against a live server.*
+
+| Officer case file with the **action pack** | Approval **queue** |
+|---|---|
+| ![Case file with action pack](docs/images/officer-case-action-pack.png) | ![Approval queue](docs/images/officer-approval-queue.png) |
+
+| Command dashboard | Campaign map |
+|---|---|
+| ![Command dashboard](docs/images/officer-command-dashboard.png) | ![Campaign map](docs/images/officer-campaign-map.png) |
+
+| Citizen verdict, with red flags highlighted | Rescue plan (mobile, 390 px) |
+|---|---|
+| ![Citizen verdict](docs/images/citizen-result.png) | ![Rescue plan](docs/images/citizen-rescue-mobile.png) |
 
 ---
 
@@ -244,6 +282,71 @@ User Input (Message / URL / Email / APK / Website / QR)
          │
          └──► Download print-ready HTML investigation report
 ```
+
+### ⛓️ Chain of command — the part most tools stop short of
+
+Detection without action is a dashboard. PARAKH turns a case into the
+paperwork an investigation actually needs, and routes it through the real
+hierarchy.
+
+```
+  IO opens the case  ──►  "Draft requisitions"
+        │                  PARAKH groups the case's SUSPECT identifiers by
+        │                  (document type, addressee) and drafts ONE notice
+        │                  per group — not one per identifier
+        ▼
+  5 unsigned DRAFTS, each watermarked, each citing its legal basis
+        │
+        ▼
+  IO submits the freeze request        ⏱ SLA starts: 2 hours (golden hour)
+        │
+        ├──► IO tries to approve it    ──►  ❌ REFUSED
+        │                                   the drafter may never approve
+        │                                   their own document
+        ▼
+  sho.cyber (Inspector) approves       ✅ station level
+        │
+        ▼
+  sp.jaipur (SP) approves              ✅ a freeze ALWAYS needs the district
+        │
+        ▼
+  APPROVED ──► dispatch recorded ──► the bank's reply recorded on the case
+        │
+        ▼
+  Every step above is in the tamper-evident audit chain
+```
+
+**Try it yourself in 9 steps:**
+
+| # | As | Do this | What you should see |
+|---|---|---|---|
+| 1 | *(citizen)* | Paste a scam SMS and check it | HIGH risk, exact words highlighted, Hindi explanation |
+| 2 | *(citizen)* | Tick consent → **Send to police** | A reference number you can track |
+| 3 | `io.si.sharma` | Open the case → **Draft requisitions** | 5 drafts: freeze, bank records, telecom, Chakshu, §63 certificate |
+| 4 | `io.si.sharma` | Submit the freeze → try to approve it | **403** — separation of duties |
+| 5 | `sho.cyber` | **My queue** → approve | Status becomes *With supervisor* |
+| 6 | `sp.jaipur` | Approve → record dispatch | **APPROVED** → **DISPATCHED** |
+| 7 | `sho.cyber` | Assign the case to `io.si.sharma` as an *IT Act* offence | **422** — IT Act §78 needs Inspector or above |
+| 8 | `io.btp` | Open that same Jaipur case | **404** — jurisdiction scoping (not 403: a 403 would confirm it exists) |
+| 9 | any officer | Open the case's **audit trail** | *"Audit chain verified (N events)."* |
+
+### 📊 The eight requisition types PARAKH drafts
+
+| Document | Legal basis | Approval needed | SLA |
+|---|---|---|---|
+| Hold disputed funds | **BNSS 2023 §106** | Station **+ district** | 2 h |
+| Produce bank documents | **BNSS 2023 §94** | Station (district above ₹10 L) | 24 h |
+| Telecom CAF / CDR | **BNSS 2023 §94** | Station | 24 h |
+| Fraud number report | DoT Sanchar Saathi | Station | 24 h |
+| Domain takedown | **IT Act §79(3)(b)** | Station + district | 24 h |
+| Hosting abuse notice | **IT Act §79(3)(b)** | Station | 24 h |
+| Intermediary takedown | **IT Act §79(3)(b)** | Station + district | 24 h |
+| Electronic evidence certificate | **BSA 2023 §63** | Station | 48 h |
+
+Every draft carries a **DRAFT** watermark and an **empty signature block** —
+PARAKH never renders a signature or a seal. Where a mapping can change (a UPI
+handle's sponsor bank, a number that may have been ported) the draft says
+*"confirm before dispatch"* instead of asserting it.
 
 ---
 
@@ -597,6 +700,33 @@ No code changes needed — SQLAlchemy handles the rest.
 
 ---
 
+## 📈 Measured Results
+
+Measured on a **held-out test split** (30% by hash of item id, never used for
+tuning) of a 450-item golden dataset. Reproduce with `python scripts/evaluate.py`;
+the report is committed at [`eval/report.md`](eval/report.md).
+
+| Metric | Before | **After** | Target | |
+|---|---|---|---|---|
+| SCAM precision | 0.75 | **1.00** | 0.92 | ✅ |
+| Risky recall | 0.625 | **0.979** | — | ✅ |
+| Hindi / Hinglish recall | 0.368 | **1.00** | 0.85 | ✅ |
+| Official-domain false positives | 9 | **0** | 0 | ✅ |
+| Identifier extraction F1 | 0.884 | **0.98** | 0.90 | ✅ |
+| APK detection accuracy | 1.00 | **1.00** | 0.90 | ✅ |
+| 3-class macro F1 | 0.37 | **0.649** | 0.85 | ❌ |
+
+**We report the miss rather than hide it.** Macro-F1 falls short because the
+middle `SUSPICIOUS` class is only 12 test items and is intrinsically fuzzy.
+SCAM and SAFE — the two classes that drive real decisions — are both
+near-perfect.
+
+Weights and both verdict thresholds are fitted on a **development** split by
+`scripts/fit_rule_weights.py` and committed as data. The test split exists to
+tell us the truth, not to tune against.
+
+---
+
 ## 🧪 Running Tests
 
 ```bash
@@ -607,13 +737,26 @@ source .venv/bin/activate     # Linux/macOS
 # Run the full backend test suite
 pytest
 
-# Expected: 320 passed, 6 skipped (Windows asyncio), 0 failed
+# Expected: 541 passed, 6 skipped (Windows asyncio), 0 failed
 
 # Run specific test groups
 pytest tests/test_scam_categories.py -v
 pytest tests/test_ssrf_guard.py -v
-pytest tests/test_phase_c_hierarchy.py -v
+pytest tests/test_phase_c_hierarchy.py -v      # hierarchy, scoping, audit chain
+pytest tests/test_phase_d_action_layer.py -v  # action pack and approval chain
 ```
+
+```bash
+# Accuracy on the golden dataset, and the honesty gate
+python scripts/evaluate.py
+python scripts/check_ui_claims.py
+
+# Frontend: 67 unit tests, 84 browser tests (desktop 1440px + mobile 390px)
+cd frontend && npx vitest run && npx playwright test
+```
+
+The browser suite includes an assertion that **no request ever leaves the
+local origin** — the demo must work with Wi-Fi switched off.
 
 ---
 
