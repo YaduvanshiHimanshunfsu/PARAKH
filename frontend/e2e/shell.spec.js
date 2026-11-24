@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }, testInfo) => {
     if (!['127.0.0.1', 'localhost'].includes(url.hostname) && url.protocol.startsWith('http')) external.push(request.url())
   })
   page.on('console', (message) => {
-    if (message.type() === 'error') consoleErrors.push(message.text())
+    if (message.type() === 'error') consoleErrors.push(`${message.text()} @ ${message.location()?.url || ''}`)
   })
   testInfo.external = external
   testInfo.consoleErrors = consoleErrors
@@ -42,9 +42,11 @@ test('citizen shell renders with brand, helpline and language toggle', async ({ 
   }
 })
 
-test('unbuilt screens say so honestly', async ({ page }) => {
-  await page.goto('/investigate/login')
-  await expect(page.getByText('This screen is being built')).toBeVisible()
+test('no screen is left as a placeholder', async ({ page }) => {
+  for (const path of ['/', '/check', '/apk', '/rescue', '/help', '/learn', '/evidence', '/status', '/privacy', '/investigate/login']) {
+    await page.goto(path)
+    await expect(page.getByText('This screen is being built')).toHaveCount(0)
+  }
 })
 
 test('officer routes require sign-in', async ({ page }) => {

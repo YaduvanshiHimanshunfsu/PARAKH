@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { LoadingBlock } from '../design/ui'
 import { CitizenLayout } from './CitizenLayout'
 import { RequireOfficer } from './AuthContext'
-import { NotFound, WorkInProgress } from './pages'
+import { NotFound } from './pages'
 
 // The officer console is a separate chunk: citizens never download it.
 const OfficerLayout = lazy(() => import('./OfficerLayout').then((m) => ({ default: m.OfficerLayout })))
@@ -18,9 +18,15 @@ const LearnPage = page(() => import('../features/citizen/learn/LearnPage'), 'Lea
 const EvidencePage = page(() => import('../features/citizen/evidence/EvidencePage'), 'EvidencePage')
 const StatusPage = page(() => import('../features/citizen/status/StatusPage'), 'StatusPage')
 const PrivacyPage = page(() => import('../features/citizen/privacy/PrivacyPage'), 'PrivacyPage')
+const LoginPage = page(() => import('../features/officer/LoginPage'), 'LoginPage')
+const DashboardPage = page(() => import('../features/officer/DashboardPage'), 'DashboardPage')
+const CasesPage = page(() => import('../features/officer/CasesPage'), 'CasesPage')
+const SubmitPage = page(() => import('../features/officer/SubmitPage'), 'SubmitPage')
+const CaseDetailPage = page(() => import('../features/officer/CaseDetailPage'), 'CaseDetailPage')
+const CampaignsPage = page(() => import('../features/officer/campaigns/CampaignsPage'), 'CampaignsPage')
+const HeatlistPage = page(() => import('../features/officer/HeatlistPage'), 'HeatlistPage')
+const IdentifierPage = page(() => import('../features/officer/IdentifierPage'), 'IdentifierPage')
 const StatesGallery = import.meta.env.DEV ? lazy(() => import('../dev/StatesGallery')) : null
-
-const wip = (title, phase, source) => <WorkInProgress title={title} phase={phase} source={source} />
 
 function Lazy({ children }) {
   return (
@@ -36,8 +42,8 @@ function Lazy({ children }) {
   )
 }
 
-// Route table mirrors planversionalpha.md H.2–H.5. Each placeholder names the
-// Stitch source it will be built from, so nothing looks finished when it isn't.
+// Route table mirrors planversionalpha.md H.2–H.5. Every page is lazy-loaded;
+// the officer console is a separate chunk citizens never download.
 export const routes = [
   {
     element: <CitizenLayout />,
@@ -57,7 +63,7 @@ export const routes = [
       { path: '*', element: <NotFound /> },
     ],
   },
-  { path: '/investigate/login', element: wip('Officer login', 'H.4', 'parakh_officer_login_law_enforcement_authentication') },
+  { path: '/investigate/login', element: <Lazy><LoginPage /></Lazy> },
   {
     element: (
       <Lazy>
@@ -67,13 +73,13 @@ export const routes = [
       </Lazy>
     ),
     children: [
-      { path: '/investigate', element: wip('Command dashboard', 'H.4', 'parakh_officer_dashboard_command_centre_1') },
-      { path: '/investigate/cases', element: wip('Cases', 'H.4', 'parakh_case_table_empty_loading_error_states') },
-      { path: '/investigate/submit', element: wip('New analysis', 'H.4', 'parakh_new_forensic_analysis_evidence_ingestion') },
-      { path: '/investigate/case/:caseId', element: wip('Case dossier', 'H.4', 'parakh_case_detail_forensic_dossier_prk_20261118_k7p2qx') },
-      { path: '/investigate/campaigns', element: wip('Campaign map', 'H.4', 'parakh_campaign_intelligence_syndicate_network_graph') },
-      { path: '/investigate/heatlist', element: wip('Heat-list', 'H.4', 'parakh_heat_list_hot_identifiers_registry') },
-      { path: '/investigate/identifier/:type/:value', element: wip('Identifier pivot', 'H.5', 'to be generated in Stitch') },
+      { path: '/investigate', element: <Lazy><DashboardPage /></Lazy> },
+      { path: '/investigate/cases', element: <Lazy><CasesPage /></Lazy> },
+      { path: '/investigate/submit', element: <Lazy><SubmitPage /></Lazy> },
+      { path: '/investigate/case/:caseId', element: <Lazy><CaseDetailPage /></Lazy> },
+      { path: '/investigate/campaigns', element: <Lazy><CampaignsPage /></Lazy> },
+      { path: '/investigate/heatlist', element: <Lazy><HeatlistPage /></Lazy> },
+      { path: '/investigate/identifier/:type/:value', element: <Lazy><IdentifierPage /></Lazy> },
     ],
   },
 ]

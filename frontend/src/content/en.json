@@ -47,8 +47,6 @@
   "common.close": "Close",
   "common.cancel": "Cancel",
 
-  "wip.title": "This screen is being built",
-  "wip.body": "It is implemented in phase {phase} of planversionalpha.md from the Stitch design “{source}”.",
   "notfound.title": "Page not found",
   "notfound.body": "The address may be mistyped, or the page has moved.",
   "notfound.home": "Go to home"
