@@ -43,6 +43,10 @@ from app.schemas import (
     UrlAnalysis,
     UrlAnalyzeRequest,
     UrlRiskLevel,
+    IdentifierCheckRequest,
+    IdentifierCheckResponse,
+    PublicMeta,
+    ScamCategory,
 )
 from app.services import case_service, link_service
 from app.services.apk_analyzer import ApkAnalyzer, ApkParsingError
@@ -477,6 +481,81 @@ def _precheck_risk(url_risk: UrlRiskLevel, reported: int) -> RiskLevel:
     if url_risk is UrlRiskLevel.MEDIUM or reported >= 1:
         return RiskLevel.MEDIUM
     return RiskLevel.LOW
+
+
+@router.get("/parakh/meta", response_model=PublicMeta, summary="Facts about the running analysis engine")
+async def public_meta(request: Request, settings: Settings = Depends(get_settings)) -> PublicMeta:
+    """Rule count, categories and AI status, so the UI never invents these numbers."""
+
+    from app.data.scam_rules import SCAM_SIGNAL_RULES
+
+    return PublicMeta(
+        rule_count=len(SCAM_SIGNAL_RULES),
+        scam_categories=[category.value for category in ScamCategory],
+        ai_configured=settings.provider_is_configured,
+        offline_fallback=settings.enable_offline_fallback,
+        version=request.app.version,
+    )
+
+
+_IDENTIFIER_ADVICE: dict[RiskLevel, tuple[str, ...]] = {
+    RiskLevel.HIGH: (
+        "Do not pay, call back or share any OTP or PIN with this contact.",
+        "If you already paid, call 1930 immediately and tell your bank — the first hours matter.",
+        "Keep screenshots of the chat and payment as evidence.",
+    ),
+    RiskLevel.MEDIUM: (
+        "This appears in an earlier police case. Treat any request for money or details as a likely scam.",
+        "Verify the person or business through an official number you find yourself.",
+    ),
+    RiskLevel.LOW: (
+        "No match in verified police cases. That does not prove it is safe — scammers change numbers and IDs often.",
+        "Never send money or share an OTP or PIN because of a call, SMS or WhatsApp message alone.",
+    ),
+}
+
+
+@router.post(
+    "/parakh/identifier/check",
+    response_model=IdentifierCheckResponse,
+    dependencies=[Depends(enforce_rate_limit)],
+    summary="Check a UPI ID, phone number, domain or link against verified police cases",
+)
+async def check_identifier(payload: IdentifierCheckRequest, request: Request) -> IdentifierCheckResponse:
+    """Anonymous, read-only lookup. Nothing about the query is stored."""
+
+    database = getattr(request.app.state, "database", None)
+    result = {"type": None, "value": None, "reported_case_count": 0, "blacklisted": False, "blacklist_source": None}
+    if database is not None:
+        try:
+            async with database.session() as session:
+                result = await link_service.check_identifier(session, payload.value)
+        except Exception as exc:
+            logger.warning("identifier_check_unavailable error=%s", type(exc).__name__)
+
+    count = result["reported_case_count"]
+    if result["blacklisted"] or count >= 3:
+        risk = RiskLevel.HIGH
+    elif count >= 1:
+        risk = RiskLevel.MEDIUM
+    else:
+        risk = RiskLevel.LOW
+    return IdentifierCheckResponse(
+        input=payload.value,
+        type=result["type"],
+        value=result["value"],
+        risk_level=risk,
+        reported_case_count=count,
+        blacklisted=result["blacklisted"],
+        blacklist_source=result["blacklist_source"],
+        advice=list(_IDENTIFIER_ADVICE[risk]),
+        limitations=(
+            "Only officer-verified high-risk cases and the reviewed blacklist are searched. "
+            "No match does not mean the identifier is safe."
+            if result["type"] is not None
+            else "No UPI ID, phone number, link or other identifier was recognised in this input."
+        ),
+    )
 
 
 @router.post(

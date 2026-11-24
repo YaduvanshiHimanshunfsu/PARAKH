@@ -790,6 +790,9 @@ class HeatListEntry(BaseModel):
     value: str = Field(min_length=1, max_length=512)
     case_count: int = Field(ge=0)
     recent_case_count: int = Field(default=0, ge=0)
+    # Cases in the 7 days before the recent window, so the UI can show a real
+    # week-on-week velocity instead of an invented percentage.
+    previous_case_count: int = Field(default=0, ge=0)
     first_seen: str = Field(default="", max_length=40)
     last_seen: str = Field(default="", max_length=40)
 
@@ -951,3 +954,76 @@ class LoginResponse(BaseModel):
     username: str = Field(min_length=3, max_length=64)
     role: UserRole
     expires_at: str = Field(max_length=40)
+
+
+# --- Phase H.6: endpoints the new frontend needs ------------------------------
+
+
+class IdentifierCheckRequest(BaseModel):
+    """Citizen check of a single UPI ID, phone number, domain or link."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    value: str = Field(min_length=3, max_length=512)
+
+
+class IdentifierCheckResponse(BaseModel):
+    """Whether an identifier appears in verified police cases or the blacklist.
+
+    Counts come only from officer-submitted HIGH-risk cases: anonymous citizen
+    reports are not counted until officer verification exists (plan C.4), so
+    one person cannot make an innocent UPI ID look "reported".
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    input: str
+    type: IdentifierType | None = None
+    value: str | None = None
+    risk_level: RiskLevel
+    reported_case_count: int = Field(default=0, ge=0)
+    blacklisted: bool = False
+    blacklist_source: str | None = None
+    advice: list[str] = Field(default_factory=list)
+    limitations: str
+
+
+class PublicMeta(BaseModel):
+    """Facts about the running engine, so the UI never invents them."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    rule_count: int
+    scam_categories: list[str]
+    ai_configured: bool
+    offline_fallback: bool
+    version: str
+
+
+class DashboardSeriesPoint(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    date: str
+    high: int = 0
+    medium: int = 0
+    low: int = 0
+
+
+class DashboardSummary(BaseModel):
+    """Officer dashboard numbers, all computed from the case store."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    days: int
+    generated_at: str
+    total_cases: int
+    cases_in_period: int
+    high_risk_in_period: int
+    new_today: int
+    citizen_reports_new: int
+    unreviewed: int
+    campaigns: int
+    artifact_mix: dict[str, int]
+    risk_mix: dict[str, int]
+    series: list[DashboardSeriesPoint]
+    recent_cases: list[CaseSummary]

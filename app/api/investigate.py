@@ -35,6 +35,7 @@ from app.schemas import (
     CaseSource,
     CaseStatus,
     CaseStatusUpdate,
+    DashboardSummary,
     HeatListEntry,
     IdentifierType,
     InvestigateSubmitRequest,
@@ -48,7 +49,7 @@ from app.schemas import (
     UserRole,
     WebsiteAnalyzeRequest,
 )
-from app.services import campaign_service, case_service, link_service, report_builder
+from app.services import campaign_service, case_service, dashboard_service, link_service, report_builder
 from app.services.apk_analyzer import ApkAnalyzer, ApkParsingError
 from app.services.artifact_analyzer import ArtifactAnalyzer
 from app.services.scam_analyzer import ProviderUnavailableError
@@ -439,8 +440,9 @@ async def search_cases(
     case_status: CaseStatus | None = Query(default=None, alias="status"),
     limit: int = Query(default=25, ge=1, le=200),
     offset: int = Query(default=0, ge=0),
+    mine: bool = Query(default=False, description="Only cases this officer submitted"),
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> CaseSearchResponse:
     return await case_service.search_cases(
         session,
@@ -450,7 +452,19 @@ async def search_cases(
         status=case_status,
         limit=limit,
         offset=offset,
+        created_by=user.id if mine else None,
     )
+
+
+@router.get("/dashboard/summary", response_model=DashboardSummary, summary="Dashboard KPIs and trends")
+async def dashboard_summary(
+    days: int = Query(default=30, ge=1, le=90),
+    session: AsyncSession = Depends(get_session),
+    _: UserRecord = Depends(require_officer),
+) -> DashboardSummary:
+    """Every number on the officer dashboard, computed from the case store."""
+
+    return await dashboard_service.build_summary(session, days=days)
 
 
 @router.get("/cases/{case_id}", response_model=CaseDetail, summary="Full case detail")

@@ -211,7 +211,10 @@ def _apply_filters(
     artifact_type: ArtifactType | None,
     risk_level: RiskLevel | None,
     status: CaseStatus | None,
+    created_by: int | None = None,
 ) -> Select:
+    if created_by is not None:
+        statement = statement.where(CaseRecord.created_by == created_by)
     if artifact_type is not None:
         statement = statement.where(CaseRecord.artifact_type == artifact_type.value)
     if risk_level is not None:
@@ -247,6 +250,7 @@ async def search_cases(
     status: CaseStatus | None = None,
     limit: int = 25,
     offset: int = 0,
+    created_by: int | None = None,
 ) -> CaseSearchResponse:
     """Paginated case search for the investigation dashboard."""
 
@@ -261,6 +265,7 @@ async def search_cases(
                 artifact_type=artifact_type,
                 risk_level=risk_level,
                 status=status,
+                created_by=created_by,
             )
         )
     ).scalar_one()
@@ -274,6 +279,7 @@ async def search_cases(
                     artifact_type=artifact_type,
                     risk_level=risk_level,
                     status=status,
+                    created_by=created_by,
                 )
                 .order_by(CaseRecord.created_at.desc(), CaseRecord.id.desc())
                 .limit(limit)

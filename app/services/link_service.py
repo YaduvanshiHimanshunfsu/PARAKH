@@ -309,6 +309,23 @@ async def heat_list(
     ).all()
     recent = {(row[0], row[1]): row[2] for row in recent_rows}
 
+    previous_cutoff = recent_cutoff - timedelta(days=7)
+    previous_rows = (
+        await session.execute(
+            select(
+                IdentifierRecord.type,
+                IdentifierRecord.value,
+                func.count(func.distinct(IdentifierRecord.case_id)),
+            )
+            .where(
+                IdentifierRecord.created_at >= previous_cutoff,
+                IdentifierRecord.created_at < recent_cutoff,
+            )
+            .group_by(IdentifierRecord.type, IdentifierRecord.value)
+        )
+    ).all()
+    previous = {(row[0], row[1]): row[2] for row in previous_rows}
+
     entries: list[HeatListEntry] = []
     for type_value, value, count, first_seen, last_seen in rows:
         entries.append(
@@ -317,6 +334,7 @@ async def heat_list(
                 value=value,
                 case_count=count,
                 recent_case_count=recent.get((type_value, value), 0),
+                previous_case_count=previous.get((type_value, value), 0),
                 first_seen=_iso(first_seen),
                 last_seen=_iso(last_seen),
             )
@@ -426,3 +444,62 @@ def _iso(value: datetime | None) -> str:
     if value.tzinfo is None:
         value = value.replace(tzinfo=timezone.utc)
     return value.isoformat()
+
+
+_CHECK_PRIORITY = (
+    IdentifierType.UPI,
+    IdentifierType.PHONE,
+    IdentifierType.BANK_ACCOUNT,
+    IdentifierType.CRYPTO_ETH,
+    IdentifierType.CRYPTO_BTC,
+    IdentifierType.TELEGRAM,
+    IdentifierType.EMAIL,
+    IdentifierType.IP,
+    IdentifierType.DOMAIN,
+    IdentifierType.PACKAGE,
+)
+
+
+async def check_identifier(session: AsyncSession, raw: str) -> dict:
+    """Look up one citizen-supplied identifier against verified cases and the blacklist.
+
+    Read-only and anonymous. Only officer-submitted HIGH-risk cases count:
+    citizen reports are excluded until officer verification exists (plan C.4),
+    so nobody can make an innocent UPI ID look reported by filing reports.
+    """
+
+    from app.db.models import BlacklistEntry
+    from app.services.identifier_extractor import extract_identifiers
+
+    found = extract_identifiers(raw, include_context=False)
+    by_type = {item.type: item for item in found}
+    chosen = next((by_type[kind] for kind in _CHECK_PRIORITY if kind in by_type), None)
+    if chosen is None:
+        return {"type": None, "value": None, "reported_case_count": 0, "blacklisted": False, "blacklist_source": None}
+
+    count = (
+        await session.execute(
+            select(func.count(func.distinct(CaseRecord.id)))
+            .join(IdentifierRecord, IdentifierRecord.case_id == CaseRecord.id)
+            .where(
+                IdentifierRecord.type == chosen.type.value,
+                IdentifierRecord.value == chosen.value,
+                CaseRecord.risk_level == RiskLevel.HIGH.value,
+                CaseRecord.source != "CITIZEN",
+            )
+        )
+    ).scalar_one()
+    listed = (
+        await session.execute(
+            select(BlacklistEntry).where(
+                BlacklistEntry.type == chosen.type.value, BlacklistEntry.value == chosen.value
+            )
+        )
+    ).scalar_one_or_none()
+    return {
+        "type": chosen.type,
+        "value": chosen.value,
+        "reported_case_count": int(count or 0),
+        "blacklisted": listed is not None,
+        "blacklist_source": listed.source if listed is not None else None,
+    }
