@@ -226,3 +226,74 @@ MONEY_SOLICITATION = re.compile(
     r"\b(?:deposit|invest|pay(?:ment)?|recharge|withdraw|wallet|upi|bank\s+transfer|subscribe)\b",
     re.IGNORECASE,
 )
+
+
+# --- Hindi equivalents (planversionalpha.md B.8 step 4) --------------------
+#
+# A Hindi-language Ponzi or betting site scored zero before this: every rule
+# above is English-only. Devanagari patterns use no \b, because Python word
+# boundaries fall inside Hindi words (see tests/test_rule_patterns.py).
+
+HINDI_WEBSITE_RULES: tuple[WebsiteRule, ...] = (
+    _rule(
+        "GUARANTEED_RETURNS_HI",
+        r"(?:गारंटीड?|निश्चित|पक्का|सुनिश्चित)\s*(?:रिटर्न|मुनाफ़?ा|लाभ|कमाई)"
+        r"|(?:रोज़?ाना|रोजाना|हर\s*दिन|दैनिक)\s*(?:मुनाफ़?ा|कमाई|आय|रिटर्न)"
+        r"|पैसा\s*(?:डबल|दोगुना)",
+        ScamCategory.PONZI_MLM,
+        Severity.HIGH,
+        30,
+        "The page promises guaranteed or daily returns in Hindi. No lawful investment can "
+        "guarantee a fixed return.",
+    ),
+    _rule(
+        "REFERRAL_INCOME_HI",
+        r"रेफरल\s*(?:बोनस|आय|कमीशन)|डाउनलाइन|अपलाइन|(?:लेवल|बाइनरी)\s*(?:इनकम|आय)"
+        r"|टीम\s*(?:इनकम|आय)",
+        ScamCategory.PONZI_MLM,
+        Severity.HIGH,
+        26,
+        "Income that depends on recruiting other members is the defining feature of a Ponzi "
+        "or MLM scheme.",
+    ),
+    _rule(
+        "BETTING_HI",
+        r"सट्टा|सट्टेबाज़?ी|बेटिंग\s*आईडी|क्रिकेट\s*आईडी|मटका|रंग\s*भविष्यवाणी"
+        r"|जुआ|दांव\s*लगाएं",
+        ScamCategory.BETTING_GAMBLING,
+        Severity.HIGH,
+        26,
+        "The page advertises betting or gambling in Hindi, which is illegal in most Indian "
+        "states.",
+    ),
+    _rule(
+        "JOINING_FEE_HI",
+        r"(?:जॉइनिंग|ज्वाइनिंग|पंजीकरण|रजिस्ट्रेशन)\s*(?:शुल्क|फीस|पैकेज|राशि)"
+        r"|आईडी\s*(?:सक्रिय|एक्टिवेट)",
+        ScamCategory.PONZI_MLM,
+        Severity.MEDIUM,
+        18,
+        "An upfront joining or activation fee before any earning is a classic Ponzi entry fee.",
+    ),
+    _rule(
+        "INSTANT_LOAN_HI",
+        r"(?:तुरंत|इंस्टेंट|फ़ौरन)\s*लोन|बिना\s*(?:सिबिल|दस्तावेज़?|कागज़?)"
+        r"|सिर्फ़?\s*आधार\s*(?:से|पर)\s*लोन",
+        ScamCategory.LOAN_APP_FRAUD,
+        Severity.MEDIUM,
+        20,
+        "Instant loans with no credit check or documents indicate an unregulated lender.",
+    ),
+    _rule(
+        "WITHDRAWAL_BLOCKED_HI",
+        r"निकासी\s*(?:रोक|बंद|अवरुद्ध)|विड्रॉल\s*(?:रोक|बंद)"
+        r"|(?:और|अधिक)\s*(?:जमा|डिपॉज़िट)\s*(?:कर(?:ें|ो)|करने)\s*(?:पर|के\s*बाद)",
+        ScamCategory.PONZI_MLM,
+        Severity.HIGH,
+        24,
+        "Demanding a further deposit before a withdrawal is released is how these schemes "
+        "take the last payment.",
+    ),
+)
+
+WEBSITE_RULES = WEBSITE_RULES + HINDI_WEBSITE_RULES

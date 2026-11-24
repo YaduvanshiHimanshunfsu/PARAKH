@@ -12,7 +12,7 @@ from pydantic import ValidationError
 
 from app.config import Settings
 from app.core.provider_guard import ProviderConcurrencyGate
-from app.schemas import MediaExtractionCandidate, MediaExtractionResponse, MediaKind
+from app.schemas import InputLanguage, MediaExtractionCandidate, MediaExtractionResponse, MediaKind
 from app.services.media_validation import MediaValidationError, ValidatedMedia, sanitise_screenshot
 from app.utils.json_output import ModelOutputError, parse_json_object
 
@@ -50,8 +50,51 @@ class MediaAnalyzer:
             self._async_client = self._client.aio
         return self._async_client
 
+    def _offline_ocr(self, media: ValidatedMedia) -> MediaExtractionResponse | None:
+        """Read a screenshot with local Tesseract, if it is installed.
+
+        Returns ``None`` when OCR is unavailable or finds nothing usable, so
+        the caller still shows the honest "type the text instead" message.
+        PARAKH never guesses at unreadable text.
+        """
+
+        if media.media_kind is not MediaKind.SCREENSHOT:
+            return None
+        try:
+            import pytesseract
+            from PIL import Image
+        except ImportError:
+            return None
+
+        try:
+            import io
+
+            with Image.open(io.BytesIO(media.data)) as image:
+                text = pytesseract.image_to_string(image, lang="eng+hin")
+        except Exception as exc:  # pragma: no cover - depends on a local binary
+            logger.info("offline_ocr_unavailable error=%s", type(exc).__name__)
+            return None
+
+        cleaned = " ".join(text.split()).strip()
+        if len(cleaned) < 8:
+            return None
+        return MediaExtractionResponse(
+            media_kind=media.media_kind,
+            extracted_text=cleaned[:10_000],
+            detected_language=InputLanguage.AUTO,
+            limitations=[
+                "Read on this server with offline OCR (Tesseract), not the AI service.",
+                "OCR can misread characters. Check the text below before relying on it.",
+            ],
+        )
+
     async def extract(self, media: ValidatedMedia) -> MediaExtractionResponse:
         if not self._settings.provider_is_configured:
+            # Offline fallback for screenshots: local OCR, never invented text
+            # (planversionalpha.md B.10). Voice notes have no offline path.
+            offline = self._offline_ocr(media)
+            if offline is not None:
+                return offline
             raise MediaExtractionUnavailableError("The media provider is not configured")
 
         try:

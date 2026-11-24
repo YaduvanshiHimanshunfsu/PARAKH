@@ -161,14 +161,33 @@ def build_manifest(
     min_sdk: int = 21,
     target_sdk: int = 33,
     permissions: tuple[str, ...] = (),
+    bind_services: tuple[tuple[str, str], ...] = (),
+    receiver_actions: tuple[tuple[str, int | None], ...] = (),
 ) -> bytes:
-    """Encode a binary AndroidManifest.xml that pyaxmlparser can decode."""
+    """Encode a binary AndroidManifest.xml that pyaxmlparser can decode.
+
+    ``bind_services`` declares ``<service android:permission=...>`` entries and
+    ``receiver_actions`` declares ``<receiver><intent-filter><action/>`` with an
+    optional priority. Real malware declares accessibility abuse this way, not
+    through ``<uses-permission>``, so a fixture that only lists permissions
+    cannot exercise the detection that matters (planversionalpha.md B.7).
+    """
 
     pool = _StringPool()
     # Reserve the strings used structurally before any attribute values.
     pool.add(_ANDROID_NS)
     pool.add("android")
-    for element in ("manifest", "uses-sdk", "uses-permission", "application", "activity"):
+    for element in (
+        "manifest",
+        "uses-sdk",
+        "uses-permission",
+        "application",
+        "activity",
+        "service",
+        "receiver",
+        "intent-filter",
+        "action",
+    ):
         pool.add(element)
 
     body = bytearray()
@@ -199,6 +218,29 @@ def build_manifest(
     body += _start_element(pool, "application", [(_ANDROID_NS, "label", label)])
     body += _start_element(pool, "activity", [(_ANDROID_NS, "name", f"{package}.MainActivity")])
     body += _end_element(pool, "activity")
+
+    for service_name, bind_permission in bind_services:
+        body += _start_element(
+            pool,
+            "service",
+            [
+                (_ANDROID_NS, "name", f"{package}.{service_name}"),
+                (_ANDROID_NS, "permission", bind_permission),
+            ],
+        )
+        body += _end_element(pool, "service")
+
+    for action_name, priority in receiver_actions:
+        body += _start_element(
+            pool, "receiver", [(_ANDROID_NS, "name", f"{package}.SmsReceiver")]
+        )
+        attributes = [] if priority is None else [(_ANDROID_NS, "priority", priority)]
+        body += _start_element(pool, "intent-filter", attributes)
+        body += _start_element(pool, "action", [(_ANDROID_NS, "name", action_name)])
+        body += _end_element(pool, "action")
+        body += _end_element(pool, "intent-filter")
+        body += _end_element(pool, "receiver")
+
     body += _end_element(pool, "application")
     body += _end_element(pool, "manifest")
     body += _namespace_chunk(
@@ -223,6 +265,9 @@ def build_apk(
     include_manifest: bool = True,
     include_dex: bool = True,
     icon_png: bytes | None = None,
+    bind_services: tuple[tuple[str, str], ...] = (),
+    receiver_actions: tuple[tuple[str, int | None], ...] = (),
+    extra_files: tuple[tuple[str, bytes], ...] = (),
 ) -> bytes:
     """Assemble a synthetic but structurally valid APK."""
 
@@ -232,7 +277,12 @@ def build_apk(
             archive.writestr(
                 "AndroidManifest.xml",
                 build_manifest(
-                    package, label=label, permissions=permissions, target_sdk=target_sdk
+                    package,
+                    label=label,
+                    permissions=permissions,
+                    target_sdk=target_sdk,
+                    bind_services=bind_services,
+                    receiver_actions=receiver_actions,
                 ),
             )
         if include_dex:
@@ -244,6 +294,8 @@ def build_apk(
         if icon_png is not None:
             archive.writestr("res/drawable/ic_launcher.png", icon_png)
         archive.writestr("resources.arsc", b"\x02\x00\x0c\x00" + b"\x00" * 32)
+        for name, blob in extra_files:
+            archive.writestr(name, blob)
     return buffer.getvalue()
 
 

@@ -37,6 +37,14 @@ class Settings(BaseSettings):
     url_intelligence_enabled: bool = True
     url_tls_probe_enabled: bool = True
     url_analysis_timeout_seconds: float = 5.0
+    # How the website fetcher identifies itself. Scam sites target phones
+    # and cloak or block desktop crawlers, so a mobile profile sees the page
+    # a victim would see. Announcing ourselves as PARAKH told the operator we
+    # were looking (defect D10).
+    website_fetch_profile: str = "mobile"
+    # Optional separate egress for a pilot deployment. Off by default: the
+    # demo must not depend on an external proxy.
+    website_fetch_proxy: str | None = None
     max_urls_per_message: int = 3
 
     enable_offline_fallback: bool = True

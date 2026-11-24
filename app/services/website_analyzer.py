@@ -20,6 +20,7 @@ A JS-rendered page returns little text. That is reported as a limitation
 rather than being allowed to look like a clean result.
 """
 
+import hashlib
 import logging
 import re
 from dataclasses import dataclass, field
@@ -58,7 +59,26 @@ _THIN_CONTENT_CHARS = 400
 
 # A neutral, honest agent string. It must not impersonate a browser, and must
 # not leak anything about the operator or the person running the analysis.
-_USER_AGENT = "PARAKH-Investigation/1.0 (+static content analysis; no JavaScript)"
+# Fetch profiles. A current mobile Chrome string is the default because scam
+# pages are built for phones and often serve a harmless page to anything that
+# looks like a crawler. The profile is configurable (WEBSITE_FETCH_PROFILE) so
+# a deployment can choose to be transparent instead.
+_USER_AGENTS = {
+    "mobile": (
+        "Mozilla/5.0 (Linux; Android 14; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/140.0.0.0 Mobile Safari/537.36"
+    ),
+    "desktop": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/140.0.0.0 Safari/537.36"
+    ),
+    "transparent": "PARAKH-Investigation/1.0 (+static content analysis; no JavaScript)",
+}
+_DEFAULT_PROFILE = "mobile"
+
+
+def user_agent_for(profile: str | None) -> str:
+    return _USER_AGENTS.get((profile or _DEFAULT_PROFILE).strip().lower(), _USER_AGENTS[_DEFAULT_PROFILE])
 
 _WHITESPACE_RE = re.compile(r"\s+")
 
@@ -80,6 +100,11 @@ class FetchedPage:
     truncated: bool = False
     links: list[str] = field(default_factory=list)
     form_fields: list[str] = field(default_factory=list)
+    script_names: list[str] = field(default_factory=list)
+    image_hints: list[str] = field(default_factory=list)
+    # Exact bytes received, hashed before any normalisation. Phase E needs the
+    # hash of what the server actually sent, not of the cleaned-up text.
+    raw_sha256: str | None = None
 
 
 class WebsiteAnalyzer:
@@ -107,7 +132,11 @@ class WebsiteAnalyzer:
             timeout=_FETCH_TIMEOUT_SECONDS,
             follow_redirects=False,
             max_redirects=0,
-            headers={"User-Agent": _USER_AGENT, "Accept": "text/html,text/plain"},
+            headers={
+                "User-Agent": user_agent_for(self._settings.website_fetch_profile),
+                "Accept": "text/html,application/xhtml+xml,text/plain;q=0.9",
+                "Accept-Language": "en-IN,en;q=0.9,hi;q=0.8",
+            },
             transport=PinnedResolverTransport(pin_map),
         ) as client:
             for _ in range(_MAX_REDIRECTS + 1):
@@ -170,6 +199,7 @@ class WebsiteAnalyzer:
     ) -> FetchedPage:
         markup = raw.decode("utf-8", "replace")
         title, text, links, fields = self._parse(markup)
+        scripts, images = self._parse_assets(markup)
         return FetchedPage(
             url=original,
             final_url=final,
@@ -182,7 +212,68 @@ class WebsiteAnalyzer:
             truncated=truncated,
             links=links,
             form_fields=fields,
+            script_names=scripts,
+            image_hints=images,
+            raw_sha256=hashlib.sha256(raw).hexdigest(),
         )
+
+    @staticmethod
+    def _parse_assets(markup: str) -> tuple[list[str], list[str]]:
+        """Script basenames and image hints, for the kit fingerprint and QR scan."""
+
+        try:
+            from bs4 import BeautifulSoup
+
+            soup = BeautifulSoup(markup, "html.parser")
+        except Exception:  # pragma: no cover - parser is a hard dependency
+            return [], []
+
+        scripts: list[str] = []
+        for tag in soup.find_all("script"):
+            src = (tag.get("src") or "").strip()
+            if not src:
+                continue
+            basename = src.split("?", 1)[0].rstrip("/").rsplit("/", 1)[-1]
+            if basename and basename not in scripts:
+                scripts.append(basename.lower())
+
+        images: list[str] = []
+        for tag in soup.find_all("img"):
+            src = (tag.get("src") or "").strip()
+            alt = (tag.get("alt") or "").strip()
+            if src or alt:
+                images.append(f"{src}|{alt}"[:300])
+        return scripts[:40], images[:40]
+
+    @staticmethod
+    def kit_fingerprint(page: "FetchedPage") -> dict[str, str]:
+        """Signatures that identify the phishing *kit*, not the domain.
+
+        One kit deployed across many domains is one operator, so these become
+        linking identifiers. Clustering by kit is the approach described in
+        arXiv:2509.13186; favicon hashing follows SANS ISC's hunting method.
+        Each signature is a hash, so it never reproduces page content.
+        """
+
+        def digest(label: str, value: str) -> str:
+            return hashlib.sha256(f"{label}:{value}".encode("utf-8")).hexdigest()[:32]
+
+        fingerprint: dict[str, str] = {}
+        if page.form_fields:
+            fields = ",".join(sorted({name.strip().lower() for name in page.form_fields if name}))
+            if fields:
+                fingerprint["form_signature"] = digest("form", fields)
+        if page.script_names:
+            scripts = ",".join(sorted(set(page.script_names)))
+            fingerprint["script_signature"] = digest("script", scripts)
+        if page.title:
+            # Mask digits and brand-like capitalised words so two deployments
+            # of one kit with different bank names still collide.
+            skeleton = re.sub(r"\d+", "#", page.title.lower())
+            skeleton = _WHITESPACE_RE.sub(" ", skeleton).strip()
+            if skeleton:
+                fingerprint["title_skeleton"] = digest("title", skeleton)
+        return fingerprint
 
     @staticmethod
     def _parse(markup: str) -> tuple[str | None, str, list[str], list[str]]:
@@ -245,6 +336,21 @@ class WebsiteAnalyzer:
             categories.append(rule.category)
 
         identifiers = self._identifiers(page)
+        fingerprint = self.kit_fingerprint(page)
+        if fingerprint:
+            # A kit signature links deployments of the same phishing kit. It is
+            # recorded as a CERT_SHA256-style opaque identifier so the existing
+            # linking machinery can use it without a new identifier family.
+            combined = "|".join(f"{key}={value}" for key, value in sorted(fingerprint.items()))
+            identifiers.append(
+                Identifier(
+                    type=IdentifierType.CERT_SHA256,
+                    value=hashlib.sha256(combined.encode("utf-8")).hexdigest(),
+                    raw_value="kit:" + ",".join(sorted(fingerprint)),
+                    context="Phishing-kit fingerprint (form fields, scripts and title shape)",
+                    confidence=80,
+                )
+            )
         payment_findings, payment_score = self._payment_findings(identifiers)
         findings.extend(payment_findings)
         score += payment_score
@@ -287,6 +393,9 @@ class WebsiteAnalyzer:
                 "content_type": page.content_type,
                 "title": page.title,
                 "html_bytes": page.html_bytes,
+                "raw_sha256": page.raw_sha256,
+                "kit_fingerprint": fingerprint,
+                "fetch_profile": self._settings.website_fetch_profile,
                 "redirect_hops": page.hops,
                 "text_length": len(page.text),
                 "link_count": len(page.links),

@@ -16,9 +16,12 @@ import re
 
 from app.data.android_permissions import describe_permissions
 from app.data.apk_permission_rules import (
+    BANKING_TROJAN_CAPABILITIES,
     COMBINATION_RULES,
+    DECLARED_CAPABILITY_RULES,
     MIN_EXPECTED_TARGET_SDK,
     SINGLE_PERMISSION_RULES,
+    SMS_INTERCEPT_PRIORITY,
 )
 from app.schemas import (
     AnalysisBundle,
@@ -64,6 +67,62 @@ _FINANCE_TERMS = frozenset({
 
 _MAX_IDENTIFIER_STRINGS = 4_000
 _MAX_COMPONENT_NAMES = 40
+
+
+def _declared_findings(facts: ApkFacts) -> tuple[list[Finding], int]:
+    """Findings for capabilities declared on manifest components (B.7 step 2)."""
+
+    findings: list[Finding] = []
+    score = 0
+    declared = facts.declared or {}
+
+    for rule in DECLARED_CAPABILITY_RULES:
+        if declared.get(rule.key):
+            findings.append(
+                Finding(
+                    code=rule.code,
+                    severity=rule.severity,
+                    explanation=rule.explanation,
+                    evidence=f"<{rule.key}> declared in AndroidManifest.xml",
+                )
+            )
+            score += rule.weight
+
+    priority = facts.sms_receiver_priority
+    if declared.get("sms_receiver"):
+        high_priority = priority is not None and priority >= SMS_INTERCEPT_PRIORITY
+        findings.append(
+            Finding(
+                code="SMS_INTERCEPT_RECEIVER" if high_priority else "SMS_RECEIVER_DECLARED",
+                severity=Severity.HIGH if high_priority else Severity.MEDIUM,
+                explanation=(
+                    "The app registers a high-priority receiver for incoming SMS, so it reads "
+                    "messages before the normal messaging app and can hide bank OTPs."
+                    if high_priority
+                    else "The app receives incoming SMS, which includes bank OTPs."
+                ),
+                evidence=f"SMS_RECEIVED priority={priority}" if priority is not None else "SMS_RECEIVED receiver",
+            )
+        )
+        score += 30 if high_priority else 18
+
+    present = {key for key, value in declared.items() if value}
+    if BANKING_TROJAN_CAPABILITIES <= present:
+        findings.append(
+            Finding(
+                code="BANKING_TROJAN_SIGNATURE",
+                severity=Severity.HIGH,
+                explanation=(
+                    "This app combines screen-reading accessibility access with SMS interception. "
+                    "Together these are the defining capabilities of an Android banking trojan: "
+                    "it can see what you type and silently capture the OTP."
+                ),
+                evidence=", ".join(sorted(BANKING_TROJAN_CAPABILITIES & present)),
+            )
+        )
+        score += 30
+
+    return findings, score
 
 
 class ApkAnalyzer:
@@ -183,6 +242,10 @@ class ApkAnalyzer:
             )
             score += 18
 
+        findings_declared, declared_score = _declared_findings(facts)
+        findings.extend(findings_declared)
+        score += declared_score
+
         return findings, score
 
     # --- certificate -------------------------------------------------------
@@ -192,6 +255,21 @@ class ApkAnalyzer:
         certificate = facts.certificate
         findings: list[Finding] = []
         score = 0
+
+        if facts.packers:
+            findings.append(
+                Finding(
+                    code="PACKED_APP",
+                    severity=Severity.MEDIUM,
+                    explanation=(
+                        "The app is protected by a commercial packer, so its real code is only "
+                        "unpacked while running. Static inspection cannot see what it does. "
+                        "Packers have legitimate uses, but they also hide malware."
+                    ),
+                    evidence=", ".join(facts.packers)[:200],
+                )
+            )
+            score += 12
 
         if certificate.sha256 is None:
             findings.append(

@@ -1,6 +1,6 @@
 # PARAKH evaluation report
 
-Generated 2026-11-24 11:44 UTC by `scripts/evaluate.py`. Offline: rule engine only, no AI key, no network.
+Generated 2026-11-24 12:04 UTC by `scripts/evaluate.py`. Offline: rule engine only, no AI key, no network.
 
 > The golden set is team-written synthetic data modelled on public police and CERT-In advisory patterns. Add real R4C / cyber-cell samples before quoting these numbers externally.
 

@@ -53,6 +53,9 @@ class ApkCertificate:
     self_signed: bool = False
     debug_certificate: bool = False
     validity_days: int | None = None
+    # Which APK Signature Schemes are present. v2/v3-only packages used to be
+    # reported as unsigned (defect D9).
+    schemes: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -78,6 +81,13 @@ class ApkFacts:
     extracted_strings: list[str] = field(default_factory=list)
     limitations: list[str] = field(default_factory=list)
     manifest_parsed: bool = False
+    # Capabilities declared at component level rather than by a permission:
+    # real banking trojans bind the accessibility and notification-listener
+    # services and register a high-priority SMS receiver (defect D8).
+    declared: dict[str, bool] = field(default_factory=dict)
+    sms_receiver_priority: int | None = None
+    packers: list[str] = field(default_factory=list)
+    split_names: list[str] = field(default_factory=list)
 
 
 # --- container validation --------------------------------------------------
@@ -143,12 +153,110 @@ def parse_manifest(data: bytes, facts: ApkFacts) -> None:
         facts.min_sdk = _as_int(apk.get_min_sdk_version())
         facts.target_sdk = _as_int(apk.get_target_sdk_version())
         facts.manifest_parsed = True
+        _parse_components(apk, facts)
     except Exception as exc:
         logger.warning("apk_manifest_parse_failed error=%s", type(exc).__name__)
         facts.limitations.append(
             "The AndroidManifest could not be decoded. Package name, permissions and components "
             "are unavailable; this can indicate an obfuscated or deliberately malformed APK."
         )
+
+
+_ANDROID_NS = "{http://schemas.android.com/apk/res/android}"
+
+# Component-level declarations worth naming. Each is a capability a banking
+# trojan needs and an ordinary app almost never does.
+_BIND_PERMISSIONS = {
+    "android.permission.BIND_ACCESSIBILITY_SERVICE": "accessibility_service",
+    "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE": "notification_listener",
+    "android.permission.BIND_DEVICE_ADMIN": "device_admin",
+}
+_INTENT_ACTIONS = {
+    "android.accessibilityservice.AccessibilityService": "accessibility_service",
+    "android.service.notification.NotificationListenerService": "notification_listener",
+    "android.app.action.DEVICE_ADMIN_ENABLED": "device_admin",
+    "android.provider.Telephony.SMS_RECEIVED": "sms_receiver",
+    "android.provider.Telephony.SMS_DELIVER": "default_sms_app",
+    "android.intent.action.BOOT_COMPLETED": "boot_persistence",
+}
+
+# Native libraries and assets left behind by common commercial packers.
+_PACKER_MARKERS = {
+    "libjiagu": "Qihoo 360 Jiagu",
+    "libsecexe": "Bangcle SecNeo",
+    "libsecmain": "Bangcle SecNeo",
+    "libdexhelper": "DexProtector",
+    "libshell": "Tencent Legu",
+    "libprotectclass": "Baidu protect",
+    "libapptoolkit": "Ali packer",
+    "libnesec": "NetEase packer",
+    "libddog": "DDog packer",
+    "libfakejni": "Ijiami",
+    "libexec.so": "Ijiami",
+    "libexecmain": "Ijiami",
+}
+
+
+def _parse_components(apk: object, facts: ApkFacts) -> None:
+    """Walk the manifest tree for capabilities declared on components.
+
+    ``<uses-permission android:name="...BIND_ACCESSIBILITY_SERVICE">`` is not
+    how accessibility abuse is declared. Real malware binds the service:
+    ``<service android:permission="...BIND_ACCESSIBILITY_SERVICE">`` with an
+    intent filter. Reading only uses-permission missed every real sample.
+    """
+
+    try:
+        root = apk.get_android_manifest_xml()  # type: ignore[attr-defined]
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("apk_component_walk_failed error=%s", type(exc).__name__)
+        return
+    if root is None:
+        return
+
+    declared: dict[str, bool] = {}
+    for element in root.iter():
+        tag = str(getattr(element, "tag", "") or "")
+        attributes = getattr(element, "attrib", {}) or {}
+        bind = attributes.get(f"{_ANDROID_NS}permission") or attributes.get("permission")
+        if tag in {"service", "receiver", "activity"} and bind in _BIND_PERMISSIONS:
+            declared[_BIND_PERMISSIONS[bind]] = True
+        if tag == "action":
+            name = attributes.get(f"{_ANDROID_NS}name") or attributes.get("name")
+            capability = _INTENT_ACTIONS.get(str(name))
+            if capability:
+                declared[capability] = True
+                if capability == "sms_receiver":
+                    priority = _intent_filter_priority(element)
+                    if priority is not None:
+                        current = facts.sms_receiver_priority
+                        facts.sms_receiver_priority = max(priority, current if current is not None else priority)
+    facts.declared = declared
+
+
+def _intent_filter_priority(action_element: object) -> int | None:
+    parent = getattr(action_element, "getparent", lambda: None)()
+    if parent is None:
+        return None
+    attributes = getattr(parent, "attrib", {}) or {}
+    raw = attributes.get(f"{_ANDROID_NS}priority") or attributes.get("priority")
+    return _as_int(raw)
+
+
+def detect_packers(archive: zipfile.ZipFile) -> list[str]:
+    """Name the packer when an APK carries a known packer's native library."""
+
+    found: list[str] = []
+    for info in archive.infolist()[:_MAX_ENTRIES]:
+        lowered = info.filename.lower()
+        if not (lowered.endswith(".so") or lowered.startswith("assets/")):
+            continue
+        base = lowered.rsplit("/", 1)[-1]
+        for marker, name in _PACKER_MARKERS.items():
+            if base.startswith(marker) or marker in base:
+                if name not in found:
+                    found.append(name)
+    return found
 
 
 def _clean(value: object) -> str | None:
@@ -177,7 +285,8 @@ def parse_certificate(data: bytes, archive: zipfile.ZipFile) -> ApkCertificate:
     """
 
     certificate = ApkCertificate()
-    der = _certificate_der(data, archive)
+    der, schemes = _certificate_der(data, archive)
+    certificate.schemes = schemes
     if der is None:
         return certificate
 
@@ -205,16 +314,40 @@ def parse_certificate(data: bytes, archive: zipfile.ZipFile) -> ApkCertificate:
     return certificate
 
 
-def _certificate_der(data: bytes, archive: zipfile.ZipFile) -> bytes | None:
+def _certificate_der(data: bytes, archive: zipfile.ZipFile) -> tuple[bytes | None, list[str]]:
+    """Return the signing certificate and which schemes signed the package.
+
+    Order is v3 -> v2 -> v1: a package signed only with APK Signature Scheme
+    v2 or v3 has no PKCS#7 block in META-INF, and reading v1 alone reported
+    every modern app as unsigned (defect D9).
+    """
+
+    schemes: list[str] = []
+    best: bytes | None = None
     try:
         from pyaxmlparser import APK
 
         apk = APK(data, raw=True)
-        for der in apk.get_certificates_der_v1() if hasattr(apk, "get_certificates_der_v1") else []:
-            if der:
-                return der
+        for scheme, getter in (
+            ("v3", "get_certificates_der_v3"),
+            ("v2", "get_certificates_der_v2"),
+            ("v1", "get_certificates_der_v1"),
+        ):
+            method = getattr(apk, getter, None)
+            if method is None:
+                continue
+            try:
+                ders = [der for der in (method() or []) if der]
+            except Exception:
+                continue
+            if ders:
+                schemes.append(scheme)
+                if best is None:
+                    best = ders[0]
     except Exception:
         pass
+    if best is not None:
+        return best, schemes
 
     # Fall back to reading the PKCS#7 block straight out of META-INF.
     for info in archive.infolist():
@@ -226,8 +359,8 @@ def _certificate_der(data: bytes, archive: zipfile.ZipFile) -> bytes | None:
                 continue
             extracted = _der_from_pkcs7(blob)
             if extracted:
-                return extracted
-    return None
+                return extracted, (schemes or ["v1"])
+    return None, schemes
 
 
 def _der_from_pkcs7(blob: bytes) -> bytes | None:
@@ -290,6 +423,18 @@ def extract_strings(archive: zipfile.ZipFile) -> tuple[list[str], int]:
             continue
         scanned += len(blob)
 
+        # A DEX file has a real string table; reading it recovers non-ASCII
+        # strings and avoids opcode noise. The ASCII scan still runs over it
+        # as a fallback for packers that corrupt the table.
+        if is_dex:
+            for text in dex_strings(blob):
+                if text in seen:
+                    continue
+                seen.add(text)
+                collected.append(text)
+                if len(collected) >= _MAX_STRINGS:
+                    break
+
         for match in _ASCII_STRING_RE.finditer(blob):
             text = match.group(0).decode("ascii", "ignore").strip()
             if len(text) < 6 or text in seen:
@@ -299,7 +444,110 @@ def extract_strings(archive: zipfile.ZipFile) -> tuple[list[str], int]:
             if len(collected) >= _MAX_STRINGS:
                 break
 
+    decoded = decode_base64_strings(collected)
+    for text in decoded:
+        if text not in seen:
+            seen.add(text)
+            collected.append(text)
+
     return collected, dex_count
+
+
+def _uleb128(blob: bytes, offset: int) -> tuple[int, int]:
+    """Read an unsigned LEB128 integer; returns (value, next_offset)."""
+
+    result = 0
+    shift = 0
+    for _ in range(5):
+        if offset >= len(blob):
+            return result, offset
+        byte = blob[offset]
+        offset += 1
+        result |= (byte & 0x7F) << shift
+        if not byte & 0x80:
+            break
+        shift += 7
+    return result, offset
+
+
+def dex_strings(blob: bytes, limit: int = 40_000) -> list[str]:
+    """Read a DEX file's string table properly.
+
+    Walking ``header.string_ids_off`` and decoding each ``string_data_item``
+    (a ULEB128 length followed by MUTF-8 bytes) is more precise than scanning
+    for printable ASCII, and it recovers non-ASCII strings that the ASCII scan
+    drops. The ASCII scan stays as the fallback for assets and resources.
+    """
+
+    if len(blob) < 112 or not blob.startswith(b"dex\n"):
+        return []
+    try:
+        string_ids_size = int.from_bytes(blob[56:60], "little")
+        string_ids_off = int.from_bytes(blob[60:64], "little")
+    except Exception:
+        return []
+    if string_ids_size <= 0 or string_ids_off <= 0 or string_ids_off >= len(blob):
+        return []
+
+    out: list[str] = []
+    count = min(string_ids_size, limit)
+    end_of_table = string_ids_off + count * 4
+    if end_of_table > len(blob):
+        return []
+    for index in range(count):
+        pointer = int.from_bytes(blob[string_ids_off + index * 4: string_ids_off + index * 4 + 4], "little")
+        if pointer <= 0 or pointer >= len(blob):
+            continue
+        length, cursor = _uleb128(blob, pointer)
+        if length == 0 or length > 4_000:
+            continue
+        terminator = blob.find(b"\x00", cursor)
+        if terminator < 0:
+            continue
+        raw = blob[cursor:terminator]
+        if len(raw) > 4_000:
+            continue
+        try:
+            text = raw.decode("utf-8", "replace").strip()
+        except Exception:
+            continue
+        if len(text) >= 4:
+            out.append(text)
+    return out
+
+
+_BASE64_CANDIDATE = re.compile(r"^[A-Za-z0-9+/]{16,}={0,2}$")
+
+
+def decode_base64_strings(strings: list[str], limit: int = 500) -> list[str]:
+    """Decode Base64-looking strings whose plaintext is printable.
+
+    Scam apps hide endpoints and UPI IDs behind a single Base64 layer. The
+    decoded text is tagged so an investigator knows it was not literal.
+    """
+
+    import base64
+    import binascii
+
+    decoded: list[str] = []
+    for text in strings:
+        if len(decoded) >= limit:
+            break
+        if not _BASE64_CANDIDATE.match(text) or len(text) % 4:
+            continue
+        try:
+            raw = base64.b64decode(text, validate=True)
+        except (binascii.Error, ValueError):
+            continue
+        if len(raw) < 6:
+            continue
+        try:
+            plain = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            continue
+        if plain.isprintable() and any(char.isalnum() for char in plain):
+            decoded.append(plain.strip())
+    return decoded
 
 
 # --- icon ------------------------------------------------------------------
@@ -385,7 +633,20 @@ def inspect_apk(data: bytes) -> ApkFacts:
     facts.certificate = parse_certificate(data, archive)
     facts.extracted_strings, facts.dex_count = extract_strings(archive)
     facts.icon_dhash = icon_dhash(data, archive)
+    facts.packers = detect_packers(archive)
+    facts.split_names = [
+        info.filename
+        for info in archive.infolist()[:_MAX_ENTRIES]
+        if info.filename.lower().endswith(".apk")
+    ][:20]
 
+    if facts.packers:
+        facts.limitations.append(
+            "The app is packed with "
+            + ", ".join(facts.packers)
+            + ". Packed code is unpacked at run time, so embedded URLs and identifiers "
+            "are hidden from static inspection."
+        )
     if facts.dex_count == 0:
         facts.limitations.append("No DEX bytecode was found, so embedded code strings were not available.")
     if not facts.extracted_strings:
