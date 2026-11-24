@@ -14,6 +14,7 @@ from app.api.investigate import router as investigate_router
 from app.api.routes import router
 from app.config import get_settings
 from app.core.auth import ensure_bootstrap_officer
+from app.db.schema_check import verify_schema
 from app.core.monitoring import initialise_monitoring
 from app.core.provider_guard import ProviderConcurrencyGate
 from app.core.rate_limiter import build_rate_limiter
@@ -87,6 +88,9 @@ async def lifespan(app: FastAPI):
     # Investigation Mode. Citizen Mode above never touches the database.
     app.state.database = build_database(settings)
     await app.state.database.create_all()
+    # A database file from an earlier phase is missing columns that create_all
+    # cannot add. Fail here with an instruction rather than deep inside a query.
+    await verify_schema(app.state.database.engine)
     async with app.state.database.session() as session:
         await ensure_bootstrap_officer(session, settings)
     app.state.url_enrichment = UrlEnrichmentService(settings)

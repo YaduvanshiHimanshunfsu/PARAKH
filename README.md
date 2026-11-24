@@ -121,8 +121,14 @@ python run.py
 
 ### Load Demo Data (Recommended)
 
+> **If the backend refuses to start** with *"This database was created by an
+> older version of PARAKH"*, that is the schema check doing its job: a phase
+> added columns, and `create_all` cannot alter an existing table. Run the
+> reset below. (Alembic migrations arrive in Phase F.)
+
 ```bash
 # Recreate the schema and load 14 cross-linked demo cases
+# NOTE: this deletes every case, identifier and audit row
 .venv\Scripts\python scripts/reset_demo_db.py --yes
 
 # Create the police hierarchy and the officer accounts below
