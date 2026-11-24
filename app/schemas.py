@@ -1000,6 +1000,22 @@ class PublicMeta(BaseModel):
     version: str
 
 
+class ReportStatusResponse(BaseModel):
+    """What a citizen may learn about their own report: its stage, nothing else.
+
+    No content, identifiers, risk score or officer note is returned, so a
+    guessed reference reveals nothing about another person's report.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    reference: str
+    status: CaseStatus
+    artifact_type: ArtifactType
+    received_at: str
+    updated_at: str
+
+
 class DashboardSeriesPoint(BaseModel):
     model_config = ConfigDict(extra="forbid")
 

@@ -43,7 +43,7 @@ test('citizen shell renders with brand, helpline and language toggle', async ({ 
 })
 
 test('unbuilt screens say so honestly', async ({ page }) => {
-  await page.goto('/evidence')
+  await page.goto('/investigate/login')
   await expect(page.getByText('This screen is being built')).toBeVisible()
 })
 
@@ -59,7 +59,7 @@ test('dev-only states gallery is not in the production build', async ({ page }) 
 
 // Every visible element must fit inside the viewport (not just the document),
 // checked after web fonts load so icon ligatures have their real width.
-for (const path of ['/', '/check', '/check?mode=email', '/check?mode=qr', '/check?mode=screenshot', '/result', '/apk', '/rescue', '/help', '/learn', '/evidence', '/investigate/login', '/no-such-page']) {
+for (const path of ['/', '/check', '/check?mode=email', '/check?mode=qr', '/check?mode=screenshot', '/result', '/apk', '/rescue', '/rescue?exposure=SENT_MONEY', '/help', '/learn', '/evidence', '/status', '/status/PRK-20261124-ABC234', '/privacy', '/investigate/login', '/no-such-page']) {
   test(`no element overflows the viewport on ${path}`, async ({ page }) => {
     await page.goto(path)
     await page.evaluate(() => document.fonts.ready)

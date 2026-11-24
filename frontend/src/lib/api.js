@@ -182,6 +182,7 @@ export const citizenApi = {
   reportToPolice: (payload) => request('/parakh/report-to-police', { method: 'POST', json: payload }),
   identifierCheck: (value) => request('/parakh/identifier/check', { method: 'POST', json: { value } }),
   meta: () => request('/parakh/meta'),
+  reportStatus: (reference) => request(checked(route`/parakh/report/${reference}/status`)),
 }
 
 // --- officer API (bearer token, scoped server-side) --------------------------

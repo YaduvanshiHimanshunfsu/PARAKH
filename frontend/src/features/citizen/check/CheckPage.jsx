@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { Button, ButtonLink, Card, ConsentCheckbox, FileDrop, Icon, IdentifierChip, Segmented, Stepper, useToast } from '../../../design/ui'
 import { citizenApi } from '../../../lib/api'
@@ -66,8 +66,8 @@ function SampleButton({ onUse }) {
   )
 }
 
-function MessageMode({ check }) {
-  const [text, setText] = useState('')
+function MessageMode({ check, initialText = '' }) {
+  const [text, setText] = useState(initialText)
   const [language, setLanguage] = useState('auto')
   const tooShort = text.trim().length < 3
   return (
@@ -455,6 +455,9 @@ export function CheckPage() {
   const requested = params.get('mode')
   const mode = MODES.some((item) => item.value === requested) ? requested : 'message'
   const check = useCheck()
+  // Learn → "Check this example" passes the text in router state (never the URL).
+  const { state } = useLocation()
+  const prefill = typeof state?.text === 'string' ? state.text.slice(0, 5000) : ''
 
   return (
     <div className="mx-auto max-w-[1280px] px-4 py-8 md:px-8">
@@ -475,7 +478,7 @@ export function CheckPage() {
             <AnalysingPanel />
           ) : (
             <Card className="p-5 md:p-6">
-              {mode === 'message' && <MessageMode check={check} />}
+              {mode === 'message' && <MessageMode check={check} initialText={prefill} />}
               {mode === 'link' && <LinkMode check={check} />}
               {mode === 'email' && <EmailMode check={check} />}
               {(mode === 'screenshot' || mode === 'voice') && <MediaMode key={mode} kind={mode} check={check} />}

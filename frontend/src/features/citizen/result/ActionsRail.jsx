@@ -8,7 +8,7 @@ import { explainPayloadFlags } from './normalise'
 
 const selectClass = 'h-11 w-full rounded-chip border-[1.5px] border-line bg-white px-3 text-body-md outline-none focus:border-primary'
 
-export function ExposurePicker({ value, onChange }) {
+export function ExposurePicker({ value, onChange, model }) {
   return (
     <Card className="p-5">
       <label htmlFor="exposure" className="text-title-md text-ink">
@@ -23,7 +23,7 @@ export function ExposurePicker({ value, onChange }) {
       </select>
       {value !== 'RECEIVED_ONLY' && (
         <ButtonLink
-          to={`/rescue?exposure=${value}`}
+          to={`/rescue?exposure=${value}&verdict=${model.verdict}&category=${model.category || 'UNKNOWN'}`}
           variant="danger"
           block
           icon="emergency"

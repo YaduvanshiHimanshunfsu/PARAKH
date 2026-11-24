@@ -12,6 +12,12 @@ const HomePage = page(() => import('../features/citizen/home/HomePage'), 'HomePa
 const CheckPage = page(() => import('../features/citizen/check/CheckPage'), 'CheckPage')
 const ResultPage = page(() => import('../features/citizen/result/ResultPage'), 'ResultPage')
 const ApkPage = page(() => import('../features/citizen/apk/ApkPage'), 'ApkPage')
+const RescuePage = page(() => import('../features/citizen/rescue/RescuePage'), 'RescuePage')
+const HelpPage = page(() => import('../features/citizen/help/HelpPage'), 'HelpPage')
+const LearnPage = page(() => import('../features/citizen/learn/LearnPage'), 'LearnPage')
+const EvidencePage = page(() => import('../features/citizen/evidence/EvidencePage'), 'EvidencePage')
+const StatusPage = page(() => import('../features/citizen/status/StatusPage'), 'StatusPage')
+const PrivacyPage = page(() => import('../features/citizen/privacy/PrivacyPage'), 'PrivacyPage')
 const StatesGallery = import.meta.env.DEV ? lazy(() => import('../dev/StatesGallery')) : null
 
 const wip = (title, phase, source) => <WorkInProgress title={title} phase={phase} source={source} />
@@ -40,12 +46,13 @@ export const routes = [
       { path: '/check', element: <Lazy><CheckPage /></Lazy> },
       { path: '/result', element: <Lazy><ResultPage /></Lazy> },
       { path: '/apk', element: <Lazy><ApkPage /></Lazy> },
-      { path: '/rescue', element: wip('Emergency rescue', 'H.3', 'parakh_cyber_victim_rescue_emergency_sop') },
-      { path: '/help', element: wip('Official help directory', 'H.3', 'parakh_official_help_directory_organisation_verifier') },
-      { path: '/learn', element: wip('Scam explorer', 'H.3', 'parakh_scam_explorer_cyber_defence_academy') },
-      { path: '/evidence', element: wip('Evidence locker', 'H.5', 'to be generated in Stitch') },
-      { path: '/status/:reference', element: wip('Report status', 'H.5', 'to be generated in Stitch') },
-      { path: '/privacy', element: wip('Privacy', 'H.3', 'plain page') },
+      { path: '/rescue', element: <Lazy><RescuePage /></Lazy> },
+      { path: '/help', element: <Lazy><HelpPage /></Lazy> },
+      { path: '/learn', element: <Lazy><LearnPage /></Lazy> },
+      { path: '/evidence', element: <Lazy><EvidencePage /></Lazy> },
+      { path: '/status', element: <Lazy><StatusPage /></Lazy> },
+      { path: '/status/:reference', element: <Lazy><StatusPage /></Lazy> },
+      { path: '/privacy', element: <Lazy><PrivacyPage /></Lazy> },
       ...(StatesGallery ? [{ path: '/__states', element: <Lazy><StatesGallery /></Lazy> }] : []),
       { path: '*', element: <NotFound /> },
     ],

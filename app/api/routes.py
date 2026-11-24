@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile, status
 from fastapi.concurrency import run_in_threadpool
@@ -46,6 +47,7 @@ from app.schemas import (
     IdentifierCheckRequest,
     IdentifierCheckResponse,
     PublicMeta,
+    ReportStatusResponse,
     ScamCategory,
 )
 from app.services import case_service, link_service
@@ -495,6 +497,42 @@ async def public_meta(request: Request, settings: Settings = Depends(get_setting
         ai_configured=settings.provider_is_configured,
         offline_fallback=settings.enable_offline_fallback,
         version=request.app.version,
+    )
+
+
+_REFERENCE_PATTERN = re.compile(r"^PRK-\d{8}-[A-Z0-9]{6}$")
+
+
+@router.get(
+    "/parakh/report/{reference}/status",
+    response_model=ReportStatusResponse,
+    dependencies=[Depends(enforce_rate_limit)],
+    summary="Stage of a citizen report, by its reference",
+)
+async def report_status(reference: str, request: Request) -> ReportStatusResponse:
+    """Only citizen-filed cases are visible here, and only their stage.
+
+    Officer-created cases answer 404 exactly like unknown references, so this
+    endpoint cannot be used to confirm that an internal case exists.
+    """
+
+    reference = reference.strip().upper()
+    not_found = HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No citizen report has this reference.")
+    if not _REFERENCE_PATTERN.fullmatch(reference):
+        raise not_found
+    database = getattr(request.app.state, "database", None)
+    if database is None:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Report tracking is not available.")
+    async with database.session() as session:
+        case = await case_service.get_case(session, reference)
+    if case is None or case.source != CaseSource.CITIZEN.value:
+        raise not_found
+    return ReportStatusResponse(
+        reference=case.case_id,
+        status=case.status,
+        artifact_type=case.artifact_type,
+        received_at=case.created_at.isoformat(),
+        updated_at=(case.updated_at or case.created_at).isoformat(),
     )
 
 

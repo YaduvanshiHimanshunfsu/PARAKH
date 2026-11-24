@@ -118,7 +118,7 @@ export function ResultView({ model }) {
           <Limitations items={model.limitations} source={model.source} notice={model.notice} />
         </div>
         <aside className="min-w-0 space-y-4">
-          <ExposurePicker value={exposure} onChange={setExposure} />
+          <ExposurePicker value={exposure} onChange={setExposure} model={model} />
           <SafeNextStep model={model} exposure={exposure} />
           <ExplainSimply key={exposure} model={model} exposure={exposure} />
           <ReportToPolice model={model} />

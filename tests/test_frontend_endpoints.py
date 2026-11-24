@@ -127,3 +127,35 @@ def test_heatlist_entries_carry_previous_week_count(client: TestClient) -> None:
     client.post("/api/v1/investigate/submit", json={"artifact_type": "MESSAGE", "content": PONZI}, headers=headers)
     entries = client.get("/api/v1/investigate/heatlist", headers=headers).json()
     assert entries and all("previous_case_count" in entry for entry in entries)
+
+
+def test_report_status_shows_only_the_stage_of_a_citizen_report(client: TestClient) -> None:
+    filed = client.post(
+        "/api/v1/parakh/report-to-police",
+        json={"artifact_type": "MESSAGE", "content": PONZI, "consent": True, "reporter_note": "got it on WhatsApp"},
+    )
+    assert filed.status_code == 201, filed.text
+    reference = filed.json()["reference"]
+
+    body = client.get(f"/api/v1/parakh/report/{reference.lower()}/status").json()
+    assert body["reference"] == reference
+    assert body["status"] == "NEW"
+    assert body["artifact_type"] == "MESSAGE"
+    # Nothing about the content, identifiers, score or notes is exposed.
+    assert set(body) == {"reference", "status", "artifact_type", "received_at", "updated_at"}
+
+    patched = client.patch(f"/api/v1/investigate/cases/{reference}", json={"status": "UNDER_REVIEW"}, headers=auth(client))
+    assert patched.status_code == 200, patched.text
+    assert client.get(f"/api/v1/parakh/report/{reference}/status").json()["status"] == "UNDER_REVIEW"
+
+
+def test_report_status_hides_officer_cases_and_rejects_malformed_references(client: TestClient) -> None:
+    officer_case = client.post(
+        "/api/v1/investigate/submit", json={"artifact_type": "MESSAGE", "content": PONZI}, headers=auth(client)
+    ).json()["case_id"]
+
+    hidden = client.get(f"/api/v1/parakh/report/{officer_case}/status")
+    unknown = client.get("/api/v1/parakh/report/PRK-20260101-ZZZZZZ/status")
+    assert hidden.status_code == unknown.status_code == 404
+    assert hidden.json() == unknown.json()
+    assert client.get("/api/v1/parakh/report/not-a-reference/status").status_code == 404
