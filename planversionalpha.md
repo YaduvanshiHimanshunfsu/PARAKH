@@ -119,6 +119,14 @@ So:
 
 ### 1.4 Frontend status (Revision 2, checked 24 Nov 2026)
 
+> **Update (24 Nov 2026, after H.0–H.4):** the table below records the state *before* Phase H. The new app now exists:
+> commits `a37368b` (H.0), `36e9712` (H.2 citizen core), `1d4e5e3` (H.3 citizen support + report-status endpoint),
+> `ada5c55` (H.4 officer console) on branch `alpha/frontend-and-eval`. All 20 routes are real screens wired to the
+> backend; no placeholders remain. Tests: 94 Vitest, 84 Playwright (1440 px and 390 px, offline-origin check,
+> overflow check on populated pages), 320 pytest. A live run against FastAPI serving `frontend/dist` passed:
+> citizen check → consented report → officer submissions → campaign detected → officer sets UNDER_REVIEW →
+> citizen status page shows it → citizen identifier check counts only officer-verified cases.
+
 | Item | State |
 |---|---|
 | `frontend/src`, `frontend/dist`, `frontend/e2e`, `node_modules` | **Removed.** `index.html` still points to `/src/main.jsx`, so `npm run dev` / `npm run build` fail and FastAPI serves no UI (`app/main.py` only mounts the SPA if `frontend/dist/index.html` exists) |
@@ -1274,13 +1282,20 @@ Every new endpoint gets a pytest and an OpenAPI schema. The frontend only calls 
 
 ### H.9 Exit criteria
 
-- [ ] H.0 scaffold builds; tokens, fonts and icons are self-hosted; **no CDN or Google URLs** in `frontend/dist` (`check_ui_claims.py` passes)
-- [ ] All H.2 citizen routes work end-to-end against the real backend, offline, at 1440 and 390 px, with no horizontal overflow
-- [ ] All H.4 officer routes work against the real backend; every number shown comes from an API response (spot-check list in `DEMO.md`)
-- [ ] H.1 honesty table fully resolved: no CrPC / 65B / IPC references, no ISO / live-integration / NPCI / sandbox / deepfake claims, no safe certificates, no officer signatures or seals, no hot-linked images
-- [ ] Every screen uses the `StateBlock` empty / loading / error states; the dev-only `/__states` gallery renders them all
-- [ ] E2E suite green offline; axe shows no serious issues; zero CSP violations
-- [ ] H.5 screens needed for the demo storyline (identifier pivot, action pack, queue, document review, evidence) are designed and built, or explicitly cut from the storyline in Phase I
+Status as of 24 Nov 2026 (commits `a37368b`, `36e9712`, `1d4e5e3`, `ada5c55`):
+
+- [x] H.0 scaffold builds; tokens, fonts and icons are self-hosted; **no CDN or Google URLs** in `frontend/dist` (`check_ui_claims.py` passes)
+- [x] All H.2 citizen routes work end-to-end against the real backend at 1440 px (live run) and 390 px (Playwright, mocked API), with no horizontal overflow; e2e fails on any request that leaves the local origin
+- [ ] All H.4 officer routes work against the real backend; every number shown comes from an API response — **routes done and verified live; the `DEMO.md` spot-check list is still to write**
+- [x] H.1 honesty table resolved: `check_ui_claims.py` passes; unverifiable Stitch blocks (district choropleth, bank hotline grid, legal-aid partners, downloadable posters, SSO/biometric login) were left out and are labelled where a gap is visible
+- [x] Every data screen has loading / empty / error states (`StateBlock` or the same blocks used directly); the dev-only `/__states` gallery renders them
+- [ ] E2E suite green offline (**done**); axe scan (**not yet run**); explicit CSP-violation check in the browser (**not yet run**)
+- [ ] H.5 screens: identifier pivot, evidence locker and report status are **built**; action pack, review queue and document review are **not built** — build or cut them from the Phase I storyline
+
+Follow-ups found while building:
+- Material Symbols font is 4 MB; subset it to the icons used (an icon-name check already exists in the build notes).
+- Chart risk colours (`CHART_RISK` in `Charts.jsx`) are separate from the text risk tokens because the amber/red pair failed the normal-vision separation check; amber is below 3:1 on white, so every chart using it ships a table view.
+- The report-status endpoint exposes only stage and dates for citizen-filed cases; officer cases answer 404 like unknown references.
 
 ---
 
