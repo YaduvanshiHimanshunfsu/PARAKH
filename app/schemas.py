@@ -659,8 +659,16 @@ class CaseSource(str, Enum):
 
 class UserRole(str, Enum):
     CITIZEN = "CITIZEN"
+    # OFFICER is the single shared account that existed before Phase C. It is
+    # kept so an existing deployment keeps working; new accounts use one of
+    # the specific roles below (app/core/permissions.py).
     OFFICER = "OFFICER"
     ADMIN = "ADMIN"
+    OPERATOR = "OPERATOR"
+    IO = "IO"
+    STATION_HEAD = "STATION_HEAD"
+    SUPERVISOR = "SUPERVISOR"
+    STATE_VIEWER = "STATE_VIEWER"
 
 
 class Identifier(BaseModel):
@@ -988,6 +996,8 @@ class LoginRequest(BaseModel):
 
     username: str = Field(min_length=3, max_length=64)
     password: str = Field(min_length=8, max_length=256)
+    # Required only for roles listed in MFA_REQUIRED_ROLES that have enrolled.
+    totp_code: str | None = Field(default=None, min_length=6, max_length=8)
 
 
 class LoginResponse(BaseModel):
@@ -1086,3 +1096,60 @@ class DashboardSummary(BaseModel):
     risk_mix: dict[str, int]
     series: list[DashboardSeriesPoint]
     recent_cases: list[CaseSummary]
+
+
+class OffenceAct(str, Enum):
+    IT_ACT = "IT_ACT"
+    BNS = "BNS"
+    BOTH = "BOTH"
+    UNKNOWN = "UNKNOWN"
+
+
+class CaseAssignRequest(BaseModel):
+    """Assign a case to an officer, optionally recording the offence act."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    assignee_username: str = Field(min_length=3, max_length=64)
+    offence_act: OffenceAct | None = None
+    reason: str | None = Field(default=None, max_length=500)
+
+
+class CaseTransferRequest(BaseModel):
+    """Move a case to another unit. The reason is mandatory and audited."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    unit_code: str = Field(min_length=2, max_length=40)
+    reason: str = Field(min_length=5, max_length=500)
+
+
+class AuditEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    seq: int
+    at: str
+    actor_name: str
+    actor_role: str
+    action: str
+    target_type: str
+    target_id: str
+    details: dict = Field(default_factory=dict)
+
+
+class AuditChainStatus(BaseModel):
+    """Whether the audit chain verifies, computed live over the stored rows."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    intact: bool
+    events: int
+    broken_at: int | None = None
+    summary: str
+
+
+class AuditTrailResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    status: AuditChainStatus
+    entries: list[AuditEntry] = Field(default_factory=list)

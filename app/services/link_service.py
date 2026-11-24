@@ -19,13 +19,14 @@ import logging
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import CaseRecord, IdentifierRecord
 from app.data.protected_brands import is_official_domain
 from app.services.identifier_roles import LINKING_ROLES
 from app.schemas import (
+    CaseSource,
     CaseSummary,
     HeatListEntry,
     Identifier,
@@ -85,6 +86,19 @@ def _linking_roles_only(statement):
     """Restrict a query to identifiers that may tie cases together."""
 
     return statement.where(IdentifierRecord.role.in_(_LINKING_ROLE_VALUES))
+
+
+def _verified_cases_only(statement):
+    """Exclude citizen reports an officer has not confirmed yet.
+
+    Anyone can POST a citizen report, so counting unverified ones would let a
+    stranger put any number on the heat-list or make an innocent UPI ID look
+    "previously reported" (planversionalpha.md C.4).
+    """
+
+    return statement.where(
+        or_(CaseRecord.source != CaseSource.CITIZEN.value, CaseRecord.verified.is_(True))
+    )
 
 GENERIC_HOSTS = frozenset({
     "t.me", "telegram.me", "telegram.org", "wa.me", "whatsapp.com", "chat.whatsapp.com",
@@ -314,7 +328,9 @@ async def heat_list(
         func.min(IdentifierRecord.created_at).label("first_seen"),
         func.max(IdentifierRecord.created_at).label("last_seen"),
     ).group_by(IdentifierRecord.type, IdentifierRecord.value)
-    statement = _linking_roles_only(statement)
+    statement = _verified_cases_only(
+        _linking_roles_only(statement).join(CaseRecord, CaseRecord.id == IdentifierRecord.case_id)
+    )
 
     if identifier_type is not None:
         statement = statement.where(IdentifierRecord.type == identifier_type.value)
@@ -457,6 +473,10 @@ async def reported_matches(
                 IdentifierRecord.value.in_({value for _, value in keys}),
                 CaseRecord.risk_level == RiskLevel.HIGH.value,
                 IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
+                or_(
+                    CaseRecord.source != CaseSource.CITIZEN.value,
+                    CaseRecord.verified.is_(True),
+                ),
             )
             .group_by(IdentifierRecord.type, IdentifierRecord.value)
         )

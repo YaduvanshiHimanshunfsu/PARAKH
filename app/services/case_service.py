@@ -15,6 +15,7 @@ from sqlalchemy import Select, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.services import identifier_roles
+from app.services.scoping import can_see_case, scope_filter
 from app.db.models import CaseRecord, FindingRecord, IdentifierRecord, UserRecord, new_case_id
 from app.schemas import (
     AnalysisBundle,
@@ -151,6 +152,9 @@ async def create_case(
         content_sha256=bundle.content_sha256 or (content_hash(text) if text else None),
         simhash=bundle.simhash or (simhash(text) if _supports_similarity(bundle, text) else None),
         reporter_note=reporter_note,
+        unit_id=getattr(user, "unit_id", None) if user is not None else None,
+        unit_path=_unit_path_for(user),
+        verified=source is not CaseSource.CITIZEN,
         details=bundle.details or {},
         created_by=user.id if user else None,
     )
@@ -201,10 +205,33 @@ async def create_case(
     return case
 
 
-async def get_case(session: AsyncSession, case_id: str) -> CaseRecord | None:
-    return (
+def _unit_path_for(user) -> str:
+    """The unit path a new case inherits from the officer who filed it."""
+
+    if user is None:
+        return "/"
+    unit = getattr(user, "unit", None)
+    if unit is not None and getattr(unit, "path", None):
+        return unit.path
+    return getattr(user, "unit_path", None) or "/"
+
+
+async def get_case(session: AsyncSession, case_id: str, viewer=None) -> CaseRecord | None:
+    """Fetch one case, or ``None`` if it is outside the viewer's jurisdiction.
+
+    Out of jurisdiction returns None rather than raising, so the endpoint
+    answers 404 exactly as it does for an unknown case id. A 403 would confirm
+    that the case exists, which is itself information about another district.
+    """
+
+    case = (
         await session.execute(select(CaseRecord).where(CaseRecord.case_id == case_id))
     ).scalar_one_or_none()
+    if case is None:
+        return None
+    if viewer is not None and not can_see_case(viewer, case):
+        return None
+    return case
 
 
 def _apply_filters(
@@ -254,21 +281,25 @@ async def search_cases(
     limit: int = 25,
     offset: int = 0,
     created_by: int | None = None,
+    viewer=None,
 ) -> CaseSearchResponse:
-    """Paginated case search for the investigation dashboard."""
+    """Paginated case search, scoped to the viewer's jurisdiction."""
 
     limit = max(1, min(limit, 200))
     offset = max(0, offset)
 
     total = (
         await session.execute(
-            _apply_filters(
+            scope_filter(
+                _apply_filters(
                 select(func.count(CaseRecord.id)),
                 query=query,
                 artifact_type=artifact_type,
                 risk_level=risk_level,
                 status=status,
                 created_by=created_by,
+                ),
+                viewer,
             )
         )
     ).scalar_one()
@@ -276,13 +307,16 @@ async def search_cases(
     rows = (
         (
             await session.execute(
-                _apply_filters(
+                scope_filter(
+                    _apply_filters(
                     select(CaseRecord),
                     query=query,
                     artifact_type=artifact_type,
                     risk_level=risk_level,
                     status=status,
                     created_by=created_by,
+                    ),
+                    viewer,
                 )
                 .order_by(CaseRecord.created_at.desc(), CaseRecord.id.desc())
                 .limit(limit)

@@ -52,9 +52,22 @@ class UserRecord(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
+    # Phase C: rank decides what the law allows (IT Act s.78 reserves
+    # investigation to an Inspector and above); role decides what the product
+    # allows; unit decides what they can see.
+    display_name: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    rank: Mapped[str | None] = mapped_column(String(16), nullable=True)
+    unit_id: Mapped[int | None] = mapped_column(ForeignKey("units.id", ondelete="SET NULL"), nullable=True)
+    failed_logins: Mapped[int] = mapped_column(Integer, default=0)
+    locked_until: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    totp_secret: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
     tokens: Mapped[list["AuthTokenRecord"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
+    # Eagerly joined: jurisdiction scoping needs the unit path on every
+    # request, and a lazy load would raise under async SQLAlchemy.
+    unit: Mapped["UnitRecord | None"] = relationship(lazy="joined")
 
 
 class AuthTokenRecord(Base):
@@ -97,6 +110,22 @@ class CaseRecord(Base):
     officer_note: Mapped[str | None] = mapped_column(Text, nullable=True)
     details: Mapped[dict] = mapped_column(JSON, default=dict)
 
+    # Phase C: which unit owns the case, copied as a path for prefix scoping.
+    unit_id: Mapped[int | None] = mapped_column(ForeignKey("units.id", ondelete="SET NULL"), nullable=True)
+    unit_path: Mapped[str] = mapped_column(String(400), default="/", index=True)
+    assigned_to: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    fir_no: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    ncrp_ack_no: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    offence_act: Mapped[str] = mapped_column(String(16), default="UNKNOWN")
+    # Stored in paise, so no floating-point money.
+    amount_lost: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    victim_count: Mapped[int] = mapped_column(Integer, default=1)
+    priority: Mapped[str] = mapped_column(String(4), default="P3", index=True)
+    # A citizen report only counts toward the heat-list once an officer has
+    # confirmed it (planversionalpha.md C.4), which stops the public endpoint
+    # from poisoning police intelligence.
+    verified: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
+
     created_by: Mapped[int | None] = mapped_column(
         ForeignKey("users.id", ondelete="SET NULL"), nullable=True
     )
@@ -124,6 +153,52 @@ class FindingRecord(Base):
     evidence: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     case: Mapped[CaseRecord] = relationship(back_populates="findings")
+
+
+class UnitRecord(Base):
+    """A police unit: state, range, district, circle or station.
+
+    ``path`` is a materialised path such as ``/RJ/JPR-RANGE/JPR-COMM/JPR-CYBER-PS/``.
+    "Everything under my unit" then becomes one indexed prefix query rather
+    than a recursive one, and it behaves identically on SQLite and Postgres
+    (planversionalpha.md C.1).
+    """
+
+    __tablename__ = "units"
+    __table_args__ = (Index("ix_unit_path", "path"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    code: Mapped[str] = mapped_column(String(40), unique=True, index=True)
+    name: Mapped[str] = mapped_column(String(160))
+    type: Mapped[str] = mapped_column(String(16))
+    parent_id: Mapped[int | None] = mapped_column(ForeignKey("units.id", ondelete="SET NULL"), nullable=True)
+    path: Mapped[str] = mapped_column(String(400), default="/")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class AuditEvent(Base):
+    """Append-only, tamper-evident record of who did what.
+
+    Each row hashes the previous row's hash together with its own canonical
+    body, so altering or deleting any row breaks every link after it and
+    ``verify_chain`` reports exactly where (planversionalpha.md C.5).
+    """
+
+    __tablename__ = "audit_events"
+    __table_args__ = (Index("ix_audit_target", "target_type", "target_id"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    seq: Mapped[int] = mapped_column(Integer, unique=True, index=True)
+    at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
+    actor_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    actor_name: Mapped[str] = mapped_column(String(64), default="system")
+    actor_role: Mapped[str] = mapped_column(String(20), default="SYSTEM")
+    action: Mapped[str] = mapped_column(String(40), index=True)
+    target_type: Mapped[str] = mapped_column(String(24), default="")
+    target_id: Mapped[str] = mapped_column(String(64), default="")
+    details: Mapped[dict] = mapped_column(JSON, default=dict)
+    prev_hash: Mapped[str] = mapped_column(String(64))
+    entry_hash: Mapped[str] = mapped_column(String(64))
 
 
 class IdentifierRecord(Base):

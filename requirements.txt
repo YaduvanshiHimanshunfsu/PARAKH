@@ -37,3 +37,5 @@ dkimpy>=1.1,<2.0
 phonenumbers>=8.13,<10
 # QR decoding on fetched pages (B.8). Prebuilt wheels on Windows/Linux.
 zxing-cpp>=2.2,<3
+# Optional TOTP MFA for supervisor and admin accounts (planversionalpha.md C.4).
+pyotp>=2.9,<3

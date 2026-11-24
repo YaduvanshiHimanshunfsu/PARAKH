@@ -51,11 +51,21 @@ class Settings(BaseSettings):
     rate_limit_requests: int = 20
     rate_limit_window_seconds: int = 60
     daily_anonymous_limit: int = Field(default=120, ge=10, le=2_000)
+
+    # Login hardening (planversionalpha.md C.4). Failures are counted per
+    # account; the lock doubles on each further burst up to a day.
+    login_lockout_threshold: int = Field(default=5, ge=3, le=20)
+    login_lockout_minutes: int = Field(default=15, ge=1, le=240)
+    login_lockout_max_minutes: int = Field(default=240, ge=15, le=1_440)
+    mfa_required_roles: str = "SUPERVISOR,ADMIN"
     upstash_redis_rest_url: SecretStr | None = None
     upstash_redis_rest_token: SecretStr | None = None
     rate_limit_backend_timeout_seconds: float = Field(default=2.0, ge=0.2, le=10.0)
     rate_limit_fail_open: bool = False
-    trust_proxy_headers: bool = True
+    # Off by default: when PARAKH is reachable directly, a client can set
+    # X-Forwarded-For itself and evade the per-IP rate limit. Turn it on
+    # only behind a proxy that overwrites the header.
+    trust_proxy_headers: bool = False
     provider_max_concurrent_requests: int = Field(default=4, ge=1, le=32)
     provider_queue_wait_seconds: float = Field(default=3.0, ge=0.1, le=15.0)
     sentry_dsn: SecretStr | None = None
@@ -86,7 +96,7 @@ class Settings(BaseSettings):
     # values are set; there is deliberately no self-registration.
     officer_username: str | None = None
     officer_password: SecretStr | None = None
-    auth_token_ttl_hours: int = Field(default=12, ge=1, le=720)
+    auth_token_ttl_hours: int = Field(default=8, ge=1, le=720)
 
     # APKs exceed the global request ceiling, so the APK route carries its own
     # limit rather than widening the limit on every text endpoint (ADR-004).

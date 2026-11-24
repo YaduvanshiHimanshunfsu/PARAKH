@@ -130,8 +130,10 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=cors_origins,
         allow_credentials=False,
-        allow_methods=["GET", "POST"],
-        allow_headers=["Content-Type"],
+        # The officer console sends PATCH with a bearer token. Without these
+        # a cross-origin deployment silently fails every case update.
+        allow_methods=["GET", "POST", "PATCH", "OPTIONS"],
+        allow_headers=["Content-Type", "Authorization"],
         max_age=600,
     )
     
