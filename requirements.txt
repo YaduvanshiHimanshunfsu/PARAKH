@@ -34,3 +34,6 @@ httpx>=0.27,<1.0
 beautifulsoup4>=4.12,<5.0
 dnspython>=2.6,<3.0
 dkimpy>=1.1,<2.0
+phonenumbers>=8.13,<10
+# QR decoding on fetched pages (B.8). Prebuilt wheels on Windows/Linux.
+zxing-cpp>=2.2,<3

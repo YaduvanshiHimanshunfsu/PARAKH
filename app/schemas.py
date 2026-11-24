@@ -20,7 +20,10 @@ class Severity(str, Enum):
 
 class AnalysisSource(str, Enum):
     AI = "AI"
+    # The reviewed rule engine alone (AI not configured or unavailable).
     RULE_FALLBACK = "RULE_FALLBACK"
+    # AI verdict fused with the rule engine (planversionalpha.md B.9).
+    AI_RULES = "AI+RULES"
 
 
 class MediaKind(str, Enum):
@@ -155,6 +158,13 @@ class ScamCategory(str, Enum):
     PONZI_MLM = "PONZI_MLM"
     BETTING_GAMBLING = "BETTING_GAMBLING"
     UTILITY_BILL_SCAM = "UTILITY_BILL_SCAM"
+    # Phase B typologies: CBI/ED/customs "digital arrest" extortion, malicious
+    # APKs sent by message, sextortion (split from romance), and OLX-style
+    # "army officer" buyer/seller fraud.
+    DIGITAL_ARREST = "DIGITAL_ARREST"
+    MALICIOUS_APP = "MALICIOUS_APP"
+    SEXTORTION = "SEXTORTION"
+    MARKETPLACE_FRAUD = "MARKETPLACE_FRAUD"
     UNKNOWN = "UNKNOWN"
 
 
@@ -331,8 +341,24 @@ class EmailAnalysisResponse(BaseModel):
     limitations: list[str] = Field(min_length=1, max_length=6)
 
 
-class AnalysisResponse(BaseModel):
-    """Strict, frontend-safe contract returned by the API."""
+class RuleEvidence(BaseModel):
+    """One reviewed rule that fired, with its log-odds contribution (B.2)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    rule_id: str = Field(min_length=2, max_length=64)
+    phrase: str = Field(min_length=1, max_length=160)
+    weight: float
+    category: ScamCategory
+    counted: bool = True
+
+
+class AnalysisCore(BaseModel):
+    """Fields the AI provider is asked to produce (its response schema).
+
+    ``AnalysisResponse`` adds the rule-engine evidence, which PARAKH always
+    computes itself and never asks the model to invent.
+    """
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
@@ -348,7 +374,7 @@ class AnalysisResponse(BaseModel):
     analysis_source: AnalysisSource = AnalysisSource.AI
     model_used: str | None = Field(default=None, max_length=120)
     notice: str | None = Field(default=None, max_length=240)
-    url_analyses: list[UrlAnalysis] = Field(default_factory=list, max_length=3)
+    url_analyses: list[UrlAnalysis] = Field(default_factory=list, max_length=10)
 
     @field_validator("action_steps")
     @classmethod
@@ -359,7 +385,7 @@ class AnalysisResponse(BaseModel):
         return clean
 
     @model_validator(mode="after")
-    def enforce_cautious_safe_results(self) -> "AnalysisResponse":
+    def enforce_cautious_safe_results(self) -> "AnalysisCore":
         # A text-only classifier must never present a message as definitively safe.
         if self.verdict == Verdict.SAFE:
             self.severity = Severity.LOW
@@ -369,6 +395,13 @@ class AnalysisResponse(BaseModel):
                 "for money or sensitive information through official channels."
             )
         return self
+
+
+class AnalysisResponse(AnalysisCore):
+    """Strict, frontend-safe contract returned by the API."""
+
+    rule_evidence: list[RuleEvidence] = Field(default_factory=list, max_length=40)
+    rule_probability: float | None = Field(default=None, ge=0, le=1)
 
 
 class MediaValidationResponse(BaseModel):

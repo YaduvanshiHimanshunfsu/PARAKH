@@ -23,6 +23,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import CaseRecord, IdentifierRecord
+from app.data.protected_brands import is_official_domain
 from app.schemas import (
     CaseSummary,
     HeatListEntry,
@@ -86,13 +87,20 @@ def _identifier_type(value: str) -> IdentifierType | None:
 
 
 def links_cases(type_value: str, value: str) -> bool:
-    """Whether a shared identifier of this kind means a shared operator."""
+    """Whether a shared identifier of this kind means a shared operator.
+
+    An impersonated brand's real domain is evidence of *impersonation*, not a
+    link between two operators: ten unrelated gangs all name "sbi.co.in"
+    (planversionalpha.md B.4 step 7, defect D6).
+    """
 
     identifier_type = _identifier_type(type_value)
     if identifier_type is None or identifier_type in _NON_LINKING_TYPES:
         return False
-    if identifier_type is IdentifierType.DOMAIN and value.lower().removeprefix("www.") in GENERIC_HOSTS:
-        return False
+    if identifier_type is IdentifierType.DOMAIN:
+        host = value.lower().strip().removeprefix("www.")
+        if host in GENERIC_HOSTS or is_official_domain(host):
+            return False
     return identifier_weight(identifier_type) >= 5
 
 

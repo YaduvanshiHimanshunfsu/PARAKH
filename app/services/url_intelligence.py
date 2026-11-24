@@ -15,6 +15,8 @@ import tldextract
 
 from app.config import Settings
 from app.data.known_sites import KNOWN_SITES
+from app.data.protected_brands import BRAND_TOKENS, brand_for_domain, is_official_domain
+from app.utils.lookalike import lookalike_in_tokens, lookalike_match
 from app.schemas import (
     ReputationProviderResult,
     ReputationStatus,
@@ -39,26 +41,54 @@ URL_PATTERN = re.compile(
     r"|(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24}(?:/[^\s<>\"']*)?"
     r")"
 )
-SHORTENERS = frozenset({"bit.ly", "tinyurl.com", "t.co", "goo.gl", "cutt.ly", "rb.gy", "is.gd", "shorturl.at"})
-SUSPICIOUS_TLDS = frozenset({"zip", "mov", "xyz", "top", "click", "link", "gq", "tk", "ml", "work", "country"})
-BRAND_TERMS = (
-    "sbi", "hdfc", "icici", "axis", "kotak", "paytm", "phonepe", "gpay", "googlepay",
-    "airtel", "jio", "amazon", "flipkart", "microsoft", "apple", "whatsapp", "instagram",
-    "facebook", "paypal", "netflix", "dhl", "fedex", "usps", "gov", "irs", "hmrc",
-)
-KNOWN_BRAND_DOMAINS = frozenset(
+SHORTENERS = frozenset(
     {
-        "sbi.co.in", "hdfcbank.com", "icicibank.com", "axisbank.com", "kotak.com",
-        "paytm.com", "phonepe.com", "google.com", "airtel.in", "jio.com",
-        "amazon.in", "amazon.com", "flipkart.com", "microsoft.com", "apple.com",
-        "whatsapp.com", "instagram.com", "facebook.com", "paypal.com", "netflix.com",
-        "dhl.com", "fedex.com", "usps.com", "irs.gov", "gov.uk",
+        "bit.ly", "tinyurl.com", "t.co", "goo.gl", "cutt.ly", "rb.gy", "is.gd", "shorturl.at",
+        "t.ly", "tiny.cc", "ow.ly", "short.gy", "rebrand.ly", "surl.li", "clck.ru",
     }
 )
+# Frequently abused in phishing campaigns. A weighted signal, never decisive:
+# a legitimate site can use any of these.
+SUSPICIOUS_TLDS = frozenset(
+    {
+        "zip", "mov", "xyz", "top", "click", "link", "gq", "tk", "ml", "work", "country",
+        "cyou", "sbs", "cfd", "icu", "buzz", "rest", "bond", "vip", "shop", "live",
+        "online", "site", "store", "fun", "monster", "quest", "lol", "autos",
+    }
+)
+# Tokens whose presence in a non-official domain suggests brand impersonation.
+# Whole-token matching only (B.4): substring matching flagged "pineapple.com"
+# for "apple" and "firstpost.com" for "irs".
+BRAND_TOKEN_SET = frozenset(BRAND_TOKENS)
 SENSITIVE_PATH_TERMS = re.compile(
     r"(?:login|sign[ -]?in|verify|verification|secure|update|kyc|wallet|bank(?:ing)?|otp|password|refund|claim)",
     re.IGNORECASE,
 )
+
+
+# Analysing more than a handful of links per message costs little (they run
+# concurrently with a per-URL timeout) and scam messages often carry several.
+MAX_URLS_PER_MESSAGE = 10
+
+
+def host_tokens(host: str, suffix: str) -> set[str]:
+    """Whole tokens of a hostname, excluding its public suffix."""
+
+    labels = host.removesuffix("." + suffix) if suffix and host.endswith("." + suffix) else host
+    return {token for token in re.split(r"[^a-z0-9]+", labels.lower()) if token}
+
+
+@dataclass(frozen=True)
+class StaticUrlRisk:
+    """Offline, no-network structural verdict for one URL."""
+
+    url: str
+    host: str | None
+    registered_domain: str | None
+    score: int
+    codes: tuple[str, ...]
+    is_official: bool
+    is_shortener: bool
 
 
 class UrlValidationError(ValueError):
@@ -74,6 +104,7 @@ class NormalizedUrl:
     raw_host: str
     registered_domain: str
     suffix: str
+    is_official: bool = False
 
 
 class UrlIntelligenceService:
@@ -112,7 +143,7 @@ class UrlIntelligenceService:
             if candidate and key not in seen:
                 found.append(candidate)
                 seen.add(key)
-        return found[:3]
+        return found[:MAX_URLS_PER_MESSAGE]
 
     async def analyze_url(self, raw_url: str) -> UrlAnalysis:
         try:
@@ -141,6 +172,7 @@ class UrlIntelligenceService:
 
         signals: list[UrlSignal] = []
         score = self._add_static_signals(target, signals)
+        score += self._add_brand_signals(target, signals)
         # HTTP has no TLS certificate to inspect, independent of whether active
         # HTTPS probing is enabled for this deployment.
         if target.parsed.scheme != "https":
@@ -208,6 +240,10 @@ class UrlIntelligenceService:
     @staticmethod
     def _site_profile(registered_domain: str) -> SiteProfile:
         known = KNOWN_SITES.get(registered_domain)
+        if not known:
+            brand = brand_for_domain(registered_domain)
+            if brand is not None:
+                known = {"name": brand.name, "description": f"Official domain of {brand.name}."}
         if known:
             return SiteProfile(
                 status="KNOWN_OFFICIAL_DOMAIN",
@@ -268,14 +304,16 @@ class UrlIntelligenceService:
         suffix = extracted.suffix.lower()
         netloc = host if port is None else f"{host}:{port}"
         normalized = urlunsplit((parsed.scheme.lower(), netloc, parsed.path or "/", parsed.query, ""))
+        registered_domain = registered_domain.lower()
         return NormalizedUrl(
             original=original,
             url=normalized,
             parsed=urlsplit(normalized),
             host=host,
             raw_host=raw_host,
-            registered_domain=registered_domain.lower(),
+            registered_domain=registered_domain,
             suffix=suffix,
+            is_official=is_official_domain(registered_domain) or is_official_domain(host) or registered_domain in KNOWN_SITES,
         )
 
     def _add_static_signals(self, target: NormalizedUrl, signals: list[UrlSignal]) -> int:
@@ -336,7 +374,7 @@ class UrlIntelligenceService:
                 "Encoded characters can obscure where a link leads or what it asks for.",
                 6,
             )
-        if SENSITIVE_PATH_TERMS.search(f"{target.parsed.path}?{target.parsed.query}"):
+        if SENSITIVE_PATH_TERMS.search(f"{target.parsed.path}?{target.parsed.query}") and not target.is_official:
             score += self._add_signal(
                 signals,
                 "CREDENTIAL_OR_KYC_LURE",
@@ -347,7 +385,7 @@ class UrlIntelligenceService:
         # A lure word in the registered domain itself is a stronger signal than
         # one in the path: the attacker chose and paid for that name. Matching
         # only the path rated 'sbi-verify-kyc.in' as MEDIUM. (DECISIONS.md B-2)
-        if SENSITIVE_PATH_TERMS.search(target.registered_domain):
+        if SENSITIVE_PATH_TERMS.search(target.registered_domain) and not target.is_official:
             score += self._add_signal(
                 signals,
                 "CREDENTIAL_OR_KYC_DOMAIN",
@@ -356,13 +394,43 @@ class UrlIntelligenceService:
                 "organisations serve these from their main domain, not a purpose-registered look-alike.",
                 24,
             )
-        if any(term in target.host for term in BRAND_TERMS) and target.registered_domain not in KNOWN_BRAND_DOMAINS:
+        return score
+
+    def _add_brand_signals(self, target: NormalizedUrl, signals: list[UrlSignal]) -> int:
+        """Brand impersonation checks, skipped entirely for official domains."""
+
+        if target.is_official:
+            return 0
+
+        score = 0
+        tokens = host_tokens(target.host, target.suffix)
+        matched = sorted(tokens & BRAND_TOKEN_SET)
+        if matched:
+            brand = BRAND_TOKENS[matched[0]]
             score += self._add_signal(
                 signals,
                 "BRAND_LIKE_DOMAIN",
                 Severity.HIGH,
-                "The domain contains a well-known brand term. Verify the exact official domain through the organisation's app or typed website address.",
-                25,
+                f"This domain uses the name \u201c{matched[0]}\u201d but is not an official {brand} domain. "
+                "Open the organisation's app or type its official address yourself.",
+                30,
+            )
+            return score
+
+        # Typosquatting: the registered label is one or two edits away from a
+        # protected name, or folds to the same visual skeleton.
+        label = target.registered_domain.split(".")[0]
+        match = lookalike_match(label) or lookalike_in_tokens(tokens)
+        if match:
+            protected, brand, reason = match
+            label = next((t for t in sorted(tokens, key=len, reverse=True) if lookalike_match(t) == match), label)
+            score += self._add_signal(
+                signals,
+                "LOOKALIKE_DOMAIN",
+                Severity.HIGH,
+                f"\u201c{label}\u201d is a near-copy of \u201c{protected}\u201d ({brand}) with {reason}. "
+                "Look-alike domains are registered to imitate the real site.",
+                32,
             )
         return score
 
@@ -552,3 +620,30 @@ class UrlIntelligenceService:
             limitations="No conclusion should be drawn from an unavailable URL analysis.",
         )
 
+
+
+def static_url_risk(raw_url: str, settings: Settings | None = None) -> StaticUrlRisk:
+    """Structural URL risk with no network access.
+
+    The rule engine runs offline and synchronously, so it cannot await TLS or
+    reputation checks. This reuses the same signal code as the full analyser
+    for the parts that are pure string work.
+    """
+
+    service = UrlIntelligenceService(settings or Settings())
+    try:
+        target = service._normalise(raw_url)
+    except UrlValidationError:
+        return StaticUrlRisk(raw_url, None, None, 70, ("UNSAFE_URL_FORMAT",), False, False)
+    signals: list[UrlSignal] = []
+    score = service._add_static_signals(target, signals)
+    score += service._add_brand_signals(target, signals)
+    return StaticUrlRisk(
+        url=target.url,
+        host=target.host,
+        registered_domain=target.registered_domain,
+        score=min(100, score),
+        codes=tuple(signal.code for signal in signals),
+        is_official=target.is_official,
+        is_shortener=target.registered_domain in SHORTENERS,
+    )
