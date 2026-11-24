@@ -1,3 +1,4 @@
+import argparse
 import os
 import socket
 import subprocess
@@ -18,8 +19,14 @@ Rajasthan Police (PS01). It analyses messages, links, emails, QR codes,
 websites and Android apps, explains its verdict in plain Hindi or English,
 and turns a case into the legal paperwork an investigation needs.
 
-This script checks the required dependencies, then runs the FastAPI backend
-and the Vite dev server together.
+One command runs the whole project. This script:
+
+  1. checks the Python and Node dependencies,
+  2. prepares the database - creating it, seeding the police hierarchy, the
+     demo officer accounts and the demo cases, and moving a database from an
+     earlier phase safely aside rather than deleting it,
+  3. starts the FastAPI backend and the Vite dev server together,
+  4. waits until both are actually listening and prints the URLs.
 
 For a DEMO, prefer the built frontend served by FastAPI on one port:
     cd frontend && npm run build
@@ -122,6 +129,37 @@ def check_frontend():
         print("[Orchestrator] Continuing without installing; the frontend will probably fail to start.", flush=True)
 
 
+def prepare_database(venv_python: str, *, reset: bool, demo_cases: bool) -> bool:
+    """Create, heal and seed the database before the servers start.
+
+    Run as a subprocess with the virtual environment's interpreter, because
+    run.py itself may be executed by a different Python that cannot import the
+    application's dependencies.
+    """
+
+    print("[Orchestrator] Preparing the database...", flush=True)
+    command = [venv_python, "scripts/prepare_demo.py"]
+    if reset:
+        command.append("--reset")
+    if not demo_cases:
+        command.append("--no-demo-cases")
+
+    result = subprocess.run(
+        command,
+        env=dict(os.environ, PYTHONUNBUFFERED="1"),
+        capture_output=True,
+        text=True,
+    )
+    for line in (result.stdout or "").splitlines():
+        print(f"  {line}", flush=True)
+    if result.returncode != 0:
+        print("[Orchestrator] The database could not be prepared:", flush=True)
+        for line in (result.stderr or "").strip().splitlines()[-12:]:
+            print(f"  {line}", flush=True)
+        return False
+    return True
+
+
 def port_is_open(host: str, port: int, timeout: float = 0.6) -> bool:
     for family, address in ((socket.AF_INET, (host, port)), (socket.AF_INET6, ("::1", port))):
         try:
@@ -150,8 +188,31 @@ def wait_for(name: str, host: str, port: int, seconds: int = 25) -> bool:
     return False
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Run the whole PARAKH project: database, backend and frontend."
+    )
+    parser.add_argument(
+        "--reset",
+        action="store_true",
+        help="start from an empty database (the current one is moved aside, not deleted)",
+    )
+    parser.add_argument(
+        "--no-demo-cases",
+        action="store_true",
+        help="seed the hierarchy and officer accounts but no demo cases",
+    )
+    parser.add_argument(
+        "--skip-prepare",
+        action="store_true",
+        help="do not touch the database at all",
+    )
+    return parser.parse_args()
+
+
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    args = parse_args()
 
     print("=" * 70, flush=True)
     print(" PARAKH - local development launcher", flush=True)
@@ -164,6 +225,20 @@ def main():
 
     venv_python = check_backend()
     check_frontend()
+
+    if not args.skip_prepare:
+        if not prepare_database(
+            venv_python, reset=args.reset, demo_cases=not args.no_demo_cases
+        ):
+            print(
+                "\n[Orchestrator] Stopping: the backend would fail to start.\n"
+                "[Orchestrator] If this is a database from an earlier phase, run:\n"
+                "    python run.py --reset\n"
+                "[Orchestrator] That moves the current database aside with a timestamp; "
+                "it does not delete it.",
+                flush=True,
+            )
+            sys.exit(1)
 
     print("\n[Orchestrator] Starting services...\n", flush=True)
 
@@ -196,19 +271,23 @@ def main():
             + f"\n  Citizen app     http://localhost:{FRONTEND_PORT}/"
             + f"\n  Officer console http://localhost:{FRONTEND_PORT}/investigate/login"
             + f"\n  API docs        http://{BACKEND_HOST}:{BACKEND_PORT}/docs"
-            + "\n\n  Demo officer accounts: python scripts/seed_demo_officers.py --show"
-            + "\n  Stop with Ctrl+C."
+            + "\n\n  Demo officers (password ParakhDemo@2026):"
+            + "\n    io.si.sharma  SI        drafts requisitions, cannot approve"
+            + "\n    sho.cyber     Inspector station approval, assigns cases"
+            + "\n    sp.jaipur     SP        district approval (every freeze needs it)"
+            + "\n    io.btp        Inspector Bharatpur - cannot see Jaipur's cases"
+            + "\n  Full list: python scripts/seed_demo_officers.py --show"
+            + "\n\n  Stop with Ctrl+C."
             + "\n"
             + "=" * 70
             + "\n",
             flush=True,
         )
     elif not backend_up:
-        # The usual cause is a database file from an earlier phase; the backend
-        # now says so explicitly on startup.
         print(
             "[Orchestrator] If the backend reported a schema error, run:\n"
-            "    python scripts/reset_demo_db.py --yes\n",
+            "    python run.py --reset\n"
+            "[Orchestrator] That moves the current database aside with a timestamp.",
             flush=True,
         )
 
