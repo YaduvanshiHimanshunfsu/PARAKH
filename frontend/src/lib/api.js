@@ -214,6 +214,39 @@ export const officerApi = {
   identifierCases: (type, value) =>
     request(checked(route`/investigate/identifiers/${type}/cases` + query({ value })), { auth: true }),
   heatlist: (filters) => request(`/investigate/heatlist${query(filters)}`, { auth: true }),
+
+  // --- Phase C: hierarchy, assignment, audit ---------------------------
+  assignCase: (caseId, payload) =>
+    request(checked(route`/investigate/cases/${caseId}/assign`), { method: 'POST', json: payload, auth: true }),
+  transferCase: (caseId, payload) =>
+    request(checked(route`/investigate/cases/${caseId}/transfer`), { method: 'POST', json: payload, auth: true }),
+  verifyCase: (caseId) =>
+    request(checked(route`/investigate/cases/${caseId}/verify`), { method: 'POST', auth: true }),
+  caseAudit: (caseId) => request(checked(route`/investigate/cases/${caseId}/audit`), { auth: true }),
+  auditStatus: () => request('/investigate/audit/status', { auth: true }),
+
+  // --- Phase D: action layer -------------------------------------------
+  generateActionPack: (caseId) =>
+    request(checked(route`/investigate/cases/${caseId}/action-pack`), { method: 'POST', auth: true }),
+  caseDocuments: (caseId) => request(checked(route`/investigate/cases/${caseId}/documents`), { auth: true }),
+  getDocument: (id) => request(`/investigate/documents/${Number(id)}`, { auth: true }),
+  documentPrint: (id) => request(`/investigate/documents/${Number(id)}/print`, { auth: true, raw: true }),
+  editDocument: (id, bodyHtml) =>
+    request(`/investigate/documents/${Number(id)}`, { method: 'PUT', json: { body_html: bodyHtml }, auth: true }),
+  submitDocument: (id) => request(`/investigate/documents/${Number(id)}/submit`, { method: 'POST', auth: true }),
+  approveDocument: (id, comment) =>
+    request(`/investigate/documents/${Number(id)}/approve`, { method: 'POST', json: { comment: comment || null }, auth: true }),
+  returnDocument: (id, comment) =>
+    request(`/investigate/documents/${Number(id)}/return`, { method: 'POST', json: { comment }, auth: true }),
+  dispatchDocument: (id, payload) =>
+    request(`/investigate/documents/${Number(id)}/dispatch`, { method: 'POST', json: payload, auth: true }),
+  recordDocumentResponse: (id, note) =>
+    request(`/investigate/documents/${Number(id)}/response`, { method: 'POST', json: { note }, auth: true }),
+  closeDocument: (id) => request(`/investigate/documents/${Number(id)}/close`, { method: 'POST', auth: true }),
+  cancelDocument: (id, comment) =>
+    request(`/investigate/documents/${Number(id)}/cancel`, { method: 'POST', json: { comment }, auth: true }),
+  queue: () => request('/investigate/queue', { auth: true }),
+  misReport: (period = 'weekly') => request(`/investigate/reports/mis?period=${encodeURIComponent(period)}`, { auth: true }),
   campaigns: (params) => request(`/investigate/campaigns${query(params)}`, { auth: true }),
 
   reportHtml: (caseId, redacted = false) =>

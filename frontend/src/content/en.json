@@ -21,6 +21,7 @@
 
   "officer.nav.dashboard": "Dashboard",
   "officer.nav.cases": "Cases",
+  "officer.nav.queue": "My queue",
   "officer.nav.submit": "New analysis",
   "officer.nav.campaigns": "Campaigns",
   "officer.nav.heatlist": "Heat-list",

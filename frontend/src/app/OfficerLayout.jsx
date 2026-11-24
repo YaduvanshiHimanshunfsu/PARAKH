@@ -14,6 +14,7 @@ import { useAuth } from './AuthContext'
 const NAV = [
   ['/investigate', 'officer.nav.dashboard', 'dashboard', true],
   ['/investigate/cases', 'officer.nav.cases', 'folder_open', false],
+  ['/investigate/queue', 'officer.nav.queue', 'inbox', false],
   ['/investigate/submit', 'officer.nav.submit', 'add_circle', false],
   ['/investigate/campaigns', 'officer.nav.campaigns', 'hub', false],
   ['/investigate/heatlist', 'officer.nav.heatlist', 'local_fire_department', false],

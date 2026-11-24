@@ -26,6 +26,7 @@ const CaseDetailPage = page(() => import('../features/officer/CaseDetailPage'), 
 const CampaignsPage = page(() => import('../features/officer/campaigns/CampaignsPage'), 'CampaignsPage')
 const HeatlistPage = page(() => import('../features/officer/HeatlistPage'), 'HeatlistPage')
 const IdentifierPage = page(() => import('../features/officer/IdentifierPage'), 'IdentifierPage')
+const QueuePage = page(() => import('../features/officer/documents/QueuePage'), 'QueuePage')
 const StatesGallery = import.meta.env.DEV ? lazy(() => import('../dev/StatesGallery')) : null
 
 function Lazy({ children }) {
@@ -75,6 +76,7 @@ export const routes = [
     children: [
       { path: '/investigate', element: <Lazy><DashboardPage /></Lazy> },
       { path: '/investigate/cases', element: <Lazy><CasesPage /></Lazy> },
+      { path: '/investigate/queue', element: <Lazy><QueuePage /></Lazy> },
       { path: '/investigate/submit', element: <Lazy><SubmitPage /></Lazy> },
       { path: '/investigate/case/:caseId', element: <Lazy><CaseDetailPage /></Lazy> },
       { path: '/investigate/campaigns', element: <Lazy><CampaignsPage /></Lazy> },

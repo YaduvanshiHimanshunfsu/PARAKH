@@ -73,7 +73,7 @@ async def seed_units(session: AsyncSession) -> dict[str, UnitRecord]:
     return created
 
 
-async def seed_users(session: AsyncSession, units: dict[str, UnitRecord]) -> int:
+async def seed_users(session: AsyncSession, units: dict[str, UnitRecord], *, enrol_mfa: bool = False) -> int:
     """Create the demo role accounts. Returns how many were created.
 
     The password comes from ``DEMO_OFFICER_PASSWORD``; without it no demo
@@ -106,7 +106,11 @@ async def seed_users(session: AsyncSession, units: dict[str, UnitRecord]) -> int
             unit_id=unit.id if unit else None,
             is_active=True,
         )
-        if needs_mfa:
+        # MFA is enrolled only when asked for. A demo machine has no
+        # authenticator app, and an account that cannot be signed into is
+        # worse than no MFA at all; the policy itself is still enforced
+        # (app/core/auth.py) for any account that does have a secret.
+        if needs_mfa and enrol_mfa:
             user.totp_secret = _new_totp_secret()
         session.add(user)
         created += 1
@@ -124,9 +128,9 @@ def _new_totp_secret() -> str | None:
     return pyotp.random_base32()
 
 
-async def seed_hierarchy(session: AsyncSession) -> dict[str, int]:
+async def seed_hierarchy(session: AsyncSession, *, enrol_mfa: bool = False) -> dict[str, int]:
     units = await seed_units(session)
-    users = await seed_users(session, units)
+    users = await seed_users(session, units, enrol_mfa=enrol_mfa)
     return {"units": len(units), "users": users}
 
 
