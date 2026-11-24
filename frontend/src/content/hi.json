@@ -1,0 +1,36 @@
+{
+  "brand.citizen_sub": "राजस्थान पुलिस · नागरिक साइबर सुरक्षा",
+  "brand.officer_sub": "जाँच कंसोल",
+
+  "nav.home": "होम",
+  "nav.check": "जाँचें",
+  "nav.apk": "ऐप जाँच",
+  "nav.learn": "सीखें",
+  "nav.evidence": "साक्ष्य",
+  "nav.help": "सहायता",
+  "nav.rescue": "संकट सहायता",
+  "nav.officer_login": "अधिकारी लॉगिन",
+  "nav.helpline": "1930 हेल्पलाइन",
+  "nav.helpline_label": "राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 पर कॉल करें",
+  "nav.language": "भाषा बदलें",
+  "nav.main": "मुख्य नेविगेशन",
+  "nav.mobile": "त्वरित नेविगेशन",
+
+  "footer.disclaimer": "परख जोखिम संकेत देता है, कानूनी प्रमाण नहीं। आपकी जाँच तब तक सहेजी नहीं जाती जब तक आप स्वयं रिपोर्ट न करें।",
+  "footer.privacy": "गोपनीयता",
+
+  "state.loading": "लोड हो रहा है…",
+  "state.empty_title": "अभी दिखाने के लिए कुछ नहीं",
+  "state.error_title": "कुछ गड़बड़ हो गई",
+  "state.offline_title": "परख सर्वर से संपर्क नहीं हो सका",
+  "state.retry": "फिर से प्रयास करें",
+
+  "common.copy": "कॉपी करें",
+  "common.copied": "कॉपी हो गया",
+  "common.close": "बंद करें",
+  "common.cancel": "रद्द करें",
+
+  "notfound.title": "पेज नहीं मिला",
+  "notfound.body": "पता गलत हो सकता है, या पेज हट गया है।",
+  "notfound.home": "होम पर जाएँ"
+}

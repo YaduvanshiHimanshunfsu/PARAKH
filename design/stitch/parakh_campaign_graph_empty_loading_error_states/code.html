@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary":"#802500","on-surface":"#131b2e","on-primary-fixed":"#001551","on-tertiary-container":"#ffc9b8","surface-container-low":"#f2f3ff","on-secondary-fixed":"#311300","error-container":"#ffdad6","on-primary-fixed-variant":"#0039b5","on-secondary-container":"#6b3100","outline-variant":"#c4c5d7","primary-fixed":"#dce1ff","on-tertiary-fixed":"#390c00","inverse-primary":"#b7c4ff","inverse-surface":"#283044","tertiary-fixed":"#ffdbd0","inverse-on-surface":"#eef0ff","surface-dim":"#d2d9f4","on-primary-container":"#cad3ff","outline":"#747686","on-error-container":"#93000a","surface-container-lowest":"#ffffff","primary-fixed-dim":"#b7c4ff","on-error":"#ffffff","primary":"#0037b0","secondary-container":"#ff9245","on-primary":"#ffffff","surface-container-high":"#e2e7ff","surface-container":"#eaedff","on-background":"#131b2e","primary-container":"#1d4ed8","on-tertiary-fixed-variant":"#832600","secondary-fixed-dim":"#ffb689","surface-container-highest":"#dae2fd","error":"#ba1a1a","secondary-fixed":"#ffdbc8","surface-bright":"#faf8ff","background":"#faf8ff","surface-variant":"#dae2fd","tertiary-container":"#a83300","surface":"#faf8ff","surface-tint":"#2151da","on-secondary":"#ffffff","on-tertiary":"#ffffff","tertiary-fixed-dim":"#ffb59d","on-surface-variant":"#434655","on-secondary-fixed-variant":"#743500","secondary":"#984800"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xl":"2rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.5rem","gutter-mobile":"1rem","gutter":"1.5rem","space-lg":"1.5rem","space-2xs":"0.25rem","space-sm":"0.75rem","space-md":"1rem","margin-mobile":"1rem","space-2xl":"3rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-ui":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"label-mono-md":["JetBrains Mono"],"body-lg":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"label-mono-sm":["JetBrains Mono"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-ui":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-mono-md":["14px",{lineHeight:"20px",letterSpacing:"-0.01em",fontWeight:"500"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"display-hero":["44px",{lineHeight:"52px",letterSpacing:"-0.03em",fontWeight:"800"}],"display-hero-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-mono-sm":["12px",{lineHeight:"16px",fontWeight:"500"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between border-r border-outline-variant/50 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest border-b border-outline-variant/40"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">shield</span></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-title-md text-title-md text-on-surface tracking-tight font-extrabold">PARAKH</span><span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container text-primary font-bold">RJ-POL</span></div><span class="font-label-ui text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Investigate Console</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-2xs text-[11px] font-label-mono-sm text-outline uppercase tracking-wider font-semibold">Operational Modules</div></div><nav class="flex flex-col gap-1 px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-title-md text-title-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="cases" href="#"><span class="material-symbols-outlined text-[20px]">folder_managed</span><span class="font-title-md text-title-md">Cases</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[20px]">biotech</span><span class="font-title-md text-title-md">New Analysis</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-sm" data-path="threat-campaigns" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-title-md text-title-md">Campaigns</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="heat-list-registry" href="#"><span class="material-symbols-outlined text-[20px]">local_fire_department</span><span class="font-title-md text-title-md">Heat-list</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="forensic-identifiers" href="#"><span class="material-symbols-outlined text-[20px]">fingerprint</span><span class="font-title-md text-title-md">Identifiers</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="statutory-reports" href="#"><span class="material-symbols-outlined text-[20px]">summarize</span><span class="font-title-md text-title-md">Reports</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-xl border border-outline-variant/40"><div class="flex items-center gap-space-sm mb-space-sm"><div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-xs"><span class="material-symbols-outlined text-[20px]">local_police</span></div><div class="flex flex-col min-w-0"><div class="font-title-md text-title-md text-on-surface truncate font-bold">Insp. Vikram Singh Rathore</div><div class="font-body-sm text-[12px] text-on-surface-variant truncate">Inspector · Jaipur Cyber Cell</div><div class="font-label-mono-sm text-[11px] text-primary font-bold">PNO: RJ-POL-782941</div></div></div><a class="flex items-center justify-between pt-space-xs text-on-surface-variant hover:text-error transition-colors border-t border-outline-variant/30" data-path="login" href="#"><span class="font-body-sm text-[12px] flex items-center gap-1.5 font-medium"><span class="material-symbols-outlined text-[17px]">logout</span>Sign Out</span><span class="font-label-mono-sm text-[10px] text-outline font-semibold">I4C-SEC</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex items-center justify-between px-space-lg gap-space-md"><div class="flex items-center gap-space-md min-w-0 shrink-0"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-transparent hover:border-outline-variant/50" type="button"><span class="material-symbols-outlined text-[22px]">menu_open</span></button><div class="hidden xl:flex items-center gap-2"><span class="font-title-md text-title-md text-on-surface-variant">PARAKH Investigate</span><span class="text-outline-variant font-label-mono-sm">/</span><span class="font-title-md text-title-md text-on-surface font-semibold">Command Centre</span></div></div><div class="flex-1 max-w-2xl mx-space-md"><div class="relative flex items-center w-full h-11 bg-surface-container-low rounded-lg px-space-sm border border-outline-variant/40 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container/20 transition-all"><span class="material-symbols-outlined text-outline text-[20px] mr-2">travel_explore</span><input class="w-full bg-transparent border-0 outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="Search case ID, UPI, phone, domain, package…" type="text"/><div class="hidden md:flex items-center gap-1.5 ml-2"><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-primary font-medium tracking-tight">UPI</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-secondary font-medium tracking-tight">Phone</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-medium tracking-tight">Domain</span></div></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden 2xl:flex items-center gap-2 px-space-sm py-1.5 bg-surface-container-low rounded-lg border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-mono-sm text-label-mono-sm text-on-surface font-semibold tracking-tight">I4C / CCTNS SYNCED</span></div><div class="hidden lg:flex items-center gap-1 px-space-sm py-1.5 bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container border border-outline-variant/30 transition-colors"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span>Past 30 Days</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-outline-variant/30" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-extrabold border border-error/30">Active Lien</span></button><a class="hidden sm:flex items-center gap-1.5 px-space-md h-9 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-title-md text-body-sm shadow-sm font-semibold" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[18px]">add</span><span>+ New Forensic Analysis</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 pt-16 w-full bg-background"><div class="flex flex-col w-full">
+<!-- Interactive State Switcher Header -->
+<div class="px-space-lg py-space-sm bg-surface-container-low shadow-sm flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-title-md text-title-md text-on-surface">अभियान सिंडिकेट विश्लेषण</span>
+<span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-surface-container-highest text-primary font-semibold">CAMPAIGN GRAPH ENGINE v3.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rajasthan Cyber Intelligence Correlation Workbench • State Triaging Matrix</p>
+</div>
+</div>
+<!-- State Controller Segment -->
+<div class="flex items-center gap-1.5 p-1 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="px-2 font-label-mono-sm text-[11px] text-outline font-semibold uppercase tracking-wider hidden sm:inline-block">Simulate State:</span>
+<button class="state-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-ui text-label-ui transition-all bg-primary-container text-on-primary shadow-sm" id="btn-state-empty" onclick="switchState('empty')" type="button">
+<span class="material-symbols-outlined text-[16px]">device_hub</span>
+<span>Empty State</span>
+</button>
+<button class="state-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-ui text-label-ui transition-all text-on-surface-variant hover:bg-surface-container-high" id="btn-state-loading" onclick="switchState('loading')" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Loading / Centrality</span>
+</button>
+<button class="state-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-ui text-label-ui transition-all text-on-surface-variant hover:bg-surface-container-high" id="btn-state-error" onclick="switchState('error')" type="button">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>Memory Limit Error</span>
+</button>
+<button class="state-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-label-ui text-label-ui transition-all text-on-surface-variant hover:bg-surface-container-high" id="btn-state-split" onclick="switchState('split')" type="button">
+<span class="material-symbols-outlined text-[16px]">splitscreen</span>
+<span>Triage Comparison</span>
+</button>
+</div>
+</div>
+<!-- Main Workspace Canvas Grid -->
+<div class="p-space-lg w-full max-w-[1560px] mx-auto flex flex-col gap-space-lg">
+<!-- State 1: EMPTY STATE -->
+<div class="state-panel flex flex-col xl:flex-row gap-space-lg w-full" id="view-empty">
+<!-- Left Campaign Triage Bar (Empty context) -->
+<div class="w-full xl:w-80 flex flex-col gap-space-md shrink-0">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Active Query Target</span>
+<span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed">1-HOP DETECT</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-md text-label-mono-md text-on-surface font-semibold truncate">+91 99887 76655</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Airtel GSM • Bharatpur Circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-space-xs">
+<span>Linked FIR Entries</span>
+<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface">1 Case</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Cross-District Links</span>
+<span class="font-label-mono-md text-label-mono-md font-bold text-error">0 Detected</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Known Mule Pivots</span>
+<span class="font-label-mono-md text-label-mono-md font-bold text-outline">None</span>
+</div>
+</div>
+<!-- Evidence Summary Card -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Primary Record</span>
+<div class="p-3 bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-[11px] font-semibold text-primary">FIR-2024-RJ-08914</span>
+<span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold">ISOLATED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Kotwali PS, Alwar • Sec 420 IPC</p>
+<p class="font-label-mono-sm text-[11px] text-on-surface-variant pt-1">Loss: ₹42,000 (Electricity Bill KYC Scam)</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-[12px] leading-relaxed">
+            Identifier is currently classified as an <strong class="text-on-surface">isolated terminal endpoint</strong>. No command-and-control IP convergence or shared bank withdrawal nodes identified.
+          </div>
+</div>
+</div>
+<!-- Graph Canvas: Dot Grid & Empty Slate State -->
+<div class="flex-1 min-h-[640px] bg-surface-container-lowest rounded-2xl shadow-sm relative overflow-hidden flex flex-col items-center justify-center p-space-xl">
+<!-- Subtle Tactical SVG Dot Grid Background -->
+<svg class="absolute inset-0 w-full h-full opacity-35 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="28" id="dot-grid" patternunits="userSpaceOnUse" width="28">
+<circle cx="2" cy="2" fill="#747686" r="1.25"></circle>
+</pattern>
+</defs>
+<rect fill="url(#dot-grid)" height="100%" width="100%"></rect>
+</svg>
+<!-- Ambient Tactical Watermark -->
+<div class="absolute top-space-md left-space-md flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-lg pointer-events-none">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-mono-sm text-[11px] text-on-surface-variant font-semibold uppercase tracking-wider">GRAPH CANVAS: SUB-THRESHOLD</span>
+</div>
+<div class="absolute top-space-md right-space-md flex items-center gap-2">
+<div class="px-2.5 py-1 bg-surface-container-low rounded-lg text-outline font-label-mono-sm text-[11px]">DENSITY: 0.0012</div>
+<div class="px-2.5 py-1 bg-surface-container-low rounded-lg text-outline font-label-mono-sm text-[11px]">EDGES: 1</div>
+</div>
+<!-- Central Empty State Graphic Node Card -->
+<div class="relative z-10 max-w-xl w-full bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl shadow-xl p-space-xl flex flex-col items-center text-center">
+<!-- Node Disconnection Micro Graphic -->
+<div class="relative w-40 h-32 flex items-center justify-center mb-space-md">
+<svg class="w-full h-full" fill="none" viewbox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Dashed Broken Connections -->
+<line stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="2" x1="80" x2="25" y1="60" y2="28"></line>
+<line stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="2" x1="80" x2="135" y1="60" y2="25"></line>
+<line stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="2" x1="80" x2="130" y1="60" y2="95"></line>
+<line stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="2" x1="80" x2="30" y1="60" y2="95"></line>
+<!-- Ghost Outer Nodes -->
+<circle cx="25" cy="28" fill="#eaedff" r="9" stroke="#c4c5d7" stroke-width="1.5"></circle>
+<circle cx="135" cy="25" fill="#eaedff" r="9" stroke="#c4c5d7" stroke-width="1.5"></circle>
+<circle cx="130" cy="95" fill="#eaedff" r="9" stroke="#c4c5d7" stroke-width="1.5"></circle>
+<circle cx="30" cy="95" fill="#eaedff" r="9" stroke="#c4c5d7" stroke-width="1.5"></circle>
+<!-- Central Node -->
+<circle cx="80" cy="60" fill="#dce1ff" r="18" stroke="#1d4ed8" stroke-width="2"></circle>
+<text fill="#0037b0" font-family="Plus Jakarta Sans" font-size="12" font-weight="700" text-anchor="middle" x="80" y="64">1</text>
+</svg>
+<div class="absolute bottom-0 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-mono-sm text-[10px] font-semibold">
+              ISOLATED NODE
+            </div>
+</div>
+<!-- Bilingual Headline -->
+<div class="flex flex-col gap-1 mb-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">No multi-case syndicate detected for this query</h2>
+<p class="font-body-md text-body-md text-primary font-semibold">कोई संगठित सिंडिकेट संबद्ध नहीं मिला</p>
+</div>
+<!-- Descriptive Technical Copy -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mb-space-lg leading-relaxed">
+            The queried identifier <span class="font-label-mono-md text-label-mono-md font-bold text-on-surface bg-surface-container px-1.5 py-0.5 rounded">+91 99887 76655</span> appears in only 1 isolated FIR with no cross-district pivot nodes, mule bank accounts, or shared C2 infrastructure.
+          </p>
+<!-- Tactical Action Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm w-full">
+<button class="px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all font-title-md text-body-sm shadow-sm flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+<span>Search Global Hot-List</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container-high transition-all font-title-md text-body-sm shadow-sm flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+<span>Expand Link Depth (2-Hop → 4-Hop)</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all font-title-md text-body-sm shadow-sm flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>Export Single Case Dossier</span>
+</button>
+</div>
+<!-- Bottom Operational Note -->
+<div class="mt-space-lg pt-space-md flex items-center gap-2 text-outline font-label-mono-sm text-[11px]">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Triaged against 4,89,120 national records via I4C/CCTNS Gateway • Signature Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- State 2: LOADING / SKELETON STATE -->
+<div class="state-panel hidden flex flex-col xl:flex-row gap-space-lg w-full" id="view-loading">
+<!-- Left Skeleton Campaign List (3 Pulsing Cards) -->
+<div class="w-full xl:w-80 flex flex-col gap-space-md shrink-0">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="h-4 w-32 bg-surface-container-high rounded animate-pulse"></div>
+<div class="h-4 w-12 bg-surface-container-high rounded animate-pulse"></div>
+</div>
+<!-- Skeleton Card 1 -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm animate-pulse">
+<div class="flex items-center justify-between">
+<div class="h-5 w-24 bg-surface-container-high rounded"></div>
+<div class="h-4 w-16 bg-surface-container-highest rounded"></div>
+</div>
+<div class="h-4 w-48 bg-surface-container rounded"></div>
+<div class="h-3 w-36 bg-surface-container rounded"></div>
+<div class="pt-2 flex items-center gap-2">
+<div class="h-6 w-16 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-20 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+<!-- Skeleton Card 2 -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm animate-pulse opacity-85">
+<div class="flex items-center justify-between">
+<div class="h-5 w-28 bg-surface-container-high rounded"></div>
+<div class="h-4 w-14 bg-surface-container-highest rounded"></div>
+</div>
+<div class="h-4 w-40 bg-surface-container rounded"></div>
+<div class="h-3 w-32 bg-surface-container rounded"></div>
+<div class="pt-2 flex items-center gap-2">
+<div class="h-6 w-14 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-24 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+<!-- Skeleton Card 3 -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm animate-pulse opacity-65">
+<div class="flex items-center justify-between">
+<div class="h-5 w-20 bg-surface-container-high rounded"></div>
+<div class="h-4 w-16 bg-surface-container-highest rounded"></div>
+</div>
+<div class="h-4 w-36 bg-surface-container rounded"></div>
+<div class="h-3 w-28 bg-surface-container rounded"></div>
+<div class="pt-2 flex items-center gap-2">
+<div class="h-6 w-16 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-16 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Graph Canvas: Pulsing Centrality Graph & Floating HUD -->
+<div class="flex-1 min-h-[640px] bg-surface-container-lowest rounded-2xl shadow-sm relative overflow-hidden flex flex-col items-center justify-center p-space-xl">
+<!-- Dot Grid Canvas -->
+<svg class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="28" id="dot-grid-loading" patternunits="userSpaceOnUse" width="28">
+<circle cx="2" cy="2" fill="#747686" r="1.25"></circle>
+</pattern>
+</defs>
+<rect fill="url(#dot-grid-loading)" height="100%" width="100%"></rect>
+</svg>
+<!-- Skeleton Node Network Layout Animated (SVG) -->
+<svg class="w-full max-w-2xl h-96 relative z-10" fill="none" viewbox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+<!-- Animated Dashed Skeleton Lines -->
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="6 6" stroke-width="2" x1="300" x2="160" y1="180" y2="100"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="6 6" stroke-width="2" x1="300" x2="440" y1="180" y2="90"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="6 6" stroke-width="2" x1="300" x2="460" y1="180" y2="250"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="6 6" stroke-width="2" x1="300" x2="140" y1="180" y2="260"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="1.5" x1="160" x2="80" y1="100" y2="140"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="1.5" x1="440" x2="520" y1="90" y2="140"></line>
+<line class="animate-pulse" stroke="#c4c5d7" stroke-dasharray="4 4" stroke-width="1.5" x1="460" x2="510" y1="250" y2="300"></line>
+<!-- Outer Cluster Orbit Ring Skeleton -->
+<circle class="animate-spin" cx="300" cy="180" r="170" stroke="#dae2fd" stroke-dasharray="8 8" stroke-width="1.5" style="animation-duration: 24s; transform-origin: 300px 180px;"></circle>
+<!-- Skeleton Nodes with Pulsing Halos -->
+<g class="animate-pulse">
+<circle cx="160" cy="100" fill="#eaedff" r="18"></circle>
+<circle cx="160" cy="100" fill="#b7c4ff" r="8"></circle>
+</g>
+<g class="animate-pulse" style="animation-delay: 200ms;">
+<circle cx="440" cy="90" fill="#eaedff" r="22"></circle>
+<circle cx="440" cy="90" fill="#b7c4ff" r="10"></circle>
+</g>
+<g class="animate-pulse" style="animation-delay: 400ms;">
+<circle cx="460" cy="250" fill="#eaedff" r="16"></circle>
+<circle cx="460" cy="250" fill="#b7c4ff" r="8"></circle>
+</g>
+<g class="animate-pulse" style="animation-delay: 600ms;">
+<circle cx="140" cy="260" fill="#eaedff" r="20"></circle>
+<circle cx="140" cy="260" fill="#b7c4ff" r="9"></circle>
+</g>
+<g class="animate-pulse" style="animation-delay: 800ms;">
+<circle cx="80" cy="140" fill="#eaedff" r="12"></circle>
+<circle cx="520" cy="140" fill="#eaedff" r="14"></circle>
+<circle cx="510" cy="300" fill="#eaedff" r="12"></circle>
+</g>
+<!-- Core Primary Hub Node Skeleton -->
+<circle class="animate-ping opacity-25" cx="300" cy="180" fill="#dce1ff" r="38"></circle>
+<circle cx="300" cy="180" fill="#1d4ed8" r="26"></circle>
+<circle cx="300" cy="180" fill="#ffffff" r="10"></circle>
+</svg>
+<!-- Floating Operational Status HUD -->
+<div class="relative z-20 mt-4 px-space-lg py-space-md bg-surface-container-lowest/95 backdrop-blur-xl rounded-2xl shadow-xl flex flex-col items-center gap-space-sm max-w-lg w-full">
+<div class="flex items-center justify-between w-full">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary animate-ping"></div>
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-on-surface">CENTRALITY ENGINE RUNNING</span>
+</div>
+<span class="font-label-mono-md text-label-mono-md font-extrabold text-primary">68%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500" style="width: 68%;"></div>
+</div>
+<div class="flex flex-col text-center">
+<p class="font-body-md text-body-md text-on-surface font-semibold">Computing PageRank &amp; Betweenness Centrality...</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ग्राफ नोड्स तैयार किए जा रहे हैं • Traversing 1,482 CCTNS FIR nodes across 8 districts</p>
+</div>
+<div class="flex items-center gap-space-md pt-space-xs text-outline font-label-mono-sm text-[11px]">
+<span>Threads: 16 Workers</span>
+<span>•</span>
+<span>Depth: Hop-3 Recursive</span>
+<span>•</span>
+<span>ETA: ~1.8s</span>
+</div>
+</div>
+</div>
+<!-- Right Dossier Panel (Skeleton Metrics & Radial Placeholder) -->
+<div class="w-full xl:w-80 flex flex-col gap-space-md shrink-0">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm animate-pulse">
+<div class="h-4 w-32 bg-surface-container-high rounded"></div>
+<div class="h-8 w-44 bg-surface-container rounded mt-1"></div>
+<div class="h-3 w-56 bg-surface-container rounded"></div>
+</div>
+<!-- Placeholder Radial Shimmer Chart Card -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col items-center gap-space-sm animate-pulse">
+<div class="h-4 w-28 bg-surface-container-high rounded self-start"></div>
+<div class="relative w-36 h-36 flex items-center justify-center my-2">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#e2e7ff" stroke-width="10"></circle>
+<circle class="opacity-40" cx="50" cy="50" fill="transparent" r="40" stroke="#1d4ed8" stroke-dasharray="251.2" stroke-dashoffset="80" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<div class="h-6 w-10 bg-surface-container rounded"></div>
+</div>
+</div>
+<div class="h-3 w-40 bg-surface-container rounded"></div>
+</div>
+<!-- Metric Placeholders -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-3 animate-pulse">
+<div class="flex justify-between items-center">
+<div class="h-4 w-24 bg-surface-container rounded"></div>
+<div class="h-4 w-12 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="h-4 w-28 bg-surface-container rounded"></div>
+<div class="h-4 w-16 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="h-4 w-20 bg-surface-container rounded"></div>
+<div class="h-4 w-14 bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- State 3: ERROR STATE ("Graph Engine Memory Limit") -->
+<div class="state-panel hidden flex flex-col xl:flex-row gap-space-lg w-full" id="view-error">
+<!-- Left Query Diagnostics Summary -->
+<div class="w-full xl:w-80 flex flex-col gap-space-md shrink-0">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Engine Status</span>
+<span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-error-container text-on-error-container font-bold">ABORTED</span>
+</div>
+<div class="p-3 bg-error-container/20 rounded-lg flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+<span class="font-label-mono-sm text-[11px] font-bold">RESOURCE OVERFLOW</span>
+</div>
+<span class="font-body-sm text-[12px] text-on-surface font-medium">Memory Pool Exceeded: 2.4 GB Allocated / 2.0 GB Capped</span>
+</div>
+<div class="flex flex-col gap-2 pt-space-xs font-label-mono-sm text-[12px]">
+<div class="flex justify-between text-on-surface-variant">
+<span>Queried Subnet:</span>
+<span class="text-on-surface font-semibold">103.224.0.0/16</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Timeframe:</span>
+<span class="text-on-surface font-semibold">All Time (365d)</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Raw Edges:</span>
+<span class="text-error font-bold">48,932 edges</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Candidate Nodes:</span>
+<span class="text-error font-bold">14,200 entities</span>
+</div>
+</div>
+</div>
+<!-- Quick Recommended Pre-Filters -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-sm">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Recommended Overrides</span>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-all text-left flex items-start gap-2.5" type="button">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">date_range</span>
+<div class="flex flex-col">
+<span class="font-title-md text-[13px] text-on-surface font-semibold">30-Day Window Restrict</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Reduces node volume by ~84%</span>
+</div>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-all text-left flex items-start gap-2.5" type="button">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">account_balance_wallet</span>
+<div class="flex flex-col">
+<span class="font-title-md text-[13px] text-on-surface font-semibold">Isolate Mule UPI Accounts</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Filters out static terminal telcos</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Graph Canvas: Dense Jammed Nodes Graphic with Error Glass Overlay -->
+<div class="flex-1 min-h-[640px] bg-surface-container-lowest rounded-2xl shadow-sm relative overflow-hidden flex flex-col items-center justify-center p-space-xl">
+<!-- Background Fog of Dense Intersecting Nodes (indicating overload) -->
+<div class="absolute inset-0 opacity-20 filter blur-[0.5px] pointer-events-none overflow-hidden">
+<svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.6" stroke="#ba1a1a" stroke-width="0.75">
+<line x1="100" x2="300" y1="50" y2="400"></line>
+<line x1="200" x2="500" y1="80" y2="250"></line>
+<line x1="450" x2="150" y1="40" y2="350"></line>
+<line x1="50" x2="650" y1="200" y2="180"></line>
+<line x1="80" x2="600" y1="350" y2="100"></line>
+<line x1="350" x2="250" y1="30" y2="420"></line>
+<line x1="180" x2="420" y1="120" y2="320"></line>
+<line x1="520" x2="280" y1="90" y2="380"></line>
+<line x1="40" x2="580" y1="100" y2="450"></line>
+<line x1="620" x2="80" y1="200" y2="280"></line>
+</g>
+<!-- Scattered red warning cluster dots -->
+<g fill="#ba1a1a" opacity="0.5">
+<circle cx="150" cy="120" r="4"></circle>
+<circle cx="280" cy="190" r="6"></circle>
+<circle cx="340" cy="140" r="5"></circle>
+<circle cx="420" cy="220" r="4"></circle>
+<circle cx="210" cy="310" r="5"></circle>
+<circle cx="510" cy="180" r="6"></circle>
+<circle cx="390" cy="330" r="4"></circle>
+<circle cx="100" cy="240" r="5"></circle>
+<circle cx="480" cy="310" r="5"></circle>
+<circle cx="290" cy="80" r="6"></circle>
+</g>
+</svg>
+</div>
+<!-- Tactical Sandstone & Crimson Error Glass Overlay Container -->
+<div class="relative z-10 max-w-xl w-full bg-surface-container-lowest/95 backdrop-blur-xl rounded-2xl shadow-xl p-space-xl flex flex-col items-center text-center">
+<!-- Tactical Sandstone / Warning Pill Icon -->
+<div class="w-16 h-16 rounded-2xl bg-secondary-fixed text-secondary flex items-center justify-center mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[32px]">dataset_linked</span>
+</div>
+<!-- Bilingual Error Indicator -->
+<div class="flex items-center gap-2 px-3 py-1 bg-secondary-fixed/50 text-on-secondary-fixed rounded-full mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-mono-sm text-[11px] font-bold uppercase tracking-wider">Graph Computation Exhaustion (नोड क्लस्टर सीमा पार)</span>
+</div>
+<!-- Error Code Box -->
+<div class="px-3 py-1.5 bg-surface-container rounded-lg font-label-mono-sm text-label-mono-sm font-bold text-error mb-space-md">
+            ERR_GRAPH_DEPTH_EXCEEDED • 14,200 nodes matched
+          </div>
+<!-- Error Description -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mb-space-lg leading-relaxed">
+            Broad query resulted in excessive graph density. The memory safety ceiling of Rajasthan Police Command Matrix prevents visual rendering of unstructured mega-clusters. Filter by specific identifier type (UPI, Phone, C2 IP) or restrict timeframe to 30 days to render syndicate links.
+          </p>
+<!-- Triage Actions -->
+<div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-space-sm w-full">
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all font-title-md text-body-sm shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Apply Recommended Filters (30 Days)</span>
+</button>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-lg bg-surface-container-low text-secondary hover:bg-surface-container-high transition-all font-title-md text-body-sm shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">filter_alt</span>
+<span>Narrow to UPI Mule Pivots Only</span>
+</button>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all font-title-md text-body-sm shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Raw Edge List (CSV)</span>
+</button>
+</div>
+<!-- Bottom Safe Mode Guideline -->
+<div class="mt-space-lg pt-space-md flex items-center gap-2 text-outline font-label-mono-sm text-[11px]">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span>Investigative Guideline: Rule 91(B) IT Act • Edge extraction allowed for offline Gephi/i2 analysis</span>
+</div>
+</div>
+</div>
+</div>
+<!-- State 4: SPLIT COMPARISON VIEW -->
+<div class="state-panel hidden flex flex-col gap-space-md w-full" id="view-split">
+<div class="p-space-sm bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">view_column</span>
+<span class="font-title-md text-title-md text-on-surface">State Transition Matrix • Interactive Comparative Inspection</span>
+</div>
+<span class="font-label-mono-sm text-[11px] text-on-surface-variant">Rajasthan Police Forensics Engine</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md w-full">
+<!-- Mini Empty Card -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between h-[420px]">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">STATE 01</span>
+<span class="font-label-ui text-[11px] text-outline font-semibold">EMPTY RECORD</span>
+</div>
+<div class="h-28 bg-surface-container-low rounded-lg flex items-center justify-center mb-space-sm relative">
+<svg class="w-24 h-20" viewbox="0 0 100 80">
+<circle cx="50" cy="40" fill="#dce1ff" r="14" stroke="#0037b0" stroke-width="2"></circle>
+<line stroke="#c4c5d7" stroke-dasharray="3 3" x1="50" x2="15" y1="40" y2="20"></line>
+<line stroke="#c4c5d7" stroke-dasharray="3 3" x1="50" x2="85" y1="40" y2="20"></line>
+<circle cx="15" cy="20" fill="#eaedff" r="6"></circle>
+<circle cx="85" cy="20" fill="#eaedff" r="6"></circle>
+</svg>
+</div>
+<h4 class="font-title-md text-[14px] text-on-surface font-bold">No Syndicate Correlated</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">Single terminal FIR detected with zero pivot convergence across Mewat or Shekhawati modules.</p>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-title-md text-[12px] font-semibold" onclick="switchState('empty')" type="button">
+            View Empty Layout
+          </button>
+</div>
+<!-- Mini Loading Card -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between h-[420px]">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-primary-fixed text-primary font-bold">STATE 02</span>
+<span class="font-label-ui text-[11px] text-primary font-semibold">PROCESSING</span>
+</div>
+<div class="h-28 bg-surface-container-low rounded-lg flex flex-col items-center justify-center mb-space-sm p-4 relative overflow-hidden">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center animate-spin mb-2">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 68%;"></div>
+</div>
+<span class="font-label-mono-sm text-[10px] text-primary font-bold mt-1.5">68% Centrality Computation</span>
+</div>
+<h4 class="font-title-md text-[14px] text-on-surface font-bold">Skeleton Centrality Engine</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">Graph centrality algorithms traversing multi-hop relations across 1,482 CCTNS case records.</p>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-title-md text-[12px] font-semibold" onclick="switchState('loading')" type="button">
+            View Loading Layout
+          </button>
+</div>
+<!-- Mini Error Card -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between h-[420px]">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-error-container text-on-error-container font-bold">STATE 03</span>
+<span class="font-label-ui text-[11px] text-error font-semibold">OVERFLOW CAPPED</span>
+</div>
+<div class="h-28 bg-error-container/20 rounded-lg flex flex-col items-center justify-center mb-space-sm p-3">
+<span class="material-symbols-outlined text-error text-[28px] mb-1">warning</span>
+<span class="font-label-mono-sm text-[11px] text-error font-bold text-center">ERR_GRAPH_DEPTH_EXCEEDED</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">14,200 entities exceeded ceiling</span>
+</div>
+<h4 class="font-title-md text-[14px] text-on-surface font-bold">Computation Limit Handler</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1">Safeguards memory buffer by requesting temporal or entity filter narrowing before node canvas render.</p>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-title-md text-[12px] font-semibold" onclick="switchState('error')" type="button">
+            View Error Layout
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript Logic -->
+<script>
+    function switchState(stateName) {
+      // Hide all panels
+      const panels = document.querySelectorAll('.state-panel');
+      panels.forEach(p => p.classList.add('hidden'));
+
+      // Remove active classes on buttons
+      const buttons = document.querySelectorAll('.state-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('text-on-surface-variant');
+      });
+
+      // Show selected panel
+      const targetPanel = document.getElementById('view-' + stateName);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+      }
+
+      // Activate selected button
+      const targetBtn = document.getElementById('btn-state-' + stateName);
+      if (targetBtn) {
+        targetBtn.classList.remove('text-on-surface-variant');
+        targetBtn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm px-space-lg border-t border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col md:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span class="font-medium text-on-surface">State Cyber Crime Cell, Rajasthan Police HQ, Jaipur</span><span>•</span><span class="font-label-mono-sm text-label-mono-sm text-outline">CCTNS / I4C / 1930 Live Integration</span></div><div class="flex items-center gap-space-md"><span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold border border-outline-variant/30">ISO 27001 Certified</span><span class="font-label-ui text-label-ui uppercase tracking-wider text-outline font-semibold">Confidential Law Enforcement Workbench</span></div></div></footer></div>
+</body></html>

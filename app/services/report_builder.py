@@ -1,11 +1,11 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Server-side investigation reports.
 
 The existing ``frontend/src/lib/report.js`` is client-only and redaction-first,
 which is right for a citizen and wrong for an investigator. This builder runs
 on the server, reads the persisted case, and produces the full evidentiary
-record PS01 asks for â€” with a redacted mode kept for anything shared outside
+record PS01 asks for — with a redacted mode kept for anything shared outside
 the investigation.
 
 Output is print-optimised HTML rather than a hand-rolled PDF binary: a browser
@@ -87,9 +87,9 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
 
     risk_colour = _RISK_COLOUR.get(detail.risk_level.value, "#475467")
     mode_banner = (
-        '<div class="banner redacted">REDACTED COPY â€” identifiers masked for external sharing</div>'
+        '<div class="banner redacted">REDACTED COPY — identifiers masked for external sharing</div>'
         if redacted
-        else '<div class="banner full">FULL INVESTIGATION COPY â€” contains unmasked identifiers</div>'
+        else '<div class="banner full">FULL INVESTIGATION COPY — contains unmasked identifiers</div>'
     )
 
     findings_rows = "\n".join(
@@ -97,7 +97,7 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
           <td><span class="sev" style="background:{_SEVERITY_COLOUR.get(f.severity.value, '#475467')}">{_esc(f.severity.value)}</span></td>
           <td><code>{_esc(f.code)}</code></td>
           <td>{_esc(f.explanation)}</td>
-          <td class="ev">{_esc(f.evidence or 'â€”', redacted=redacted)}</td>
+          <td class="ev">{_esc(f.evidence or '—', redacted=redacted)}</td>
         </tr>"""
         for f in detail.findings
     ) or '<tr><td colspan="4" class="empty">No indicators recorded.</td></tr>'
@@ -107,7 +107,7 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
           <td><strong>{_esc(i.type.value)}</strong></td>
           <td class="mono">{_esc(i.value, redacted=redacted)}</td>
           <td>{_esc(i.confidence)}%</td>
-          <td class="ev">{_esc(i.context or 'â€”', redacted=redacted)}</td>
+          <td class="ev">{_esc(i.context or '—', redacted=redacted)}</td>
         </tr>"""
         for i in detail.identifiers
     ) or '<tr><td colspan="4" class="empty">No identifiers extracted.</td></tr>'
@@ -132,7 +132,7 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="x-sig" content="48696d616e736875205961646176205b4e4653552054435d">
-<title>Case {_esc(detail.case_id)} â€” PARAKH Investigation Report</title>
+<title>Case {_esc(detail.case_id)} — PARAKH Investigation Report</title>
 <style>
   @page {{ size: A4; margin: 16mm; }}
   * {{ box-sizing: border-box; }}
@@ -181,8 +181,8 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
   <tr><td><strong>Opened</strong></td><td>{_esc(detail.created_at)}</td></tr>
   <tr><td><strong>Indicators</strong></td><td>{len(detail.findings)}</td></tr>
   <tr><td><strong>Identifiers</strong></td><td>{len(detail.identifiers)}</td></tr>
-  <tr><td><strong>Reporter note</strong></td><td>{_esc(detail.reporter_note or 'â€”', redacted=redacted)}</td></tr>
-  <tr><td><strong>Officer note</strong></td><td>{_esc(detail.officer_note or 'â€”')}</td></tr>
+  <tr><td><strong>Reporter note</strong></td><td>{_esc(detail.reporter_note or '—', redacted=redacted)}</td></tr>
+  <tr><td><strong>Officer note</strong></td><td>{_esc(detail.officer_note or '—')}</td></tr>
 </table>
 
 <h2>Risk indicators ({len(detail.findings)})</h2>
@@ -204,11 +204,11 @@ def build_case_html(detail: CaseDetail, *, redacted: bool = False, linked: list 
 <pre>{_esc((detail.content_text or '(no content captured)')[:6000], redacted=redacted)}</pre>
 
 <footer>
-  <span style="font-size:0;color:transparent;user-select:none" aria-hidden="true">{_WM}</span><p><strong>Generated</strong> {_now()} Â· PARAKH — Rajasthan Police Digital Fraud Intelligence Platform.</p>
+  <span style="font-size:0;color:transparent;user-select:none" aria-hidden="true">{_WM}</span><p><strong>Generated</strong> {_now()} · PARAKH — Rajasthan Police Digital Fraud Intelligence Platform.</p>
   <p>Analysis is static and automated. No application was installed or executed, and no page was
      rendered with JavaScript. Indicators listed here are evidence to support an investigation,
      not proof of criminal conduct.</p>
-  <p>National Cyber Crime Helpline <strong>1930</strong> Â· https://cybercrime.gov.in/</p>
+  <p>National Cyber Crime Helpline <strong>1930</strong> · https://cybercrime.gov.in/</p>
 </footer>
 </body></html>"""
 
@@ -243,7 +243,7 @@ def build_cases_csv(cases: list[CaseRecord]) -> str:
 
 
 def build_identifiers_csv(cases: list[CaseRecord]) -> str:
-    """Every identifier across the selected cases â€” the actionable export."""
+    """Every identifier across the selected cases — the actionable export."""
 
     buffer = io.StringIO()
     writer = csv.writer(buffer)

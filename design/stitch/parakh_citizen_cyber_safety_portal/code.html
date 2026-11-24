@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#2151da","on-tertiary-fixed":"#390c00","on-tertiary-container":"#ffc9b8","on-secondary":"#ffffff","surface-container-low":"#f2f3ff","on-tertiary":"#ffffff","surface":"#faf8ff","on-secondary-fixed-variant":"#743500","tertiary-fixed-dim":"#ffb59d","primary-fixed-dim":"#b7c4ff","on-surface":"#131b2e","on-error":"#ffffff","inverse-surface":"#283044","inverse-primary":"#b7c4ff","tertiary":"#802500","on-primary-fixed-variant":"#0039b5","secondary-fixed-dim":"#ffb689","on-primary-container":"#cad3ff","tertiary-fixed":"#ffdbd0","secondary":"#984800","primary-fixed":"#dce1ff","surface-container-highest":"#dae2fd","surface-container":"#eaedff","error":"#ba1a1a","surface-bright":"#faf8ff","surface-container-lowest":"#ffffff","outline-variant":"#c4c5d7","outline":"#747686","inverse-on-surface":"#eef0ff","secondary-container":"#ff9245","error-container":"#ffdad6","on-secondary-container":"#6b3100","surface-container-high":"#e2e7ff","primary":"#0037b0","on-error-container":"#93000a","on-background":"#131b2e","surface-variant":"#dae2fd","surface-dim":"#d2d9f4","on-tertiary-fixed-variant":"#832600","tertiary-container":"#a83300","primary-container":"#1d4ed8","background":"#faf8ff","on-primary":"#ffffff","on-primary-fixed":"#001551","on-surface-variant":"#434655","secondary-fixed":"#ffdbc8","on-secondary-fixed":"#311300"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-3xl":"4rem","gutter-mobile":"1rem","space-2xs":"0.25rem","space-md":"1rem","space-sm":"0.75rem","space-xs":"0.5rem","space-lg":"1.5rem",margin:"2rem",gutter:"1.5rem","space-xl":"2rem","margin-mobile":"1rem","space-2xl":"3rem"},fontFamily:{"display-hero-mobile":["Plus Jakarta Sans"],"label-ui":["Plus Jakarta Sans"],"label-mono-sm":["JetBrains Mono"],"title-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-mono-md":["JetBrains Mono"]},fontSize:{"display-hero-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-ui":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"600"}],"label-mono-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"display-hero":["44px",{lineHeight:"52px",letterSpacing:"-0.03em",fontWeight:"800"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"label-mono-md":["14px",{lineHeight:"20px",letterSpacing:"-0.01em",fontWeight:"500"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-container-lowest/85 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(0,55,176,0.2)]"><span class="material-symbols-outlined text-on-primary text-[24px]">verified_user</span></div><div class="flex flex-col"><div class="flex items-baseline gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">PARAKH</span><span class="font-headline-sm text-headline-sm font-semibold text-secondary">परख</span></div><span class="font-label-ui text-[11px] text-on-surface-variant tracking-normal leading-tight">राजस्थान पुलिस नागरिक साइबर रक्षा</span></div></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-title-md border-b-2 border-primary"><a aria-current="page" class="transition-colors py-space-xs text-primary font-title-md border-b-2 border-primary" data-path="check" href="#">Check (सत्यापन)</a><a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="app-check" href="#">App check</a><a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="learn" href="#">Learn (जागरूकता)</a><a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="help" href="#">Help (सहायता)</a><a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="evidence" href="#">Evidence (साक्ष्य संदर्भ)</a></nav><div class="flex items-center gap-space-md"><div class="inline-flex items-center bg-surface-container px-space-xs py-space-2xs rounded-full font-label-ui text-label-ui text-on-surface-variant"><span class="px-space-xs py-0.5 rounded-full bg-surface-container-lowest font-bold text-primary shadow-sm">EN</span><span class="px-space-xs py-0.5 rounded-full hover:text-on-surface cursor-pointer transition-colors">हिंदी</span></div><a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-all shadow-[0_2px_6px_rgba(186,26,26,0.15)]" href="tel:1930"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-error"></span></span><span class="font-label-ui text-label-ui font-bold whitespace-nowrap">1930 Helpline</span></a><a class="hidden sm:inline-flex items-center gap-space-2xs text-on-surface-variant hover:text-primary transition-colors font-label-ui text-label-ui" data-path="officer-login" href="#"><span class="material-symbols-outlined text-[16px]">lock</span><span>Officer login (अधिकारी लॉगिन)</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- ========================================== -->
+<!-- HERO SECTION: Split View & Quick-Check     -->
+<!-- ========================================== -->
+<section class="relative w-full overflow-hidden bg-surface">
+<!-- Traditional Jaali lattice background motif (subtle regional watermark) -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.035]" style="background-image: radial-gradient(#984800 1.5px, transparent 1.5px), radial-gradient(#0037b0 1.5px, #faf8ff 1.5px); background-size: 32px 32px; background-position: 0 0, 16px 16px;"></div>
+<div class="max-w-7xl mx-auto px-margin py-space-xl lg:py-space-2xl relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- LEFT COLUMN: Content & Inline Quick Check -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Eyebrow Chip -->
+<div class="inline-flex items-center gap-space-xs self-start px-space-md py-1.5 rounded-full bg-primary-fixed text-primary font-label-ui text-label-ui shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span>Rajasthan Police · Cyber Safety | राजस्थान पुलिस नागरिक सुरक्षा</span>
+</div>
+<!-- Hero Headings -->
+<div class="flex flex-col gap-space-2xs">
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight leading-tight">
+              Got a suspicious message? <br/>
+<span class="text-primary font-extrabold">परखो,</span> फिर <span class="text-secondary font-extrabold">भरोसो.</span>
+</h1>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant font-medium">
+              संदिग्ध संदेश, लिंक या ऐप — भरोसा करने से पहले जाँचें
+            </p>
+</div>
+<!-- Supporting Narrative -->
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            Check SMS, WhatsApp alerts, payment links, emails, QR codes, and Android APKs in seconds. Real-time forensic validation against official law enforcement registries. <strong class="font-semibold text-on-surface">Zero retention: nothing you submit is stored.</strong>
+</p>
+<!-- INLINE QUICK-CHECK BOX -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-md lg:p-space-lg shadow-xl shadow-surface-tint/5 flex flex-col gap-space-md">
+<!-- Quick Mode Selector Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1" id="modeSelector">
+<button class="mode-tab active px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-ui text-label-ui flex items-center gap-1.5 transition-all shrink-0" onclick="switchCheckMode('text')" type="button">
+<span class="material-symbols-outlined text-[16px]">sms</span>
+<span>Message (SMS/WA)</span>
+</button>
+<button class="mode-tab px-space-sm py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-ui text-label-ui flex items-center gap-1.5 transition-all shrink-0" onclick="switchCheckMode('link')" type="button">
+<span class="material-symbols-outlined text-[16px]">link</span>
+<span>Link / URL</span>
+</button>
+<button class="mode-tab px-space-sm py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-ui text-label-ui flex items-center gap-1.5 transition-all shrink-0" onclick="switchCheckMode('image')" type="button">
+<span class="material-symbols-outlined text-[16px]">image</span>
+<span>Screenshot / फोटो</span>
+</button>
+<button class="mode-tab px-space-sm py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-ui text-label-ui flex items-center gap-1.5 transition-all shrink-0" onclick="switchCheckMode('apk')" type="button">
+<span class="material-symbols-outlined text-[16px]">android</span>
+<span>App (.apk)</span>
+</button>
+<button class="mode-tab px-space-sm py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-ui text-label-ui flex items-center gap-1.5 transition-all shrink-0" onclick="switchCheckMode('qr')" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+<span>QR Code</span>
+</button>
+</div>
+<!-- Verification Textarea -->
+<div class="relative w-full">
+<textarea class="w-full bg-surface-container-low focus:bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-xl p-space-md focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-on-surface-variant/60 transition-all resize-none" id="checkInputArea" placeholder="Paste the message, URL, or UPI string here… / संदेश या लिंक यहाँ चिपकाएँ… (e.g. Electricity bill SMS, KYC warning, APK download link, Telegram task)" rows="3"></textarea>
+<!-- Quick-fill sample badge & Clear -->
+<div class="absolute right-2.5 bottom-2.5 flex items-center gap-space-xs">
+<button class="px-space-xs py-1 rounded-md bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container hover:text-on-secondary-container font-label-ui text-label-ui transition-colors flex items-center gap-1" onclick="fillSampleScam()" type="button">
+<span class="material-symbols-outlined text-[14px]">auto_fix_high</span>
+<span>Try Sample Scam</span>
+</button>
+<button class="p-1 rounded-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="clearInput()" title="Clear field" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-mono-sm text-label-mono-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span>Client-Side SHA256 • RAM Sandbox Only</span>
+</div>
+<button class="w-full sm:w-auto px-space-lg py-space-sm bg-primary text-on-primary font-title-md text-title-md rounded-xl shadow-lg shadow-primary/20 hover:bg-primary-container transition-all flex items-center justify-center gap-space-xs group" id="executeCheckBtn" onclick="runInteractiveCheck()" type="button">
+<span class="material-symbols-outlined text-[20px]">search_check</span>
+<span>Check now / तुरंत जाँचें</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Interactive Live Output Tray (Hidden by default, shown upon runInteractiveCheck) -->
+<div class="hidden flex-col gap-space-sm p-space-md rounded-xl bg-error-container/30 transition-all" id="liveOutputTray">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[24px]">gpp_maybe</span>
+<div>
+<h4 class="font-title-md text-title-md font-bold text-on-error-container">उच्च जोखिम वाली धोखाधड़ी (CRITICAL THREAT)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rajasthan Cyber Syndicate Blacklist Match: 98.4% Confidence</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-error text-on-error font-label-mono-sm text-label-mono-sm font-bold">SCORE: 96/100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                ⚠️ <strong class="font-semibold">Red Flag:</strong> Fake Discom Power bill disconnection trap with rogue payment gateway. Do not click links or call the referenced private cell number.
+              </p>
+<div class="flex items-center justify-end gap-space-sm pt-space-2xs">
+<a class="inline-flex items-center gap-1 font-label-ui text-label-ui font-bold text-error hover:underline" href="tel:1930">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                  Report to Cyber Cell 1930
+                </a>
+</div>
+</div>
+</div>
+<!-- Trust Badges Under Quick-Check -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">no_accounts</span>
+<span class="font-label-ui text-label-ui text-on-surface-variant">No Login Required</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-label-ui text-label-ui text-on-surface-variant">Zero-Retention RAM</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">translate</span>
+<span class="font-label-ui text-label-ui text-on-surface-variant">Hindi &amp; English</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+<span class="font-label-ui text-label-ui text-on-surface-variant">&lt;2s Rapid Triage</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Cartographic Telemetry & Floating Live Cards -->
+<div class="lg:col-span-5 relative w-full h-[540px] flex items-center justify-center">
+<!-- Background Glow Halo -->
+<div class="absolute w-96 h-96 rounded-full bg-secondary-fixed-dim/30 blur-3xl pointer-events-none"></div>
+<!-- Cartographic Map Graphic Container (Survey of India Outline + Elevated Rajasthan Core) -->
+<div class="relative w-full h-full flex items-center justify-center">
+<svg class="w-full h-full max-h-[500px]" fill="none" viewbox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="rajGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffb689"></stop>
+<stop offset="50%" stop-color="#ff9245"></stop>
+<stop offset="100%" stop-color="#e07a2f"></stop>
+</lineargradient>
+<filter height="140%" id="elevateShadow" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="8" flood-color="#743500" flood-opacity="0.18" stddeviation="12"></fedropshadow>
+</filter>
+</defs>
+<!-- Generalized India Administrative Shell (Neutral Light Slate) -->
+<path d="M 180 40 L 210 20 L 250 35 L 265 75 L 240 100 L 280 120 L 330 115 L 370 140 L 440 135 L 470 170 L 440 190 L 380 180 L 330 200 L 330 250 L 300 280 L 280 340 L 250 420 L 240 470 L 230 420 L 210 350 L 170 300 L 150 250 L 120 220 L 130 180 L 170 160 Z" fill="#eaedff" stroke="#c4c5d7" stroke-width="1.5"></path>
+<!-- Neighboring Interstate Telemetry Feeds (Dashed Flow Lines into Rajasthan) -->
+<path class="animate-pulse" d="M 270 90 Q 210 120 185 165" stroke="#1d4ed8" stroke-dasharray="4 4" stroke-opacity="0.6" stroke-width="1.8"></path>
+<path class="animate-pulse" d="M 360 170 Q 250 180 195 190" stroke="#1d4ed8" stroke-dasharray="4 4" stroke-opacity="0.6" stroke-width="1.8"></path>
+<path class="animate-pulse" d="M 230 380 Q 200 260 185 210" stroke="#1d4ed8" stroke-dasharray="4 4" stroke-opacity="0.6" stroke-width="1.8"></path>
+<!-- RAJASTHAN HIGHLIGHT POLYGON (Elevated Focus) -->
+<g filter="url(#elevateShadow)">
+<path d="M 140 140 
+                         L 185 125 
+                         L 220 145 
+                         L 230 175 
+                         L 215 210 
+                         L 185 235 
+                         L 145 220 
+                         L 125 180 Z" fill="url(#rajGradient)" stroke="#ffffff" stroke-width="2.5"></path>
+<!-- District Internal Subtle Partitions -->
+<path d="M 185 125 L 180 175 L 215 210" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.2"></path>
+<path d="M 140 140 L 180 175 L 145 220" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.2"></path>
+<path d="M 180 175 L 230 175" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.2"></path>
+<!-- Concentric Radar Rings around Cyber Command Jaipur (approx coordinates 185, 165) -->
+<circle class="animate-ping" cx="185" cy="165" fill="none" r="28" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1" style="animation-duration: 3s;"></circle>
+<circle cx="185" cy="165" fill="none" r="16" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.2"></circle>
+<circle cx="185" cy="165" fill="#0037b0" r="4.5"></circle>
+<!-- City District Cyber Hub Nodes -->
+<!-- Jaipur -->
+<circle cx="185" cy="165" fill="#ffffff" r="3.5"></circle>
+<!-- Jodhpur -->
+<circle cx="155" cy="175" fill="#ffffff" r="3"></circle>
+<!-- Udaipur -->
+<circle cx="160" cy="210" fill="#ffffff" r="3"></circle>
+<!-- Kota -->
+<circle cx="198" cy="202" fill="#ffffff" r="3"></circle>
+<!-- Bikaner -->
+<circle cx="150" cy="148" fill="#ffffff" r="3"></circle>
+<!-- Ajmer -->
+<circle cx="175" cy="178" fill="#ffffff" r="3"></circle>
+<!-- Bharatpur -->
+<circle cx="218" cy="155" fill="#ffffff" r="3"></circle>
+</g>
+<!-- District Labels -->
+<text fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="700" x="189" y="160">HQ JAIPUR</text>
+<text fill="#390c00" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="600" x="126" y="174">Jodhpur</text>
+<text fill="#390c00" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="600" x="140" y="222">Udaipur</text>
+<text fill="#390c00" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="600" x="202" y="212">Kota</text>
+</svg>
+<!-- FLOATING LIVE TELEMETRY CARDS OVER MAP -->
+<!-- Card 1: Top Right (SMS KYC Alert) -->
+<div class="absolute top-2 -right-2 md:right-4 bg-surface-container-lowest/90 backdrop-blur-md p-space-sm rounded-xl shadow-lg shadow-surface-tint/10 max-w-[240px] flex flex-col gap-1 transform hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm text-error font-bold">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                  SMS EXPLOIT
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-[10px] font-bold">94/100 RISK</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface font-semibold truncate leading-tight">"Discom Bijli Bill Unpaid cut tonight"</p>
+<span class="font-label-ui text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                Blocked: Jodhpur West Cell
+              </span>
+</div>
+<!-- Card 2: Mid-Left (Phishing Domain) -->
+<div class="absolute top-1/2 -left-3 md:-left-6 transform -translate-y-1/2 bg-surface-container-lowest/90 backdrop-blur-md p-space-sm rounded-xl shadow-lg shadow-surface-tint/10 max-w-[220px] flex flex-col gap-1 hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">link_off</span>
+                  CLONED PORTAL
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-mono-sm text-[10px] font-bold">SPOOF</span>
+</div>
+<p class="font-label-mono-sm text-[11px] text-primary truncate">raj-police-echallan.in</p>
+<span class="font-label-ui text-[10px] text-on-surface-variant">Flagged on Chakshu Registry</span>
+</div>
+<!-- Card 3: Bottom Right (Malicious APK) -->
+<div class="absolute -bottom-2 right-2 md:right-8 bg-surface-container-lowest/90 backdrop-blur-md p-space-sm rounded-xl shadow-lg shadow-surface-tint/10 max-w-[250px] flex flex-col gap-1 hover:-translate-y-1 transition-transform">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm text-error font-bold">
+<span class="material-symbols-outlined text-[14px]">security_update_warning</span>
+                  SPYWARE APK
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-error text-on-error font-label-mono-sm text-[10px] font-bold">DANGER</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface font-semibold truncate leading-tight">QuickLoan-Instant-App.apk</p>
+<div class="flex items-center justify-between font-label-mono-sm text-[10px] text-on-surface-variant">
+<span>Contacts Harvest Hook</span>
+<span class="text-error font-bold">DO NOT INSTALL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: HOW PARAKH CHECKS (Pipeline)      -->
+<!-- ========================================== -->
+<section class="w-full bg-surface-container-low py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-2xl">
+<!-- Section Header with Devanagari Bilingual Display -->
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto gap-space-xs">
+<span class="font-label-ui text-label-ui text-primary uppercase tracking-widest font-bold">Automated Forensic Architecture</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">
+          Four-Step Forensic Intelligence Pipeline
+        </h2>
+<p class="font-title-md text-title-md text-on-surface-variant">
+          परख कैसे काम करता है: चार चरणों में त्वरित व सुरक्षित जाँच
+        </p>
+</div>
+<!-- 4-Step Connected Workflow Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md relative hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold text-headline-sm">
+<span class="material-symbols-outlined text-[24px]">content_paste</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">STEP 01</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">1. Paste or Upload</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">संदिग्ध सामग्री चिपकाएँ या अपलोड करें</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Submit dubious SMS texts, WhatsApp forwards, payment links, APK installer packages, QR images, or extortion audio clips.
+          </p>
+<div class="mt-auto pt-space-xs flex items-center gap-1.5 font-label-mono-sm text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+<span>Multi-modal intake</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md relative hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center font-bold text-headline-sm">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">STEP 02</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">2. Extracts Artifacts</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">पहचानकर्ताओं की स्वचालित पहचान</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Our engine parses underlying entities: sender phone numbers, UPI VPA handles, bank IFSCs, spoofed homograph URLs, and SHA-256 APK signatures.
+          </p>
+<div class="mt-auto pt-space-xs flex items-center gap-1.5 font-label-mono-sm text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">memory</span>
+<span>Entity Deconstruction</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md relative hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-surface-tint text-on-primary flex items-center justify-center font-bold text-headline-sm">
+<span class="material-symbols-outlined text-[24px]">hub</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-mono-sm text-label-mono-sm text-surface-tint font-bold">STEP 03</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">3. Cross-Matches Crime Registries</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">अपराध सिंडिकेट डेटाबेस से मिलान</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Real-time cross-referencing against Rajasthan Cyber Cell telemetry, National 1930 records, and I4C Chakshu blacklisted phone clusters.
+          </p>
+<div class="mt-auto pt-space-xs flex items-center gap-1.5 font-label-mono-sm text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-surface-tint">policy</span>
+<span>I4C Telemetry Sync</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col gap-space-md relative hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-primary flex items-center justify-center font-bold text-headline-sm">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-mono-sm text-label-mono-sm text-tertiary font-bold">STEP 04</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">4. Verdict &amp; Actions</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">स्पष्ट निर्णय और बचाव के कदम</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Receive a plain-language bilingual trust score, explicit red-flag breakdown, precautionary safety actions, and 1-tap reporting to 1930.
+          </p>
+<div class="mt-auto pt-space-xs flex items-center gap-1.5 font-label-mono-sm text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+<span>Actionable Advisory</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: WHAT CAN YOU CHECK? (Bento Grid)  -->
+<!-- ========================================== -->
+<section class="w-full bg-surface py-space-3xl">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-2xl">
+<!-- Section Title -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-ui text-label-ui text-secondary uppercase tracking-widest font-bold">Supported Modalities</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">What Can You Check on PARAKH?</h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant">नागरिक सुरक्षा हेतु समर्थित डिजिटल प्रारूप</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Any dubious digital communication can be parsed instantly. Select a category below to test specific formats.
+        </p>
+</div>
+<!-- Bento Grid (7 Modalities) -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-space-lg">
+<!-- Tile 1: SMS & WhatsApp (Large 2-column on lg) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">chat</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">89,200+ Scanned</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">SMS &amp; WhatsApp Messages</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Discom power cut notices, bank account debit scares, lottery wins, and work-from-home Telegram trap invitations.
+            </p>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-ui text-[11px]">Electricity Threat</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-ui text-[11px]">KYC Expire Alert</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-ui text-[11px]">Part-Time Job</span>
+</div>
+</div>
+<!-- Tile 2: Phishing & Look-alike URLs -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">link</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">Domain Sandbox</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Phishing &amp; Fake URLs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Homoglyphs, look-alike banking portals, and cloned government schemes mimicking Official Raj Portals.
+            </p>
+</div>
+<span class="font-label-mono-sm text-[11px] text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">public</span>
+            DNS Spoof Scan
+          </span>
+</div>
+<!-- Tile 3: Android APKs (.apk) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[28px]">android</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-error-container text-on-error-container font-label-mono-sm text-[11px] font-bold">High Threat</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Android Apps (.apk)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Static manifest analysis for predatory loan apps, remote accessibility hijackers, and fake e-challan APKs.
+            </p>
+</div>
+<span class="font-label-mono-sm text-[11px] text-error flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">bug_report</span>
+            Permission Audit
+          </span>
+</div>
+<!-- Tile 4: Suspicious Screenshots & Notices -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">image</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">OCR Engine</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Suspicious Screenshots</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Forged court arrest warrants, fake CBI notice letters, and manipulated digital payment success receipts.
+            </p>
+</div>
+<span class="font-label-ui text-[11px] text-primary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">document_scanner</span>
+            Seal &amp; Signature Verifier
+          </span>
+</div>
+<!-- Tile 5: Malicious QR Codes -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[28px]">qr_code</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">UPI Intent</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Malicious QR Codes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Reverse UPI collect requests masquerading as refunds or marketplace sale deposits.
+            </p>
+</div>
+<span class="font-label-mono-sm text-[11px] text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">currency_rupee</span>
+            UPI Payee Validation
+          </span>
+</div>
+<!-- Tile 6: Fraudulent Emails -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">mail</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">DKIM / SPF</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Fraudulent Emails</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Income tax refund notifications, government tender hoaxes, and fake job appointment letters.
+            </p>
+</div>
+<span class="font-label-ui text-[11px] text-primary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">mark_email_read</span>
+            Header Authenticator
+          </span>
+</div>
+<!-- Tile 7: Audio & Voice Notes (AI Deepfakes) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[28px]">mic</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-[11px]">Acoustic AI</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface mb-1">Voice Notes &amp; Audio</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              AI voice clone extortion calls mimicking family members in urgent jail custody or road accidents.
+            </p>
+</div>
+<span class="font-label-ui text-[11px] text-on-surface-variant flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">graphic_eq</span>
+            Synthetic Spectral Probe
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: SCAMS IN RAJASTHAN RIGHT NOW      -->
+<!-- ========================================== -->
+<section class="w-full bg-surface-container-low py-space-3xl">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-2xl">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-bold self-start">
+<span class="material-symbols-outlined text-[16px]">campaign</span>
+<span>Rajasthan Cyber Cell Advisory / राज्य साइबर सेल चेतावनी</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Active Threat Patterns in Rajasthan</h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant">वर्तमान में राजस्थान में सक्रिय प्रमुख साइबर खतरे - जन जागरूकता</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-ping"></span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">Updated: Today 08:30 IST</span>
+</div>
+</div>
+<!-- Scam Cards Grid (6 High Profile Scams) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1: Electricity Disconnection -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-bold">MOST REPORTED</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">electric_bolt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Electricity Bill Disconnection</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">बिजली बिल कटने की फर्जी धमकी (Discom SMS)</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "Dear Consumer, your electricity power will be disconnected tonight at 9:30 PM from Jaipur Discom office because your previous month bill was not updated. Please immediately contact our electricity officer Mr. Sharma at 9829XXXXXX."
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Private 10-digit mobile number given instead of official Jaipur Vidyut Vitran Nigam portal.</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Discoms never send disconnection warnings via personal WhatsApp or mobile numbers.</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Digital Arrest Video Call -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-bold">EXTREME DANGER</span>
+<span class="material-symbols-outlined text-error text-[20px]">videocam_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Digital Arrest Video Call</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">डिजिटल अरेस्ट फ्रॉड (CBI / Police Impersonation)</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "You are under Digital Arrest under Section 120B IPC for a parcel sent to Taiwan containing 16 passports and drugs. You must stay on video call with Cyber Crime Branch officer until funds in your account are verified."
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Indian Law has NO provision for "Digital Arrest" via Skype, WhatsApp, or video calls.</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Disconnect immediately and inform Rajasthan Police at 1930 without panic.</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Fake RTO E-Challan APK -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-mono-sm text-label-mono-sm font-bold">TROJAN APK</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">directions_car</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Fake RTO E-Challan APK</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">फर्जी ट्रैफिक चालान एपीके फाइल</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "RJ-14-EA-XXXX Challan Pending! Your traffic violation fine Rs.1000 is overdue. Download Traffic_Challan_Court.apk to pay before court warrant is issued: bit.ly/rj-traffic-pay"
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Downloading an .apk file instead of routing to the official <span class="font-label-mono-sm text-[11px]">echallan.parivahan.gov.in</span> portal.</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Never install application files sent via SMS or messaging apps.</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Predatory Instant Loan Apps -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-bold">BLACKMAIL EXTORTION</span>
+<span class="material-symbols-outlined text-error text-[20px]">payments</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Predatory Loan Apps</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">इंस्टेंट 5 मिनट लोन व कॉन्टैक्ट ब्लैकमेलिंग</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "Get Instant ₹50,000 in your account without CIBIL check in 2 minutes. Install SpeedRupee.apk and submit Aadhaar. No paperwork required."
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Requests full access to Contact List, Camera, and Gallery upon installation.</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Only borrow from RBI-registered NBFCs or banks. Revoke app permissions immediately.</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Part-Time Telegram Task Scams -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-mono-sm text-label-mono-sm font-bold">TELEGRAM PYRAMID</span>
+<span class="material-symbols-outlined text-primary text-[20px]">send</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Part-time YouTube / Hotel Tasks</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">यूट्यूब लाइक व होटल रेटिंग टास्क फ्रॉड</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "Earn ₹2500 - ₹5000 daily from home just by rating 5 hotels on Google Maps. We already paid ₹150 for your trial task. Join Telegram receptionist @HR_Pooja to claim bonus."
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Small payouts initially to gain trust, followed by demands for ₹50,000 "crypto merchant deposit".</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Legitimate companies never charge pre-payment or security deposits for jobs.</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Sextortion / Video Call Trap -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-bold">SOCIAL EXTORTION</span>
+<span class="material-symbols-outlined text-error text-[20px]">crisis_alert</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Sextortion &amp; Video Blackmail</h3>
+<p class="font-label-ui text-label-ui text-secondary font-medium">अनजान वीडियो कॉल और न्यूड मॉर्फिंग ब्लैकमेल</p>
+</div>
+<!-- Realistic Message Bubble -->
+<div class="bg-surface-container p-space-sm rounded-xl font-label-mono-sm text-[12px] text-on-surface leading-relaxed">
+            "We have recorded your nude video call. Send ₹25,000 to this UPI ID in 15 minutes or we will circulate the video to your Facebook contacts and family members."
+          </div>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<div class="flex items-start gap-1.5 text-error">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">flag</span>
+<span><strong>Red Flag:</strong> Video call answered from unknown number leading to synthetic morphed blackmail.</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">shield</span>
+<span><strong>Safety:</strong> Do NOT pay. Block the number and submit digital evidence to 1930 immediately.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: ZERO-RETENTION PRIVACY            -->
+<!-- ========================================== -->
+<section class="w-full bg-surface py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="w-full bg-surface-container-low rounded-3xl p-space-xl lg:p-space-2xl shadow-sm flex flex-col gap-space-xl">
+<!-- Header -->
+<div class="flex flex-col text-center max-w-2xl mx-auto gap-space-2xs">
+<div class="inline-flex items-center justify-center gap-1.5 self-center px-space-md py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[16px]">privacy_tip</span>
+<span>Zero-Retention Architecture / शून्य संग्रहण नीति</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Your Privacy is Sovereign</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            आपकी निजता पूर्णतः सुरक्षित है — आपकी जाँच आपके डिवाइस पर ही समाप्त होती है.
+          </p>
+</div>
+<!-- Central Interactive Architectural Flow -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg items-center relative">
+<!-- Node 1: Citizen Device -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col items-center text-center gap-space-sm relative">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">smartphone</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Citizen Device (फ़ोन / पीसी)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Message or URL is normalized locally in your web browser. No name or phone number requested.
+            </p>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-mono-sm text-[11px] font-bold">
+              RAM TOKENIZED
+            </span>
+</div>
+<!-- Node 2: Sandbox Engine -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-md shadow-primary/5 flex flex-col items-center text-center gap-space-sm relative">
+<div class="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[32px]">memory</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">PARAKH In-Memory Triage</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Artifacts are evaluated entirely inside volatile memory. Ephemeral execution lifecycle: &lt;1.8 seconds.
+            </p>
+<!-- Database with Cross Strikethrough Indicator -->
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-error-container text-on-error-container font-label-mono-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[16px]">database_off</span>
+<span>NO PERSISTENT DISK STORAGE</span>
+</div>
+</div>
+<!-- Node 3: Clean Verdict -->
+<div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col items-center text-center gap-space-sm relative">
+<div class="w-14 h-14 rounded-2xl bg-surface-tint flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[32px]">verified_user</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Verdict Delivered to You</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Only you view the forensic assessment. Nothing is logged unless you explicitly choose to report it to 1930.
+            </p>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-secondary font-label-mono-sm text-[11px] font-bold">
+              CLIENT DISPLAY ONLY
+            </span>
+</div>
+</div>
+<!-- Privacy Assurance Copy Box -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px] shrink-0">gavel</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong>Statutory Compliance:</strong> PARAKH strictly adheres to the Digital Personal Data Protection Act (DPDPA 2023) and Cert-In Guidelines for Sovereign Citizen Systems.
+            </p>
+</div>
+<button class="shrink-0 px-space-md py-space-xs rounded-xl bg-surface-container text-primary font-label-ui text-label-ui font-bold hover:bg-surface-container-high transition-colors" type="button">
+            Read Security Whitepaper
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION: EMERGENCY GOLDEN HOUR RESCUE BAND -->
+<!-- ========================================== -->
+<section class="w-full bg-surface pb-space-3xl">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- High Visibility Rescue Card -->
+<div class="w-full bg-surface-container-lowest rounded-2xl shadow-xl shadow-error/10 p-space-lg lg:p-space-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg relative overflow-hidden">
+<!-- Left Visual Accent Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-2.5 bg-error"></div>
+<!-- Content Column -->
+<div class="flex flex-col gap-space-xs pl-space-xs lg:pl-space-md max-w-3xl">
+<div class="inline-flex items-center gap-1.5 text-error font-label-mono-sm text-label-mono-sm font-bold uppercase tracking-wider">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-error"></span>
+</span>
+<span>Critical Incident Window / आपातकालीन चेतावनी</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-extrabold text-on-surface">
+            Lost Money to a Cyber Fraud? Act within the 'Golden Hour'.
+          </h2>
+<p class="font-title-md text-title-md text-secondary font-semibold">
+            वित्तीय ठगी के शिकार हुए हैं? पहले 2 घंटे 'गोल्डन ऑवर' हैं — तुरंत 1930 पर कॉल करें.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Calling <strong class="text-on-surface font-semibold">1930</strong> immediately triggers Rajasthan Cyber Crime nodal officers to issue real-time debit freeze directives through the National Cyber Crime Reporting Portal (NCRP), intercepting mule accounts and recovering funds before withdrawal.
+          </p>
+</div>
+<!-- Action Callouts -->
+<div class="flex flex-col sm:flex-row lg:flex-col gap-space-sm w-full lg:w-auto shrink-0 pl-space-xs lg:pl-0">
+<a class="px-space-lg py-space-sm rounded-xl bg-error text-on-error font-title-md text-title-md font-bold shadow-lg shadow-error/25 hover:bg-error-container hover:text-on-error-container transition-all flex items-center justify-center gap-space-xs" href="tel:1930">
+<span class="material-symbols-outlined text-[24px]">call</span>
+<span>Call 1930 Helpline Now (टोल फ्री)</span>
+</a>
+<a class="px-space-md py-space-sm rounded-xl bg-surface-container text-on-surface hover:text-primary hover:bg-surface-container-high font-title-md text-title-md font-semibold transition-all flex items-center justify-center gap-space-xs" href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+<span>cybercrime.gov.in (राष्ट्रीय पोर्टल)</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- CLIENT INTERACTIVITY SCRIPTS               -->
+<!-- ========================================== -->
+<script>
+    // Tab Switching for Quick Check Modalities
+    function switchCheckMode(mode) {
+      const tabs = document.querySelectorAll('.mode-tab');
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-primary', 'text-on-primary');
+        tab.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      
+      const target = event.currentTarget;
+      target.classList.remove('bg-surface-container', 'text-on-surface-variant');
+      target.classList.add('bg-primary', 'text-on-primary');
+
+      const inputArea = document.getElementById('checkInputArea');
+      if (mode === 'text') {
+        inputArea.placeholder = 'Paste the message, URL, or UPI string here… / संदेश या लिंक यहाँ चिपकाएँ… (e.g. Electricity bill SMS, KYC warning, APK download link, Telegram task)';
+      } else if (mode === 'link') {
+        inputArea.placeholder = 'Paste website address (URL) e.g., https://sbi-card-verify.net or bit.ly/echallan-pay';
+      } else if (mode === 'image') {
+        inputArea.placeholder = 'Paste or drag & drop a screenshot image of suspicious notice, warrant, or QR code here…';
+      } else if (mode === 'apk') {
+        inputArea.placeholder = 'Drop .apk package file or paste direct Android download APK link here for static sandbox analysis…';
+      } else if (mode === 'qr') {
+        inputArea.placeholder = 'Paste decoded UPI QR string (e.g., upi://pay?pa=scammer@upi&am=5000) or drop QR code photo…';
+      }
+    }
+
+    // Fill realistic sample scam for demonstration
+    function fillSampleScam() {
+      const inputArea = document.getElementById('checkInputArea');
+      inputArea.value = 'Dear Consumer, Jaipur Discom notice: Your electricity power bill of ₹1,420 is overdue. Disconnection tonight at 9:30 PM. Call Assistant Engineer Sharma at 9829103942 or pay immediately at http://jaipur-discom-bill.top/pay';
+      document.getElementById('liveOutputTray').classList.add('hidden');
+    }
+
+    // Clear input field
+    function clearInput() {
+      document.getElementById('checkInputArea').value = '';
+      document.getElementById('liveOutputTray').classList.add('hidden');
+    }
+
+    // Interactive check simulation trigger
+    function runInteractiveCheck() {
+      const inputArea = document.getElementById('checkInputArea');
+      const btn = document.getElementById('executeCheckBtn');
+      const output = document.getElementById('liveOutputTray');
+
+      if (!inputArea.value.trim()) {
+        fillSampleScam();
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span>
+        <span>Scanning Sandbox...</span>
+      `;
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">search_check</span>
+          <span>Check now / तुरंत जाँचें</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        `;
+        output.classList.remove('hidden');
+      }, 750);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-7xl mx-auto px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">verified_user</span></div><span class="font-headline-sm text-headline-sm font-bold text-primary">PARAKH परख</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">An automated digital forensic risk assessment engine powered by Rajasthan Police Citizen Cyber Safety initiative to verify digital signatures before executing transactions.</p><div class="flex items-center gap-space-xs text-on-surface-variant font-label-mono-sm text-label-mono-sm"><span class="material-symbols-outlined text-[16px] text-secondary">shield</span><span>Sovereign Citizen Trust Platform</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md font-bold text-on-surface">Citizen Safety Guides</h4><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li class="hover:text-primary transition-colors cursor-pointer">UPI QR Code Scam Red Flags</li><li class="hover:text-primary transition-colors cursor-pointer">Fake APK &amp; Malicious App Triage</li><li class="hover:text-primary transition-colors cursor-pointer">Impersonation &amp; Digital Arrest Schemes</li><li class="hover:text-primary transition-colors cursor-pointer">Part-Time Job &amp; Task Fraud Patterns</li><li class="hover:text-primary transition-colors cursor-pointer">Emergency 2-Hour Golden Window SOP</li></ul></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md font-bold text-on-surface">Support &amp; Helpline 1930</h4><div class="p-space-md rounded-xl bg-surface-container-lowest shadow-[0_1px_3px_0_rgba(15,23,42,0.04)] flex flex-col gap-space-xs"><span class="font-label-ui text-label-ui text-error font-bold uppercase tracking-wider">National Cyber Crime Toll-Free</span><span class="font-headline-sm text-headline-sm font-bold text-on-surface">📞 1930</span><span class="font-body-sm text-body-sm text-on-surface-variant">Toll-Free Rajasthan Control Room Direct Response (24x7)</span></div><a class="font-body-sm text-body-sm text-primary hover:text-primary-container font-semibold transition-colors flex items-center gap-1" data-path="help" href="#"><span>Submit Incident Report to I4C</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a></div><div class="flex flex-col gap-space-sm"><h4 class="font-title-md text-title-md font-bold text-on-surface">Rajasthan Police Cyber Crime Cell</h4><p class="font-body-sm text-body-sm text-on-surface-variant">State Cyber Police Station, Police Headquarters (PHQ), Lal Kothi, Jaipur, Rajasthan 302015</p><p class="font-body-sm text-body-sm text-on-surface-variant">Nodal Email: <span class="font-label-mono-sm text-label-mono-sm text-primary">ccps-raj@gov.in</span></p><div class="flex items-center gap-space-xs text-on-surface-variant font-label-ui text-label-ui"><span class="material-symbols-outlined text-[16px]">verified</span><span>GIGW 3.0 Accessible &amp; ISO/IEC 27001 Certified</span></div></div></div><div class="mt-space-2xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">Legal Disclaimer: PARAKH provides automated risk intelligence indicators and forensic pattern alerts, not final judicial proof.</p><p class="font-label-ui text-label-ui text-on-surface-variant shrink-0">© 2025 Rajasthan Police Cyber Safety Wing. All Rights Reserved.</p></div></div></footer></body></html>

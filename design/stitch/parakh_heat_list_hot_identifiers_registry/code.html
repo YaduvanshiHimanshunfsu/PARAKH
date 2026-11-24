@@ -1,0 +1,1052 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary":"#802500","on-surface":"#131b2e","on-primary-fixed":"#001551","on-tertiary-container":"#ffc9b8","surface-container-low":"#f2f3ff","on-secondary-fixed":"#311300","error-container":"#ffdad6","on-primary-fixed-variant":"#0039b5","on-secondary-container":"#6b3100","outline-variant":"#c4c5d7","primary-fixed":"#dce1ff","on-tertiary-fixed":"#390c00","inverse-primary":"#b7c4ff","inverse-surface":"#283044","tertiary-fixed":"#ffdbd0","inverse-on-surface":"#eef0ff","surface-dim":"#d2d9f4","on-primary-container":"#cad3ff","outline":"#747686","on-error-container":"#93000a","surface-container-lowest":"#ffffff","primary-fixed-dim":"#b7c4ff","on-error":"#ffffff","primary":"#0037b0","secondary-container":"#ff9245","on-primary":"#ffffff","surface-container-high":"#e2e7ff","surface-container":"#eaedff","on-background":"#131b2e","primary-container":"#1d4ed8","on-tertiary-fixed-variant":"#832600","secondary-fixed-dim":"#ffb689","surface-container-highest":"#dae2fd","error":"#ba1a1a","secondary-fixed":"#ffdbc8","surface-bright":"#faf8ff","background":"#faf8ff","surface-variant":"#dae2fd","tertiary-container":"#a83300","surface":"#faf8ff","surface-tint":"#2151da","on-secondary":"#ffffff","on-tertiary":"#ffffff","tertiary-fixed-dim":"#ffb59d","on-surface-variant":"#434655","on-secondary-fixed-variant":"#743500","secondary":"#984800"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xl":"2rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.5rem","gutter-mobile":"1rem","gutter":"1.5rem","space-lg":"1.5rem","space-2xs":"0.25rem","space-sm":"0.75rem","space-md":"1rem","margin-mobile":"1rem","space-2xl":"3rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-ui":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"label-mono-md":["JetBrains Mono"],"body-lg":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"label-mono-sm":["JetBrains Mono"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-ui":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-mono-md":["14px",{lineHeight:"20px",letterSpacing:"-0.01em",fontWeight:"500"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"display-hero":["44px",{lineHeight:"52px",letterSpacing:"-0.03em",fontWeight:"800"}],"display-hero-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-mono-sm":["12px",{lineHeight:"16px",fontWeight:"500"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between border-r border-outline-variant/50 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest border-b border-outline-variant/40"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">shield</span></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-title-md text-title-md text-on-surface tracking-tight font-extrabold">PARAKH</span><span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container text-primary font-bold">RJ-POL</span></div><span class="font-label-ui text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Investigate Console</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-2xs text-[11px] font-label-mono-sm text-outline uppercase tracking-wider font-semibold">Operational Modules</div></div><nav class="flex flex-col gap-1 px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-title-md text-title-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="cases" href="#"><span class="material-symbols-outlined text-[20px]">folder_managed</span><span class="font-title-md text-title-md">Cases</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[20px]">biotech</span><span class="font-title-md text-title-md">New Analysis</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="threat-campaigns" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-title-md text-title-md">Campaigns</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-sm" data-path="heat-list-registry" href="#"><span class="material-symbols-outlined text-[20px]">local_fire_department</span><span class="font-title-md text-title-md">Heat-list</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="forensic-identifiers" href="#"><span class="material-symbols-outlined text-[20px]">fingerprint</span><span class="font-title-md text-title-md">Identifiers</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="statutory-reports" href="#"><span class="material-symbols-outlined text-[20px]">summarize</span><span class="font-title-md text-title-md">Reports</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-xl border border-outline-variant/40"><div class="flex items-center gap-space-sm mb-space-sm"><div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-xs"><span class="material-symbols-outlined text-[20px]">local_police</span></div><div class="flex flex-col min-w-0"><div class="font-title-md text-title-md text-on-surface truncate font-bold">Insp. Vikram Singh Rathore</div><div class="font-body-sm text-[12px] text-on-surface-variant truncate">Inspector · Jaipur Cyber Cell</div><div class="font-label-mono-sm text-[11px] text-primary font-bold">PNO: RJ-POL-782941</div></div></div><a class="flex items-center justify-between pt-space-xs text-on-surface-variant hover:text-error transition-colors border-t border-outline-variant/30" data-path="login" href="#"><span class="font-body-sm text-[12px] flex items-center gap-1.5 font-medium"><span class="material-symbols-outlined text-[17px]">logout</span>Sign Out</span><span class="font-label-mono-sm text-[10px] text-outline font-semibold">I4C-SEC</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex items-center justify-between px-space-lg gap-space-md"><div class="flex items-center gap-space-md min-w-0 shrink-0"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-transparent hover:border-outline-variant/50" type="button"><span class="material-symbols-outlined text-[22px]">menu_open</span></button><div class="hidden xl:flex items-center gap-2"><span class="font-title-md text-title-md text-on-surface-variant">PARAKH Investigate</span><span class="text-outline-variant font-label-mono-sm">/</span><span class="font-title-md text-title-md text-on-surface font-semibold">Command Centre</span></div></div><div class="flex-1 max-w-2xl mx-space-md"><div class="relative flex items-center w-full h-11 bg-surface-container-low rounded-lg px-space-sm border border-outline-variant/40 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container/20 transition-all"><span class="material-symbols-outlined text-outline text-[20px] mr-2">travel_explore</span><input class="w-full bg-transparent border-0 outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="Search case ID, UPI, phone, domain, package…" type="text"><div class="hidden md:flex items-center gap-1.5 ml-2"><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-primary font-medium tracking-tight">UPI</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-secondary font-medium tracking-tight">Phone</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-medium tracking-tight">Domain</span></div></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden 2xl:flex items-center gap-2 px-space-sm py-1.5 bg-surface-container-low rounded-lg border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-mono-sm text-label-mono-sm text-on-surface font-semibold tracking-tight">I4C / CCTNS SYNCED</span></div><div class="hidden lg:flex items-center gap-1 px-space-sm py-1.5 bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container border border-outline-variant/30 transition-colors"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span>Past 30 Days</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-outline-variant/30" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-error text-on-error font-label-mono-sm text-[10px] flex items-center justify-center font-bold">7</span></button><a class="hidden sm:flex items-center gap-1.5 px-space-md h-9 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-title-md text-body-sm shadow-sm font-semibold" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[18px]">add</span><span>+ New Forensic Analysis</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 pt-16 w-full bg-background"><div class="flex flex-col w-full">
+<!-- Interactive Navigation Fix Script to highlight 'Heat-list' in App Shell -->
+<script>
+    (function() {
+      const activePath = 'heat-list-registry';
+      const navLinks = document.querySelectorAll('aside nav a');
+      navLinks.forEach(link => {
+        const href = link.getAttribute('data-path') || link.getAttribute('href');
+        if (href && href.includes('heat-list')) {
+          link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+          link.classList.add('bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+        } else if (link.classList.contains('bg-primary-container')) {
+          link.classList.remove('bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+          link.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+        }
+      });
+    })();
+  </script>
+<!-- Main Content Space Container -->
+<div class="px-space-md lg:px-space-xl py-space-md lg:py-space-lg flex flex-col gap-space-lg max-w-[1536px] mx-auto w-full">
+<!-- 1. Operational Header & Breadcrumb Surface -->
+<div class="flex flex-col gap-space-sm bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<!-- Ambient Sovereign Police Watermark Effect -->
+<div class="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<!-- Breadcrumb & Authority Badge -->
+<div class="flex flex-wrap items-center gap-space-xs text-on-surface-variant">
+<span class="font-title-md text-body-sm text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">security</span>
+            PARAKH Investigate
+          </span>
+<span class="text-outline-variant font-label-mono-sm">/</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Threat Intelligence</span>
+<span class="text-outline-variant font-label-mono-sm">/</span>
+<span class="font-label-mono-sm text-label-mono-sm font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">
+            HEAT-LIST &amp; SURGE VECTORS
+          </span>
+</div>
+<!-- Live Intelligence Classification Pill -->
+<div class="flex items-center gap-2 px-3 py-1 rounded-full border border-error/20 bg-error-container/40 text-error"><span class="w-2 h-2 rounded-full bg-error animate-ping"></span><span class="font-label-mono-sm text-[11px] font-bold tracking-tight">RESTRICTED SEC-OPS L3 • LIVE NCRP / 1930 / CCTNS SYNC</span></div>
+</div>
+<!-- Main Headline with Hindi Bilingual Parity -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mt-1">
+<div class="flex flex-col gap-1 max-w-4xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary shadow-sm">
+<span class="material-symbols-outlined text-[24px]">local_fire_department</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-extrabold flex items-center gap-3">
+                Heat-List: High-Velocity Identifiers
+                <span class="font-title-md text-title-md text-tertiary font-semibold">(सक्रिय हॉट पहचानकर्ता सूची)</span>
+</h1>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Real-time algorithmic triage of weaponized financial anchors, telecommunications endpoints, and malware infrastructure exhibiting rapid cross-district escalation across Rajasthan Police cyber complaints.
+          </p>
+</div>
+<!-- Action Control Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-body-sm transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>Export Sanction List (CSV)</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-secondary text-on-secondary hover:opacity-95 font-title-md text-body-sm transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Sec. 91 CrPC Batch Lien</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-title-md text-body-sm transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Sync 1930 Blacklist</span>
+</button>
+</div>
+</div>
+<!-- Filter Bar & Real-time Switches -->
+<div class="mt-space-sm pt-space-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md bg-surface-container-low p-space-sm rounded-lg">
+<!-- Time Window Selector -->
+<div class="flex items-center gap-1 bg-surface-container-lowest p-1 rounded-lg shadow-xs">
+<button class="px-3 py-1 rounded bg-primary-container text-on-primary font-title-md text-body-sm font-semibold shadow-xs" type="button">7 Days</button>
+<button class="px-3 py-1 rounded text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm" type="button">30 Days</button>
+<button class="px-3 py-1 rounded text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm" type="button">90 Days</button>
+<button class="px-3 py-1 rounded text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm" type="button">All Time</button>
+</div>
+<!-- Verified vs Citizen-Reported Toggle Switch -->
+<div class="flex items-center gap-3 px-space-sm py-1 bg-surface-container-lowest rounded-lg shadow-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sources:</span>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-outline">All Raw Feeds</span>
+<button aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-surface-container-lowest shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+<span class="font-title-md text-body-sm font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+              Police Verified FIRs (CCTNS/1930)
+            </span>
+</div>
+</div>
+<!-- Heat-List Targeted Filter Input -->
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">filter_list</span>
+<input class="w-full bg-surface-container-lowest pl-9 pr-3 py-1.5 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all shadow-xs" placeholder="Filter by VPA, MSISDN, IFSC, domain, Circle..." type="text">
+</div>
+</div>
+</div>
+<!-- 2. Tabs by Identifier Type with Quantitative Badges -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container text-on-primary font-title-md text-body-sm font-semibold shrink-0 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">all_inclusive</span>
+<span>All Vectors</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container-lowest text-primary font-bold">1,482</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
+<span>UPI / VPA</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">412</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">phone_android</span>
+<span>Phone / MSISDN</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">389</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">public</span>
+<span>Domain / URL</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">274</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px] text-error">apk_install</span>
+<span>App Package</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">118</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span>Bank A/C &amp; IFSC</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">142</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">currency_bitcoin</span>
+<span>Crypto Wallets</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">45</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Telegram IDs</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">67</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-body-sm shrink-0 transition-all shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">dns</span>
+<span>Bulletproof IPs</span>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-bold">35</span>
+</button>
+</div>
+<!-- 3. Top-3 Podium Cards ("Most Dangerous Cross-District Vectors") -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[22px]">military_tech</span>
+<h2 class="font-title-md text-title-md font-bold text-on-surface tracking-tight">
+            Surge Podium: Top-3 Rapid Escalation Vectors
+            <span class="text-on-surface-variant font-normal text-body-sm">(तीव्रतम क्रॉस-जिला अपराध कड़ी)</span>
+</h2>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">Updated 90 seconds ago via Automated 1930 Pipeline</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-end pt-2">
+<!-- Podium Rank #2 (Left, Silver/Sandstone Amber) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-secondary/30 bg-secondary-fixed/50 text-secondary"><span class="material-symbols-outlined text-[14px]">local_fire_department</span><span class="font-label-mono-sm text-[11px] font-bold">RANK #2</span></div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary font-label-mono-sm text-[11px] font-bold uppercase">
+                MSISDN / Telephony
+              </span>
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +140% 7d
+              </span>
+</div>
+<!-- Identifier String with Copy Button -->
+<div class="flex items-center justify-between bg-surface-container-low p-2.5 rounded-lg mb-space-sm group">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px]">call</span>
+<span class="font-label-mono-md text-title-md font-bold text-on-surface truncate tracking-tight">+91 98123 45670</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors" title="Copy Identifier" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Linked Case FIRs:</span>
+<span class="font-label-mono-sm text-body-md font-bold text-on-surface">36 Districts / Thanas</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Carrier / Circle:</span>
+<span class="font-body-sm text-on-surface font-medium">Vodafone Idea • Alwar Loop</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Modus Operandi:</span>
+<span class="font-body-sm text-tertiary font-semibold truncate max-w-[200px]">Discom Spoof &amp; APK Dropper</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Telecom Sanction:</span>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-[10px] font-bold">TRAI DLT FLAGGED</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center gap-2">
+<button class="w-full py-2 px-3 rounded-lg bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-title-md text-body-sm font-semibold flex items-center justify-center gap-1.5 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+<span>Open Dossier</span>
+</button>
+</div>
+</div>
+<!-- Podium Rank #1 (Center / Elevated, Gold/Red Surge Authority) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-lg shadow-md relative flex flex-col justify-between -mt-2 hover:shadow-xl transition-shadow bg-gradient-to-b from-error-container/15 via-surface-container-lowest to-surface-container-lowest">
+<div class="absolute top-3.5 right-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full border border-error/30 bg-error-container/60 text-error shadow-xs"><span class="material-symbols-outlined text-[15px] animate-bounce text-error">local_fire_department</span><span class="font-label-mono-sm text-[11px] font-extrabold tracking-wider">RANK #1 CRITICAL</span></div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-extrabold uppercase">
+                UPI / VPA MULE
+              </span>
+<span class="font-label-mono-sm text-body-sm text-error font-extrabold flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +280% SURGE
+              </span>
+</div>
+<!-- Prominent Identifier Badge -->
+<div class="flex items-center justify-between bg-surface-container-low p-3 rounded-xl mb-space-sm group">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-primary-container text-[24px]">payments</span>
+<span class="font-label-mono-md text-headline-sm font-extrabold text-on-surface truncate tracking-tight">richplan@ybl</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors" title="Copy VPA" type="button">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+<div class="space-y-2 mb-space-md">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm">Aggregated Complaints:</span>
+<span class="font-label-mono-sm text-headline-sm font-black text-error">48 Linked FIRs</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Cumulative Defrauded:</span>
+<span class="font-label-mono-sm text-body-md font-bold text-on-surface">₹14,80,000</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Immediate Lien Frozen:</span>
+<span class="font-label-mono-sm text-body-md font-bold text-primary">₹8,45,200 (57.1%)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Originating Syndicate:</span>
+<span class="font-label-mono-sm text-label-mono-sm text-tertiary font-bold bg-tertiary-fixed px-2 py-0.5 rounded">#CAMP-RJ-DISCOM-09</span>
+</div>
+<div class="p-2 rounded bg-error-container/40 text-on-error-container flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-error shrink-0">emergency_home</span>
+<span class="font-label-mono-sm text-[11px] font-bold">Crossed 4 Thana jurisdictions in past 24 hours</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xs grid grid-cols-2 gap-2">
+<button class="py-2.5 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-body-sm font-semibold flex items-center justify-center gap-1 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_shared</span>
+<span>Open Dossier</span>
+</button>
+<button class="px-3 py-1 rounded-full border border-error/30 bg-error-container/60 text-error font-title-md text-body-sm flex items-center gap-1 font-semibold shadow-xs" type="button"><span class="material-symbols-outlined text-[15px]">local_fire_department</span><span>Surge (&gt;50%)</span></button>
+</div>
+</div>
+<!-- Podium Rank #3 (Right, Bronze/Rose Phish C2) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="absolute top-3 right-3 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-tertiary">local_fire_department</span>
+<span class="font-label-mono-sm text-[11px] font-bold">RANK #3</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-surface-container text-tertiary font-label-mono-sm text-[11px] font-bold uppercase">
+                C2 / Phish Host
+              </span>
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +95% 7d
+              </span>
+</div>
+<!-- Identifier String with Copy Button -->
+<div class="flex items-center justify-between bg-surface-container-low p-2.5 rounded-lg mb-space-sm group">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-tertiary text-[20px]">language</span>
+<span class="font-label-mono-md text-title-md font-bold text-on-surface truncate tracking-tight">telemetry-gateway.online</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors" title="Copy Identifier" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Linked Case FIRs:</span>
+<span class="font-label-mono-sm text-body-md font-bold text-on-surface">29 Thanas (Jaipur/Kota)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Upstream Provider:</span>
+<span class="font-body-sm text-on-surface font-medium">Namecheap / Cloudflare Proxy</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Originating Node:</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface font-semibold">185.220.101.44 (Seychelles)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Target Surface:</span>
+<span class="font-body-sm text-error font-semibold">Fake Rajasthan Police SSO</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center gap-2">
+<button class="w-full py-2 px-3 rounded-lg bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-title-md text-body-sm font-semibold flex items-center justify-center gap-1.5 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+<span>Open Dossier</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Summary Metric Ribbon -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[26px]">whatshot</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-lg text-headline-lg text-on-surface font-black tracking-tight leading-none">412</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1 truncate">Active High-Heat Identifiers</span>
+<span class="font-label-mono-sm text-[11px] text-error font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 23 added today
+          </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[26px]">speed</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-lg text-headline-lg text-on-surface font-black tracking-tight leading-none">+18.4%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1 truncate">Weekly Ingestion Velocity</span>
+<span class="font-label-mono-sm text-[11px] text-secondary font-bold">Rajasthan Thana Aggregate</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[26px]">lock_clock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-lg text-headline-lg text-primary font-black tracking-tight leading-none">189</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1 truncate">NPCI Liens Auto-Dispatched</span>
+<span class="font-label-mono-sm text-[11px] text-primary font-bold">100% CCTNS Registered</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface shrink-0">
+<span class="material-symbols-outlined text-[26px]">timer</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-lg text-headline-lg text-on-surface font-black tracking-tight leading-none">4.8 min</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1 truncate">Median Time to Quarantine</span>
+<span class="font-label-mono-sm text-[11px] text-outline font-semibold">NCRP API SLA: &lt;15m</span>
+</div>
+</div>
+</div>
+<!-- 5. Master Heat-List Ranked Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header Bar & Filter Quick Chips -->
+<div class="p-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div class="flex items-center gap-3">
+<h3 class="font-title-md text-title-md font-bold text-on-surface tracking-tight">
+            Surveillance Master Registry
+            <span class="font-label-mono-sm text-label-mono-sm text-outline font-normal">(1,482 Entries Tracked)</span>
+</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-mono-sm text-[10px] font-bold">
+            LIVE TRIAGE
+          </span>
+</div>
+<!-- Quick Filters -->
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded-full border border-error/30 bg-error-container/60 text-error font-title-md text-body-sm flex items-center gap-1 font-semibold shadow-xs" type="button"><span class="material-symbols-outlined text-[15px]">local_fire_department</span><span>Surge (&gt;50%)</span></button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors" type="button">
+            Pending Bank Lien
+          </button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors" type="button">
+            Syndicate Linked
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Responsive Forensic Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-mono-sm text-[11px] uppercase tracking-wider">
+<th class="py-3 px-4 font-bold">Rank</th>
+<th class="py-3 px-4 font-bold">Forensic Identifier &amp; Issuer Entity</th>
+<th class="py-3 px-4 font-bold">FIR Case Density</th>
+<th class="py-3 px-4 font-bold">7-Day Velocity</th>
+<th class="py-3 px-4 font-bold">Verification Tier</th>
+<th class="py-3 px-4 font-bold">First Sighted</th>
+<th class="py-3 px-4 font-bold">Last Activity</th>
+<th class="py-3 px-4 font-bold">Attack Vectors</th>
+<th class="py-3 px-4 font-bold text-right">Dossier Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface text-body-sm">
+<!-- ROW 1: #1 richplan@ybl -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3.5 px-4 font-label-mono-sm font-black text-title-md text-error flex items-center gap-1">
+<span>#1</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-primary font-label-mono-sm text-[10px] font-bold">UPI</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">richplan@ybl</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Yes Bank Ltd • Alwar Mule Node</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">48 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">95%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<!-- Inline SVG Sparkline -->
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 20 L14 18 L26 12 L38 14 L50 6 L62 2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+280% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR (14 Thanas)
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">02 Nov 2026</span>
+<span class="text-outline">Kotwali Thana, Alwar</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-error font-bold">18 mins ago</span>
+<span class="text-on-surface-variant">Jodhpur Cyber Cell</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="SMS Phishing"><span class="material-symbols-outlined text-[16px]">sms</span></span>
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Malicious APK"><span class="material-symbols-outlined text-[16px]">apk_install</span></span>
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Phishing Portal"><span class="material-symbols-outlined text-[16px]">language</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 2: #2 +91 98123 45670 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 font-label-mono-sm font-black text-title-md text-tertiary flex items-center gap-1">
+<span>#2</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-secondary font-label-mono-sm text-[10px] font-bold">PHONE</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">+91 98123 45670</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Vodafone Idea • DLT Template Hijack</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">36 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">78%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 18 L16 16 L28 14 L40 10 L52 8 L62 4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+140% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">02 Nov 2026</span>
+<span class="text-outline">Mansarovar, Jaipur</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-error font-bold">42 mins ago</span>
+<span class="text-on-surface-variant">Sanganer Thana</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="SMS"><span class="material-symbols-outlined text-[16px]">sms</span></span>
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Voice IVR"><span class="material-symbols-outlined text-[16px]">call</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 3: #3 telemetry-gateway.online -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3.5 px-4 font-label-mono-sm font-black text-title-md text-secondary flex items-center gap-1">
+<span>#3</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-tertiary font-label-mono-sm text-[10px] font-bold">DOMAIN</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">telemetry-gateway.online</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Namecheap INC • Cloudflare Reverse Proxy</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">29 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">65%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 19 L15 17 L29 13 L42 12 L52 7 L62 5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+95% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">14 Nov 2026</span>
+<span class="text-outline">Kota City Cyber PS</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-error font-bold">1 hr ago</span>
+<span class="text-on-surface-variant">Bikaner District</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Web"><span class="material-symbols-outlined text-[16px]">language</span></span>
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="APK C2"><span class="material-symbols-outlined text-[16px]">hub</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 4: #4 discombillpay.nodal@axl -->
+<tr class="hover:bg-surface-container-low/70 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-on-surface flex items-center gap-1">
+<span>#4</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-primary font-label-mono-sm text-[10px] font-bold">UPI</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">discombillpay.nodal@axl</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Axis Bank Ltd • Bharatpur Multi-Mule</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">24 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">54%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 54%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 18 L15 15 L30 14 L42 10 L54 9 L62 5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+82% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-mono-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Citizen Multi-Report
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">16 Nov 2026</span>
+<span class="text-outline">1930 Portal Direct</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">2 hrs ago</span>
+<span class="text-on-surface-variant">Udaipur South</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="SMS"><span class="material-symbols-outlined text-[16px]">sms</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 5: #5 com.bijli.jvvnl.update -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-on-surface flex items-center gap-1">
+<span>#5</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-[10px] font-bold">APK</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">com.bijli.jvvnl.update</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Hydra/Cerberus Malware Derivative • SMS Stealer</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">21 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">48%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 48%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 17 L16 15 L28 13 L40 11 L52 8 L62 6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+64% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">14 Nov 2026</span>
+<span class="text-outline">Ajmer North</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">3 hrs ago</span>
+<span class="text-on-surface-variant">Nagaur Thana</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="APK Payload"><span class="material-symbols-outlined text-[16px]">apk_install</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 6: #6 185.220.101.44 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-on-surface flex items-center gap-1">
+<span>#6</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-mono-sm text-[10px] font-bold">C2 IP</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">185.220.101.44</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Bulletproof Autonomous System AS200052</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">19 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">42%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-secondary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 16 L16 15 L32 14 L46 11 L62 9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-secondary bg-secondary-fixed/50 px-1.5 py-0.5 rounded">+45% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">14 Nov 2026</span>
+<span class="text-outline">State HQ Jaipur</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">4 hrs ago</span>
+<span class="text-on-surface-variant">Kota Rural</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Web"><span class="material-symbols-outlined text-[16px]">language</span></span>
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Command Center"><span class="material-symbols-outlined text-[16px]">dns</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 7: #7 918204910294 (SBI Mule A/C) -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-on-surface flex items-center gap-1">
+<span>#7</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-mono-sm text-[10px] font-bold">BANK A/C</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">918204910294</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">State Bank of India • IFSC: SBIN0001428 (Pali Branch)</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">16 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">36%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 36%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 15 L18 14 L32 13 L48 11 L62 9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">+38% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">10 Nov 2026</span>
+<span class="text-outline">Pali Kotwali</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">6 hrs ago</span>
+<span class="text-on-surface-variant">Sirohi Cyber PS</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Banking Gateway"><span class="material-symbols-outlined text-[16px]">account_balance</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 8: #8 @rj_discom_robot -->
+<tr class="hover:bg-surface-container-low/70 transition-colors bg-surface-container-lowest">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-on-surface flex items-center gap-1">
+<span>#8</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-mono-sm text-[10px] font-bold">TELEGRAM</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface">@rj_discom_robot</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Automated Smishing Gateway &amp; OTP Harvester</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">14 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">32%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full" style="width: 32%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-on-surface-variant shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 14 L20 13 L36 12 L48 11 L62 10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">+18% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-mono-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Citizen Report
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">12 Nov 2026</span>
+<span class="text-outline">Citizen Telegram Tip</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">7 hrs ago</span>
+<span class="text-on-surface-variant">Chittorgarh</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Telegram Bot"><span class="material-symbols-outlined text-[16px]">send</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+<!-- ROW 9: #9 0x71c...94f2 (USDT Tron TRC-20) -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3.5 px-4 font-label-mono-sm font-bold text-error flex items-center gap-1">
+<span>#9</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">local_fire_department</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-tertiary font-label-mono-sm text-[10px] font-bold">CRYPTO</span>
+<span class="font-label-mono-md text-body-md font-bold text-on-surface truncate">0x71c9A48bF21...94f2</span>
+<button class="text-outline hover:text-primary" type="button"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+<span class="text-outline font-body-sm text-[12px] mt-0.5">Tether USD (TRC-20) • Offshore Laundering Bridge</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1 w-36">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-body-md font-black text-on-surface">11 Cases</span>
+<span class="font-label-mono-sm text-[10px] text-outline">25%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2">
+<svg class="w-16 h-6 text-error shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 24">
+<path d="M2 20 L20 18 L34 16 L46 8 L62 4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-mono-sm text-[11px] font-bold text-error bg-error-container/60 px-1.5 py-0.5 rounded">+110% ↑</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Verified FIR
+                </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">18 Nov 2026</span>
+<span class="text-outline">CID-CB Cyber Cell</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col text-[12px]">
+<span class="font-label-mono-sm text-on-surface font-semibold">12 hrs ago</span>
+<span class="text-on-surface-variant">Jaipur Metro</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="p-1 rounded bg-surface-container flex items-center justify-center" title="Crypto Mixer"><span class="material-symbols-outlined text-[16px]">currency_bitcoin</span></span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors font-title-md text-[12px] font-semibold" type="button">
+                  Open Dossier
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Operational Navigation Bar -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span>Showing</span>
+<span class="font-label-mono-sm font-bold text-on-surface">1–9</span>
+<span>of</span>
+<span class="font-label-mono-sm font-bold text-on-surface">1,482</span>
+<span>monitored active vectors</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="text-[12px]">Rows per view:</span>
+<select class="bg-surface-container-lowest font-label-mono-sm text-[12px] rounded px-2 py-1 focus:outline-none shadow-xs">
+<option>10</option>
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest p-1 rounded-lg shadow-xs">
+<button class="w-8 h-8 rounded flex items-center justify-center text-outline hover:text-on-surface disabled:opacity-40" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary font-label-mono-sm text-[12px] font-bold" type="button">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-mono-sm text-[12px]" type="button">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-mono-sm text-[12px]" type="button">3</button>
+<span class="px-1 text-outline font-label-mono-sm text-[12px]">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-mono-sm text-[12px]" type="button">148</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. Institutional Legal Footer Note -->
+<div class="rounded-xl p-space-md bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div>
+<span class="font-title-md text-body-sm text-on-surface font-bold">State Cyber Crime Cell, Rajasthan Police HQ, Jaipur</span>
+<p class="font-body-sm text-[12px] text-outline">Section 91 CrPC Automated Notice Dispatch Integration • CCTNS / NCRP / 1930 Active Realtime Sync</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-label-mono-sm text-label-mono-sm px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface font-bold shadow-xs">
+          CERT-In &amp; MHA Compliant
+        </span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-error font-extrabold">
+          CONFIDENTIAL LAW ENFORCEMENT WORKBENCH
+        </span>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm px-space-lg border-t border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col md:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span class="font-medium text-on-surface">State Cyber Crime Cell, Rajasthan Police HQ, Jaipur</span><span>•</span><span class="font-label-mono-sm text-label-mono-sm text-outline">CCTNS / I4C / 1930 Live Integration</span></div><div class="flex items-center gap-space-md"><span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold border border-outline-variant/30">ISO 27001 Certified</span><span class="font-label-ui text-label-ui uppercase tracking-wider text-outline font-semibold">Confidential Law Enforcement Workbench</span></div></div></footer></div>
+
+</body></html>

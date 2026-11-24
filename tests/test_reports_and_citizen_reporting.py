@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Report export and citizen reporting tests (Phase 6.5 and 6.6).
 

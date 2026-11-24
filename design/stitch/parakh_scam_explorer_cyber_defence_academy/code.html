@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#b7c4ff",
+          "secondary": "#984800",
+          "outline-variant": "#c4c5d7",
+          "inverse-surface": "#283044",
+          "on-surface": "#131b2e",
+          "surface-dim": "#d2d9f4",
+          "on-secondary-fixed": "#311300",
+          "on-background": "#131b2e",
+          "surface-tint": "#2151da",
+          "on-surface-variant": "#434655",
+          "tertiary": "#802500",
+          "on-error-container": "#93000a",
+          "inverse-primary": "#b7c4ff",
+          "surface-variant": "#dae2fd",
+          "on-secondary-container": "#6b3100",
+          "surface-container-low": "#f2f3ff",
+          "on-tertiary-fixed": "#390c00",
+          "tertiary-fixed-dim": "#ffb59d",
+          "on-primary-container": "#cad3ff",
+          "secondary-fixed": "#ffdbc8",
+          "on-tertiary-fixed-variant": "#832600",
+          "tertiary-container": "#a83300",
+          "primary-container": "#1d4ed8",
+          "tertiary-fixed": "#ffdbd0",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "on-primary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "background": "#faf8ff",
+          "secondary-fixed-dim": "#ffb689",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#ffc9b8",
+          "error-container": "#ffdad6",
+          "surface-container": "#eaedff",
+          "surface": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "on-secondary-fixed-variant": "#743500",
+          "on-primary-fixed": "#001551",
+          "primary-fixed": "#dce1ff",
+          "on-primary-fixed-variant": "#0039b5",
+          "surface-bright": "#faf8ff",
+          "secondary-container": "#ff9245",
+          "primary": "#0037b0",
+          "outline": "#747686",
+          "inverse-on-surface": "#eef0ff",
+          "surface-container-high": "#e2e7ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-3xl": "4rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "space-2xl": "3rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem",
+          "space-2xs": "0.25rem",
+          "space-xl": "2rem",
+          "space-xs": "0.5rem",
+          "margin": "2rem",
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-ui": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "title-md": ["Plus Jakarta Sans"],
+          "label-mono-sm": ["JetBrains Mono"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "label-mono-md": ["JetBrains Mono"],
+          "display-hero-mobile": ["Plus Jakarta Sans"],
+          "display-hero": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-ui": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+          "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+          "label-mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+          "label-mono-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+          "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+          "display-hero": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full max-w-[1440px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group text-left" data-path="check" href="#"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(0,55,176,0.25)]"><span class="material-symbols-outlined text-on-primary text-[22px]">verified_user</span></div><div class="flex flex-col"><div class="flex items-baseline gap-space-2xs"><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">PARAKH</span><span class="font-title-md text-title-md text-secondary font-semibold">परख</span></div><span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Rajasthan Police • Citizen Portal</span></div></a><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg"><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="check" href="#">Check / सत्यापन</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="app-check" href="#">App Check / ऐप जांच</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="learn" href="#">Learn / सीखें</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="evidence" href="#">Evidence / साक्ष्य</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="rescue-help" href="#">Rescue &amp; Help / संकट समाधान</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center p-space-2xs bg-surface-container rounded-full"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest font-label-ui text-label-ui text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)]" type="button">EN</button><button class="px-space-sm py-space-2xs rounded-full font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-colors" type="button">हिंदी</button></div><a class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-error text-on-error hover:bg-error/90 transition-all shadow-[0_2px_10px_rgba(186,26,26,0.22)]" href="tel:1930"><span class="material-symbols-outlined text-[18px]">emergency</span><span class="font-title-md text-title-md tracking-wide font-bold">1930</span><span class="hidden md:inline font-label-ui text-label-ui uppercase tracking-wider text-on-error/90">Helpline</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- Nav Active State Sync Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'learn') {
+          link.className = "px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary font-title-md shadow-sm";
+        }
+      });
+    });
+  </script>
+<!-- Hero Header Container -->
+<section class="w-full max-w-[1440px] mx-auto px-margin pt-space-xl pb-space-lg">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-secondary-fixed/20 p-space-xl md:p-space-2xl shadow-sm">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="absolute right-1/4 -bottom-20 w-72 h-72 rounded-full bg-primary-fixed/30 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 max-w-4xl flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-space-xs self-start px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">shield_with_house</span>
+          CITIZEN CYBER DEFENCE ACADEMY • नागरिक सुरक्षा एवं ठगी पहचान प्रशिक्षण
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Scam Type Explorer &amp; Interactive Learning Hub
+          <span class="block font-headline-md text-headline-md text-secondary font-semibold mt-space-2xs">
+            साइबर ठगी के प्रकार एवं बचाव का व्यावहारिक प्रशिक्षण
+          </span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+          Understand modern psychological extortion methods before fraudsters strike. Learn telltale red flags, test your instincts with realistic field simulations, and master Rajasthan Police sovereign defense SOPs.
+        </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm font-label-ui text-label-ui text-on-surface-variant">
+<div class="flex items-center gap-space-2xs bg-surface-container-lowest/80 px-space-sm py-space-2xs rounded-full shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+            12 Threat Archetypes Catalogued
+          </div>
+<div class="flex items-center gap-space-2xs bg-surface-container-lowest/80 px-space-sm py-space-2xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+            Sovereign Certified by I4C &amp; Rajasthan Police
+          </div>
+<div class="flex items-center gap-space-2xs bg-surface-container-lowest/80 px-space-sm py-space-2xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary text-[16px]">translate</span>
+            Dual Language (Hindi &amp; English Parity)
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1: How to Use PARAKH (4-Step Visual Process) -->
+<section class="w-full max-w-[1440px] mx-auto px-margin py-space-lg">
+<div class="bg-surface-container-low rounded-2xl p-space-lg md:p-space-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm pb-space-lg">
+<div>
+<span class="font-label-ui text-label-ui text-secondary uppercase font-semibold">Verification Architecture • कार्यप्रणाली</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+            How to Use PARAKH in 4 Practical Steps
+            <span class="text-on-surface-variant font-normal text-title-md block sm:inline sm:ml-space-xs">/ परख का उपयोग कैसे करें</span>
+</h2>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
+          A citizen-first sovereign shield: copy, inspect, diagnose, and safeguard your household savings in less than 4 seconds.
+        </div>
+</div>
+<!-- Connected 4 Nodes Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md relative">
+<!-- Node 1 -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-primary-fixed font-bold">
+                01
+              </span>
+<span class="material-symbols-outlined text-primary text-[28px]">mark_chat_unread</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Receive or Notice</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-space-2xs">संदेश या कॉल मिला</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              An unexpected SMS, bank warning, unknown APK file, WhatsApp voice threat, or QR payment link reaches your phone.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-2xs px-space-xs flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">info</span>
+<span class="font-label-ui text-label-ui text-on-surface">Rule: Do NOT tap or approve OTP</span>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-secondary-fixed font-bold">
+                02
+              </span>
+<span class="material-symbols-outlined text-secondary text-[28px]">content_paste_search</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Paste or Upload</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-space-2xs">परख में कॉपी-पेस्ट करें</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Copy suspicious SMS text, phone numbers, VPA/UPI IDs, raw APK files, or screenshot images into the PARAKH portal.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-2xs px-space-xs flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-primary text-[16px]">lock</span>
+<span class="font-label-ui text-label-ui text-on-surface">100% Privacy Protected &amp; Sandboxed</span>
+</div>
+</div>
+<!-- Node 3 -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-primary-fixed font-bold">
+                03
+              </span>
+<span class="material-symbols-outlined text-primary text-[28px]">memory</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Instant Forensic Audit</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-space-2xs">क्षण भर में फोरेंसिक जांच</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Engine scans TRAI DLT sender headers, WHOIS domain ages, Indian Cyber Crime I4C blacklists, and malicious Android permissions.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-2xs px-space-xs flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-primary text-[16px]">speed</span>
+<span class="font-label-ui text-label-ui text-on-surface">Live Speed: &lt; 2.4 Seconds</span>
+</div>
+</div>
+<!-- Node 4 -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl flex flex-col justify-between shadow-sm transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-on-tertiary-fixed font-bold">
+                04
+              </span>
+<span class="material-symbols-outlined text-tertiary text-[28px]">security_update_good</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Calm Verdict &amp; Safety SOP</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-space-2xs">स्पष्ट सुरक्षा निर्देश</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+              Receive unambiguous green/red threat indicators, verified department contact info, and 1-tap escalations directly to the 1930 Helpline.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-2xs px-space-xs flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">call</span>
+<span class="font-label-ui text-label-ui text-on-surface">Instant Police Direct Line</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Interactive Scam Type Explorer (12 Categories) -->
+<section class="w-full max-w-[1440px] mx-auto px-margin py-space-lg">
+<!-- Category Filter Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-primary-fixed text-on-primary-fixed font-label-ui text-label-ui mb-space-2xs">
+          THREAT REPOSITORY
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          12 Common Scam Types: Modus Operandi &amp; Red Flags
+          <span class="block font-headline-sm text-headline-sm text-secondary font-semibold mt-space-2xs">
+            प्रचलित 12 साइबर ठगी के तरीके एवं उनसे बचाव के सूत्र
+          </span>
+</h2>
+</div>
+<!-- Filter Buttons with Interactive JS filter hook -->
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container p-1.5 rounded-xl self-start lg:self-center" id="filter-container">
+<button class="filter-btn active px-space-md py-space-xs rounded-lg font-title-md text-title-md bg-primary text-on-primary shadow-sm transition-all" data-category="all" type="button">
+          All (12)
+        </button>
+<button class="filter-btn px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="financial" type="button">
+          Financial &amp; Banking (4)
+        </button>
+<button class="filter-btn px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="gov" type="button">
+          Identity &amp; Gov (3)
+        </button>
+<button class="filter-btn px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="job" type="button">
+          Job &amp; Investment (3)
+        </button>
+<button class="filter-btn px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="blackmail" type="button">
+          Blackmail &amp; Social (2)
+        </button>
+</div>
+</div>
+<!-- 12 Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="scam-cards-grid">
+<!-- CARD 1: Electricity Bill Disconnection (Flipped Demonstration default) -->
+<div class="scam-card relative bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="gov">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">warning</span> Critical Severity
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-01</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[24px]">power</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Electricity Bill Disconnection</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">बिजली बिल रुकावट ठगी</p>
+</div>
+</div>
+<!-- Demonstrated Detailed Breakdown -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl flex flex-col gap-space-xs">
+<span class="font-label-ui text-label-ui text-primary uppercase font-bold">Modus Operandi / कार्यप्रणाली:</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+              SMS claiming electricity will be severed at 9:30 PM tonight due to unpaid bills. Urges calling a personal 10-digit mobile number or installing an APK screen-share tool.
+            </p>
+<div class="mt-space-2xs flex flex-col gap-space-2xs">
+<span class="font-label-ui text-label-ui text-error font-bold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">crisis_alert</span> 3 Immediate Red Flags:
+              </span>
+<ul class="text-body-sm font-body-sm text-on-surface-variant list-disc list-inside space-y-0.5">
+<li>Sent from personal 10-digit SIM (not official Discom DLT header like <span class="font-label-mono-sm text-label-mono-sm font-semibold">JVVNL</span>)</li>
+<li>Demands ₹10 token recharge via suspicious APK file</li>
+<li>Fake urgency: <span class="font-semibold text-error">"Power cut tonight at 9:30 PM"</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-2xs text-secondary font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+            Discom never sends personal APK links
+          </div>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 2: Digital Arrest & Police Impersonation -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="gov">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">gavel</span> High Extortion
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-02</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">videocam_off</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Digital Arrest Impersonation</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">डिजिटल अरेस्ट धोखा</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Scammers pose as CBI/ED/Cyber Police in staged fake police stations via Skype/WhatsApp video, claiming your Aadhaar was found in illicit parcel narcotics, confining you to room for hours.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-error font-semibold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">priority_high</span> Sovereign Law Fact:
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              There is <strong>NO provision</strong> of "Digital Arrest" under Indian law (CrPC / BNSS). Police NEVER arrest or settle cases over video calls.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Immediate action: Disconnect &amp; dial 1930</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 3: Bank Account KYC & PAN Expiry -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="financial">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">account_balance</span> Banking Phish
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-03</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">credit_card_off</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Bank Account KYC / PAN Freeze</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">बैंक केवाईसी सस्पेंशन</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            SMS warning "Your SBI/HDFC account will be blocked today due to pending PAN/KYC update. Click here to verify". Leads to spoofed banking portals designed to harvest login credentials and OTPs.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-secondary font-semibold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Spot The Clue:
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-label-mono-sm">
+              URLs end in <span class="bg-error-container text-on-error-container px-1 rounded font-bold">.club, .top, .live</span> instead of certified <span class="bg-primary-fixed text-on-primary-fixed px-1 rounded font-bold">onlinesbi.sbi</span>
+</p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Banks never send KYC update links</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 4: Predatory Instant Loan Apps -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="financial">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">smartphone</span> Blackmail APK
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-04</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[24px]">currency_rupee</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Predatory Instant Loan Apps</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">अवैध लोन ऐप जालसाजी</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Unregulated loan APKs promising 2-minute collateral-free loans exfiltrate contacts and gallery photos, followed by morphed extortion calls to your family within 7 days.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-primary font-semibold">Permission Checklist:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Genuine RBI NBFC loan apps never demand read-access to contacts, SMS, or camera rolls.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Check RBI Sachet Registry</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 5: Part-Time Telegram Task & YouTube Like Scam -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="job">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span> Work From Home
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-05</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">send</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Telegram Task &amp; Like Scam</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">यूट्यूब लाइक / टास्क फ्रॉड</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Offers ₹150 for rating hotel reviews or liking YouTube videos. Scammers pay small amounts initially to build false trust, then trap victims into ₹50,000+ "crypto prepaid task" escrow traps.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-secondary font-semibold">Psychological Hook:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              "Sunk cost trap" — Victims keep depositing more money believing it is necessary to unfreeze previous earnings.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Real companies don't hire on Telegram</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 6: Courier & Customs Delivery Hold -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="financial">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-surface font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> Delivery Smishing
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-06</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[24px]">inventory_2</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Courier &amp; Parcel Hold Trap</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">कूरियर / पार्सल रुकावट</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Fake India Post / FedEx SMS stating your parcel cannot be delivered due to wrong house address. Demands a nominal ₹25 address change fee to capture debit card credentials and OTP.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-primary font-semibold">Telltale Sign:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-label-mono-sm">
+              Official India Post URL is <span class="font-bold">indiapost.gov.in</span>, not short links like <span class="text-error">bit.ly/in-post24</span>
+</p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Never pay delivery fees via SMS link</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 7: Fake Traffic Challan / E-Court Notice -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="gov">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">traffic</span> Malware Attack
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-07</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">directions_car</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Fake Traffic Challan / E-Court</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">ई-चालान फर्जी लिंक</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Text claiming an over-speeding violation on Jaipur-Delhi highway with photo proof. The link downloads <span class="font-label-mono-sm text-label-mono-sm text-error font-bold">Challan_Notice.apk</span> which forwards all your phone's SMS and OTPs to hacker servers.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-secondary font-semibold">Official Verification:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Check real challans directly on <span class="font-label-mono-sm text-label-mono-sm font-bold">echallan.parivahan.gov.in</span> only.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Court notices never arrive via APK</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 8: Fake Stock & Crypto Trading Groups -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="job">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> Institutional Ponzi
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-08</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">query_stats</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Investment WhatsApp Group Fraud</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">शेयर बाजार फर्जी ट्रेडिंग</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            VIP WhatsApp group with fake "SEBI registered analysts" sharing doctored screenshots of 500% intraday gains. Directs users to custom fraudulent apps where dashboard balances can never be withdrawn.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-primary font-semibold">Regulatory Standard:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Verify advisor registration number on SEBI.gov.in. Real trading requires a CDSL/NSDL Demat account.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Guaranteed returns = Guaranteed Scam</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 9: Aadhaar / AePS Biometric Withdrawal Leak -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="financial">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-surface font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">fingerprint</span> Biometric Cloning
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-09</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[24px]">contactless</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">AePS Biometric Cloning Leak</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">आधार बायोमेट्रिक फ्रॉड</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Fingerprint impressions copied from land registry registries or fake CSP kiosks are cast in polymer to pull cash daily via AePS micro-ATMs without requiring bank OTPs.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-secondary font-semibold">1-Minute Defence Shield:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Open mAadhaar app &gt; <strong>Lock Biometrics</strong>. Unlock only when physically present at a bank counter.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Lock biometrics today via mAadhaar</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 10: Video Call Sextortion & Defamation -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="blackmail">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">psychology</span> Psychological Trauma
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-10</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">video_camera_front</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Video Call Sextortion Trap</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">न्यूड वीडियो कॉल ब्लैकमेल</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Victim receives a WhatsApp video call showing an explicit clip. The screen is recorded with the victim's face in the thumbnail, followed by threats from fake "Delhi Police Cyber Cell" to circulate it on YouTube.
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-error font-semibold">Police Advisory:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Do NOT pay even ₹1. Paying leads to endless extortion demands. Block number and file report immediately on cybercrime.gov.in.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Confidential support via 1930</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 11: Matrimonial & NRI Romance Gift Trap -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="blackmail">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">favorite</span> Social Engineering
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-11</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[24px]">redeem</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Matrimonial Romance Gift Scam</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">मैट्रिमोनियल कस्टम गिफ्ट स्कैम</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            A profile posing as a doctor or engineer from the UK/Dubai proposes marriage on Shaadi/Jeevansathi, then claims to have sent costly jewelry held at Delhi Airport Customs, requiring ₹85,000 "customs release fee".
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-primary font-semibold">Customs Regulation:</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+              Indian Customs never calls individuals demanding duty transfers into personal savings accounts.
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Never pay customs into private UPI</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+<!-- CARD 12: QR Code "Receive Money" Inversion -->
+<div class="scam-card bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md" data-category="financial">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-surface font-label-ui text-label-ui font-semibold">
+<span class="material-symbols-outlined text-[14px]">qr_code_scanner</span> UPI Reversal
+            </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-xs py-space-2xs rounded">SCAM-12</span>
+</div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">qr_code_2</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">QR Code "Receive Money" Scam</h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium">क्यूआर कोड पेमेंट स्कैम</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm">
+            Fraudster on OLX/Marketplace pretends to purchase your used furniture, sends a QR code stating "Scan this QR and enter your 4-digit UPI PIN to receive ₹12,000 advance payment".
+          </p>
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl">
+<p class="font-label-ui text-label-ui text-error font-semibold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">security</span> Golden UPI Rule:
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-semibold">
+              UPI PIN is entered ONLY to SEND money, NEVER to receive money!
+            </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Scanning QR = Approving Outflow</span>
+<button class="view-sop-btn px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface text-label-ui font-label-ui font-semibold transition-colors" type="button">
+            Safety SOP
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Would You Click? Interactive Simulator -->
+<section class="w-full max-w-[1440px] mx-auto px-margin py-space-xl">
+<div class="bg-surface-container-low rounded-3xl p-space-lg md:p-space-2xl shadow-sm">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">videogame_asset</span> INTERACTIVE SIMULATION LAB
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Would You Click? Real-World Phish Simulator
+        </h2>
+<p class="font-headline-sm text-headline-sm text-secondary font-semibold mt-space-2xs">
+          क्या आप इस लिंक पर क्लिक करेंगे? अपनी सतर्कता परखें
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Put yourself in the shoes of a citizen receiving genuine-looking SMS alerts. Identify the subtle threat anomalies.
+        </p>
+</div>
+<!-- Smartphone Container Mockup -->
+<div class="max-w-2xl mx-auto bg-surface-container-lowest rounded-3xl p-space-lg md:p-space-xl shadow-lg relative">
+<!-- Mock Phone Header Bar -->
+<div class="flex items-center justify-between pb-space-md mb-space-md border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-headline-sm text-headline-sm text-primary font-bold">
+              EP
+            </div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface" id="sim-sender">VM-EPFOPR</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">info</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="sim-time">Today, 08:42 AM via SMS</span>
+</div>
+</div>
+<span class="font-label-ui text-label-ui bg-surface-container px-space-sm py-space-2xs rounded-full text-on-surface-variant">
+            Question 1 of 5
+          </span>
+</div>
+<!-- Realistic SMS Bubble -->
+<div class="bg-surface-container-low rounded-2xl p-space-md md:p-space-lg mb-space-lg max-w-xl">
+<div class="flex items-center gap-space-2xs text-secondary font-label-ui text-label-ui font-semibold mb-space-2xs">
+<span class="material-symbols-outlined text-[16px]">sms</span> INCOMING MESSAGE
+          </div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="sim-message">
+            "Dear Member, your EPF balance of <strong class="text-on-surface">₹1,48,250</strong> has been frozen due to unlinked Aadhaar UAN. Complete verification within 6 hours to prevent statutory forfeiture: <span class="text-primary underline font-label-mono-sm break-all">https://epfo-uan-update.in/verify</span>"
+          </p>
+</div>
+<!-- Decision Buttons -->
+<div class="flex flex-col sm:flex-row gap-space-md mb-space-lg" id="quiz-options">
+<button class="flex-1 flex items-center justify-center gap-space-xs py-space-md px-space-lg rounded-xl bg-error text-on-error font-title-md text-title-md hover:bg-error/90 transition-all shadow-sm" id="btn-danger" type="button">
+<span class="material-symbols-outlined text-[20px]">dangerous</span>
+<span>🔴 Danger: This is a scam! (फर्जी है)</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-space-xs py-space-md px-space-lg rounded-xl bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-container-highest transition-all" id="btn-safe" type="button">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>🟢 Safe: Click to verify (सुरक्षित है)</span>
+</button>
+</div>
+<!-- Forensic Explanation Box (Interactive Toggle) -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low flex flex-col gap-space-sm" id="sim-feedback">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-bold font-title-md text-title-md">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+<span>Forensic Diagnosis &amp; Explanatory Audit</span>
+</div>
+<span class="font-label-ui text-label-ui px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">
+              VERIFIED PHISH
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface" id="feedback-main">
+<strong>Spot on!</strong> This is an aggressive credential harvesting attack spoofing the Employees' Provident Fund Organisation.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-space-2xs text-body-sm font-body-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-xl">
+<span class="font-label-ui text-label-ui text-error font-bold block mb-1">Domain Red Flag</span>
+              Uses unauthorized <code class="font-label-mono-sm text-label-mono-sm">.in</code> instead of the mandatory sovereign <code class="font-label-mono-sm text-label-mono-sm font-bold text-primary">.gov.in</code>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl">
+<span class="font-label-ui text-label-ui text-secondary font-bold block mb-1">Psychological Pressure</span>
+              "Within 6 hours" creates panic to bypass rational judgment and family consultation.
+            </div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl">
+<span class="font-label-ui text-label-ui text-primary font-bold block mb-1">Statutory Fact</span>
+              EPF balances are sovereign funds and are <strong>never</strong> forfeited due to pending Aadhaar link.
+            </div>
+</div>
+<div class="flex items-center justify-between pt-space-sm mt-space-2xs">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Rajasthan Cyber Intelligence Score: 100% Phishing</span>
+<button class="flex items-center gap-space-2xs px-space-md py-space-xs rounded-xl bg-primary text-on-primary font-title-md text-title-md hover:bg-primary/90 transition-all" id="btn-next-quiz" type="button">
+<span>Next Question (अगला सवाल)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Downloadable Citizen Pocket Guides & Posters -->
+<section class="w-full max-w-[1440px] mx-auto px-margin py-space-lg mb-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<span class="font-label-ui text-label-ui text-secondary font-semibold uppercase">Community Defense Tooling</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+          Citizen Pocket Guides &amp; Rajasthan Police Posters
+          <span class="block font-headline-sm text-headline-sm text-secondary font-semibold mt-space-2xs">
+            मुफ्त डाउनलोड करें: डिजिटल सुरक्षा संदर्शिका एवं पोस्टर
+          </span>
+</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        Distribute these high-visibility safety cards in your resident welfare societies, family WhatsApp groups, schools, and local shops.
+      </p>
+</div>
+<!-- Guides Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-space-md bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Official Rajasthan Police digital cyber safety handbook with gold royal emblem seal, crisp typography, clean blue and sandstone sovereign graphic charts, lying on an investigator desk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-ArSGL0At1AUgqOg4q6Jf-EDq36vLoRW8C7PRb0A65b5Mus9OB0Mv9O5ckVhkmnzkGeQt6PKBC7DVBrCuVTe6p43ZtwlNRE0knpW_iRvMQ0zyU4hwyBg_hej2v2Me_rK8_ZtXAEWIU9OyF1gPmv438nBdGftURihMsnll73EPcpDvcJc1KhKtvsiIUJS0SU0Hwy1BXb-NieKswXMiVy_fMUbs-V9pqzyOTYmMQcU"/>
+<span class="absolute top-space-sm left-space-sm bg-primary text-on-primary font-label-ui text-label-ui px-space-sm py-0.5 rounded-full font-bold">
+              PDF Guide • 2.4 MB
+            </span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">
+            Rajasthan Police Top 10 Cyber Safety Golden Rules (हिंदी)
+          </h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-1">नागरिक सुरक्षा के 10 स्वर्ण नियम</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+            Comprehensive quick-reference pamphlet explaining OTP handling, caller ID masking, APK hazards, and 1930 escalation steps in simple Hindi.
+          </p>
+</div>
+<div class="mt-space-lg flex items-center gap-space-xs">
+<a class="flex-1 flex items-center justify-center gap-space-2xs py-space-xs px-space-md rounded-xl bg-primary text-on-primary font-title-md text-title-md hover:bg-primary/90 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download PDF</span>
+</a>
+<button class="whatsapp-share flex items-center justify-center p-space-xs rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors" title="Share on WhatsApp" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-space-md bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Senior Indian grandfather smiling securely while checking a smartphone with his family, warm daylight, Indian home living room setting, safety banner graphics overlay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGrfe6otfN_guYPchsnYZHL2OeoxJtrCbx61DFrXYpF9LAa7n9rmrKwwHp6n12Ipz6HeS9m4wKhuionArew1UPGhPdLZSNP3dIbFCHRgIxOrAuB5zj1Z2WOCJYkEk5-z0TpbOcocFLGY-DBm6pZ62qyYmIuftSD_FRn3qugz29xxPA4s1D9yzMSpoRYaTJ7RX6qSj8PIF45X5qxkQLZlmrCEvqZRskPoCVNBSMB2k"/>
+<span class="absolute top-space-sm left-space-sm bg-secondary text-on-secondary font-label-ui text-label-ui px-space-sm py-0.5 rounded-full font-bold">
+              Specialized • 1.8 MB
+            </span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">
+            Senior Citizen Digital Safety &amp; Pensioner Manual
+          </h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-1">वरिष्ठ नागरिक एवं पेंशनर सुरक्षा निर्देशिका</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+            Large-print guide preventing life certificate pension scams, fake health insurance calls, digital arrest scare tactics, and AePS withdrawal locks.
+          </p>
+</div>
+<div class="mt-space-lg flex items-center gap-space-xs">
+<a class="flex-1 flex items-center justify-center gap-space-2xs py-space-xs px-space-md rounded-xl bg-primary text-on-primary font-title-md text-title-md hover:bg-primary/90 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download PDF</span>
+</a>
+<button class="whatsapp-share flex items-center justify-center p-space-xs rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors" title="Share on WhatsApp" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-space-md bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Indian college students and young job seekers working on laptops in a modern tech hub, bright natural light, focused and confident expressions, subtle blue cyber shield icons." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACrwiE_6KnpE-DM9Y0_rTcsqlxEQsBCVU_E6fVbdz7dZ_VEoa4jg9p4vlpJJ0YX5mNj-Q_6CedOmDOaZ1i4PSpg2G3ilYpm40-pnIOC6DXzhajiIhyxLreCBSVRE_pr9Vds_p9CyYAH-2uw_XPF8s2BG8tS1n3Wmkhl-Wt7qyAbrYUiyz40dpHLdy-MlVaIZEnrkmgEhrz6h9Aad1tsdosqXaj53dqcNW3VaYzx8s"/>
+<span class="absolute top-space-sm left-space-sm bg-primary text-on-primary font-label-ui text-label-ui px-space-sm py-0.5 rounded-full font-bold">
+              Youth Defense • 3.1 MB
+            </span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">
+            Student &amp; Jobseeker Work-From-Home Fraud Manual
+          </h3>
+<p class="font-body-sm text-body-sm text-secondary font-medium mt-1">छात्र एवं युवा रोजगार सुरक्षा गाइड</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+            Exposing Telegram recruitment rackets, fake government exam admit card links, mule account rental traps, and crypto trading syndicate exploitation.
+          </p>
+</div>
+<div class="mt-space-lg flex items-center gap-space-xs">
+<a class="flex-1 flex items-center justify-center gap-space-2xs py-space-xs px-space-md rounded-xl bg-primary text-on-primary font-title-md text-title-md hover:bg-primary/90 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download PDF</span>
+</a>
+<button class="whatsapp-share flex items-center justify-center p-space-xs rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors" title="Share on WhatsApp" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- WhatsApp Share 1-Click Banner -->
+<div class="mt-space-xl p-space-lg bg-surface-container-high rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-on-secondary shrink-0">
+<span class="material-symbols-outlined text-[28px]">campaign</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">Share Today's Safety Advisory on WhatsApp</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Protect elderly parents, neighbors, and resident welfare groups across Rajasthan with one tap.</p>
+</div>
+</div>
+<a class="px-space-lg py-space-sm rounded-xl bg-secondary text-on-secondary font-title-md text-title-md hover:bg-secondary/90 flex items-center gap-space-xs transition-all whitespace-nowrap shadow-sm" href="https://api.whatsapp.com/send?text=Stay%20alert%20against%20cyber%20fraud!%20Check%20suspicious%20SMS%2C%20APKs%20and%20numbers%20on%20PARAKH%20Citizen%20Portal%20by%20Rajasthan%20Police%3A%20https%3A%2F%2Fpolice.rajasthan.gov.in%2Fparakh" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span>Share Safety Alert (व्हाट्सएप शेयर)</span>
+</a>
+</div>
+</section>
+<!-- SOP Modal Popup Container -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="sop-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-space-xl shadow-xl flex flex-col gap-space-md relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="sop-title">Police Safety SOP</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" id="close-sop-modal" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-xl">
+<p class="font-title-md text-title-md text-on-surface font-semibold mb-space-2xs">Golden Protocol (कार्रवाई दिशा-निर्देश):</p>
+<ol class="list-decimal list-inside space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<li><strong>Zero Compliance:</strong> Never transfer "verification token amounts" or click SMS web links.</li>
+<li><strong>Isolate Connection:</strong> If an APK was downloaded, immediately put the phone in Airplane mode.</li>
+<li><strong>Report Immediately:</strong> Call Rajasthan Police Helpline <strong>1930</strong> within the "Golden Hour" (first 2 hours).</li>
+<li><strong>Preserve Evidence:</strong> Do not delete call logs, WhatsApp chats, or screenshot strings.</li>
+</ol>
+</div>
+<div class="flex justify-end gap-space-xs">
+<a class="px-space-md py-space-xs rounded-xl bg-error text-on-error font-title-md text-title-md hover:bg-error/90 flex items-center gap-space-xs" href="tel:1930">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Emergency 1930</span>
+</a>
+<button class="px-space-md py-space-xs rounded-xl bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-container-highest" id="close-sop-action" type="button">
+          Got It / समझ गए
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Client-side Logic -->
+<script>
+    // Tab Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.scam-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.className = "filter-btn px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all";
+        });
+        btn.className = "filter-btn active px-space-md py-space-xs rounded-lg font-title-md text-title-md bg-primary text-on-primary shadow-sm transition-all";
+
+        const category = btn.getAttribute('data-category');
+        cards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Quiz Simulation Data & Handler
+    const quizData = [
+      {
+        sender: "VM-EPFOPR",
+        time: "Today, 08:42 AM via SMS",
+        message: "Dear Member, your EPF balance of ₹1,48,250 has been frozen due to unlinked Aadhaar UAN. Complete verification within 6 hours to prevent statutory forfeiture: https://epfo-uan-update.in/verify",
+        isScam: true,
+        feedback: "Correct! This is a dangerous phishing trap. EPFO domains are strictly on .gov.in. Statutory provident funds are never forfeited arbitrarily."
+      },
+      {
+        sender: "JK-JVVNLB",
+        time: "Yesterday, 07:15 PM via SMS",
+        message: "Your monthly electricity bill of ₹1,840 for K-No 23901928 has been generated. Due date: 24-Nov. Pay securely via genuine portal: https://energy.rajasthan.gov.in/jvvnl or BijliMitra App.",
+        isScam: false,
+        feedback: "Accurate! This message is SAFE. Notice the official TRAI Discom header (JVVNL), exact consumer K-number, and legitimate energy.rajasthan.gov.in domain."
+      },
+      {
+        sender: "+91 98291 00214",
+        time: "Today, 11:20 AM via WhatsApp",
+        message: "Hello sir, your parcel is detained at Jaipur Customs. You are ordered to connect with Senior CBI Inspector Amit Sharma on Skype immediately or face non-bailable arrest warrant.",
+        isScam: true,
+        feedback: "Correct! Classic 'Digital Arrest' extortion. CBI and Rajasthan Police never use Skype, WhatsApp, or 10-digit SIM cards to serve court warrants."
+      }
+    ];
+
+    let currentQuizIndex = 0;
+    const simSender = document.getElementById('sim-sender');
+    const simTime = document.getElementById('sim-time');
+    const simMessage = document.getElementById('sim-message');
+    const simFeedback = document.getElementById('sim-feedback');
+    const feedbackMain = document.getElementById('feedback-main');
+    const btnDanger = document.getElementById('btn-danger');
+    const btnSafe = document.getElementById('btn-safe');
+    const btnNextQuiz = document.getElementById('btn-next-quiz');
+
+    function loadQuiz(index) {
+      const q = quizData[index];
+      simSender.textContent = q.sender;
+      simTime.textContent = q.time;
+      simMessage.innerHTML = `"${q.message}"`;
+      feedbackMain.textContent = q.feedback;
+    }
+
+    btnDanger.addEventListener('click', () => {
+      const current = quizData[currentQuizIndex];
+      if (current.isScam) {
+        feedbackMain.innerHTML = `<strong>Accurate Decision!</strong> You avoided a catastrophic security compromise. ${current.feedback}`;
+      } else {
+        feedbackMain.innerHTML = `<strong>False Positive:</strong> This message was actually authentic. Observe the official sovereign domain and certified TRAI sender ID.`;
+      }
+      simFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    btnSafe.addEventListener('click', () => {
+      const current = quizData[currentQuizIndex];
+      if (!current.isScam) {
+        feedbackMain.innerHTML = `<strong>Correct:</strong> This is a verified, authentic government transaction notification.`;
+      } else {
+        feedbackMain.innerHTML = `<strong class="text-error">Security Warning:</strong> Clicking this would have compromised your device! ${current.feedback}`;
+      }
+      simFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    btnNextQuiz.addEventListener('click', () => {
+      currentQuizIndex = (currentQuizIndex + 1) % quizData.length;
+      loadQuiz(currentQuizIndex);
+    });
+
+    // SOP Modal handlers
+    const sopModal = document.getElementById('sop-modal');
+    const closeSopModal = document.getElementById('close-sop-modal');
+    const closeSopAction = document.getElementById('close-sop-action');
+    const sopButtons = document.querySelectorAll('.view-sop-btn');
+
+    sopButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const cardTitle = e.target.closest('.scam-card').querySelector('h3').textContent;
+        document.getElementById('sop-title').textContent = `${cardTitle} • Safety SOP`;
+        sopModal.classList.remove('hidden');
+      });
+    });
+
+    [closeSopModal, closeSopAction].forEach(el => {
+      if (el) {
+        el.addEventListener('click', () => {
+          sopModal.classList.add('hidden');
+        });
+      }
+    });
+
+    // Close on outside tap
+    sopModal.addEventListener('click', (e) => {
+      if (e.target === sopModal) {
+        sopModal.classList.add('hidden');
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1440px] mx-auto px-margin py-space-2xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">shield</span></div><div><p class="font-title-md text-title-md text-on-surface font-semibold">PARAKH • राजस्थान पुलिस साइबर सुरक्षा सेल</p><p class="font-body-sm text-body-sm text-on-surface-variant">Sovereign Digital Verification Platform for Indian Citizens</p></div></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant"><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="rescue-help" href="#">Emergency Rescue &amp; SOS</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="evidence" href="#">Submit Tip / रिपोर्ट</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="learn" href="#">Security Guidelines</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-ui text-label-ui"><p>© 2025 Rajasthan Police Cyber Crime Branch. Govt. of Rajasthan. All Rights Reserved.</p><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-2xs text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span>National Cyber Crime Portal (cybercrime.gov.in) Partner</span></div></div></div></footer></body></html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary":"#802500","on-surface":"#131b2e","on-primary-fixed":"#001551","on-tertiary-container":"#ffc9b8","surface-container-low":"#f2f3ff","on-secondary-fixed":"#311300","error-container":"#ffdad6","on-primary-fixed-variant":"#0039b5","on-secondary-container":"#6b3100","outline-variant":"#c4c5d7","primary-fixed":"#dce1ff","on-tertiary-fixed":"#390c00","inverse-primary":"#b7c4ff","inverse-surface":"#283044","tertiary-fixed":"#ffdbd0","inverse-on-surface":"#eef0ff","surface-dim":"#d2d9f4","on-primary-container":"#cad3ff","outline":"#747686","on-error-container":"#93000a","surface-container-lowest":"#ffffff","primary-fixed-dim":"#b7c4ff","on-error":"#ffffff","primary":"#0037b0","secondary-container":"#ff9245","on-primary":"#ffffff","surface-container-high":"#e2e7ff","surface-container":"#eaedff","on-background":"#131b2e","primary-container":"#1d4ed8","on-tertiary-fixed-variant":"#832600","secondary-fixed-dim":"#ffb689","surface-container-highest":"#dae2fd","error":"#ba1a1a","secondary-fixed":"#ffdbc8","surface-bright":"#faf8ff","background":"#faf8ff","surface-variant":"#dae2fd","tertiary-container":"#a83300","surface":"#faf8ff","surface-tint":"#2151da","on-secondary":"#ffffff","on-tertiary":"#ffffff","tertiary-fixed-dim":"#ffb59d","on-surface-variant":"#434655","on-secondary-fixed-variant":"#743500","secondary":"#984800"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xl":"2rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.5rem","gutter-mobile":"1rem","gutter":"1.5rem","space-lg":"1.5rem","space-2xs":"0.25rem","space-sm":"0.75rem","space-md":"1rem","margin-mobile":"1rem","space-2xl":"3rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-ui":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"label-mono-md":["JetBrains Mono"],"body-lg":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"label-mono-sm":["JetBrains Mono"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-ui":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-mono-md":["14px",{lineHeight:"20px",letterSpacing:"-0.01em",fontWeight:"500"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"display-hero":["44px",{lineHeight:"52px",letterSpacing:"-0.03em",fontWeight:"800"}],"display-hero-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-mono-sm":["12px",{lineHeight:"16px",fontWeight:"500"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between border-r border-outline-variant/50 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest border-b border-outline-variant/40"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">shield</span></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-title-md text-title-md text-on-surface tracking-tight font-extrabold">PARAKH</span><span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container text-primary font-bold">RJ-POL</span></div><span class="font-label-ui text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Investigate Console</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-2xs text-[11px] font-label-mono-sm text-outline uppercase tracking-wider font-semibold">Operational Modules</div></div><nav class="flex flex-col gap-1 px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-title-md text-title-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="cases" href="#"><span class="material-symbols-outlined text-[20px]">folder_managed</span><span class="font-title-md text-title-md">Cases</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[20px]">biotech</span><span class="font-title-md text-title-md">New Analysis</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-semibold shadow-sm" data-path="threat-campaigns" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-title-md text-title-md">Campaigns</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="heat-list-registry" href="#"><span class="material-symbols-outlined text-[20px]">local_fire_department</span><span class="font-title-md text-title-md">Heat-list</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="forensic-identifiers" href="#"><span class="material-symbols-outlined text-[20px]">fingerprint</span><span class="font-title-md text-title-md">Identifiers</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="statutory-reports" href="#"><span class="material-symbols-outlined text-[20px]">summarize</span><span class="font-title-md text-title-md">Reports</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-xl border border-outline-variant/40"><div class="flex items-center gap-space-sm mb-space-sm"><div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-xs"><span class="material-symbols-outlined text-[20px]">local_police</span></div><div class="flex flex-col min-w-0"><div class="font-title-md text-title-md text-on-surface truncate font-bold">Insp. Vikram Singh Rathore</div><div class="font-body-sm text-[12px] text-on-surface-variant truncate">Inspector · Jaipur Cyber Cell</div><div class="font-label-mono-sm text-[11px] text-primary font-bold">PNO: RJ-POL-782941</div></div></div><a class="flex items-center justify-between pt-space-xs text-on-surface-variant hover:text-error transition-colors border-t border-outline-variant/30" data-path="login" href="#"><span class="font-body-sm text-[12px] flex items-center gap-1.5 font-medium"><span class="material-symbols-outlined text-[17px]">logout</span>Sign Out</span><span class="font-label-mono-sm text-[10px] text-outline font-semibold">I4C-SEC</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex items-center justify-between px-space-lg gap-space-md"><div class="flex items-center gap-space-md min-w-0 shrink-0"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-transparent hover:border-outline-variant/50" type="button"><span class="material-symbols-outlined text-[22px]">menu_open</span></button><div class="hidden xl:flex items-center gap-2"><span class="font-title-md text-title-md text-on-surface-variant">PARAKH Investigate</span><span class="text-outline-variant font-label-mono-sm">/</span><span class="font-title-md text-title-md text-on-surface font-semibold">Command Centre</span></div></div><div class="flex-1 max-w-2xl mx-space-md"><div class="relative flex items-center w-full h-11 bg-surface-container-low rounded-lg px-space-sm border border-outline-variant/40 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container/20 transition-all"><span class="material-symbols-outlined text-outline text-[20px] mr-2">travel_explore</span><input class="w-full bg-transparent border-0 outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="Search case ID, UPI, phone, domain, package…" type="text"><div class="hidden md:flex items-center gap-1.5 ml-2"><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-primary font-medium tracking-tight">UPI</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-secondary font-medium tracking-tight">Phone</span><span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-medium tracking-tight">Domain</span></div></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden 2xl:flex items-center gap-2 px-space-sm py-1.5 bg-surface-container-low rounded-lg border border-outline-variant/30"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-mono-sm text-label-mono-sm text-on-surface font-semibold tracking-tight">I4C / CCTNS SYNCED</span></div><div class="hidden lg:flex items-center gap-1 px-space-sm py-1.5 bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container border border-outline-variant/30 transition-colors"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span>Past 30 Days</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><button class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors border border-outline-variant/30" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-extrabold border border-error/30">Active Lien</span></button><a class="hidden sm:flex items-center gap-1.5 px-space-md h-9 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-title-md text-body-sm shadow-sm font-semibold" data-path="new-forensic-analysis" href="#"><span class="material-symbols-outlined text-[18px]">add</span><span>+ New Forensic Analysis</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 pt-16 w-full bg-background"><div class="flex flex-col w-full">
+<!-- Interactive Style Helpers & Active Navigation Fixer -->
+<script>
+    (function() {
+      // Mark active state in sidebar according to requirements
+      document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+          if (link.getAttribute('data-path') === 'threat-campaigns') {
+            link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+            link.classList.add('bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+          } else {
+            link.classList.remove('bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+            link.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+          }
+        });
+      });
+    })();
+  </script>
+<!-- CONTROL / COMMAND STRIP -->
+<section class="w-full bg-surface-container-lowest border-b border-outline-variant/40 px-space-lg py-space-sm shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+<div class="max-w-[1720px] mx-auto flex flex-col gap-space-sm">
+<!-- Title & Operational Telemetry -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-2.5">
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">
+              Campaign Map &amp; Syndicate Clusters
+            </h1>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant/70 font-semibold">(अभियान नेटवर्क मानचित्र)</span>
+<span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-bold border border-error/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+              PRIORITY 1 SYNDICATES
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl mt-0.5">
+            Graph correlation of shared financial mule accounts, bulletproof hosting, infrastructure nodes, and mutating template variants across Rajasthan State Police FIRs.
+          </p>
+</div>
+<!-- Telemetry Pill -->
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/50 text-on-surface shadow-xs">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
+</span>
+<span class="font-label-mono-md text-[13px] font-semibold tracking-tight text-on-surface">18 Active Syndicates Correlated</span>
+<span class="text-outline-variant font-label-mono-sm">/</span>
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">4 Multi-State Joint Ops</span>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm font-title-md transition-colors border border-outline-variant/40" title="Synchronize Graph Network">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Force Resync</span>
+</button>
+</div>
+</div>
+<!-- Tactical Filtering & Viewport Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-2xs border-t border-outline-variant/30">
+<!-- Search & Filter Badges -->
+<div class="flex flex-wrap items-center gap-space-sm flex-1 min-w-[320px]">
+<div class="relative flex items-center min-w-[260px] max-w-md h-9 bg-surface-container-low rounded-lg px-2.5 border border-outline-variant/50 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all">
+<span class="material-symbols-outlined text-outline text-[18px] mr-1.5">filter_alt</span>
+<input class="w-full bg-transparent border-0 outline-none font-label-mono-sm text-[12px] text-on-surface placeholder:text-outline" placeholder="Filter campaign, UPI, domain, C2 IP, or MSISDN…" type="text">
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto py-0.5">
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-semibold bg-primary text-on-primary transition-all">
+              All Types
+            </button>
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-medium bg-surface-container hover:bg-surface-container-high text-on-surface transition-all flex items-center gap-1 border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-indigo-600"></span> UPI / VPA
+            </button>
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-medium bg-surface-container hover:bg-surface-container-high text-on-surface transition-all flex items-center gap-1 border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-blue-600"></span> Phone MSISDN
+            </button>
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-medium bg-surface-container hover:bg-surface-container-high text-on-surface transition-all flex items-center gap-1 border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-rose-600"></span> C2 / Hosting IP
+            </button>
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-medium bg-surface-container hover:bg-surface-container-high text-on-surface transition-all flex items-center gap-1 border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-sky-500"></span> Telegram / Bot
+            </button>
+<button class="px-2.5 py-1 rounded-md text-[11px] font-label-mono-sm font-medium bg-surface-container hover:bg-surface-container-high text-on-surface transition-all flex items-center gap-1 border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-purple-600"></span> Keystore Cert
+            </button>
+</div>
+</div>
+<!-- Canvas Toggles & Controls -->
+<div class="flex items-center gap-1.5 shrink-0 bg-surface-container-low p-1 rounded-lg border border-outline-variant/40">
+<div class="flex items-center gap-0.5 pr-1.5 border-r border-outline-variant/40">
+<button class="w-7 h-7 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Zoom in">
+<span class="material-symbols-outlined text-[17px]">add</span>
+</button>
+<button class="w-7 h-7 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Zoom out">
+<span class="material-symbols-outlined text-[17px]">remove</span>
+</button>
+<button class="w-7 h-7 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Fit network to viewport">
+<span class="material-symbols-outlined text-[17px]">crop_free</span>
+</button>
+</div>
+<button class="px-2 py-1 rounded text-[11px] font-label-ui uppercase tracking-wider font-semibold bg-primary-container/10 text-primary hover:bg-primary-container/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">label</span>
+<span>Labels: On</span>
+</button>
+<button class="px-2 py-1 rounded text-[11px] font-label-ui uppercase tracking-wider font-semibold bg-secondary-fixed/50 text-secondary hover:bg-secondary-fixed flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">alt_route</span>
+<span>Template Similarity</span>
+</button>
+<button class="px-2 py-1 rounded text-[11px] font-label-ui uppercase tracking-wider font-semibold hover:bg-surface-container text-on-surface-variant flex items-center gap-1" title="Toggle physics simulation">
+<span class="material-symbols-outlined text-[14px]">grain</span>
+<span>Physics</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN THREE-COLUMN WORKBENCH -->
+<div class="w-full max-w-[1720px] mx-auto p-space-md grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- COLUMN 1: CAMPAIGN SELECTOR PANEL (~320px / 3 cols) -->
+<section class="xl:col-span-3 flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-space-sm shadow-[0_1px_4px_rgba(0,0,0,0.03)] h-[760px] overflow-hidden">
+<!-- Selector Header -->
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/30">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-primary">hub</span>
+<h2 class="font-title-md text-title-md text-on-surface font-bold">Active Syndicates</h2>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-bold">18</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-[11px] font-label-mono-sm text-outline">Sort:</span>
+<select class="bg-transparent text-[11px] font-label-mono-sm font-semibold text-primary border-none p-0 focus:ring-0 cursor-pointer">
+<option>Risk: Highest First</option>
+<option>Recent Velocity</option>
+<option>Case Count</option>
+</select>
+</div>
+</div>
+<!-- Campaign List (Scrollable) -->
+<div class="flex-1 overflow-y-auto pr-1 flex flex-col gap-2.5">
+<!-- CARD 1 (SELECTED / ACTIVE) -->
+<div class="relative p-3 rounded-lg bg-surface-container-low border-l-4 border-primary border-t border-r border-b border-outline-variant/40 shadow-xs cursor-pointer transition-all hover:shadow-sm">
+<div class="flex items-start justify-between gap-1 mb-1.5">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-mono-md text-[13px] font-bold text-primary">#RJ-DISCOM-09</span>
+<span class="font-label-mono-sm text-[10px] px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 font-bold flex items-center gap-0.5" title="Repeated mutational template detected across 4 jurisdictions">
+<span class="material-symbols-outlined text-[11px]">content_copy</span> Template
+                </span>
+</div>
+<span class="font-title-md text-[14px] text-on-surface font-semibold truncate">Bijli Bill Urgency Spoof</span>
+</div>
+<span class="font-label-mono-sm text-[11px] px-2 py-0.5 rounded bg-error-container/20 text-error font-extrabold tracking-tight border border-error/30">CRITICAL 96</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-mono-sm text-[11px] text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[14px] text-indigo-600">account_balance_wallet</span>
+<span class="truncate font-medium text-on-surface">richplan@ybl</span>
+<span class="text-outline-variant">•</span>
+<span class="font-semibold text-primary">6 Linked Cases (4 Thanas)</span>
+</div>
+<!-- Mini Segmented Bar -->
+<div class="w-full mb-2">
+<div class="flex justify-between text-[10px] font-label-mono-sm text-outline mb-1">
+<span>Vector Mix</span>
+<span>SMS 40% | APK 30% | Web 30%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-blue-600 h-full" style="width: 40%"></div>
+<div class="bg-error h-full" style="width: 30%"></div>
+<div class="bg-amber-500 h-full" style="width: 30%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-mono-sm border-t border-outline-variant/30 pt-1.5">
+<span class="text-outline">02 Nov – 23 Nov (21d active)</span>
+<span class="font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">₹14.8L Frozen via 1930</span>
+</div>
+</div>
+<!-- CARD 2 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/40 transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-mono-md text-[13px] font-bold text-on-surface">#RJ-CYB-ARREST-04</span>
+<span class="font-label-mono-sm text-[10px] px-1.5 py-0.2 rounded bg-amber-50 text-amber-800 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">content_copy</span>
+</span>
+</div>
+<span class="font-title-md text-[13px] text-on-surface font-medium truncate">Skype CBI / Supreme Court Impersonation</span>
+</div>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-bold border border-error/30">HIGH 92</span>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-mono-sm text-on-surface-variant mb-1.5">
+<span>11 Linked Cases (Jaipur HQ, Kota)</span>
+<span class="text-outline">15 Oct – 22 Nov</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex mb-1.5">
+<div class="bg-indigo-600 h-full" style="width: 50%"></div>
+<div class="bg-sky-500 h-full" style="width: 30%"></div>
+<div class="bg-amber-500 h-full" style="width: 20%"></div>
+</div>
+<div class="text-[10px] font-label-mono-sm text-outline">Voice IVR 50% | Web 30% | Mule UPI 20%</div>
+</div>
+<!-- CARD 3 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/40 transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-md text-[13px] font-bold text-on-surface">#RJ-LOAN-QUICK-12</span>
+<span class="font-title-md text-[13px] text-on-surface font-medium truncate">SDR QuickLoan Extortion &amp; Contact Exfil</span>
+</div>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-bold border border-error/30">HIGH 89</span>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-mono-sm text-on-surface-variant mb-1.5">
+<span>8 Cases Correlated (Udaipur, Alwar)</span>
+<span class="text-outline">28 Oct – 19 Nov</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex mb-1.5">
+<div class="bg-error h-full" style="width: 70%"></div>
+<div class="bg-blue-600 h-full" style="width: 30%"></div>
+</div>
+<div class="text-[10px] font-label-mono-sm text-outline">Rogue APK 70% | SMS WhatsApp 30%</div>
+</div>
+<!-- CARD 4 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/40 transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-md text-[13px] font-bold text-on-surface">#RJ-CHALLAN-SPOOF-02</span>
+<span class="font-title-md text-[13px] text-on-surface font-medium truncate">Fake Traffic e-Challan Vahan APK</span>
+</div>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-bold border border-error/30">HIGH 88</span>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-mono-sm text-on-surface-variant mb-1.5">
+<span>5 Cases (Ajmer, Jodhpur West)</span>
+<span class="text-outline">05 Nov – 20 Nov</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex mb-1.5">
+<div class="bg-blue-600 h-full" style="width: 60%"></div>
+<div class="bg-error h-full" style="width: 40%"></div>
+</div>
+<div class="text-[10px] font-label-mono-sm text-outline">SMS Smishing 60% | Dropper APK 40%</div>
+</div>
+<!-- CARD 5 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/40 transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-md text-[13px] font-bold text-on-surface">#RJ-MEWAT-SEXT-17</span>
+<span class="font-title-md text-[13px] text-on-surface font-medium truncate">Bharatpur-Mewat Video Call Syndicate</span>
+</div>
+<span class="font-label-mono-sm text-[11px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-bold border border-error/30">HIGH 91</span>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-mono-sm text-on-surface-variant mb-1.5">
+<span>14 Cases (Bharatpur, Dholpur, NCR)</span>
+<span class="text-outline">12 Oct – Present</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden flex mb-1.5">
+<div class="bg-indigo-600 h-full" style="width: 45%"></div>
+<div class="bg-blue-600 h-full" style="width: 35%"></div>
+<div class="bg-sky-500 h-full" style="width: 20%"></div>
+</div>
+<div class="text-[10px] font-label-mono-sm text-outline">Multi-tier Mule Accounts &amp; Rotational SIMs</div>
+</div>
+</div>
+<!-- Quick Action Under Panel -->
+<div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+<span class="text-[11px] font-label-mono-sm text-outline">Auto-clustering on CCTNS feed</span>
+<button class="text-[11px] font-title-md text-primary font-bold hover:underline flex items-center gap-0.5">
+<span>+ Merge Clusters</span>
+</button>
+</div>
+</section>
+<!-- COLUMN 2: CENTRE GRAPH CANVAS (6 cols in xl) -->
+<section class="xl:col-span-6 relative flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/40 overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.03)] h-[760px]">
+<!-- Graph Canvas Header Overlay -->
+<div class="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
+<div class="pointer-events-auto flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/40 shadow-xs">
+<span class="font-label-mono-sm text-[12px] font-bold text-on-surface">Target Syndicate:</span>
+<span class="font-label-mono-sm text-[12px] font-extrabold text-primary px-1.5 py-0.5 rounded bg-primary-container/10">#RJ-DISCOM-09</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Focusing 6 Connected FIRs</span>
+</div>
+<div class="pointer-events-auto flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/40 shadow-xs text-[11px] font-label-mono-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Centrality Pivot: UPI Mule Hub</span>
+</div>
+</div>
+<!-- Tactical Background Coordinate Rulers (+ marks) -->
+<div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px); background-size: 24px 24px;">
+<span class="absolute top-4 left-4 font-label-mono-sm text-[10px] text-outline/60">+ 26°55'12"N 75°49'24"E [JP-HQ]</span>
+<span class="absolute top-4 right-4 font-label-mono-sm text-[10px] text-outline/60">NODE-MAP-COORD: #09-V4</span>
+<span class="absolute bottom-4 left-4 font-label-mono-sm text-[10px] text-outline/60">SEC-65B VERIFIED GRAPH</span>
+<span class="absolute bottom-4 right-4 font-label-mono-sm text-[10px] text-outline/60">SCALE: 1.00x // 4 JURISDICTIONS</span>
+</div>
+<!-- HIGH FIDELITY SVG GRAPH VISUALIZATION -->
+<div class="relative w-full h-full z-10 overflow-hidden flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewBox="0 0 860 680" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Glowing edge filters -->
+<filter height="140%" id="glow-primary" width="140%" x="-20%" y="-20%">
+<feDropShadow dx="0" dy="0" flood-color="#1d4ed8" flood-opacity="0.35" stdDeviation="4"></feDropShadow>
+</filter>
+<filter height="140%" id="glow-violet" width="140%" x="-20%" y="-20%">
+<feDropShadow dx="0" dy="0" flood-color="#6366f1" flood-opacity="0.4" stdDeviation="6"></feDropShadow>
+</filter>
+<filter height="120%" id="card-shadow" width="120%" x="-10%" y="-10%">
+<feDropShadow dx="0" dy="3" flood-color="#0f172a" flood-opacity="0.08" stdDeviation="4"></feDropShadow>
+</filter>
+<!-- Edge Line Gradients -->
+<linearGradient id="edge-upi" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.9"></stop>
+<stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.6"></stop>
+</linearGradient>
+<linearGradient id="edge-ip" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#e11d48" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#f59e0b" stop-opacity="0.7"></stop>
+</linearGradient>
+</defs>
+<!-- UNSELECTED BACKGROUND CAMPAIGN NODES (Faded Context at 20% Opacity) -->
+<g opacity="0.22">
+<!-- Background Campaign #RJ-CYB-ARREST -->
+<circle cx="90" cy="110" fill="#38bdf8" r="16"></circle>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="90" y="140">CBI-Spoof C2</text>
+<path d="M90 110 L190 70" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1.5"></path>
+<rect fill="#ffffff" height="34" rx="6" stroke="#cbd5e1" width="70" x="180" y="50"></rect>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="9" text-anchor="middle" x="215" y="72">PRK-ARREST-01</text>
+<!-- Background Campaign #RJ-MEWAT -->
+<circle cx="770" cy="590" fill="#f43f5e" r="18"></circle>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="770" y="625">Mewat-Mule Bank</text>
+<path d="M770 590 L680 620" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1.5"></path>
+<rect fill="#ffffff" height="34" rx="6" stroke="#cbd5e1" width="70" x="620" y="605"></rect>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="9" text-anchor="middle" x="655" y="626">PRK-MEWAT-09</text>
+</g>
+<!-- TEMPLATE SIMILARITY LINKS (Dashed Amber/Red Lines Between Cases) -->
+<!-- C1 to C2 (SMS Template Match) -->
+<path d="M140 260 C 130 380, 210 490, 280 520" fill="none" opacity="0.8" stroke="#f59e0b" stroke-dasharray="4 4" stroke-width="2"></path>
+<g transform="translate(170, 410)">
+<rect fill="#fef3c7" height="20" rx="4" stroke="#f59e0b" stroke-width="0.8" width="84" x="-42" y="-10"></rect>
+<text fill="#92400e" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle" x="0" y="4">94% SMS match</text>
+</g>
+<!-- C3 to C4 (APK Payload Similarity) -->
+<path d="M680 150 C 760 260, 770 380, 690 470" fill="none" opacity="0.85" stroke="#ef4444" stroke-dasharray="4 4" stroke-width="2.2"></path>
+<g transform="translate(740, 310)">
+<rect fill="#fee2e2" height="20" rx="4" stroke="#ef4444" stroke-width="0.8" width="96" x="-48" y="-10"></rect>
+<text fill="#b91c1c" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle" x="0" y="4">98% payload match</text>
+</g>
+<!-- SOLID IDENTIFIER CORRELATION EDGES (Animated feel with gradients) -->
+<!-- Hub 1: UPI (Central: 430, 340) to Case 1 (140, 240) -->
+<path d="M430 340 L160 240" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 1: UPI to Case 2 (280, 520) -->
+<path d="M430 340 L280 500" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 1: UPI to Case 3 (660, 160) -->
+<path d="M430 340 L640 160" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 1: UPI to Case 4 (660, 480) -->
+<path d="M430 340 L650 480" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 1: UPI to Case 5 (430, 570) -->
+<path d="M430 340 L430 550" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 1: UPI to Case 6 (380, 100) -->
+<path d="M430 340 L380 110" stroke="url(#edge-upi)" stroke-width="2.5"></path>
+<!-- Hub 2: Phone MSISDN (240, 220) to C1 & C2 & C6 -->
+<path d="M250 210 L160 230" stroke="#3b82f6" stroke-opacity="0.75" stroke-width="2"></path>
+<path d="M250 210 L280 490" stroke="#3b82f6" stroke-opacity="0.75" stroke-width="1.8"></path>
+<path d="M250 210 L350 110" stroke="#3b82f6" stroke-opacity="0.75" stroke-width="1.8"></path>
+<!-- Hub 4: C2 Server IP (580, 240) to C3, C4, C5 -->
+<path d="M580 240 L640 160" stroke="#e11d48" stroke-opacity="0.8" stroke-width="2.2"></path>
+<path d="M580 240 L650 480" stroke="#e11d48" stroke-opacity="0.8" stroke-width="2.2"></path>
+<path d="M580 240 L440 550" stroke="#e11d48" stroke-opacity="0.8" stroke-width="1.8"></path>
+<!-- Hub 6: Keystore Cert (540, 440) to C3 & C4 -->
+<path d="M540 440 L650 480" stroke="#9333ea" stroke-opacity="0.75" stroke-width="1.8"></path>
+<path d="M540 440 L640 170" stroke="#9333ea" stroke-opacity="0.75" stroke-width="1.8"></path>
+<!-- Hub 7: Domain (telemetry-gateway) to C4 & C5 -->
+<path d="M520 540 L450 560" stroke="#059669" stroke-opacity="0.7" stroke-width="1.8"></path>
+<path d="M520 540 L640 500" stroke="#059669" stroke-opacity="0.7" stroke-width="1.8"></path>
+<!-- Edge Path Badges (Micro-labels on primary connections) -->
+<g transform="translate(290, 280)">
+<rect fill="#ffffff" height="18" rx="3" stroke="#cbd5e1" stroke-width="0.8" width="70" x="-35" y="-9"></rect>
+<text fill="#4338ca" font-family="JetBrains Mono" font-size="8.5" font-weight="600" text-anchor="middle" x="0" y="3.5">Shared UPI</text>
+</g>
+<g transform="translate(540, 285)">
+<rect fill="#ffffff" height="18" rx="3" stroke="#cbd5e1" stroke-width="0.8" width="68" x="-34" y="-9"></rect>
+<text fill="#be123c" font-family="JetBrains Mono" font-size="8.5" font-weight="600" text-anchor="middle" x="0" y="3.5">Shared C2 IP</text>
+</g>
+<!-- CASE NODES (Rounded Rectangles with Risk Badges) -->
+<!-- Case Node C1: PRK-20261102-01 (Jodhpur) -->
+<g filter="url(#card-shadow)" transform="translate(70, 210)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#0284c7" stroke-width="1.8" width="135"></rect>
+<rect fill="#0284c7" height="5" rx="2" width="135" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261102-01</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">SMS Phish · Jodhpur</text>
+<g transform="translate(85, 43)">
+<rect fill="#fee2e2" height="16" rx="3" width="42"></rect>
+<text fill="#dc2626" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="21" y="11.5">RISK 88</text>
+</g>
+</g>
+<!-- Case Node C2: PRK-20261111-03 (Alwar) -->
+<g filter="url(#card-shadow)" transform="translate(200, 485)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#d97706" stroke-width="1.8" width="135"></rect>
+<rect fill="#d97706" height="5" rx="2" width="135" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261111-03</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">SMS Variant · Alwar</text>
+<g transform="translate(85, 43)">
+<rect fill="#fee2e2" height="16" rx="3" width="42"></rect>
+<text fill="#dc2626" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="21" y="11.5">RISK 90</text>
+</g>
+</g>
+<!-- Case Node C3: PRK-20261114-08 (Jaipur North) -->
+<g filter="url(#card-shadow)" transform="translate(620, 115)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#dc2626" stroke-width="2" width="145"></rect>
+<rect fill="#dc2626" height="5" rx="2" width="145" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261114-08</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">APK Dropper · JP North</text>
+<g transform="translate(95, 43)">
+<rect fill="#fee2e2" height="16" rx="3" width="42"></rect>
+<text fill="#dc2626" font-family="JetBrains Mono" font-size="8.5" font-weight="800" text-anchor="middle" x="21" y="11.5">RISK 98</text>
+</g>
+</g>
+<!-- Case Node C4: PRK-20261118-12 (Jaipur HQ) -->
+<g filter="url(#card-shadow)" transform="translate(635, 455)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#991b1b" stroke-width="2.2" width="145"></rect>
+<rect fill="#991b1b" height="5" rx="2" width="145" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261118-12</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">APK Overlay · Jaipur HQ</text>
+<g transform="translate(90, 43)">
+<rect fill="#7f1d1d" height="16" rx="3" width="46"></rect>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="8.5" font-weight="800" text-anchor="middle" x="23" y="11.5">CRIT 100</text>
+</g>
+</g>
+<!-- Case Node C5: PRK-20261120-15 (Kota) -->
+<g filter="url(#card-shadow)" transform="translate(360, 545)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#ea580c" stroke-width="1.8" width="135"></rect>
+<rect fill="#ea580c" height="5" rx="2" width="135" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261120-15</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">Rogue Portal · Kota</text>
+<g transform="translate(85, 43)">
+<rect fill="#fee2e2" height="16" rx="3" width="42"></rect>
+<text fill="#dc2626" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="21" y="11.5">RISK 92</text>
+</g>
+</g>
+<!-- Case Node C6: PRK-20261123-18 (Udaipur) -->
+<g filter="url(#card-shadow)" transform="translate(310, 60)">
+<rect fill="#ffffff" height="66" rx="8" stroke="#2563eb" stroke-width="1.8" width="135"></rect>
+<rect fill="#2563eb" height="5" rx="2" width="135" x="0" y="0"></rect>
+<text fill="#0f172a" font-family="JetBrains Mono" font-size="10" font-weight="700" x="10" y="24">PRK-20261123-18</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="10" y="40">SMS Lure · Udaipur</text>
+<g transform="translate(85, 43)">
+<rect fill="#fee2e2" height="16" rx="3" width="42"></rect>
+<text fill="#dc2626" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="21" y="11.5">RISK 94</text>
+</g>
+</g>
+<!-- IDENTIFIER HUB NODES -->
+<!-- Hub 2: Phone MSISDN (Medium, Blue) -->
+<g transform="translate(240, 200)">
+<circle cx="0" cy="0" fill="#eff6ff" r="26" stroke="#2563eb" stroke-width="3"></circle>
+<circle cx="0" cy="0" fill="#1d4ed8" r="8"></circle>
+<text fill="#1e3a8a" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle" x="0" y="38">+91 98123 45670</text>
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="8.5" text-anchor="middle" x="0" y="50">Mule SIM (4 Cases)</text>
+</g>
+<!-- Hub 4: Bulletproof C2 IP (Medium, Rose) -->
+<g transform="translate(580, 230)">
+<circle cx="0" cy="0" fill="#fff1f2" r="28" stroke="#e11d48" stroke-width="3"></circle>
+<circle cx="0" cy="0" fill="#e11d48" r="9"></circle>
+<text fill="#881337" font-family="JetBrains Mono" font-size="10.5" font-weight="700" text-anchor="middle" x="0" y="40">185.220.101.44</text>
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="8.5" text-anchor="middle" x="0" y="52">C2 Offshore (4 Cases)</text>
+</g>
+<!-- Hub 5: Telegram Bot (Small, Sky) -->
+<g transform="translate(490, 160)">
+<circle cx="0" cy="0" fill="#f0f9ff" r="18" stroke="#0284c7" stroke-width="2"></circle>
+<circle cx="0" cy="0" fill="#0284c7" r="6"></circle>
+<text fill="#0369a1" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle" x="0" y="28">@rj_discom_robot</text>
+</g>
+<!-- Hub 6: Keystore Cert Hash (Medium, Purple) -->
+<g transform="translate(540, 430)">
+<circle cx="0" cy="0" fill="#faf5ff" r="22" stroke="#9333ea" stroke-width="2.5"></circle>
+<circle cx="0" cy="0" fill="#7e22ce" r="7"></circle>
+<text fill="#581c87" font-family="JetBrains Mono" font-size="9.5" font-weight="600" text-anchor="middle" x="0" y="34">SHA256:02:0a:b3…</text>
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="8" text-anchor="middle" x="0" y="46">Self-signed (3 Cases)</text>
+</g>
+<!-- Hub 7: Domain Node (Medium, Emerald) -->
+<g transform="translate(530, 550)">
+<circle cx="0" cy="0" fill="#ecfdf5" r="20" stroke="#059669" stroke-width="2"></circle>
+<circle cx="0" cy="0" fill="#059669" r="6"></circle>
+<text fill="#065f46" font-family="JetBrains Mono" font-size="9.5" font-weight="600" text-anchor="middle" x="0" y="32">telemetry-gateway.online</text>
+</g>
+<!-- Hub 1: UPI / VPA (LARGE CENTRAL PIVOT - VIOLET) -->
+<g filter="url(#glow-violet)" transform="translate(430, 340)">
+<circle cx="0" cy="0" fill="#eef2ff" r="42" stroke="#4f46e5" stroke-width="4"></circle>
+<circle cx="0" cy="0" fill="#ffffff" r="34" stroke="#c7d2fe" stroke-width="1.5"></circle>
+<circle cx="0" cy="0" fill="#4338ca" r="14"></circle>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="11" font-weight="800" text-anchor="middle" x="0" y="4.5">UPI</text>
+<text fill="#312e81" font-family="JetBrains Mono" font-size="13" font-weight="800" text-anchor="middle" x="0" y="58">richplan@ybl</text>
+<text fill="#4338ca" font-family="Plus Jakarta Sans" font-size="10" font-weight="700" text-anchor="middle" x="0" y="73">CENTRAL MULE PIVOT (6 Cases)</text>
+</g>
+<!-- INTERACTIVE HOVER CARD / TOOLTIP (Active on Central UPI Hub) -->
+<g filter="url(#card-shadow)" transform="translate(230, 375)">
+<rect fill="#ffffff" height="98" rx="8" stroke="#4f46e5" stroke-width="1.5" width="250"></rect>
+<rect fill="#4f46e5" height="4" rx="2" width="250" x="0" y="0"></rect>
+<text fill="#1e1b4b" font-family="JetBrains Mono" font-size="10.5" font-weight="700" x="12" y="20">UPI Hub: richplan@ybl</text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="12" y="36">Bank: <tspan fill="#0f172a" font-weight="600">Yes Bank Mule Account</tspan></text>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" x="12" y="51">Primary Holder: <tspan fill="#0f172a" font-weight="600">Ramkishan M. (Alwar)</tspan></text>
+<text fill="#b91c1c" font-family="Plus Jakarta Sans" font-size="9" font-weight="600" x="12" y="66">Status: NPCI Lien Pending ₹2,14,000</text>
+<line stroke="#e2e8f0" stroke-width="1" x1="12" x2="238" y1="74" y2="74"></line>
+<text fill="#2563eb" font-family="JetBrains Mono" font-size="8.5" font-weight="600" x="12" y="87">6 Cases connected across 4 districts</text>
+</g>
+</svg>
+</div>
+<!-- Floating Legend & Mini-HUD in Canvas Bottom Corner -->
+<div class="absolute bottom-3 right-3 z-20 flex flex-col gap-1.5 p-3 rounded-lg bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/40 shadow-xs max-w-xs text-[11px] font-label-mono-sm">
+<span class="font-bold text-on-surface text-[10px] uppercase tracking-wider">Node &amp; Edge Semantics</span>
+<div class="grid grid-cols-2 gap-x-3 gap-y-1 text-on-surface-variant">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span><span>UPI Mule</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span><span>MSISDN SIM</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span><span>C2 IP Host</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span><span>Cert Hash</span></div>
+</div>
+<div class="border-t border-outline-variant/30 pt-1 flex flex-col gap-0.5 text-[10px]">
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-0.5 bg-primary"></span>
+<span class="text-on-surface">Shared Identifier Path</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-0.5 border-t border-dashed border-amber-600"></span>
+<span class="text-on-surface">Template Similarity (≥85%)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN 3: RIGHT DETAIL PANEL (~340px / 3 cols) -->
+<section class="xl:col-span-3 flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-space-sm shadow-[0_1px_4px_rgba(0,0,0,0.03)] h-[760px] overflow-hidden">
+<!-- Dossier Header -->
+<div class="flex items-start justify-between pb-space-xs border-b border-outline-variant/30">
+<div class="flex flex-col">
+<span class="font-label-mono-sm text-[11px] text-primary font-bold tracking-tight">Campaign Dossier</span>
+<h2 class="font-title-md text-title-md text-on-surface font-extrabold">#RJ-DISCOM-09</h2>
+<span class="font-body-sm text-[12px] text-on-surface-variant italic">Aliases: Discom Bill Urgency / JVVNL Power Snip</span>
+</div>
+<button class="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Dossier Settings">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Dossier Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto pr-1 flex flex-col gap-space-sm">
+<!-- Key Stats 3-Card Grid -->
+<div class="grid grid-cols-3 gap-2">
+<div class="p-2.5 rounded-lg bg-surface-container-low text-center border border-outline-variant/30">
+<div class="font-headline-md text-headline-md font-extrabold text-primary leading-none">6</div>
+<div class="font-label-mono-sm text-[10px] text-on-surface-variant mt-1 uppercase font-semibold">Cases Linked</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low text-center border border-outline-variant/30">
+<div class="font-headline-md text-headline-md font-extrabold text-secondary leading-none">3</div>
+<div class="font-label-mono-sm text-[10px] text-on-surface-variant mt-1 uppercase font-semibold">Vectors</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low text-center border border-outline-variant/30">
+<div class="font-headline-md text-headline-md font-extrabold text-error leading-none">21d</div>
+<div class="font-label-mono-sm text-[10px] text-on-surface-variant mt-1 uppercase font-semibold">Lifespan</div>
+</div>
+</div>
+<!-- Financial Exposure Card -->
+<div class="p-3 rounded-lg bg-error-container/20 border border-error/20 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface uppercase">Financial Impact</span>
+<span class="font-label-mono-sm text-[10px] px-1.5 py-0.5 rounded bg-error-container/20 text-error font-extrabold border border-error/30">Active Lien</span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<span class="text-[12px] font-body-sm text-on-surface-variant">Total Reported Loss:</span>
+<span class="font-label-mono-md text-[14px] font-bold text-error">₹14,80,000</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="text-[12px] font-body-sm text-on-surface-variant">1930 Portal Frozen:</span>
+<span class="font-label-mono-md text-[14px] font-bold text-emerald-700">₹8,45,000 (57.1%)</span>
+</div>
+</div>
+<!-- Vector Distribution Donut Chart Section -->
+<div class="p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 flex flex-col gap-2">
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface uppercase">Artifact Vector Distribution</span>
+<div class="flex items-center gap-4">
+<!-- Inline SVG Donut -->
+<div class="relative w-20 h-20 shrink-0">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+<!-- Background ring -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#eaedff" stroke-width="4.5"></circle>
+<!-- SMS: 40% (40 * 0.88 = 35.2) -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#2563eb" stroke-dasharray="35.2 88" stroke-dashoffset="0" stroke-width="4.5"></circle>
+<!-- APK: 35% (35 * 0.88 = 30.8) -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#dc2626" stroke-dasharray="30.8 88" stroke-dashoffset="-35.2" stroke-width="4.5"></circle>
+<!-- Web: 25% (25 * 0.88 = 22) -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#f59e0b" stroke-dasharray="22 88" stroke-dashoffset="-66" stroke-width="4.5"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface">6</span>
+<span class="font-label-mono-sm text-[8px] text-outline">FIRs</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex flex-col gap-1 text-[11px] font-label-mono-sm flex-1">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded bg-blue-600"></span>SMS Phish</span>
+<span class="font-bold text-on-surface">40%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded bg-error"></span>APK Dropper</span>
+<span class="font-bold text-on-surface">35%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded bg-amber-500"></span>Rogue SSO</span>
+<span class="font-bold text-on-surface">25%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Key Identifiers Ranked (Centrality) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface uppercase tracking-tight">Key Identifiers Ranked</span>
+<span class="font-label-mono-sm text-[10px] text-outline">By Centrality Degree</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<!-- ID 1 -->
+<div class="p-2 rounded bg-indigo-50/60 border border-indigo-200/60 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="font-label-mono-sm text-[10px] px-1 py-0.2 rounded bg-indigo-600 text-white font-bold">UPI</span>
+<span class="font-label-mono-sm text-[12px] font-bold text-indigo-950 truncate">richplan@ybl</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-label-mono-sm text-[10px] font-bold text-indigo-700 bg-white px-1.5 py-0.5 rounded shadow-xs">6 Cases</span>
+<span class="font-label-mono-sm text-[9px] px-1 rounded bg-indigo-700 text-white font-bold">PIVOT</span>
+</div>
+</div>
+<!-- ID 2 -->
+<div class="p-2 rounded bg-rose-50/60 border border-rose-200/60 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="font-label-mono-sm text-[10px] px-1 py-0.2 rounded bg-rose-600 text-white font-bold">IP</span>
+<span class="font-label-mono-sm text-[12px] font-bold text-rose-950 truncate">185.220.101.44</span>
+</div>
+<span class="font-label-mono-sm text-[10px] font-bold text-rose-700 bg-white px-1.5 py-0.5 rounded shadow-xs">4 Cases</span>
+</div>
+<!-- ID 3 -->
+<div class="p-2 rounded bg-blue-50/60 border border-blue-200/60 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="font-label-mono-sm text-[10px] px-1 py-0.2 rounded bg-blue-600 text-white font-bold">SIM</span>
+<span class="font-label-mono-sm text-[12px] font-bold text-blue-950 truncate">+91 98123 45670</span>
+</div>
+<span class="font-label-mono-sm text-[10px] font-bold text-blue-700 bg-white px-1.5 py-0.5 rounded shadow-xs">4 Cases</span>
+</div>
+<!-- ID 4 -->
+<div class="p-2 rounded bg-purple-50/60 border border-purple-200/60 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="font-label-mono-sm text-[10px] px-1 py-0.2 rounded bg-purple-600 text-white font-bold">APK</span>
+<span class="font-label-mono-sm text-[11px] font-bold text-purple-950 truncate">com.bijli.jvvnl.update</span>
+</div>
+<span class="font-label-mono-sm text-[10px] font-bold text-purple-700 bg-white px-1.5 py-0.5 rounded shadow-xs">3 Cases</span>
+</div>
+<!-- ID 5 -->
+<div class="p-2 rounded bg-emerald-50/60 border border-emerald-200/60 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="font-label-mono-sm text-[10px] px-1 py-0.2 rounded bg-emerald-600 text-white font-bold">DOM</span>
+<span class="font-label-mono-sm text-[11px] font-bold text-emerald-950 truncate">telemetry-gateway.online</span>
+</div>
+<span class="font-label-mono-sm text-[10px] font-bold text-emerald-700 bg-white px-1.5 py-0.5 rounded shadow-xs">3 Cases</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Operational Action Buttons -->
+<div class="pt-2 border-t border-outline-variant/30 flex flex-col gap-2">
+<button class="w-full h-9 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-title-md text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Batch Section 91 CrPC Notice</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-[12px] font-semibold flex items-center justify-center gap-1 border border-outline-variant/40 transition-colors">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span>Export Dossier</span>
+</button>
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-[12px] font-semibold flex items-center justify-center gap-1 border border-outline-variant/40 transition-colors">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Push to I4C</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- BOTTOM TIMELINE: HOW THE CAMPAIGN EVOLVED -->
+<section class="w-full max-w-[1720px] mx-auto px-space-md pb-space-xl">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-space-md shadow-[0_1px_4px_rgba(0,0,0,0.03)] flex flex-col gap-space-md">
+<!-- Timeline Header & Finding Quote -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm pb-space-xs border-b border-outline-variant/30">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">history_edu</span>
+<h3 class="font-headline-sm text-[18px] text-on-surface font-bold">
+              HOW THE CAMPAIGN EVOLVED — 21-Day Mutation &amp; Pivot Timeline
+            </h3>
+<span class="font-label-ui text-[12px] text-on-surface-variant font-medium">(अभियान विकास क्रम)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Temporal graph progression showing criminal infrastructure mutation vs. invariant financial collection anchors.
+          </p>
+</div>
+<!-- Investigative Finding Callout -->
+<div class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-amber-50/90 border border-amber-200/80 text-amber-900 shadow-xs max-w-xl">
+<span class="material-symbols-outlined text-[20px] text-amber-700 shrink-0">lightbulb</span>
+<span class="font-body-sm text-[13px] font-medium leading-snug">
+<strong class="font-bold text-amber-950">Investigative Finding:</strong> « They rotated the sender phone number and SMS template, but retained the exact same UPI mule account (<code class="font-label-mono-sm font-bold bg-amber-100 px-1 py-0.5 rounded text-amber-950">richplan@ybl</code>) where victim funds flow. »
+          </span>
+</div>
+</div>
+<!-- Horizontal Chronological Rail -->
+<div class="relative w-full overflow-x-auto pb-2">
+<div class="min-w-[1080px] flex items-start justify-between relative pt-6 pb-2">
+<!-- Continuous Progress Line Behind Pins -->
+<div class="absolute top-9 left-10 right-10 h-1 bg-gradient-to-r from-blue-600 via-amber-500 to-emerald-600 rounded-full z-0"></div>
+<!-- NODE 1: 02 Nov -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<!-- Pin Dot -->
+<div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+              1
+            </div>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface mt-2">02 Nov 2026</span>
+<span class="font-title-md text-[13px] font-bold text-primary text-center">SMS Lure v1</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="text-on-surface font-semibold">Base Template:</span>
+<span class="text-outline">« ₹5,000 bill due tonight. Power cuts by 9:30 PM »</span>
+<div class="mt-1 flex items-center gap-1 text-blue-700 font-bold">
+<span class="material-symbols-outlined text-[13px]">call</span>
+<span class="truncate">+91 98123 45670</span>
+</div>
+<span class="text-[10px] text-outline">Target: Jodhpur JVVNL</span>
+</div>
+</div>
+<!-- NODE 2: 11 Nov -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<div class="w-7 h-7 rounded-full bg-blue-700 text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+              2
+            </div>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface mt-2">11 Nov 2026</span>
+<span class="font-title-md text-[13px] font-bold text-on-surface text-center">SMS Variant v2</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold w-fit">Mutated Amount</span>
+<span class="text-on-surface">Amount: ₹5,000 → ₹9,000</span>
+<span class="text-error font-semibold">+12% Late fee penalty added</span>
+<div class="mt-1 text-[10px] text-amber-800 font-bold bg-amber-50 px-1 py-0.5 rounded">
+                92% template match
+              </div>
+</div>
+</div>
+<!-- NODE 3: 14 Nov -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<div class="w-7 h-7 rounded-full bg-error text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+              3
+            </div>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface mt-2">14 Nov 2026</span>
+<span class="font-title-md text-[13px] font-bold text-error text-center">Malware Dropper</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-error-container/20 border border-error/30 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="px-1.5 py-0.5 rounded bg-error-container/20 text-error text-[10px] font-bold w-fit border border-error/30">★ New Vector APK</span>
+<span class="text-on-surface font-semibold truncate">com.bijli.jvvnl.update</span>
+<span class="text-rose-700 font-bold">C2: 185.220.101.44</span>
+<span class="text-[10px] text-outline">Directs to bit.ly APK URL</span>
+</div>
+</div>
+<!-- NODE 4: 18 Nov -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<div class="w-7 h-7 rounded-full bg-amber-600 text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+              4
+            </div>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface mt-2">18 Nov 2026</span>
+<span class="font-title-md text-[13px] font-bold text-on-surface text-center">MSISDN Rotated</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold w-fit">SIM Swap Triggered</span>
+<span class="text-outline line-through">+91 98123 45670</span>
+<span class="text-blue-700 font-bold">→ +91 91234 56780</span>
+<span class="text-[10px] font-bold text-indigo-700 mt-1">UPI unchanged: richplan@ybl</span>
+</div>
+</div>
+<!-- NODE 5: 20 Nov -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<div class="w-7 h-7 rounded-full bg-amber-700 text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+              5
+            </div>
+<span class="font-label-mono-sm text-[11px] font-bold text-on-surface mt-2">20 Nov 2026</span>
+<span class="font-title-md text-[13px] font-bold text-on-surface text-center">Rogue Web SSO</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold w-fit">Domain Registered</span>
+<span class="text-on-surface font-semibold truncate">telemetry-gateway.online</span>
+<span class="text-outline">Clones Rajasthan SSO portal</span>
+<span class="text-[10px] text-outline">Harvests MPIN &amp; NetBanking</span>
+</div>
+</div>
+<!-- NODE 6: 23 Nov (Today) -->
+<div class="relative z-10 flex flex-col items-center w-48 shrink-0">
+<div class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-label-mono-sm text-[11px] font-bold shadow-md ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-label-mono-sm text-[11px] font-bold text-emerald-700 mt-2">23 Nov 2026 (Today)</span>
+<span class="font-title-md text-[13px] font-bold text-emerald-800 text-center">Enforcement Freeze</span>
+<div class="mt-2 w-full p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 flex flex-col gap-1 text-[11px] font-label-mono-sm">
+<span class="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-bold w-fit">NPCI Layer-1 Lien</span>
+<span class="text-emerald-950 font-bold">Account Blocked</span>
+<span class="text-emerald-800 font-medium">Cyber Thana Alwar raid initiated on mule holder</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tamper-Proof Hash & Statutory Attestation Footer -->
+<div class="pt-2 border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-2 text-on-surface-variant font-label-mono-sm text-[11px]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Cryptographic Hash (SHA-256): <code class="font-bold text-on-surface">e9f1a084c7811dc3184b901a884fa7216c5432d0b59b04f14112e43ba30281cb</code></span>
+</div>
+<div class="flex items-center gap-3">
+<span>Indian Evidence Act Sec 65B Digital Attestation Validated</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-bold">Investigator ID: RJ-POL-782941</span>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest py-space-sm px-space-lg border-t border-outline-variant/40 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="flex flex-col md:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span class="font-medium text-on-surface">State Cyber Crime Cell, Rajasthan Police HQ, Jaipur</span><span>•</span><span class="font-label-mono-sm text-label-mono-sm text-outline">CCTNS / I4C / 1930 Live Integration</span></div><div class="flex items-center gap-space-md"><span class="font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold border border-outline-variant/30">ISO 27001 Certified</span><span class="font-label-ui text-label-ui uppercase tracking-wider text-outline font-semibold">Confidential Law Enforcement Workbench</span></div></div></footer></div>
+
+</body></html>

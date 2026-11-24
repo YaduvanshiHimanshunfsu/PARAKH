@@ -1,2 +1,2 @@
-﻿"""Static, version-controlled public-safety guidance used by PARAKH."""
+"""Static, version-controlled public-safety guidance used by PARAKH."""
 

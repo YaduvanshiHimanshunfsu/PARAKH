@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Investigation Mode API.
 
@@ -11,27 +11,74 @@ import logging
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Request, Response, UploadFile, status
 from fastapi.responses import HTMLResponse
+from fastapi.concurrency import run_in_threadpool
 from fastapi.security import HTTPAuthorizationCredentials
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.uploads import read_apk_upload
 from app.config import Settings, get_settings
 from app.core.auth import (
     bearer_scheme,
     issue_token,
+    lock_remaining,
+    mfa_required,
+    register_failure,
+    register_success,
     require_officer,
     revoke_token,
     verify_password,
+    verify_totp,
 )
-from app.db.models import UserRecord
+from app.core.permissions import Permission, can_investigate_it_act, has_permission
+from app.services import audit_service
+
+
+async def _is_visible(session: AsyncSession, case_id: str, user: UserRecord) -> bool:
+    return await case_service.get_case(session, case_id, viewer=user) is not None
+
+
+async def _visible_case_or_404(session: AsyncSession, case_id: str, user: UserRecord):
+    """Load a case the user may see, or raise the same 404 as an unknown id."""
+
+    case = await case_service.get_case(session, case_id, viewer=user)
+    if case is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Case {case_id} was not found.")
+    return case
+
+
+def require_permission(permission: Permission):
+    """Dependency factory: refuse the request unless the role allows it.
+
+    Checked server-side on every mutating endpoint. The console hides what a
+    role cannot do, but hiding a button is not access control.
+    """
+
+    async def dependency(user: UserRecord = Depends(require_officer)) -> UserRecord:
+        if not has_permission(user.role, permission):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"Your role ({user.role}) is not permitted to {permission.value.replace('.', ' ')}.",
+            )
+        return user
+
+    return dependency
+from app.db.models import UnitRecord, UserRecord
 from app.db.session import get_session
 from app.schemas import (
+    AuditChainStatus,
+    AuditEntry,
+    AuditTrailResponse,
+    CaseAssignRequest,
+    CaseTransferRequest,
     ArtifactType,
+    CampaignGraph,
     CaseDetail,
     CaseSearchResponse,
     CaseSource,
     CaseStatus,
     CaseStatusUpdate,
+    DashboardSummary,
     HeatListEntry,
     IdentifierType,
     InvestigateSubmitRequest,
@@ -45,7 +92,7 @@ from app.schemas import (
     UserRole,
     WebsiteAnalyzeRequest,
 )
-from app.services import case_service, link_service, report_builder
+from app.services import campaign_service, case_service, dashboard_service, link_service, report_builder
 from app.services.apk_analyzer import ApkAnalyzer, ApkParsingError
 from app.services.artifact_analyzer import ArtifactAnalyzer
 from app.services.scam_analyzer import ProviderUnavailableError
@@ -86,16 +133,81 @@ async def login(
         await session.execute(select(UserRecord).where(UserRecord.username == payload.username))
     ).scalar_one_or_none()
 
-    # One generic failure message for unknown user, wrong password, and disabled
-    # account, so the response cannot be used to enumerate valid usernames.
-    if user is None or not user.is_active or not verify_password(payload.password, user.password_hash):
-        logger.warning("login_failed username_length=%d", len(payload.username))
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid username or password.",
-        )
+    # One generic failure message for unknown user, wrong password, locked and
+    # disabled account, so the response cannot be used to enumerate usernames
+    # or to discover that an account exists and is locked.
+    invalid = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password."
+    )
 
+    if user is not None and lock_remaining(user):
+        await audit_service.append_event(
+            session,
+            action=audit_service.Action.LOGIN_FAILED,
+            actor=user,
+            target_type="user",
+            target_id=str(user.id),
+            details={"reason": "locked"},
+        )
+        await session.commit()
+        logger.warning("login_locked username_length=%d", len(payload.username))
+        raise invalid
+
+    if user is None or not user.is_active or not verify_password(payload.password, user.password_hash):
+        if user is not None:
+            locked_for = register_failure(
+                user,
+                threshold=settings.login_lockout_threshold,
+                minutes=settings.login_lockout_minutes,
+                max_minutes=settings.login_lockout_max_minutes,
+            )
+            await audit_service.append_event(
+                session,
+                action=audit_service.Action.LOGIN_FAILED,
+                actor=user,
+                target_type="user",
+                target_id=str(user.id),
+                details={"failed_logins": user.failed_logins, "locked_minutes": locked_for},
+            )
+            # Raising below aborts the request transaction, so the counter and
+            # the audit entry must be committed now or the lockout never
+            # takes effect and the attempt leaves no trace.
+            await session.commit()
+        logger.warning("login_failed username_length=%d", len(payload.username))
+        raise invalid
+
+    if mfa_required(user.role, settings.mfa_required_roles) and user.totp_secret:
+        if not payload.totp_code or not verify_totp(user.totp_secret, payload.totp_code):
+            register_failure(
+                user,
+                threshold=settings.login_lockout_threshold,
+                minutes=settings.login_lockout_minutes,
+                max_minutes=settings.login_lockout_max_minutes,
+            )
+            await audit_service.append_event(
+                session,
+                action=audit_service.Action.LOGIN_FAILED,
+                actor=user,
+                target_type="user",
+                target_id=str(user.id),
+                details={"reason": "totp"},
+            )
+            await session.commit()
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="A valid authenticator code is required for this account.",
+            )
+
+    register_success(user)
     token, expires_at = await issue_token(session, user, settings.auth_token_ttl_hours)
+    await audit_service.append_event(
+        session,
+        action=audit_service.Action.LOGIN,
+        actor=user,
+        target_type="user",
+        target_id=str(user.id),
+        details={"role": user.role, "rank": user.rank},
+    )
     logger.info("login_success username=%s role=%s", user.username, user.role)
     return LoginResponse(
         token=token,
@@ -179,34 +291,15 @@ async def analyze_apk(
     session: AsyncSession = Depends(get_session),
     user: UserRecord = Depends(require_officer),
 ) -> CaseDetail:
-    """Static inspection only â€” the package is never installed or executed.
+    """Static inspection only — the package is never installed or executed.
 
     This route is exempt from the global request-size middleware and enforces
     its own ceiling while streaming (DECISIONS.md ADR-004).
     """
 
-    limit = settings.max_apk_upload_bytes
-    chunks: list[bytes] = []
-    total = 0
+    data = await read_apk_upload(apk, settings.max_apk_upload_bytes)
     try:
-        while chunk := await apk.read(1_048_576):
-            total += len(chunk)
-            if total > limit:
-                raise HTTPException(
-                    status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-                    detail=f"The APK exceeds the {limit // 1_000_000} MB upload limit.",
-                )
-            chunks.append(chunk)
-    finally:
-        await apk.close()
-
-    if total == 0:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="The uploaded file is empty."
-        )
-
-    try:
-        bundle = analyzer.analyze(b"".join(chunks), filename=apk.filename)
+        bundle = await run_in_threadpool(analyzer.analyze, data, apk.filename)
     except ApkParsingError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc)) from exc
 
@@ -245,7 +338,7 @@ async def analyze_website(
 ) -> CaseDetail:
     """Fetch the page under SSRF and size guards, then score its content.
 
-    Fetching is a deliberate officer action â€” it is never triggered implicitly
+    Fetching is a deliberate officer action — it is never triggered implicitly
     by citizen-facing analysis (DECISIONS.md ADR-002).
     """
 
@@ -273,6 +366,22 @@ async def analyze_website(
 
 
 @router.get(
+    "/campaigns",
+    response_model=CampaignGraph,
+    summary="Group linked cases into campaigns, with a graph and variant timeline",
+)
+async def campaigns(
+    max_cases: int = Query(default=1_000, ge=10, le=2_000),
+    min_cases: int = Query(default=2, ge=2, le=50),
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_officer),
+) -> CampaignGraph:
+    return await campaign_service.build_campaign_graph(
+        session, max_cases=max_cases, min_cases=min_cases
+    )
+
+
+@router.get(
     "/cases/{case_id}/linked",
     response_model=list[LinkedCase],
     summary="Cases sharing an identifier with this one",
@@ -281,9 +390,11 @@ async def get_linked_cases(
     case_id: str,
     limit: int = Query(default=25, ge=1, le=100),
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> list[LinkedCase]:
-    return await link_service.linked_cases(session, case_id, limit=limit)
+    await _visible_case_or_404(session, case_id, user)
+    linked = await link_service.linked_cases(session, case_id, limit=limit)
+    return [item for item in linked if await _is_visible(session, item.case.case_id, user)]
 
 
 @router.get(
@@ -295,9 +406,11 @@ async def get_similar_cases(
     case_id: str,
     limit: int = Query(default=25, ge=1, le=100),
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> list[SimilarCase]:
-    return await link_service.similar_cases(session, case_id, limit=limit)
+    await _visible_case_or_404(session, case_id, user)
+    similar = await link_service.similar_cases(session, case_id, limit=limit)
+    return [item for item in similar if await _is_visible(session, item.case.case_id, user)]
 
 
 @router.get(
@@ -351,7 +464,7 @@ async def case_report(
 ) -> HTMLResponse:
     """Full evidentiary report, or a masked copy for sharing outside the case."""
 
-    case = await case_service.get_case(session, case_id)
+    case = await case_service.get_case(session, case_id, viewer=user)
     if case is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Case not found.")
 
@@ -372,9 +485,9 @@ async def case_report_json(
     case_id: str,
     redacted: bool = Query(default=False),
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> Response:
-    case = await case_service.get_case(session, case_id)
+    case = await case_service.get_case(session, case_id, viewer=user)
     if case is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Case not found.")
 
@@ -439,27 +552,41 @@ async def search_cases(
     case_status: CaseStatus | None = Query(default=None, alias="status"),
     limit: int = Query(default=25, ge=1, le=200),
     offset: int = Query(default=0, ge=0),
+    mine: bool = Query(default=False, description="Only cases this officer submitted"),
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> CaseSearchResponse:
     return await case_service.search_cases(
         session,
+        viewer=user,
         query=q,
         artifact_type=artifact_type,
         risk_level=risk_level,
         status=case_status,
         limit=limit,
         offset=offset,
+        created_by=user.id if mine else None,
     )
+
+
+@router.get("/dashboard/summary", response_model=DashboardSummary, summary="Dashboard KPIs and trends")
+async def dashboard_summary(
+    days: int = Query(default=30, ge=1, le=90),
+    session: AsyncSession = Depends(get_session),
+    _: UserRecord = Depends(require_officer),
+) -> DashboardSummary:
+    """Every number on the officer dashboard, computed from the case store."""
+
+    return await dashboard_service.build_summary(session, days=days)
 
 
 @router.get("/cases/{case_id}", response_model=CaseDetail, summary="Full case detail")
 async def get_case(
     case_id: str,
     session: AsyncSession = Depends(get_session),
-    _: UserRecord = Depends(require_officer),
+    user: UserRecord = Depends(require_officer),
 ) -> CaseDetail:
-    case = await case_service.get_case(session, case_id)
+    case = await case_service.get_case(session, case_id, viewer=user)
     if case is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Case not found.")
     return case_service.to_detail(case)
@@ -478,3 +605,194 @@ async def update_case(
     logger.info("case_updated case_id=%s by=%s", case_id, user.username)
     return case_service.to_detail(case)
 
+
+# --- C.3 business rules: assignment, transfer, verification ----------------
+
+
+@router.post(
+    "/cases/{case_id}/assign",
+    response_model=CaseDetail,
+    summary="Assign a case to an officer",
+)
+async def assign_case(
+    case_id: str,
+    payload: CaseAssignRequest,
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_permission(Permission.CASE_ASSIGN)),
+) -> CaseDetail:
+    """Assign a case, enforcing the IT Act s.78 rank rule.
+
+    An offence under the IT Act must be investigated by an officer not below
+    the rank of Inspector, so assigning such a case to an SI is refused with
+    that reason rather than silently accepted.
+    """
+
+    case = await _visible_case_or_404(session, case_id, user)
+    assignee = (
+        await session.execute(
+            select(UserRecord).where(UserRecord.username == payload.assignee_username)
+        )
+    ).scalar_one_or_none()
+    if assignee is None or not assignee.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"No active officer named {payload.assignee_username}.",
+        )
+
+    offence_act = payload.offence_act.value if payload.offence_act else case.offence_act
+    if offence_act in {"IT_ACT", "BOTH"} and not can_investigate_it_act(assignee.rank):
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=(
+                "IT Act 2000 section 78 requires an officer not below the rank of Inspector to "
+                f"investigate this offence. {assignee.username} holds the rank "
+                f"{assignee.rank or 'unknown'}."
+            ),
+        )
+
+    previous = case.assigned_to
+    case.assigned_to = assignee.id
+    case.offence_act = offence_act
+    await audit_service.append_event(
+        session,
+        action=audit_service.Action.CASE_ASSIGN,
+        actor=user,
+        target_type="case",
+        target_id=case.case_id,
+        details={
+            "assignee": assignee.username,
+            "assignee_rank": assignee.rank,
+            "previous_assignee_id": previous,
+            "offence_act": offence_act,
+            "reason": payload.reason,
+        },
+    )
+    await session.flush()
+    await session.refresh(case, attribute_names=["findings", "identifiers"])
+    return case_service.to_detail(case)
+
+
+@router.post(
+    "/cases/{case_id}/transfer",
+    response_model=CaseDetail,
+    summary="Transfer a case to another unit",
+)
+async def transfer_case(
+    case_id: str,
+    payload: CaseTransferRequest,
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_permission(Permission.CASE_TRANSFER)),
+) -> CaseDetail:
+    """Move a case to another unit. The reason is mandatory and audited."""
+
+    case = await _visible_case_or_404(session, case_id, user)
+    unit = (
+        await session.execute(select(UnitRecord).where(UnitRecord.code == payload.unit_code))
+    ).scalar_one_or_none()
+    if unit is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=f"No unit with code {payload.unit_code}."
+        )
+
+    before = {"unit_id": case.unit_id, "unit_path": case.unit_path}
+    case.unit_id = unit.id
+    case.unit_path = unit.path
+    # The previous assignee belongs to the old unit, so the case arrives
+    # unassigned rather than owned by someone who can no longer see it.
+    case.assigned_to = None
+    await audit_service.append_event(
+        session,
+        action=audit_service.Action.CASE_TRANSFER,
+        actor=user,
+        target_type="case",
+        target_id=case.case_id,
+        details={"from": before, "to": {"unit_id": unit.id, "unit_path": unit.path}, "reason": payload.reason},
+    )
+    await session.flush()
+    await session.refresh(case, attribute_names=["findings", "identifiers"])
+    return case_service.to_detail(case)
+
+
+@router.post(
+    "/cases/{case_id}/verify",
+    response_model=CaseDetail,
+    summary="Confirm a citizen report so it counts as intelligence",
+)
+async def verify_case(
+    case_id: str,
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_permission(Permission.CASE_VERIFY)),
+) -> CaseDetail:
+    """Release a citizen report from quarantine.
+
+    Until an officer confirms it, a citizen report does not feed the heat-list
+    or the "already seen in police cases" check, because anyone can submit one.
+    """
+
+    case = await _visible_case_or_404(session, case_id, user)
+    case.verified = True
+    await audit_service.append_event(
+        session,
+        action=audit_service.Action.CASE_VERIFY,
+        actor=user,
+        target_type="case",
+        target_id=case.case_id,
+        details={"source": case.source},
+    )
+    await session.flush()
+    await session.refresh(case, attribute_names=["findings", "identifiers"])
+    return case_service.to_detail(case)
+
+
+@router.get(
+    "/cases/{case_id}/audit",
+    response_model=AuditTrailResponse,
+    summary="Who did what to this case, with chain verification",
+)
+async def case_audit_trail(
+    case_id: str,
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_officer),
+) -> AuditTrailResponse:
+    await _visible_case_or_404(session, case_id, user)
+    events = await audit_service.events_for_target(session, "case", case_id)
+    status_ = await audit_service.verify_stored_chain(session)
+    return AuditTrailResponse(
+        status=AuditChainStatus(
+            intact=status_.intact,
+            events=status_.events,
+            broken_at=status_.broken_at,
+            summary=status_.summary,
+        ),
+        entries=[
+            AuditEntry(
+                seq=event.seq,
+                at=event.at.isoformat(),
+                actor_name=event.actor_name,
+                actor_role=event.actor_role,
+                action=event.action,
+                target_type=event.target_type,
+                target_id=event.target_id,
+                details=event.details or {},
+            )
+            for event in events
+        ],
+    )
+
+
+@router.get(
+    "/audit/status",
+    response_model=AuditChainStatus,
+    summary="Verify the whole audit chain",
+)
+async def audit_status(
+    session: AsyncSession = Depends(get_session),
+    user: UserRecord = Depends(require_permission(Permission.AUDIT_VIEW)),
+) -> AuditChainStatus:
+    status_ = await audit_service.verify_stored_chain(session)
+    return AuditChainStatus(
+        intact=status_.intact,
+        events=status_.events,
+        broken_at=status_.broken_at,
+        summary=status_.summary,
+    )

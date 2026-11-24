@@ -19,15 +19,21 @@ import logging
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import CaseRecord, IdentifierRecord
+from app.data.protected_brands import is_official_domain
+from app.services.identifier_roles import LINKING_ROLES
 from app.schemas import (
+    CaseSource,
     CaseSummary,
     HeatListEntry,
+    Identifier,
     IdentifierType,
     LinkedCase,
+    ReportedIdentifier,
+    RiskLevel,
     SimilarCase,
 )
 from app.services.case_service import to_summary
@@ -49,6 +55,12 @@ _IDENTIFIER_WEIGHT: dict[IdentifierType, int] = {
     IdentifierType.ICON_PHASH: 7,
     IdentifierType.PACKAGE: 8,
     IdentifierType.TELEGRAM: 8,
+    # A bot token belongs to exactly one operator, so it is the strongest
+    # link available; a Firebase project is nearly as specific.
+    IdentifierType.TELEGRAM_BOT: 10,
+    IdentifierType.FIREBASE_DB: 9,
+    IdentifierType.CRYPTO_TRON: 10,
+    IdentifierType.IMEI: 9,
     IdentifierType.IP: 7,
     IdentifierType.EMAIL: 6,
     IdentifierType.DOMAIN: 5,
@@ -57,6 +69,76 @@ _IDENTIFIER_WEIGHT: dict[IdentifierType, int] = {
 _DEFAULT_WEIGHT = 4
 
 _SIMILARITY_SCAN_LIMIT = 2_000
+
+
+def identifier_weight(identifier_type: IdentifierType) -> int:
+    return _IDENTIFIER_WEIGHT.get(identifier_type, _DEFAULT_WEIGHT)
+
+
+_NON_LINKING_TYPES = frozenset({IdentifierType.URL, IdentifierType.IFSC})
+
+# Only these roles represent the other side of the fraud, so only these may
+# link cases or appear on the heat-list (planversionalpha.md B.6).
+_LINKING_ROLE_VALUES = tuple(sorted(role.value for role in LINKING_ROLES))
+
+
+def _linking_roles_only(statement):
+    """Restrict a query to identifiers that may tie cases together."""
+
+    return statement.where(IdentifierRecord.role.in_(_LINKING_ROLE_VALUES))
+
+
+def _verified_cases_only(statement):
+    """Exclude citizen reports an officer has not confirmed yet.
+
+    Anyone can POST a citizen report, so counting unverified ones would let a
+    stranger put any number on the heat-list or make an innocent UPI ID look
+    "previously reported" (planversionalpha.md C.4).
+    """
+
+    return statement.where(
+        or_(CaseRecord.source != CaseSource.CITIZEN.value, CaseRecord.verified.is_(True))
+    )
+
+GENERIC_HOSTS = frozenset({
+    "t.me", "telegram.me", "telegram.org", "wa.me", "whatsapp.com", "chat.whatsapp.com",
+    "api.whatsapp.com", "bit.ly", "tinyurl.com", "goo.gl", "rb.gy", "cutt.ly", "is.gd",
+    "shorturl.at", "tiny.cc", "youtube.com", "youtu.be", "google.com", "play.google.com",
+    "docs.google.com", "drive.google.com", "forms.gle", "facebook.com", "fb.me",
+    "instagram.com", "x.com", "twitter.com", "linkedin.com", "github.com", "gmail.com",
+    "yahoo.com", "outlook.com", "hotmail.com",
+})
+
+
+def _identifier_type(value: str) -> IdentifierType | None:
+    try:
+        return IdentifierType(value)
+    except ValueError:
+        return None
+
+
+def links_cases(type_value: str, value: str, role: str | None = None) -> bool:
+    """Whether a shared identifier of this kind means a shared operator.
+
+    An impersonated brand's real domain is evidence of *impersonation*, not a
+    link between two operators: ten unrelated gangs all name "sbi.co.in"
+    (planversionalpha.md B.4 step 7, defect D6).
+
+    ``role`` is the stored :class:`IdentifierRole`. A victim's own number and
+    an official helpline never link cases (B.6).
+    """
+
+    if role is not None and role not in _LINKING_ROLE_VALUES:
+        return False
+
+    identifier_type = _identifier_type(type_value)
+    if identifier_type is None or identifier_type in _NON_LINKING_TYPES:
+        return False
+    if identifier_type is IdentifierType.DOMAIN:
+        host = value.lower().strip().removeprefix("www.")
+        if host in GENERIC_HOSTS or is_official_domain(host):
+            return False
+    return identifier_weight(identifier_type) >= 5
 
 
 async def cases_for_identifier(
@@ -95,7 +177,7 @@ async def linked_cases(
     if case is None:
         return []
 
-    own = [(row.type, row.value) for row in case.identifiers]
+    own = [(row.type, row.value) for row in case.identifiers if row.role in _LINKING_ROLE_VALUES]
     if not own:
         return []
 
@@ -103,8 +185,11 @@ async def linked_cases(
     rows = (
         (
             await session.execute(
-                select(IdentifierRecord)
-                .where(IdentifierRecord.value.in_(values), IdentifierRecord.case_id != case.id)
+                _linking_roles_only(
+                    select(IdentifierRecord).where(
+                        IdentifierRecord.value.in_(values), IdentifierRecord.case_id != case.id
+                    )
+                )
             )
         )
         .scalars()
@@ -144,8 +229,8 @@ async def linked_cases(
             )
         )
 
-    linked.sort(key=lambda item: (-item.link_strength, item.case.created_at), reverse=False)
-    linked.sort(key=lambda item: item.link_strength, reverse=True)
+    # Strongest links first; within equal strength, the most recent case first.
+    linked.sort(key=lambda item: (item.link_strength, item.case.created_at), reverse=True)
     return linked[:limit]
 
 
@@ -243,6 +328,9 @@ async def heat_list(
         func.min(IdentifierRecord.created_at).label("first_seen"),
         func.max(IdentifierRecord.created_at).label("last_seen"),
     ).group_by(IdentifierRecord.type, IdentifierRecord.value)
+    statement = _verified_cases_only(
+        _linking_roles_only(statement).join(CaseRecord, CaseRecord.id == IdentifierRecord.case_id)
+    )
 
     if identifier_type is not None:
         statement = statement.where(IdentifierRecord.type == identifier_type.value)
@@ -266,11 +354,32 @@ async def heat_list(
                 IdentifierRecord.value,
                 func.count(func.distinct(IdentifierRecord.case_id)),
             )
-            .where(IdentifierRecord.created_at >= recent_cutoff)
+            .where(
+                IdentifierRecord.created_at >= recent_cutoff,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
+            )
             .group_by(IdentifierRecord.type, IdentifierRecord.value)
         )
     ).all()
     recent = {(row[0], row[1]): row[2] for row in recent_rows}
+
+    previous_cutoff = recent_cutoff - timedelta(days=7)
+    previous_rows = (
+        await session.execute(
+            select(
+                IdentifierRecord.type,
+                IdentifierRecord.value,
+                func.count(func.distinct(IdentifierRecord.case_id)),
+            )
+            .where(
+                IdentifierRecord.created_at >= previous_cutoff,
+                IdentifierRecord.created_at < recent_cutoff,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
+            )
+            .group_by(IdentifierRecord.type, IdentifierRecord.value)
+        )
+    ).all()
+    previous = {(row[0], row[1]): row[2] for row in previous_rows}
 
     entries: list[HeatListEntry] = []
     for type_value, value, count, first_seen, last_seen in rows:
@@ -280,6 +389,7 @@ async def heat_list(
                 value=value,
                 case_count=count,
                 recent_case_count=recent.get((type_value, value), 0),
+                previous_case_count=previous.get((type_value, value), 0),
                 first_seen=_iso(first_seen),
                 last_seen=_iso(last_seen),
             )
@@ -333,6 +443,54 @@ async def precheck_url(session: AsyncSession, url: str) -> tuple[int, list[str]]
     return reported, reasons
 
 
+async def reported_matches(
+    session: AsyncSession, identifiers: list[Identifier], *, limit: int = 20
+) -> list[ReportedIdentifier]:
+    """Which of these identifiers already appear in HIGH-risk cases, and how often.
+
+    Read-only, so Citizen Mode can call it without storing anything. Only
+    HIGH-risk cases count: a benign app that an officer once analysed must not
+    make an unrelated upload look "previously reported".
+    """
+
+    keys = {
+        (identifier.type.value, identifier.value)
+        for identifier in identifiers
+        if links_cases(identifier.type.value, identifier.value)
+    }
+    if not keys:
+        return []
+
+    rows = (
+        await session.execute(
+            select(
+                IdentifierRecord.type,
+                IdentifierRecord.value,
+                func.count(func.distinct(CaseRecord.id)),
+            )
+            .join(CaseRecord, CaseRecord.id == IdentifierRecord.case_id)
+            .where(
+                IdentifierRecord.value.in_({value for _, value in keys}),
+                CaseRecord.risk_level == RiskLevel.HIGH.value,
+                IdentifierRecord.role.in_(_LINKING_ROLE_VALUES),
+                or_(
+                    CaseRecord.source != CaseSource.CITIZEN.value,
+                    CaseRecord.verified.is_(True),
+                ),
+            )
+            .group_by(IdentifierRecord.type, IdentifierRecord.value)
+        )
+    ).all()
+
+    matches = [
+        ReportedIdentifier(type=IdentifierType(type_value), value=value, case_count=count)
+        for type_value, value, count in rows
+        if (type_value, value) in keys
+    ]
+    matches.sort(key=lambda item: (-identifier_weight(item.type), -item.case_count, item.value))
+    return matches[:limit]
+
+
 def _as_type(value: str) -> IdentifierType:
     try:
         return IdentifierType(value)
@@ -346,3 +504,62 @@ def _iso(value: datetime | None) -> str:
     if value.tzinfo is None:
         value = value.replace(tzinfo=timezone.utc)
     return value.isoformat()
+
+
+_CHECK_PRIORITY = (
+    IdentifierType.UPI,
+    IdentifierType.PHONE,
+    IdentifierType.BANK_ACCOUNT,
+    IdentifierType.CRYPTO_ETH,
+    IdentifierType.CRYPTO_BTC,
+    IdentifierType.TELEGRAM,
+    IdentifierType.EMAIL,
+    IdentifierType.IP,
+    IdentifierType.DOMAIN,
+    IdentifierType.PACKAGE,
+)
+
+
+async def check_identifier(session: AsyncSession, raw: str) -> dict:
+    """Look up one citizen-supplied identifier against verified cases and the blacklist.
+
+    Read-only and anonymous. Only officer-submitted HIGH-risk cases count:
+    citizen reports are excluded until officer verification exists (plan C.4),
+    so nobody can make an innocent UPI ID look reported by filing reports.
+    """
+
+    from app.db.models import BlacklistEntry
+    from app.services.identifier_extractor import extract_identifiers
+
+    found = extract_identifiers(raw, include_context=False)
+    by_type = {item.type: item for item in found}
+    chosen = next((by_type[kind] for kind in _CHECK_PRIORITY if kind in by_type), None)
+    if chosen is None:
+        return {"type": None, "value": None, "reported_case_count": 0, "blacklisted": False, "blacklist_source": None}
+
+    count = (
+        await session.execute(
+            select(func.count(func.distinct(CaseRecord.id)))
+            .join(IdentifierRecord, IdentifierRecord.case_id == CaseRecord.id)
+            .where(
+                IdentifierRecord.type == chosen.type.value,
+                IdentifierRecord.value == chosen.value,
+                CaseRecord.risk_level == RiskLevel.HIGH.value,
+                CaseRecord.source != "CITIZEN",
+            )
+        )
+    ).scalar_one()
+    listed = (
+        await session.execute(
+            select(BlacklistEntry).where(
+                BlacklistEntry.type == chosen.type.value, BlacklistEntry.value == chosen.value
+            )
+        )
+    ).scalar_one_or_none()
+    return {
+        "type": chosen.type,
+        "value": chosen.value,
+        "reported_case_count": int(count or 0),
+        "blacklisted": listed is not None,
+        "blacklist_source": listed.source if listed is not None else None,
+    }

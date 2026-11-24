@@ -82,29 +82,89 @@ async def _resolve_public_addresses(host: str, port: int = 443) -> list[str]:
     return addresses
 
 
-async def is_safe_target(url: str) -> tuple[bool, str | None]:
-    """Reject anything that is not an http(s) URL resolving to a public address."""
+async def validate_and_pin(url: str) -> tuple[bool, str | None, str | None]:
+    """Validate an http(s) target and return the public IP it must be pinned to.
+
+    Returns ``(safe, reason, pinned_ip)``:
+
+    * ``safe`` is False with a ``reason`` for any unsupported scheme, missing
+      host, or target that resolves only to private/reserved addresses.
+    * ``pinned_ip`` is the public address a caller must connect to. It is set
+      for hostnames (so the connection cannot be re-resolved to a private
+      address *after* this check — the DNS-rebinding bypass) and is ``None``
+      for a literal-IP URL, where the connection target is already fixed.
+
+    Resolving here and connecting to the returned IP is what closes the
+    time-of-check/time-of-use gap: validating the hostname and then letting the
+    HTTP client resolve it again is the classic SSRF bypass.
+    """
 
     parts = urlsplit(url)
     if parts.scheme.lower() not in {"http", "https"}:
-        return False, f"Unsupported scheme '{parts.scheme or 'none'}'."
+        return False, f"Unsupported scheme '{parts.scheme or 'none'}'.", None
     host = parts.hostname
     if not host:
-        return False, "The link has no hostname."
+        return False, "The link has no hostname.", None
 
-    # A literal private address never needs DNS to be rejected.
+    # A literal address never needs DNS. It is already its own connection
+    # target, so there is nothing to pin and nothing to rebind.
     try:
         literal = ipaddress.ip_address(host)
     except ValueError:
         pass
     else:
         if not literal.is_global:
-            return False, "The link points at a private or reserved address."
-        return True, None
+            return False, "The link points at a private or reserved address.", None
+        return True, None, None
 
-    if not await _resolve_public_addresses(host, parts.port or (443 if parts.scheme == "https" else 80)):
-        return False, "The hostname does not resolve to a public address."
-    return True, None
+    addresses = await _resolve_public_addresses(
+        host, parts.port or (443 if parts.scheme == "https" else 80)
+    )
+    if not addresses:
+        return False, "The hostname does not resolve to a public address.", None
+    return True, None, addresses[0]
+
+
+async def is_safe_target(url: str) -> tuple[bool, str | None]:
+    """Reject anything that is not an http(s) URL resolving to a public address.
+
+    Thin wrapper over :func:`validate_and_pin` for callers that only need the
+    yes/no decision. A caller that will actually connect must use
+    ``validate_and_pin`` and connect to the pinned IP via
+    :class:`PinnedResolverTransport`.
+    """
+
+    safe, reason, _ = await validate_and_pin(url)
+    return safe, reason
+
+
+class PinnedResolverTransport(httpx.AsyncHTTPTransport):
+    """Force each request to the IP its hostname was validated against.
+
+    The SSRF guard resolves and vets a hostname before a fetch, but httpx would
+    otherwise resolve the hostname *again* at connection time. A hostile
+    authoritative server can answer the second lookup with a private address
+    (DNS rebinding). This transport rewrites the outbound request to the
+    pre-validated public IP while preserving the ``Host`` header and TLS SNI, so
+    certificate verification still runs against the real hostname.
+    """
+
+    def __init__(self, pin_map: dict[str, str], **kwargs: object) -> None:
+        super().__init__(**kwargs)
+        self._pin_map = pin_map
+
+    async def handle_async_request(self, request: httpx.Request) -> httpx.Response:
+        host = request.url.host
+        pinned = self._pin_map.get(host)
+        if pinned and pinned != host:
+            default_port = 443 if request.url.scheme == "https" else 80
+            port = request.url.port or default_port
+            host_header = host if port == default_port else f"{host}:{port}"
+            request.headers["Host"] = host_header
+            # Keep certificate verification tied to the hostname, not the IP.
+            request.extensions = {**request.extensions, "sni_hostname": host}
+            request.url = request.url.copy_with(host=pinned)
+        return await super().handle_async_request(request)
 
 
 class UrlEnrichmentService:
@@ -279,15 +339,24 @@ class UrlEnrichmentService:
         current = url if "://" in url else f"https://{url}"
         timeout = self._settings.url_analysis_timeout_seconds
 
+        # Each validated hop is pinned to the IP it resolved to, so httpx cannot
+        # re-resolve a hostname to a private address between check and connect.
+        pin_map: dict[str, str] = {}
         try:
             async with httpx.AsyncClient(
-                timeout=timeout, follow_redirects=False, max_redirects=0
+                timeout=timeout,
+                follow_redirects=False,
+                max_redirects=0,
+                transport=PinnedResolverTransport(pin_map),
             ) as client:
                 for hop_index in range(self._settings.max_redirect_hops):
-                    safe, reason = await is_safe_target(current)
+                    safe, reason, pinned = await validate_and_pin(current)
                     if not safe:
                         chain.blocked_reason = reason
                         return chain
+                    hop_host = urlsplit(current).hostname
+                    if pinned and hop_host:
+                        pin_map[hop_host] = pinned
 
                     try:
                         response = await client.request("HEAD", current)

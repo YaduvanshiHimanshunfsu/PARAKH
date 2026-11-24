@@ -11,7 +11,15 @@ from pydantic import ValidationError
 from app.config import Settings
 from app.core.provider_guard import ProviderConcurrencyGate
 from app.prompts import SYSTEM_PROMPT, build_user_message
-from app.schemas import AnalysisResponse, AnalysisSource, AnalyzeRequest, RedFlag, UrlAnalysis, Verdict
+from app.schemas import (
+    AnalysisCore,
+    AnalysisResponse,
+    AnalysisSource,
+    AnalyzeRequest,
+    RedFlag,
+    UrlAnalysis,
+    Verdict,
+)
 from app.services.fallback_analyzer import RuleBasedFallbackAnalyzer
 from app.services.url_intelligence import UrlIntelligenceService
 from app.utils.json_output import ModelOutputError, parse_json_object
@@ -73,7 +81,7 @@ class ScamAnalyzer:
                             config=types.GenerateContentConfig(
                                 system_instruction=SYSTEM_PROMPT,
                                 response_mime_type="application/json",
-                                response_schema=AnalysisResponse,
+                                response_schema=AnalysisCore,
                                 max_output_tokens=900,
                             ),
                         )
@@ -86,7 +94,10 @@ class ScamAnalyzer:
                     if not isinstance(text, str) or not text.strip():
                         raise ModelOutputError("Provider returned no text content")
                     result = AnalysisResponse.model_validate(parse_json_object(text))
-                    return self._normalise_live_result(result, request.message, model_name, url_analyses)
+                    normalised = self._normalise_live_result(
+                        result, request.message, model_name, url_analyses
+                    )
+                    return self._fuse_with_rules(normalised, request.message, url_analyses)
                 except (ModelOutputError, ValidationError) as exc:
                     # A schema violation is not shown to the user and the next
                     # compatible model may still return a valid structured answer.
@@ -107,6 +118,71 @@ class ScamAnalyzer:
         except Exception as exc:
             logger.warning("Gemini model resolution unavailable: %s", type(exc).__name__)
             return self._fallback_or_raise(request.message, "Live AI analysis is temporarily unavailable", url_analyses)
+
+    def _fuse_with_rules(
+        self, ai_result: AnalysisResponse, message: str, url_analyses: list[UrlAnalysis]
+    ) -> AnalysisResponse:
+        """Combine the AI verdict with the rule engine (planversionalpha.md B.9).
+
+        The rules always run. Before this, a confident AI "SAFE" silently
+        replaced a strong rule hit, so a digital-arrest script the rules caught
+        could still be presented as safe.
+
+        | rules        | AI              | final                                  |
+        |--------------|-----------------|----------------------------------------|
+        | SCAM         | SAFE            | SUSPICIOUS, tagged as a disagreement   |
+        | SCAM         | SCAM/SUSPICIOUS | AI verdict, rule red flags merged in   |
+        | SAFE         | SCAM            | AI verdict, tagged AI-only             |
+        | any          | unavailable     | rules (handled by the caller)          |
+        """
+
+        rules = self._fallback.analyze(message)
+        ai_result.rule_evidence = rules.rule_evidence
+        ai_result.rule_probability = rules.rule_probability
+        ai_result.analysis_source = AnalysisSource.AI_RULES
+
+        rules_say_scam = rules.verdict is Verdict.SCAM
+        ai_says_safe = ai_result.verdict is Verdict.SAFE
+
+        if rules_say_scam and ai_says_safe:
+            ai_result.verdict = Verdict.SUSPICIOUS
+            ai_result.safe_explanation = None
+            ai_result.notice = (
+                "The AI service and PARAKH's reviewed rules disagree about this message, so it "
+                "is shown as suspicious. Read the warning signs below and verify independently."
+            )
+            ai_result.confidence = min(ai_result.confidence, 70)
+            ai_result.red_flags = self._merge_flags(rules.red_flags, ai_result.red_flags, message)
+            if not ai_result.action_steps:
+                ai_result.action_steps = rules.action_steps
+            return ai_result
+
+        if rules.verdict is not Verdict.SAFE:
+            # Both see risk: keep the AI verdict but do not lose a rule flag.
+            ai_result.red_flags = self._merge_flags(ai_result.red_flags, rules.red_flags, message)
+        elif ai_result.verdict is Verdict.SCAM:
+            ai_result.notice = (
+                "This verdict comes from the AI service; PARAKH's offline rules did not find a "
+                "known scam pattern in the text."
+            )
+        return ai_result
+
+    @staticmethod
+    def _merge_flags(primary: list[RedFlag], extra: list[RedFlag], message: str) -> list[RedFlag]:
+        """Merge two red-flag lists, keeping only exact substrings of the message."""
+
+        folded = message.casefold()
+        merged: list[RedFlag] = []
+        seen: set[str] = set()
+        for flag in list(primary) + list(extra):
+            key = flag.phrase.strip().casefold()
+            if not key or key in seen or key not in folded:
+                continue
+            seen.add(key)
+            merged.append(flag)
+            if len(merged) >= 6:
+                break
+        return merged
 
     async def analyze_url(self, url: str) -> UrlAnalysis:
         """Expose URL intelligence for a user who pastes only a link."""

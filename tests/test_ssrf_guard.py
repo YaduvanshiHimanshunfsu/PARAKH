@@ -89,3 +89,54 @@ def test_public_hosts_are_allowed(url: str) -> None:
 
     safe, reason = safety(url)
     assert safe is True, reason
+
+
+# --- DNS-rebinding / pinning -----------------------------------------------
+
+
+def test_validate_and_pin_returns_a_public_ip_for_a_hostname() -> None:
+    """A hostname must be pinned to a concrete public IP, not re-resolved later."""
+
+    from app.services.url_enrichment import validate_and_pin
+
+    safe, _, pinned = asyncio.run(validate_and_pin("https://example.com/"))
+    assert safe is True
+    assert pinned  # a concrete address the caller must connect to
+    import ipaddress
+
+    assert ipaddress.ip_address(pinned).is_global
+
+
+def test_validate_and_pin_needs_no_pin_for_a_literal_public_ip() -> None:
+    from app.services.url_enrichment import validate_and_pin
+
+    safe, _, pinned = asyncio.run(validate_and_pin("https://8.8.8.8/"))
+    assert safe is True
+    assert pinned is None  # already its own connection target
+
+
+def test_pinned_transport_binds_the_connection_to_the_validated_ip() -> None:
+    """The connection must go to the pinned IP even if DNS would now say otherwise.
+
+    Pinning the hostname to a loopback IP must make the connection fail: that
+    proves the transport connects to the pin and does not re-resolve the name.
+    """
+
+    import httpx
+
+    from app.services.url_enrichment import PinnedResolverTransport
+
+    async def attempt() -> str:
+        pin_map = {"example.com": "127.0.0.1"}
+        async with httpx.AsyncClient(
+            transport=PinnedResolverTransport(pin_map),
+            follow_redirects=False,
+            timeout=5,
+        ) as client:
+            try:
+                await client.get("https://example.com/")
+            except Exception as exc:  # ConnectError / SSL error — never a 200
+                return type(exc).__name__
+            return "CONNECTED"
+
+    assert asyncio.run(attempt()) != "CONNECTED"

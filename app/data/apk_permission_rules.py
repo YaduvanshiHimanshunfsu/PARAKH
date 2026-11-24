@@ -161,3 +161,70 @@ DANGEROUS_PERMISSIONS: frozenset[str] = frozenset(
 # A low targetSdk lets an app opt out of modern runtime-permission prompts and
 # scoped storage. Android 10 (API 29) is the practical floor for a current app.
 MIN_EXPECTED_TARGET_SDK = 29
+
+# --- component-level declarations (planversionalpha.md B.7 step 2) ---------
+#
+# A permission in <uses-permission> is a request. These are *declarations on a
+# component*: an accessibility service the app binds, a notification listener,
+# a device-admin receiver, a high-priority SMS receiver. Real banking trojans
+# declare them this way, and reading only uses-permission missed all of them
+# (defect D8).
+
+
+@dataclass(frozen=True)
+class DeclaredCapabilityRule:
+    key: str
+    code: str
+    severity: Severity
+    weight: int
+    explanation: str
+
+
+DECLARED_CAPABILITY_RULES: tuple[DeclaredCapabilityRule, ...] = (
+    DeclaredCapabilityRule(
+        "accessibility_service",
+        "ACCESSIBILITY_SERVICE_DECLARED",
+        Severity.HIGH,
+        40,
+        "The app binds Android's accessibility service. That lets it read everything on "
+        "screen and tap buttons for the user. Banking trojans use it to approve transfers "
+        "and steal OTPs without the owner seeing anything.",
+    ),
+    DeclaredCapabilityRule(
+        "notification_listener",
+        "NOTIFICATION_LISTENER_DECLARED",
+        Severity.HIGH,
+        34,
+        "The app registers as a notification listener, so it can read every notification, "
+        "including the OTP messages a bank sends.",
+    ),
+    DeclaredCapabilityRule(
+        "device_admin",
+        "DEVICE_ADMIN_DECLARED",
+        Severity.HIGH,
+        30,
+        "The app asks to be a device administrator. That can block uninstallation and, in "
+        "some cases, lock or wipe the phone.",
+    ),
+    DeclaredCapabilityRule(
+        "default_sms_app",
+        "DEFAULT_SMS_APP_REQUEST",
+        Severity.MEDIUM,
+        16,
+        "The app asks to become the default SMS app, which would give it every message "
+        "the phone receives.",
+    ),
+    DeclaredCapabilityRule(
+        "boot_persistence",
+        "BOOT_PERSISTENCE",
+        Severity.LOW,
+        6,
+        "The app starts itself when the phone boots, so it keeps running after a restart.",
+    ),
+)
+
+# A high-priority SMS receiver intercepts messages before other apps see them.
+SMS_INTERCEPT_PRIORITY = 100
+
+# The capability set that defines an Android banking trojan.
+BANKING_TROJAN_CAPABILITIES = frozenset({"accessibility_service", "sms_receiver"})

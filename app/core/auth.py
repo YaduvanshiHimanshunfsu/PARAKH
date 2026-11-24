@@ -28,6 +28,20 @@ from app.schemas import UserRole
 
 logger = logging.getLogger(__name__)
 
+# Roles that may use the investigation API at all. Fine-grained permission is
+# decided per endpoint; this is only the door.
+POLICE_ROLES = frozenset(
+    {
+        UserRole.OFFICER.value,
+        UserRole.ADMIN.value,
+        UserRole.OPERATOR.value,
+        UserRole.IO.value,
+        UserRole.STATION_HEAD.value,
+        UserRole.SUPERVISOR.value,
+        UserRole.STATE_VIEWER.value,
+    }
+)
+
 _SCRYPT_N = 2**14
 _SCRYPT_R = 8
 _SCRYPT_P = 1
@@ -141,7 +155,10 @@ async def require_officer(
             detail="Session is invalid or has expired. Please sign in again.",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    if user.role not in {UserRole.OFFICER.value, UserRole.ADMIN.value}:
+    # Every police role may reach the investigation API; what each one is
+    # allowed to *do* is decided per endpoint by require_permission, and what
+    # each one may *see* by jurisdiction scoping (app/core/permissions.py).
+    if user.role == UserRole.CITIZEN.value or user.role not in POLICE_ROLES:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="This action requires an officer account.",
@@ -180,3 +197,69 @@ async def ensure_bootstrap_officer(session: AsyncSession, settings: Settings) ->
     await session.flush()
     # Never log the password or its hash.
     logger.info("officer_bootstrap_created username=%s", username)
+
+
+# --- account lockout (planversionalpha.md C.4) -----------------------------
+#
+# Counting failures per account, not only per IP: a password-spraying client
+# rotates addresses, and a per-IP limit alone would let it through. The lock
+# doubles on each further burst so a persistent attacker backs off quickly
+# while a user who mistypes twice is barely inconvenienced.
+
+
+def lock_remaining(user: "UserRecord") -> int:
+    """Seconds left on this account's lock, or 0 if it is not locked."""
+
+    locked_until = getattr(user, "locked_until", None)
+    if locked_until is None:
+        return 0
+    if locked_until.tzinfo is None:  # SQLite returns naive datetimes
+        locked_until = locked_until.replace(tzinfo=timezone.utc)
+    remaining = (locked_until - datetime.now(timezone.utc)).total_seconds()
+    return int(remaining) if remaining > 0 else 0
+
+
+def register_failure(user: "UserRecord", *, threshold: int, minutes: int, max_minutes: int) -> int:
+    """Count a failed attempt and lock the account once the threshold is hit.
+
+    Returns the lock duration applied in minutes, or 0 if none.
+    """
+
+    user.failed_logins = (user.failed_logins or 0) + 1
+    if user.failed_logins < threshold:
+        return 0
+    # 1st lock = minutes, 2nd = 2x, 3rd = 4x, capped.
+    bursts = (user.failed_logins - threshold) // max(1, threshold)
+    duration = min(max_minutes, minutes * (2 ** bursts))
+    user.locked_until = datetime.now(timezone.utc) + timedelta(minutes=duration)
+    return duration
+
+
+def register_success(user: "UserRecord") -> None:
+    user.failed_logins = 0
+    user.locked_until = None
+
+
+def mfa_required(role: str | None, configured: str) -> bool:
+    roles = {item.strip().upper() for item in (configured or "").split(",") if item.strip()}
+    return bool(role) and role.upper() in roles
+
+
+def verify_totp(secret: str, code: str, *, window: int = 1) -> bool:
+    """Verify a TOTP code (RFC 6238) if pyotp is installed.
+
+    Returns False when the library is absent, so a deployment that has not
+    installed it cannot accidentally accept any code.
+    """
+
+    if not secret or not code:
+        return False
+    try:
+        import pyotp
+    except ImportError:
+        logger.warning("totp_unavailable: pyotp is not installed")
+        return False
+    try:
+        return bool(pyotp.TOTP(secret).verify(code.strip(), valid_window=window))
+    except Exception:
+        return False

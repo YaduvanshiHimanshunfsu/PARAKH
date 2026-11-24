@@ -76,6 +76,25 @@ def test_bank_account_requires_banking_context() -> None:
     assert values_of("Reference 123456789012 logged", IdentifierType.BANK_ACCOUNT) == set()
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Deposit via UPI richplan@ybl or A/c 918273645501 IFSC HDFC0004567",
+        "Account number 918273645501, IFSC HDFC0004567",
+        "Beneficiary a/c no: 918273645501",
+    ],
+)
+def test_labelled_account_shaped_like_91_mobile_is_an_account(text: str) -> None:
+    # 918273645501 also fits "91 + 10-digit mobile"; the label decides.
+    assert values_of(text, IdentifierType.BANK_ACCOUNT) == {"918273645501"}
+    assert values_of(text, IdentifierType.PHONE) == set()
+
+
+def test_explicit_plus_91_after_account_label_is_still_a_phone() -> None:
+    assert values_of("A/c helpline +91 9876543210", IdentifierType.PHONE) == {"+919876543210"}
+    assert values_of("Transfer to account then call 9876543210", IdentifierType.PHONE) == {"+919876543210"}
+
+
 def test_ifsc_requires_zero_in_fifth_position() -> None:
     assert values_of("IFSC HDFC0001234", IdentifierType.IFSC) == {"HDFC0001234"}
     assert values_of("Code HDFC1001234", IdentifierType.IFSC) == set()

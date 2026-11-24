@@ -1,0 +1,145 @@
+{"id":"m001","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Dear customer your SBI KYC will be blocked in 24 hours. Verify immediately at https://sbi-verify-kyc.in/urgent or your account will be suspended."}
+{"id":"m002","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"HDFC Bank: Your NetBanking is suspended due to pending PAN update. Click http://hdfc-kyc-update.xyz/login to reactivate today."}
+{"id":"m003","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Dear user, your ICICI account will be blocked tonight. Update KYC now: bit.ly/icici-kyc-now. Ignore at your own risk."}
+{"id":"m004","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Your Paytm KYC has expired. Wallet will be closed in 2 hours. Call our KYC officer on 9876543210 to complete verification."}
+{"id":"m005","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Axis Bank alert: Account frozen. Share the OTP you receive with our executive to unfreeze immediately."}
+{"id":"m006","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Dear Customer, your SIM will be deactivated within 24 hrs as KYC is incomplete. Call 9123456780 immediately to update."}
+{"id":"m007","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Kotak: Your debit card is blocked. Verify your details at kotak-secure-verify.top within 1 hour to avoid permanent closure."}
+{"id":"m008","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Your bank account is suspended by RBI order. Re-verify Aadhaar and PAN at rbi-kyc-portal.online today only."}
+{"id":"m009","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"Dear SBI user, 7,450 reward points expire today. Redeem now at sbi-rewards-point.xyz by entering your card details."}
+{"id":"m010","lang":"en","label":"SCAM","category":"KYC_SCAM","text":"PNB: Your credit card limit is being reduced. To stop it, verify card number, expiry and CVV at pnb-card-limit.click"}
+{"id":"m011","lang":"hi","label":"SCAM","category":"KYC_SCAM","text":"प्रिय ग्राहक, आपका SBI खाता 24 घंटे में बंद कर दिया जाएगा। तुरंत KYC अपडेट करें sbi-kyc-help.cyou"}
+{"id":"m012","lang":"hi","label":"SCAM","category":"KYC_SCAM","text":"आपका बैंक खाता आज बंद हो जाएगा, तुरंत इस लिंक पर क्लिक करके अपनी जानकारी अपडेट करें bit.ly/kyc-update-now"}
+{"id":"m013","lang":"hi","label":"SCAM","category":"KYC_SCAM","text":"आपका पैन कार्ड लिंक नहीं है, खाता ब्लॉक किया जा रहा है। ओटीपी बताकर अभी सत्यापन करें: 9876543210"}
+{"id":"m014","lang":"hi","label":"SCAM","category":"KYC_SCAM","text":"प्रिय उपभोक्ता, आपका नेट बैंकिंग निलंबित कर दिया गया है। केवाईसी अपडेट हेतु लिंक खोलें hdfc-verify-kyc.in"}
+{"id":"m015","lang":"hi","label":"SCAM","category":"KYC_SCAM","text":"आपका डेबिट कार्ड बंद होने वाला है। कार्ड नंबर और सीवीवी भेजें ताकि कार्ड चालू रहे।"}
+{"id":"m016","lang":"hinglish","label":"SCAM","category":"KYC_SCAM","text":"Aapka SBI account aaj raat block ho jayega. Turant KYC update karein is link par: sbi-kyc-online.xyz"}
+{"id":"m017","lang":"hinglish","label":"SCAM","category":"KYC_SCAM","text":"Sir aapka account band ho jayega, OTP bata dijiye abhi verify kar dete hain. Bank se bol raha hoon."}
+{"id":"m018","lang":"hinglish","label":"SCAM","category":"KYC_SCAM","text":"Aapke paytm wallet ki KYC pending hai, 2 ghante me wallet band. Call karein 9123456780 par turant."}
+{"id":"m019","lang":"hinglish","label":"SCAM","category":"KYC_SCAM","text":"Aapka credit card limit kam ho raha hai, rokne ke liye card number aur CVV is link par bharein pnb-limit-help.in"}
+{"id":"m020","lang":"hinglish","label":"SCAM","category":"KYC_SCAM","text":"Dear customer aapka PAN link nahi hai, account suspend ho gaya. Abhi verify karo bit.ly/pan-link-kyc"}
+{"id":"m021","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"This is Inspector from CBI Mumbai. Your Aadhaar is linked to a money laundering case. You are under digital arrest, do not disconnect the video call. Transfer funds to RBI verification account for clearance."}
+{"id":"m022","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"FedEx: A parcel in your name containing drugs and fake passports was seized by customs. Press 9 to speak to Mumbai Crime Branch or face arrest today."}
+{"id":"m023","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"TRAI notice: Your mobile number is involved in illegal activity and will be disconnected in 2 hours. A case is registered with Cyber Crime. Press 1 to talk to the officer."}
+{"id":"m024","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"Enforcement Directorate: An arrest warrant is issued against you in a money laundering case. Stay on Skype video call and do not inform anyone. Deposit security amount to avoid jail."}
+{"id":"m025","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"NCB officer speaking. Your courier to Taiwan had 200 grams of MDMA. You are under digital arrest until verification. Send all savings to the supervision account."}
+{"id":"m026","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"Supreme Court order: Your bank accounts are under investigation. Transfer your balance to the court safe account for audit. Funds will be refunded after verification."}
+{"id":"m027","lang":"en","label":"SCAM","category":"DIGITAL_ARREST","text":"Delhi Police cyber cell: your SIM was used for harassment complaints. Join the video statement now or a warrant will be issued in 30 minutes."}
+{"id":"m028","lang":"hi","label":"SCAM","category":"DIGITAL_ARREST","text":"मैं सीबीआई से बोल रहा हूँ। आपके आधार से मनी लॉन्ड्रिंग का केस जुड़ा है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल बंद न करें और पैसा जाँच खाते में भेजें।"}
+{"id":"m029","lang":"hi","label":"SCAM","category":"DIGITAL_ARREST","text":"आपके नाम से भेजे गए पार्सल में ड्रग्स मिले हैं। कस्टम विभाग ने केस दर्ज किया है। गिरफ्तारी से बचने के लिए तुरंत सुरक्षा राशि जमा करें।"}
+{"id":"m030","lang":"hi","label":"SCAM","category":"DIGITAL_ARREST","text":"ट्राई: आपका नंबर अवैध गतिविधियों में शामिल है, 2 घंटे में बंद होगा। पुलिस अधिकारी से बात करने के लिए 1 दबाएँ।"}
+{"id":"m031","lang":"hi","label":"SCAM","category":"DIGITAL_ARREST","text":"प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रांसफर करें।"}
+{"id":"m032","lang":"hinglish","label":"SCAM","category":"DIGITAL_ARREST","text":"Main CBI officer bol raha hoon, aapke Aadhaar se money laundering case juda hai. Aap digital arrest me ho, video call band mat karna aur paisa verification account me bhejo."}
+{"id":"m033","lang":"hinglish","label":"SCAM","category":"DIGITAL_ARREST","text":"Aapke naam ka parcel customs ne pakda hai usme drugs mile hain. Arrest se bachna hai to abhi security deposit bhejo."}
+{"id":"m034","lang":"hinglish","label":"SCAM","category":"DIGITAL_ARREST","text":"TRAI se call hai, aapka number 2 ghante me band hoga kyunki illegal activity me use hua hai. Police se baat karne ke liye 1 dabaiye."}
+{"id":"m035","lang":"hinglish","label":"SCAM","category":"DIGITAL_ARREST","text":"ED ka warrant nikla hai aapke naam par. Kisi ko mat batana, Skype par bane raho aur bail amount transfer karo."}
+{"id":"m036","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Hi, I am Priya from HR. Part time job, rate hotels on Google Maps and earn Rs 3000 per day. Reply YES on WhatsApp."}
+{"id":"m037","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Earn 5000 daily from home! Just like YouTube videos and send screenshots. Join our Telegram t.me/TaskEarnIndia to start."}
+{"id":"m038","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Congratulations, you are selected for an Amazon work from home job. Pay a registration fee of Rs 1499 to activate your ID."}
+{"id":"m039","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Your first 3 tasks are complete and Rs 450 credited. For the next merchant task deposit Rs 5000, you will get Rs 7500 back today."}
+{"id":"m040","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Data entry job, no experience, salary 45000 per month. Pay Rs 999 for the training kit to receive your joining letter."}
+{"id":"m041","lang":"en","label":"SCAM","category":"FAKE_JOB","text":"Prepaid task: invest Rs 10,000 and earn 30% commission in 1 hour. Our receptionist on Telegram will guide you."}
+{"id":"m042","lang":"hi","label":"SCAM","category":"FAKE_JOB","text":"घर बैठे कमाएँ ₹3000 रोज़! सिर्फ़ होटल को रेटिंग दें और स्क्रीनशॉट भेजें। पार्ट टाइम जॉब के लिए टेलीग्राम पर जुड़ें।"}
+{"id":"m043","lang":"hi","label":"SCAM","category":"FAKE_JOB","text":"आपका चयन वर्क फ्रॉम होम नौकरी के लिए हुआ है। आईडी सक्रिय करने के लिए ₹1500 पंजीकरण शुल्क जमा करें।"}
+{"id":"m044","lang":"hi","label":"SCAM","category":"FAKE_JOB","text":"अगला टास्क पूरा करने के लिए ₹5000 जमा करें, एक घंटे में ₹8000 वापस मिलेंगे।"}
+{"id":"m045","lang":"hinglish","label":"SCAM","category":"FAKE_JOB","text":"Part time job hai, ghar baithe hotel review karo aur 3000 roz kamao. Telegram par join karo t.me/DailyTaskWork"}
+{"id":"m046","lang":"hinglish","label":"SCAM","category":"FAKE_JOB","text":"YouTube video like karo aur har like ke 50 rupaye pao. Pehle registration ke 999 bhejne honge."}
+{"id":"m047","lang":"hinglish","label":"SCAM","category":"FAKE_JOB","text":"Aapke 3 task complete ho gaye, ab next task ke liye 10000 deposit karo, 15000 wapas milega aaj hi."}
+{"id":"m048","lang":"en","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Instant loan in 5 minutes! No CIBIL check, only Aadhaar needed. Download now http://45.133.1.9/quickcash.apk"}
+{"id":"m049","lang":"en","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Get Rs 50,000 loan without documents. Install our loan app from this link and allow contacts and SMS permission."}
+{"id":"m050","lang":"en","label":"SCAM","category":"LOAN_APP_FRAUD","text":"You did not repay your loan. Your contacts will be informed and your photo will be shared on WhatsApp groups today. Pay now."}
+{"id":"m051","lang":"en","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Loan recovery agent: pay Rs 8,000 within 2 hours or we will call your family and office about your default."}
+{"id":"m052","lang":"en","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Pre-approved loan of 2 lakh, processing fee only Rs 1999. Pay to loanapprove@ybl and amount will be credited."}
+{"id":"m053","lang":"hi","label":"SCAM","category":"LOAN_APP_FRAUD","text":"सिर्फ़ आधार से 5 मिनट में लोन! कोई सिबिल नहीं। अभी ऐप डाउनलोड करें quickcash-loan.top/app.apk"}
+{"id":"m054","lang":"hi","label":"SCAM","category":"LOAN_APP_FRAUD","text":"लोन नहीं चुकाया तो आपकी फोटो आपके सभी संपर्कों को भेज दी जाएगी। दो घंटे में भुगतान करें।"}
+{"id":"m055","lang":"hi","label":"SCAM","category":"LOAN_APP_FRAUD","text":"बिना दस्तावेज़ ₹50000 का तुरंत लोन। प्रोसेसिंग शुल्क ₹999 जमा करें और राशि खाते में पाएं।"}
+{"id":"m056","lang":"hinglish","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Sirf Aadhaar se turant loan, koi CIBIL nahi. App download karo is link se aur contacts permission do."}
+{"id":"m057","lang":"hinglish","label":"SCAM","category":"LOAN_APP_FRAUD","text":"Loan time par nahi chukaya, ab tumhare saare contacts ko photo bhej denge. 2 ghante me payment karo."}
+{"id":"m058","lang":"hinglish","label":"SCAM","category":"LOAN_APP_FRAUD","text":"2 lakh ka loan approve hai, bas processing fee 1999 bhejo loanapprove@ybl par."}
+{"id":"m059","lang":"en","label":"SCAM","category":"PONZI_MLM","text":"RichPlan Investment: Guaranteed 10% daily returns! Referral bonus on every downline member. Joining package Rs 5000. Pay richplan@ybl or call 9812345670."}
+{"id":"m060","lang":"en","label":"SCAM","category":"PONZI_MLM","text":"Double your money in 30 days with our assured return plan. Level income up to 7 levels. Activate your ID today."}
+{"id":"m061","lang":"en","label":"SCAM","category":"PONZI_MLM","text":"Binary plan: earn team commission on both legs. Fixed returns of 3% per day. Join with a Rs 10,000 package."}
+{"id":"m062","lang":"en","label":"SCAM","category":"INVESTMENT_FRAUD","text":"Join our VIP stock tips group on Telegram. 95% accurate crypto signals, guaranteed profit every week. Limited seats."}
+{"id":"m063","lang":"en","label":"SCAM","category":"INVESTMENT_FRAUD","text":"IPO allotment guaranteed through our institutional account. Deposit funds in our trading app and get 300% returns."}
+{"id":"m064","lang":"en","label":"SCAM","category":"INVESTMENT_FRAUD","text":"Invest in USDT with us. Deposit to TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE and receive 5% daily profit, withdraw anytime."}
+{"id":"m065","lang":"hi","label":"SCAM","category":"PONZI_MLM","text":"गारंटीड रिटर्न! रोज़ाना 10% मुनाफ़ा। हर नए सदस्य पर रेफरल बोनस। जॉइनिंग पैकेज ₹5000 जमा करें richplan@ybl"}
+{"id":"m066","lang":"hi","label":"SCAM","category":"INVESTMENT_FRAUD","text":"हमारे वीआईपी ट्रेडिंग ग्रुप से जुड़ें, हर हफ्ते पक्का मुनाफ़ा। संस्थागत खाते से आईपीओ आवंटन की गारंटी।"}
+{"id":"m067","lang":"hi","label":"SCAM","category":"PONZI_MLM","text":"30 दिन में पैसा डबल! लेवल इनकम और डाउनलाइन कमीशन। आज ही अपनी आईडी एक्टिवेट करें।"}
+{"id":"m068","lang":"hinglish","label":"SCAM","category":"PONZI_MLM","text":"Guaranteed 10% daily return, har member jodne par referral bonus. Joining package 5000 hai, pay karo richplan@ybl par."}
+{"id":"m069","lang":"hinglish","label":"SCAM","category":"INVESTMENT_FRAUD","text":"VIP stock tips group join karo, pakka profit har hafte. Institutional account se IPO allotment guaranteed."}
+{"id":"m070","lang":"hinglish","label":"SCAM","category":"PONZI_MLM","text":"30 din me paisa double, level income aur downline commission. Aaj hi ID activate karo."}
+{"id":"m071","lang":"en","label":"SCAM","category":"BETTING_GAMBLING","text":"Get your cricket betting ID in 2 minutes. 100% winning tips, instant withdrawal, 500% welcome bonus on first deposit."}
+{"id":"m072","lang":"en","label":"SCAM","category":"BETTING_GAMBLING","text":"Colour prediction game: invest Rs 100, win Rs 1000 every hour. Sure shot tips from our VIP channel bet777.vip"}
+{"id":"m073","lang":"en","label":"SCAM","category":"BETTING_GAMBLING","text":"Aviator game hack! Guaranteed win, deposit bonus 200%. Contact our agent on WhatsApp 9988776655."}
+{"id":"m074","lang":"hi","label":"SCAM","category":"BETTING_GAMBLING","text":"आईपीएल सट्टा आईडी 2 मिनट में! 100% पक्की जीत, तुरंत निकासी और पहले डिपॉज़िट पर बोनस।"}
+{"id":"m075","lang":"hinglish","label":"SCAM","category":"BETTING_GAMBLING","text":"Betting ID lo 2 minute me, 100% winning tips aur instant withdrawal. Pehle deposit par 500% bonus."}
+{"id":"m076","lang":"hinglish","label":"SCAM","category":"BETTING_GAMBLING","text":"Colour prediction game khelo, 100 lagao 1000 jeeto. Sure shot tips ke liye VIP channel join karo."}
+{"id":"m077","lang":"en","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"Dear consumer your electricity will be disconnected tonight at 9:30 PM due to pending bill. Update meter immediately, call 9988776655."}
+{"id":"m078","lang":"en","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"JVVNL: Your power supply will be cut off today as last month bill is not updated. Contact electricity officer 9123456780 now."}
+{"id":"m079","lang":"en","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"Dear customer, electricity connection will be disconnected at 10 PM. Pay Rs 10 token at http://sbi-verify-kyc.in or UPI discom.bill98@ybl"}
+{"id":"m080","lang":"en","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"AVVNL alert: smart meter update pending. Install the Bijli Update app from this link or supply will stop tonight."}
+{"id":"m081","lang":"en","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"Your gas connection will be blocked today due to KYC. Call our officer on 9876501234 to avoid disconnection."}
+{"id":"m082","lang":"hi","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"प्रिय उपभोक्ता, पिछला बिल अपडेट न होने से आज रात 9:30 बजे आपकी बिजली काट दी जाएगी। तुरंत बिजली अधिकारी से संपर्क करें 9988776655"}
+{"id":"m083","lang":"hi","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"जयपुर डिस्कॉम: आपका बिजली कनेक्शन आज बंद होगा। ₹10 का भुगतान इस लिंक से करें jvvnl-bill-pay.in"}
+{"id":"m084","lang":"hi","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"आपका स्मार्ट मीटर अपडेट नहीं हुआ है। बिजली अपडेट ऐप डाउनलोड करें वरना आज रात सप्लाई बंद।"}
+{"id":"m085","lang":"hinglish","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"Aapki bijli aaj raat 9:30 baje kat jayegi kyunki pichla bill update nahi hua. Turant call karein 9988776655."}
+{"id":"m086","lang":"hinglish","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"JVVNL se message: aapka connection aaj band ho jayega, 10 rupaye ka token is link se bharo jvvnl-bill-pay.in"}
+{"id":"m087","lang":"hinglish","label":"SCAM","category":"UTILITY_BILL_SCAM","text":"Smart meter update pending hai, Bijli Update app install karo warna supply band ho jayegi."}
+{"id":"m088","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"Your vehicle challan of Rs 500 is pending. Download the RTO Challan app to pay: mParivahan.apk"}
+{"id":"m089","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"Traffic e-challan issued for over-speeding. View photo proof and pay via the attached RTO_Challan.apk before court action."}
+{"id":"m090","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"You are invited to our wedding! Open the invitation card: Wedding_Invitation.apk. Please do come with family."}
+{"id":"m091","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"PM Kisan: your next instalment is on hold. Install PM_Kisan_Update.apk to complete eKYC and receive Rs 2000."}
+{"id":"m092","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"SBI reward points of Rs 7,250 expire today. Install SBI_Rewards.apk to redeem into your account."}
+{"id":"m093","lang":"en","label":"SCAM","category":"MALICIOUS_APP","text":"Customer support: install AnyDesk and share the 9-digit code so we can process your refund."}
+{"id":"m094","lang":"hi","label":"SCAM","category":"MALICIOUS_APP","text":"आपका ₹500 का ई-चालान बकाया है। भुगतान के लिए आरटीओ चालान ऐप डाउनलोड करें RTO_Challan.apk"}
+{"id":"m095","lang":"hi","label":"SCAM","category":"MALICIOUS_APP","text":"शादी का निमंत्रण पत्र देखें 👇 Shaadi_Card.apk आप सपरिवार अवश्य पधारें।"}
+{"id":"m096","lang":"hi","label":"SCAM","category":"MALICIOUS_APP","text":"पीएम किसान की अगली किस्त रुकी है। ई-केवाईसी के लिए PM_Kisan.apk इंस्टॉल करें।"}
+{"id":"m097","lang":"hinglish","label":"SCAM","category":"MALICIOUS_APP","text":"Aapka 500 ka challan pending hai, RTO Challan app download karke pay karo: rto-challan.apk"}
+{"id":"m098","lang":"hinglish","label":"SCAM","category":"MALICIOUS_APP","text":"Shaadi ka card dekho, ye file kholo Wedding_Card.apk, zaroor aana."}
+{"id":"m099","lang":"hinglish","label":"SCAM","category":"MALICIOUS_APP","text":"Refund ke liye AnyDesk install karo aur code share karo, hum process kar denge."}
+{"id":"m100","lang":"en","label":"SCAM","category":"COURIER_SCAM","text":"India Post: your parcel is held at the hub due to incomplete address. Pay Rs 25 redelivery charge at indiapost-redeliver.top"}
+{"id":"m101","lang":"en","label":"SCAM","category":"COURIER_SCAM","text":"DHL: customs duty of Rs 4,999 pending for your package. Release it today by paying at dhl-customs-pay.xyz"}
+{"id":"m102","lang":"hi","label":"SCAM","category":"COURIER_SCAM","text":"इंडिया पोस्ट: अधूरे पते के कारण आपका पार्सल रुका है। ₹25 शुल्क इस लिंक पर भरें indiapost-redeliver.top"}
+{"id":"m103","lang":"hinglish","label":"SCAM","category":"COURIER_SCAM","text":"Aapka parcel hub par ruka hai, address galat hai. 25 rupaye redelivery charge bharo is link par indiapost-redeliver.top"}
+{"id":"m104","lang":"en","label":"SCAM","category":"LOTTERY_PRIZE","text":"Congratulations! You won KBC lottery of Rs 25 lakh. Pay processing fee of Rs 12,500 today to claim prize."}
+{"id":"m105","lang":"en","label":"SCAM","category":"LOTTERY_PRIZE","text":"Lucky draw winner! Your number won a Tata Safari. Send Rs 9,999 GST charge to winner@ybl to receive the car."}
+{"id":"m106","lang":"hi","label":"SCAM","category":"LOTTERY_PRIZE","text":"बधाई हो! आपने केबीसी लॉटरी में 25 लाख जीते हैं। इनाम पाने के लिए आज ₹12500 प्रोसेसिंग शुल्क जमा करें।"}
+{"id":"m107","lang":"hinglish","label":"SCAM","category":"LOTTERY_PRIZE","text":"Badhai ho aapne KBC lottery me 25 lakh jeete. Prize lene ke liye 12500 processing fee aaj bhejo."}
+{"id":"m108","lang":"en","label":"SCAM","category":"OTP_THEFT","text":"I sent you Rs 5000 by mistake. Please share the OTP you just received so I can reverse it."}
+{"id":"m109","lang":"en","label":"SCAM","category":"OTP_THEFT","text":"Amazon support: to cancel the order of iPhone 15 placed from your account, tell us the OTP sent to your phone."}
+{"id":"m110","lang":"hi","label":"SCAM","category":"OTP_THEFT","text":"गलती से आपके खाते में ₹5000 चले गए, कृपया अभी आया ओटीपी बताएं ताकि वापस कर सकें।"}
+{"id":"m111","lang":"hinglish","label":"SCAM","category":"OTP_THEFT","text":"Bhai galti se 5000 bhej diye, abhi jo OTP aaya hai wo bata do reverse kar deta hoon."}
+{"id":"m112","lang":"en","label":"SCAM","category":"UPI_FRAUD","text":"To receive your refund of Rs 2,499, approve the UPI collect request and enter your PIN on PhonePe."}
+{"id":"m113","lang":"en","label":"SCAM","category":"UPI_FRAUD","text":"Scan this QR code to receive your cashback of Rs 1,000. Enter UPI PIN to confirm receipt."}
+{"id":"m114","lang":"hi","label":"SCAM","category":"UPI_FRAUD","text":"रिफंड पाने के लिए यूपीआई कलेक्ट रिक्वेस्ट स्वीकार करें और अपना पिन डालें।"}
+{"id":"m115","lang":"hinglish","label":"SCAM","category":"UPI_FRAUD","text":"Refund lene ke liye UPI collect request approve karo aur PIN daalo, paisa aa jayega."}
+{"id":"m116","lang":"en","label":"SCAM","category":"SEXTORTION","text":"We have recorded your private video call. Send Rs 25,000 to this UPI in 15 minutes or the video will be uploaded to YouTube and sent to your family."}
+{"id":"m117","lang":"hi","label":"SCAM","category":"SEXTORTION","text":"आपकी अश्लील वीडियो कॉल रिकॉर्ड हो गई है। ₹20000 भेजो वरना वीडियो वायरल कर देंगे।"}
+{"id":"m118","lang":"hinglish","label":"SCAM","category":"SEXTORTION","text":"Tumhara video call record ho gaya hai, 20000 bhejo warna video viral kar denge aur family ko bhej denge."}
+{"id":"m119","lang":"en","label":"SCAM","category":"MARKETPLACE_FRAUD","text":"I am an Army officer posted at Jaipur, buying your sofa from OLX. I will pay advance through QR, scan it and enter PIN to receive."}
+{"id":"m120","lang":"hi","label":"SCAM","category":"MARKETPLACE_FRAUD","text":"मैं आर्मी अफसर हूँ, आपकी बाइक ओएलएक्स पर देखी। एडवांस भेजने के लिए यह क्यूआर स्कैन करें और पिन डालें।"}
+{"id":"m121","lang":"hinglish","label":"SCAM","category":"MARKETPLACE_FRAUD","text":"Main army officer hoon, transfer ho gaya hai isliye furniture sasta bech raha hoon. Advance bhejo phir delivery."}
+{"id":"m122","lang":"en","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"Jan Aadhaar: your family card will be cancelled today. Update details at janaadhaar-update.in to keep scheme benefits."}
+{"id":"m123","lang":"en","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"Your SSO ID will be blocked in 24 hours. Verify your Rajasthan SSO login at sso-rajasthan-verify.online"}
+{"id":"m124","lang":"en","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"Income tax refund of Rs 15,490 approved. Submit bank details at incometax-refund-gov.in to receive it today."}
+{"id":"m125","lang":"en","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"EPFO: your PF balance of Rs 1,48,250 is frozen due to unlinked Aadhaar. Complete verification within 6 hours at epfo-uan-update.in/verify"}
+{"id":"m126","lang":"hi","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"जन आधार कार्ड आज रद्द हो जाएगा। योजना का लाभ जारी रखने के लिए janaadhaar-update.in पर विवरण अपडेट करें।"}
+{"id":"m127","lang":"hi","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"आपकी एसएसओ आईडी 24 घंटे में ब्लॉक होगी। अभी सत्यापन करें sso-rajasthan-verify.online"}
+{"id":"m128","lang":"hinglish","label":"SCAM","category":"GOVERNMENT_IMPERSONATION","text":"Income tax refund 15490 approve ho gaya, bank details bharo is link par incometax-refund-gov.in"}
+{"id":"m129","lang":"en","label":"SCAM","category":"TECH_SUPPORT","text":"Microsoft security alert: your computer is infected. Call our helpline and allow remote access via TeamViewer to fix it."}
+{"id":"m130","lang":"en","label":"SCAM","category":"TECH_SUPPORT","text":"Google Pay customer care number 9123456780 for refunds. Call now and share screen to complete the refund."}
+{"id":"m131","lang":"hinglish","label":"SCAM","category":"TECH_SUPPORT","text":"PhonePe customer care se bol rahe hain, refund ke liye screen share karo aur app install karo."}
+{"id":"m132","lang":"en","label":"SCAM","category":"ROMANCE_SCAM","text":"My love, I sent you a gift parcel with gold and dollars, but customs is asking Rs 45,000 fee. Please transfer quickly darling."}
+{"id":"m133","lang":"hinglish","label":"SCAM","category":"ROMANCE_SCAM","text":"Darling maine tumhe gift bheja hai, customs fee 45000 maang rahe hain, jaldi transfer kar do please."}
+{"id":"m134","lang":"en","label":"SUSPICIOUS","category":"PHISHING_LINK","text":"Your package could not be delivered. Track and reschedule here: bit.ly/3xTrack9"}
+{"id":"m135","lang":"en","label":"SUSPICIOUS","category":"INVESTMENT_FRAUD","text":"Join our free stock market learning group on WhatsApp. Daily tips from experts, link in bio."}
+{"id":"m136","lang":"en","label":"SUSPICIOUS","category":"LOAN_APP_FRAUD","text":"Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back."}
+{"id":"m137","lang":"en","label":"SUSPICIOUS","category":"FAKE_JOB","text":"Hiring now! Online work, flexible hours, good pay. Send your name and city to get details."}
+{"id":"m138","lang":"en","label":"SUSPICIOUS","category":"PHISHING_LINK","text":"Hi, is this you in this photo? lol check it out: tinyurl.com/yourphoto22"}
+{"id":"m139","lang":"en","label":"SUSPICIOUS","category":"UNKNOWN","text":"Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal."}
+{"id":"m140","lang":"hi","label":"SUSPICIOUS","category":"PHISHING_LINK","text":"आपका पार्सल डिलीवर नहीं हो सका। दोबारा शेड्यूल करने के लिए लिंक खोलें bit.ly/3xTrack9"}
+{"id":"m141","lang":"hi","label":"SUSPICIOUS","category":"FAKE_JOB","text":"ऑनलाइन काम, अच्छी कमाई। विवरण के लिए अपना नाम और शहर भेजें।"}
+{"id":"m142","lang":"hinglish","label":"SUSPICIOUS","category":"LOAN_APP_FRAUD","text":"Personal loan chahiye? Jaldi approval, kam byaj. LOAN likh ke reply karo."}
+{"id":"m143","lang":"hinglish","label":"SUSPICIOUS","category":"PHISHING_LINK","text":"Ye photo tumhari hai kya? dekho tinyurl.com/yourphoto22"}
+{"id":"m144","lang":"en","label":"SUSPICIOUS","category":"UNKNOWN","text":"Your account shows unusual activity. If this was not you, contact support."}
+{"id":"m145","lang":"hinglish","label":"SUSPICIOUS","category":"INVESTMENT_FRAUD","text":"Free stock market group join karo, roz experts ke tips milenge WhatsApp par."}

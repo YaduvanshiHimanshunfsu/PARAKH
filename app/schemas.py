@@ -20,7 +20,10 @@ class Severity(str, Enum):
 
 class AnalysisSource(str, Enum):
     AI = "AI"
+    # The reviewed rule engine alone (AI not configured or unavailable).
     RULE_FALLBACK = "RULE_FALLBACK"
+    # AI verdict fused with the rule engine (planversionalpha.md B.9).
+    AI_RULES = "AI+RULES"
 
 
 class MediaKind(str, Enum):
@@ -155,6 +158,13 @@ class ScamCategory(str, Enum):
     PONZI_MLM = "PONZI_MLM"
     BETTING_GAMBLING = "BETTING_GAMBLING"
     UTILITY_BILL_SCAM = "UTILITY_BILL_SCAM"
+    # Phase B typologies: CBI/ED/customs "digital arrest" extortion, malicious
+    # APKs sent by message, sextortion (split from romance), and OLX-style
+    # "army officer" buyer/seller fraud.
+    DIGITAL_ARREST = "DIGITAL_ARREST"
+    MALICIOUS_APP = "MALICIOUS_APP"
+    SEXTORTION = "SEXTORTION"
+    MARKETPLACE_FRAUD = "MARKETPLACE_FRAUD"
     UNKNOWN = "UNKNOWN"
 
 
@@ -331,8 +341,24 @@ class EmailAnalysisResponse(BaseModel):
     limitations: list[str] = Field(min_length=1, max_length=6)
 
 
-class AnalysisResponse(BaseModel):
-    """Strict, frontend-safe contract returned by the API."""
+class RuleEvidence(BaseModel):
+    """One reviewed rule that fired, with its log-odds contribution (B.2)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    rule_id: str = Field(min_length=2, max_length=64)
+    phrase: str = Field(min_length=1, max_length=160)
+    weight: float
+    category: ScamCategory
+    counted: bool = True
+
+
+class AnalysisCore(BaseModel):
+    """Fields the AI provider is asked to produce (its response schema).
+
+    ``AnalysisResponse`` adds the rule-engine evidence, which PARAKH always
+    computes itself and never asks the model to invent.
+    """
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
@@ -348,7 +374,7 @@ class AnalysisResponse(BaseModel):
     analysis_source: AnalysisSource = AnalysisSource.AI
     model_used: str | None = Field(default=None, max_length=120)
     notice: str | None = Field(default=None, max_length=240)
-    url_analyses: list[UrlAnalysis] = Field(default_factory=list, max_length=3)
+    url_analyses: list[UrlAnalysis] = Field(default_factory=list, max_length=10)
 
     @field_validator("action_steps")
     @classmethod
@@ -359,7 +385,7 @@ class AnalysisResponse(BaseModel):
         return clean
 
     @model_validator(mode="after")
-    def enforce_cautious_safe_results(self) -> "AnalysisResponse":
+    def enforce_cautious_safe_results(self) -> "AnalysisCore":
         # A text-only classifier must never present a message as definitively safe.
         if self.verdict == Verdict.SAFE:
             self.severity = Severity.LOW
@@ -369,6 +395,13 @@ class AnalysisResponse(BaseModel):
                 "for money or sensitive information through official channels."
             )
         return self
+
+
+class AnalysisResponse(AnalysisCore):
+    """Strict, frontend-safe contract returned by the API."""
+
+    rule_evidence: list[RuleEvidence] = Field(default_factory=list, max_length=40)
+    rule_probability: float | None = Field(default=None, ge=0, le=1)
 
 
 class MediaValidationResponse(BaseModel):
@@ -605,6 +638,12 @@ class IdentifierType(str, Enum):
     PACKAGE = "PACKAGE"
     CERT_SHA256 = "CERT_SHA256"
     ICON_PHASH = "ICON_PHASH"
+    # Phase B.5. TELEGRAM_BOT stores only the bot id; the token itself is kept
+    # masked in the evidence and is never used to call the Telegram API.
+    TELEGRAM_BOT = "TELEGRAM_BOT"
+    CRYPTO_TRON = "CRYPTO_TRON"
+    IMEI = "IMEI"
+    FIREBASE_DB = "FIREBASE_DB"
 
 
 class CaseStatus(str, Enum):
@@ -620,8 +659,16 @@ class CaseSource(str, Enum):
 
 class UserRole(str, Enum):
     CITIZEN = "CITIZEN"
+    # OFFICER is the single shared account that existed before Phase C. It is
+    # kept so an existing deployment keeps working; new accounts use one of
+    # the specific roles below (app/core/permissions.py).
     OFFICER = "OFFICER"
     ADMIN = "ADMIN"
+    OPERATOR = "OPERATOR"
+    IO = "IO"
+    STATION_HEAD = "STATION_HEAD"
+    SUPERVISOR = "SUPERVISOR"
+    STATE_VIEWER = "STATE_VIEWER"
 
 
 class Identifier(BaseModel):
@@ -634,6 +681,10 @@ class Identifier(BaseModel):
     raw_value: str = Field(min_length=1, max_length=512)
     context: str | None = Field(default=None, max_length=300)
     confidence: int = Field(default=100, ge=0, le=100)
+    # What this identifier is in the case (app/services/identifier_roles.py).
+    # Only SUSPECT and UNKNOWN feed linking and the heat-list. Absent on a
+    # freshly extracted identifier that has not been stored yet.
+    role: str | None = Field(default=None, max_length=20)
 
 
 class Finding(BaseModel):
@@ -790,6 +841,9 @@ class HeatListEntry(BaseModel):
     value: str = Field(min_length=1, max_length=512)
     case_count: int = Field(ge=0)
     recent_case_count: int = Field(default=0, ge=0)
+    # Cases in the 7 days before the recent window, so the UI can show a real
+    # week-on-week velocity instead of an invented percentage.
+    previous_case_count: int = Field(default=0, ge=0)
     first_seen: str = Field(default="", max_length=40)
     last_seen: str = Field(default="", max_length=40)
 
@@ -822,11 +876,128 @@ class PreCheckResponse(BaseModel):
     previously_reported: int = Field(default=0, ge=0)
 
 
+class ReportedIdentifier(BaseModel):
+    """An identifier from the analysed item that already appears in high-risk cases."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    case_count: int = Field(ge=1)
+
+
+class CitizenApkAnalysis(BaseModel):
+    """Citizen Mode APK result. Analysed in memory; nothing is stored."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    risk_level: RiskLevel
+    risk_score: int = Field(ge=0, le=100)
+    summary: str = Field(max_length=1_000)
+    findings: list[Finding] = Field(default_factory=list, max_length=60)
+    identifiers: list[Identifier] = Field(default_factory=list, max_length=300)
+    details: dict = Field(default_factory=dict)
+    reported_identifiers: list[ReportedIdentifier] = Field(default_factory=list, max_length=20)
+    advice: list[str] = Field(default_factory=list, max_length=10)
+    helpline: str = Field(default="1930", max_length=20)
+    official_portal: str = Field(default="https://cybercrime.gov.in/", max_length=200)
+
+
+class CampaignIdentifier(BaseModel):
+    """An identifier that ties two or more cases of a campaign together."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    type: IdentifierType
+    value: str = Field(min_length=1, max_length=512)
+    case_count: int = Field(ge=2)
+
+
+class CampaignTextChange(BaseModel):
+    """One wording change between a scam message and its earlier variant."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    before: str = Field(default="", max_length=120)
+    after: str = Field(default="", max_length=120)
+
+
+class CampaignTimelineEntry(BaseModel):
+    """One case in a campaign, in the order it was seen."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    case_id: str = Field(max_length=40)
+    created_at: str = Field(max_length=40)
+    artifact_type: ArtifactType
+    risk_level: RiskLevel
+    summary: str = Field(default="", max_length=1_000)
+    preview: str = Field(default="", max_length=300)
+    variant_of: str | None = Field(default=None, max_length=40)
+    similarity: int | None = Field(default=None, ge=0, le=100)
+    changes: list[CampaignTextChange] = Field(default_factory=list, max_length=8)
+    new_identifiers: list[str] = Field(default_factory=list, max_length=8)
+
+
+class Campaign(BaseModel):
+    """A connected group of cases that appear to come from one operation."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    campaign_id: str = Field(max_length=48)
+    name: str = Field(max_length=200)
+    case_count: int = Field(ge=2)
+    risk_level: RiskLevel
+    artifact_mix: dict[str, int] = Field(default_factory=dict)
+    first_seen: str = Field(default="", max_length=40)
+    last_seen: str = Field(default="", max_length=40)
+    key_identifiers: list[CampaignIdentifier] = Field(default_factory=list, max_length=12)
+    timeline: list[CampaignTimelineEntry] = Field(default_factory=list)
+
+
+class CampaignNode(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(max_length=600)
+    kind: Literal["case", "identifier"]
+    label: str = Field(max_length=200)
+    campaign_id: str = Field(max_length=48)
+    case_id: str | None = Field(default=None, max_length=40)
+    artifact_type: ArtifactType | None = None
+    risk_level: RiskLevel | None = None
+    identifier_type: IdentifierType | None = None
+    value: str | None = Field(default=None, max_length=512)
+    case_count: int | None = Field(default=None, ge=0)
+
+
+class CampaignEdge(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source: str = Field(max_length=600)
+    target: str = Field(max_length=600)
+    kind: Literal["identifier", "similar"]
+    weight: int = Field(ge=0, le=100)
+
+
+class CampaignGraph(BaseModel):
+    """Every campaign found, plus the node-link graph that draws them."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    campaigns: list[Campaign] = Field(default_factory=list)
+    nodes: list[CampaignNode] = Field(default_factory=list)
+    edges: list[CampaignEdge] = Field(default_factory=list)
+    cases_scanned: int = Field(default=0, ge=0)
+    linked_case_count: int = Field(default=0, ge=0)
+
+
 class LoginRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
     username: str = Field(min_length=3, max_length=64)
     password: str = Field(min_length=8, max_length=256)
+    # Required only for roles listed in MFA_REQUIRED_ROLES that have enrolled.
+    totp_code: str | None = Field(default=None, min_length=6, max_length=8)
 
 
 class LoginResponse(BaseModel):
@@ -836,3 +1007,318 @@ class LoginResponse(BaseModel):
     username: str = Field(min_length=3, max_length=64)
     role: UserRole
     expires_at: str = Field(max_length=40)
+
+
+# --- Phase H.6: endpoints the new frontend needs ------------------------------
+
+
+class IdentifierCheckRequest(BaseModel):
+    """Citizen check of a single UPI ID, phone number, domain or link."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    value: str = Field(min_length=3, max_length=512)
+
+
+class IdentifierCheckResponse(BaseModel):
+    """Whether an identifier appears in verified police cases or the blacklist.
+
+    Counts come only from officer-submitted HIGH-risk cases: anonymous citizen
+    reports are not counted until officer verification exists (plan C.4), so
+    one person cannot make an innocent UPI ID look "reported".
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    input: str
+    type: IdentifierType | None = None
+    value: str | None = None
+    risk_level: RiskLevel
+    reported_case_count: int = Field(default=0, ge=0)
+    blacklisted: bool = False
+    blacklist_source: str | None = None
+    advice: list[str] = Field(default_factory=list)
+    limitations: str
+
+
+class PublicMeta(BaseModel):
+    """Facts about the running engine, so the UI never invents them."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    rule_count: int
+    scam_categories: list[str]
+    ai_configured: bool
+    offline_fallback: bool
+    version: str
+
+
+class ReportStatusResponse(BaseModel):
+    """What a citizen may learn about their own report: its stage, nothing else.
+
+    No content, identifiers, risk score or officer note is returned, so a
+    guessed reference reveals nothing about another person's report.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    reference: str
+    status: CaseStatus
+    artifact_type: ArtifactType
+    received_at: str
+    updated_at: str
+
+
+class DashboardSeriesPoint(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    date: str
+    high: int = 0
+    medium: int = 0
+    low: int = 0
+
+
+class DashboardSummary(BaseModel):
+    """Officer dashboard numbers, all computed from the case store."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    days: int
+    generated_at: str
+    total_cases: int
+    cases_in_period: int
+    high_risk_in_period: int
+    new_today: int
+    citizen_reports_new: int
+    unreviewed: int
+    campaigns: int
+    artifact_mix: dict[str, int]
+    risk_mix: dict[str, int]
+    series: list[DashboardSeriesPoint]
+    recent_cases: list[CaseSummary]
+
+
+class OffenceAct(str, Enum):
+    IT_ACT = "IT_ACT"
+    BNS = "BNS"
+    BOTH = "BOTH"
+    UNKNOWN = "UNKNOWN"
+
+
+class CaseAssignRequest(BaseModel):
+    """Assign a case to an officer, optionally recording the offence act."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    assignee_username: str = Field(min_length=3, max_length=64)
+    offence_act: OffenceAct | None = None
+    reason: str | None = Field(default=None, max_length=500)
+
+
+class CaseTransferRequest(BaseModel):
+    """Move a case to another unit. The reason is mandatory and audited."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    unit_code: str = Field(min_length=2, max_length=40)
+    reason: str = Field(min_length=5, max_length=500)
+
+
+class AuditEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    seq: int
+    at: str
+    actor_name: str
+    actor_role: str
+    action: str
+    target_type: str
+    target_id: str
+    details: dict = Field(default_factory=dict)
+
+
+class AuditChainStatus(BaseModel):
+    """Whether the audit chain verifies, computed live over the stored rows."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    intact: bool
+    events: int
+    broken_at: int | None = None
+    summary: str
+
+
+class AuditTrailResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    status: AuditChainStatus
+    entries: list[AuditEntry] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# Phase D: action layer - requisitions, approval chain, dispatch, MIS
+# ---------------------------------------------------------------------------
+
+
+class DocumentStatus(str, Enum):
+    DRAFT = "DRAFT"
+    RETURNED = "RETURNED"
+    PENDING_STATION = "PENDING_STATION"
+    PENDING_SUPERVISOR = "PENDING_SUPERVISOR"
+    APPROVED = "APPROVED"
+    DISPATCHED = "DISPATCHED"
+    RESPONDED = "RESPONDED"
+    CLOSED = "CLOSED"
+    CANCELLED = "CANCELLED"
+
+
+class DispatchChannel(str, Enum):
+    EMAIL = "EMAIL"
+    PORTAL = "PORTAL"
+    POST = "POST"
+    HAND = "HAND"
+
+
+class ApprovalEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    stage: str
+    actor_name: str
+    actor_rank: str | None = None
+    action: str
+    comment: str | None = None
+    body_sha256: str
+    at: str
+
+
+class DocumentVersionEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    version: int
+    body_sha256: str
+    at: str
+
+
+class DocumentSummary(BaseModel):
+    """One requisition as the queue and case screens show it."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: int
+    doc_no: str
+    case_id: str
+    doc_type: str
+    title: str
+    legal_basis: str
+    addressee_display: str
+    addressee_is_sample: bool
+    status: DocumentStatus
+    current_stage: str
+    version: int
+    subject_identifiers: list[dict] = Field(default_factory=list)
+    created_at: str
+    due_at: str | None = None
+    overdue: bool = False
+    dispatched_at: str | None = None
+    dispatch_ref: str | None = None
+    dispatch_channel: str | None = None
+    response_received_at: str | None = None
+
+
+class DocumentDetail(DocumentSummary):
+    body_html: str
+    body_sha256: str
+    purpose: str
+    sla_hours: float
+    response_note: str | None = None
+    approvals: list[ApprovalEntry] = Field(default_factory=list)
+    versions: list[DocumentVersionEntry] = Field(default_factory=list)
+    # True when the body changed after the last approval, so the printed copy
+    # is not the one that was signed off.
+    edited_after_approval: bool = False
+
+
+class ActionPackResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    case_id: str
+    created: int
+    existing: int
+    documents: list[DocumentSummary] = Field(default_factory=list)
+    notice: str
+
+
+class DocumentEditRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    body_html: str = Field(min_length=40, max_length=400_000)
+
+
+class DocumentCommentRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    comment: str | None = Field(default=None, max_length=2_000)
+
+
+class DocumentReturnRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    comment: str = Field(min_length=3, max_length=2_000)
+
+
+class DocumentDispatchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    channel: DispatchChannel = DispatchChannel.EMAIL
+    reference: str = Field(min_length=2, max_length=120)
+
+
+class DocumentResponseRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    note: str = Field(min_length=2, max_length=4_000)
+
+
+class QueueResponse(BaseModel):
+    """What is waiting for the signed-in officer, most overdue first."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    stage: str
+    total: int
+    overdue: int
+    documents: list[DocumentSummary] = Field(default_factory=list)
+
+
+class MisStationRow(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    unit_code: str
+    unit_name: str
+    cases: int
+    high_risk: int
+    documents: int
+    dispatched: int
+    overdue: int
+
+
+class MisReport(BaseModel):
+    """The numbers a supervisor sends upward, computed from the case store."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    period: str
+    generated_at: str
+    scope: str
+    cases: int
+    high_risk_cases: int
+    citizen_reports: int
+    amount_reported_paise: int
+    documents_drafted: int
+    documents_dispatched: int
+    documents_answered: int
+    documents_overdue: int
+    median_hours_to_approval: float | None = None
+    by_unit: list[MisStationRow] = Field(default_factory=list)
+    top_identifiers: list[dict] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)

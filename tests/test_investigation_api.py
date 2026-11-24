@@ -1,8 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 """Integration tests for Investigation Mode (Phases 1 and 2).
 
-Covers the officer auth gate, the submit â†’ persist â†’ search â†’ retrieve loop,
+Covers the officer auth gate, the submit → persist → search → retrieve loop,
 and the ADR-001 guarantee that Citizen Mode writes nothing to the case store.
 """
 

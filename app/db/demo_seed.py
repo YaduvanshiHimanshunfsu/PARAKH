@@ -9,6 +9,7 @@ the linking, similarity and heat-list features have something real to show.
 
     python -m app.db.demo_seed            # add demo cases
     python -m app.db.demo_seed --reset    # delete existing cases first
+    python -m app.db.demo_seed --export-apks samples   # write demo APKs to upload
 
 Every value here is synthetic. Replace with the R4C sample dataset when it is
 available, and never seed real personal data.
@@ -17,6 +18,8 @@ available, and never seed real personal data.
 import argparse
 import asyncio
 import logging
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from sqlalchemy import delete
 
@@ -40,57 +43,85 @@ logger = logging.getLogger(__name__)
 CAMPAIGN_UPI = "richplan@ybl"
 CAMPAIGN_PHONE = "9812345670"
 CAMPAIGN_HOST = "45.133.1.9"
+ROTATED_PHONE = "9123456780"
 
-MESSAGES: tuple[tuple[str, str], ...] = (
+MESSAGES: tuple[tuple[str, int, str], ...] = (
     (
         "Ponzi recruitment SMS",
+        21,
         f"RichPlan Investment: Guaranteed 10% daily returns! Referral bonus on every downline "
         f"member. Joining package Rs 5000. Pay {CAMPAIGN_UPI} or call {CAMPAIGN_PHONE}. "
         f"Join https://t.me/RichPlanOfficial",
     ),
     (
         "Ponzi recruitment SMS (variant)",
+        12,
         f"RichPlan Investment: Guaranteed 12% daily returns! Referral bonus on every downline "
         f"member. Joining package Rs 9000. Pay {CAMPAIGN_UPI} or call {CAMPAIGN_PHONE}. "
         f"Join https://t.me/RichPlanOfficial",
     ),
     (
         "Loan app distribution SMS",
+        10,
         f"Instant loan in 5 minutes! No CIBIL check, only Aadhaar needed. "
         f"Download now http://{CAMPAIGN_HOST}/quickcash.apk Support {CAMPAIGN_PHONE}",
     ),
     (
         "SBI KYC phishing",
+        15,
         "Dear customer your SBI KYC will be blocked in 24 hours. Verify immediately at "
         "https://sbi-verify-kyc.in/urgent or your account will be suspended.",
     ),
     (
         "Electricity disconnection lure",
+        9,
         "Dear consumer your electricity will be disconnected tonight at 9:30 PM due to pending "
         "bill. Update meter immediately, call 9988776655.",
     ),
     (
         "OTP theft attempt",
+        7,
         "This is SBI security. To stop an unauthorised transaction of Rs 48,000 please share the "
         "OTP sent to your registered mobile immediately.",
     ),
     (
         "Betting platform promotion",
+        11,
         "Get your betting ID now! Colour prediction and aviator game. 100% sure shot tips, "
         "welcome bonus 500, instant withdrawal. WhatsApp 9876501234",
     ),
     (
         "Courier customs scam",
+        5,
         "Your parcel is held at customs. Pay clearance duty of Rs 2,450 within 12 hours to "
         "release it, or it will be returned. Track: https://parcel-release-in.xyz/pay",
     ),
     (
         "Fake job offer",
+        4,
         "Work from home! Earn Rs 800-1500 per hour by liking YouTube videos. Registration fee "
         "Rs 500 only. Contact on Telegram https://t.me/EasyTaskJobs",
     ),
     (
+        # The operator rotated the phone number but kept the payment account,
+        # which is exactly what campaign linking is built to catch.
+        "Ponzi recruitment SMS (new number)",
+        3,
+        f"RichPlan Investment: Guaranteed 15% daily returns! Referral bonus on every downline "
+        f"member. Joining package Rs 15000. Pay {CAMPAIGN_UPI} or call {ROTATED_PHONE}. "
+        f"Join https://t.me/RichPlanOfficial",
+    ),
+    (
+        # Shares no identifier with the first KYC message; only the template
+        # links them.
+        "SBI KYC phishing (new domain)",
+        2,
+        "Dear customer your SBI KYC will be blocked in 24 hours. Verify immediately at "
+        "https://sbi-kyc-update.top/verify or your account will be suspended.",
+    ),
+    (
         "Genuine delivery notification",
+        1,
         "Your order 4471239 has been dispatched and will arrive on Tuesday between 10am and 2pm. "
         "No action is needed.",
     ),
@@ -122,6 +153,7 @@ BETTING_SITE_HTML = """
 APK_SPECS: tuple[dict, ...] = (
     {
         "label": "QuickCash Loan",
+        "days_ago": 6,
         "package": "com.quickcash.instantloan",
         "target_sdk": 22,
         "permissions": (
@@ -143,12 +175,48 @@ APK_SPECS: tuple[dict, ...] = (
     },
     {
         "label": "Simple Notes",
+        "days_ago": 8,
         "package": "com.example.simplenotes",
         "target_sdk": 34,
         "permissions": ("android.permission.INTERNET",),
         "dex_strings": ("https://api.simplenotes.example/v1/sync",),
     },
 )
+
+
+def _build_demo_apk(build_apk, build_png, index: int, spec: dict) -> bytes:
+    return build_apk(
+        package=spec["package"],
+        label=spec["label"],
+        target_sdk=spec["target_sdk"],
+        permissions=spec["permissions"],
+        dex_strings=spec["dex_strings"],
+        icon_png=build_png(seed=index + 11),
+    )
+
+
+def _backdate(case: CaseRecord, days_ago: int) -> None:
+    """Spread demo cases over recent weeks so campaign timelines show evolution."""
+
+    when = datetime.now(timezone.utc) - timedelta(days=days_ago, hours=(case.id * 5) % 11)
+    case.created_at = when
+    case.updated_at = when
+    for row in case.identifiers:
+        row.created_at = when
+
+
+def export_demo_apks(directory: Path) -> list[Path]:
+    """Write the demo APKs to disk so they can be uploaded during a demo."""
+
+    from tests.apk_fixtures import build_apk, build_png
+
+    directory.mkdir(parents=True, exist_ok=True)
+    written = []
+    for index, spec in enumerate(APK_SPECS):
+        path = directory / f"{spec['package']}.apk"
+        path.write_bytes(_build_demo_apk(build_apk, build_png, index, spec))
+        written.append(path)
+    return written
 
 
 async def _clear_cases(session) -> int:
@@ -185,24 +253,26 @@ async def seed_demo(reset: bool = False) -> dict[str, int]:
             counts["cleared"] = await _clear_cases(session)
         counts["blacklist"] = await seed_blacklist(session)
 
-        for label, text in MESSAGES:
+        for label, days_ago, text in MESSAGES:
             bundle = await artifacts.analyze(
                 ArtifactType.MESSAGE, text, language=InputLanguage.AUTO, session=session
             )
-            await create_case(
+            case = await create_case(
                 session, bundle, source=CaseSource.OFFICER, reporter_note=f"Demo data: {label}"
             )
+            _backdate(case, days_ago)
             counts["messages"] += 1
 
-        for label, markup, url in (
-            ("RichPlan Ponzi site", PONZI_SITE_HTML, "https://richplan-invest.xyz/join"),
-            ("LuckyBet betting site", BETTING_SITE_HTML, "https://luckybet-pro.top/register"),
+        for label, days_ago, markup, url in (
+            ("RichPlan Ponzi site", 8, PONZI_SITE_HTML, "https://richplan-invest.xyz/join"),
+            ("LuckyBet betting site", 6, BETTING_SITE_HTML, "https://luckybet-pro.top/register"),
         ):
             page = website._build_page(url, url, 200, "text/html", markup.encode("utf-8"), [url], False)
             bundle = website.analyze_page(page)
-            await create_case(
+            case = await create_case(
                 session, bundle, source=CaseSource.OFFICER, reporter_note=f"Demo data: {label}"
             )
+            _backdate(case, days_ago)
             counts["websites"] += 1
 
         try:
@@ -211,21 +281,15 @@ async def seed_demo(reset: bool = False) -> dict[str, int]:
             logger.warning("apk_fixtures_unavailable: skipping demo APK cases")
         else:
             for index, spec in enumerate(APK_SPECS):
-                data = build_apk(
-                    package=spec["package"],
-                    label=spec["label"],
-                    target_sdk=spec["target_sdk"],
-                    permissions=spec["permissions"],
-                    dex_strings=spec["dex_strings"],
-                    icon_png=build_png(seed=index + 11),
-                )
+                data = _build_demo_apk(build_apk, build_png, index, spec)
                 bundle = apk_analyzer.analyze(data, filename=f"{spec['package']}.apk")
-                await create_case(
+                case = await create_case(
                     session,
                     bundle,
                     source=CaseSource.OFFICER,
                     reporter_note=f"Demo data: {spec['label']}",
                 )
+                _backdate(case, spec["days_ago"])
                 counts["apks"] += 1
 
     await scam.close()
@@ -236,7 +300,18 @@ async def seed_demo(reset: bool = False) -> dict[str, int]:
 async def main() -> None:
     parser = argparse.ArgumentParser(description="Seed demo cases for the investigation dashboard.")
     parser.add_argument("--reset", action="store_true", help="Delete existing cases first")
+    parser.add_argument(
+        "--export-apks",
+        metavar="DIR",
+        type=Path,
+        help="Only write the demo APK files to DIR (for upload during a demo) and exit",
+    )
     args = parser.parse_args()
+
+    if args.export_apks:
+        for path in export_demo_apks(args.export_apks):
+            print(path)
+        return
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     counts = await seed_demo(reset=args.reset)
@@ -252,7 +327,7 @@ async def main() -> None:
         f"\nSeeded {counts['messages']} messages, {counts['websites']} websites, "
         f"{counts['apks']} APKs.\n"
         f"Campaign identifiers reused across types: {CAMPAIGN_UPI}, "
-        f"+91{CAMPAIGN_PHONE}, {CAMPAIGN_HOST}"
+        f"+91{CAMPAIGN_PHONE}, {CAMPAIGN_HOST} (phone later rotated to +91{ROTATED_PHONE})"
     )
 
 

@@ -1,0 +1,1471 @@
+{
+  "generated_at": "2026-11-24 12:04 UTC",
+  "test": {
+    "split": "test",
+    "messages": {
+      "n": 97,
+      "confusion": {
+        "SCAM": {
+          "SCAM": 45,
+          "SUSPICIOUS": 2
+        },
+        "SUSPICIOUS": {
+          "SAFE": 1
+        },
+        "SAFE": {
+          "SAFE": 47,
+          "SUSPICIOUS": 2
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 1.0,
+          "recall": 0.957,
+          "f1": 0.978,
+          "support": 47
+        },
+        "SUSPICIOUS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "SAFE": {
+          "precision": 0.979,
+          "recall": 0.959,
+          "f1": 0.969,
+          "support": 49
+        }
+      },
+      "macro_f1": 0.649,
+      "scam_precision": 1.0,
+      "risky_recall": 0.979,
+      "safe_specificity": 0.959,
+      "risky_recall_hi_hinglish": 1.0,
+      "by_language": {
+        "en": {
+          "n": 51,
+          "risky_recall": 0.966,
+          "false_alarm_rate": 0.0
+        },
+        "hi": {
+          "n": 18,
+          "risky_recall": 1.0,
+          "false_alarm_rate": 0.083
+        },
+        "hinglish": {
+          "n": 28,
+          "risky_recall": 1.0,
+          "false_alarm_rate": 0.067
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 6,
+          "accuracy": 0.833
+        },
+        "APPOINTMENT": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 5,
+          "accuracy": 0.8
+        },
+        "BETTING_GAMBLING": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "DELIVERY": {
+          "n": 6,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "EDUCATION": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "GOVT": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "KYC_SCAM": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 5,
+          "accuracy": 0.8
+        },
+        "LOTTERY_PRIZE": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "MALICIOUS_APP": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "MARKETPLACE_FRAUD": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "OTP": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "OTP_THEFT": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "PERSONAL": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "TECH_SUPPORT": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UTILITY": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "WORK": {
+          "n": 2,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.851,
+      "misses": [
+        {
+          "id": "m136",
+          "lang": "en",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s088",
+          "lang": "hi",
+          "predicted": "SUSPICIOUS",
+          "text": "आपके अनुरोध पर कार्ड ब्लॉक कर दिया गया है। नया कार्ड आपके पंजीकृत पते पर भेजा जाएगा।"
+        },
+        {
+          "id": "s103",
+          "lang": "hinglish",
+          "predicted": "SUSPICIOUS",
+          "text": "Rajasthan Police: koi bhi police video call par digital arrest nahi karti. Thagi hone par turant 1930 par call karein."
+        }
+      ]
+    },
+    "urls": {
+      "n": 36,
+      "phishing_recall": 0.833,
+      "precision": 1.0,
+      "official_false_positives": 0,
+      "official_total": 18,
+      "official_fp_list": [],
+      "phishing_missed": [
+        {
+          "id": "u103",
+          "url": "https://quickcash-loan.top/app.apk",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u106",
+          "url": "https://task-earn-daily.live/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u107",
+          "url": "https://aviator-hack-predictor.top",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 22,
+      "micro_f1": 0.98,
+      "micro_precision": 0.96,
+      "micro_recall": 1.0,
+      "per_type": {
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "CRYPTO_TRON": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "DOMAIN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "IP": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "PHONE": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.889,
+          "support": 4
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "URL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        }
+      },
+      "mistakes": [
+        {
+          "id": "n014",
+          "missing": [],
+          "extra": [
+            "PHONE:+914523671890"
+          ]
+        }
+      ]
+    },
+    "websites": {
+      "n": 8,
+      "accuracy": 0.75,
+      "wrong": [
+        {
+          "id": "w006",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 28,
+          "findings": [
+            "INSTANT_LOAN_NO_CHECKS"
+          ]
+        },
+        {
+          "id": "w009",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 0,
+          "findings": []
+        }
+      ]
+    },
+    "apks": {
+      "n": 5,
+      "accuracy": 1.0,
+      "benign_flagged_high": 0,
+      "wrong": []
+    }
+  },
+  "dev": {
+    "split": "dev",
+    "messages": {
+      "n": 203,
+      "confusion": {
+        "SCAM": {
+          "SCAM": 83,
+          "SUSPICIOUS": 2,
+          "SAFE": 1
+        },
+        "SUSPICIOUS": {
+          "SCAM": 2,
+          "SUSPICIOUS": 5,
+          "SAFE": 4
+        },
+        "SAFE": {
+          "SAFE": 100,
+          "SUSPICIOUS": 3,
+          "SCAM": 3
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 0.943,
+          "recall": 0.965,
+          "f1": 0.954,
+          "support": 86
+        },
+        "SUSPICIOUS": {
+          "precision": 0.5,
+          "recall": 0.455,
+          "f1": 0.476,
+          "support": 11
+        },
+        "SAFE": {
+          "precision": 0.952,
+          "recall": 0.943,
+          "f1": 0.948,
+          "support": 106
+        }
+      },
+      "macro_f1": 0.793,
+      "scam_precision": 0.943,
+      "risky_recall": 0.948,
+      "safe_specificity": 0.943,
+      "risky_recall_hi_hinglish": 0.963,
+      "by_language": {
+        "en": {
+          "n": 102,
+          "risky_recall": 0.93,
+          "false_alarm_rate": 0.017
+        },
+        "hi": {
+          "n": 54,
+          "risky_recall": 0.966,
+          "false_alarm_rate": 0.08
+        },
+        "hinglish": {
+          "n": 47,
+          "risky_recall": 0.96,
+          "false_alarm_rate": 0.136
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 17,
+          "accuracy": 0.824
+        },
+        "APPOINTMENT": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 15,
+          "accuracy": 0.867
+        },
+        "BETTING_GAMBLING": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "COURIER_SCAM": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "DELIVERY": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 10,
+          "accuracy": 0.9
+        },
+        "EDUCATION": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 11,
+          "accuracy": 0.909
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "GOVT": {
+          "n": 12,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "KYC_SCAM": {
+          "n": 13,
+          "accuracy": 1.0
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 8,
+          "accuracy": 0.875
+        },
+        "LOTTERY_PRIZE": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "MALICIOUS_APP": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "OTP": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "OTP_THEFT": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "PERSONAL": {
+          "n": 14,
+          "accuracy": 1.0
+        },
+        "PHISHING_LINK": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "PONZI_MLM": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "PROMO": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 1,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "TECH_SUPPORT": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UNKNOWN": {
+          "n": 2,
+          "accuracy": 0.0
+        },
+        "UPI_FRAUD": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UTILITY": {
+          "n": 13,
+          "accuracy": 0.923
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "WORK": {
+          "n": 5,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.942,
+      "misses": [
+        {
+          "id": "m031",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
+        },
+        {
+          "id": "m137",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hiring now! Online work, flexible hours, good pay. Send your name and city to get details."
+        },
+        {
+          "id": "m139",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal."
+        },
+        {
+          "id": "m142",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Personal loan chahiye? Jaldi approval, kam byaj. LOAN likh ke reply karo."
+        },
+        {
+          "id": "m144",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Your account shows unusual activity. If this was not you, contact support."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s006",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Your ICICI Bank Credit Card XX2210 has been used for Rs 3,499 at FLIPKART on 12-Nov. If not done by you, block the card "
+        },
+        {
+          "id": "s068",
+          "lang": "hi",
+          "predicted": "SCAM",
+          "text": "राजस्थान पुलिस: कोई भी पुलिस अधिकारी वीडियो कॉल पर डिजिटल अरेस्ट नहीं करता। ठगी होने पर तुरंत 1930 पर कॉल करें।"
+        },
+        {
+          "id": "s093",
+          "lang": "hi",
+          "predicted": "SUSPICIOUS",
+          "text": "ऑनलाइन नौकरी के नाम पर पैसे मांगने वालों से सावधान रहें। असली कंपनियाँ नौकरी के लिए शुल्क नहीं लेतीं।"
+        },
+        {
+          "id": "s104",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Bijli katne ke fake message se savdhan rahein. Discom kabhi personal mobile number par call karne ko nahi kehta."
+        },
+        {
+          "id": "s108",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Vaishali Nagar me 27 Nov ko 10 se 2 baje tak maintenance ke liye bijli band rahegi."
+        },
+        {
+          "id": "s129",
+          "lang": "hinglish",
+          "predicted": "SUSPICIOUS",
+          "text": "Aapke request par card block kar diya gaya hai, naya card registered address par aayega."
+        }
+      ]
+    },
+    "urls": {
+      "n": 84,
+      "phishing_recall": 0.857,
+      "precision": 1.0,
+      "official_false_positives": 0,
+      "official_total": 42,
+      "official_fp_list": [],
+      "phishing_missed": [
+        {
+          "id": "u101",
+          "url": "https://richplan-invest.xyz/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u102",
+          "url": "https://bet777.vip/register",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u104",
+          "url": "https://colour-prediction-win.online",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u105",
+          "url": "https://double-money-plan.site",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u108",
+          "url": "https://instant-loan-noncibil.shop/apply",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u114",
+          "url": "https://google-pay-cashback.store",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 58,
+      "micro_f1": 0.966,
+      "micro_precision": 0.933,
+      "micro_recall": 1.0,
+      "per_type": {
+        "BANK_ACCOUNT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_BTC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_TRON": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "DOMAIN": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.889,
+          "support": 8
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "FIREBASE_DB": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "IFSC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "IMEI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "IP": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "PACKAGE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "PHONE": {
+          "precision": 0.909,
+          "recall": 1.0,
+          "f1": 0.952,
+          "support": 10
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "TELEGRAM_BOT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 10
+        },
+        "URL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        }
+      },
+      "mistakes": [
+        {
+          "id": "i032",
+          "missing": [],
+          "extra": [
+            "DOMAIN:api.telegram.org"
+          ]
+        },
+        {
+          "id": "i050",
+          "missing": [],
+          "extra": [
+            "DOMAIN:wa.me"
+          ]
+        },
+        {
+          "id": "n016",
+          "missing": [],
+          "extra": [
+            "IP:1.2.3.4"
+          ]
+        },
+        {
+          "id": "i055",
+          "missing": [],
+          "extra": [
+            "PHONE:+911800111109"
+          ]
+        }
+      ]
+    },
+    "websites": {
+      "n": 22,
+      "accuracy": 0.864,
+      "wrong": [
+        {
+          "id": "w015",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 16,
+          "findings": [
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w022",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 72,
+          "findings": [
+            "REFERRAL_CHAIN_INCOME",
+            "JOINING_PACKAGE_FEE",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w025",
+          "label": "SAFE",
+          "risk": "MEDIUM",
+          "score": 41,
+          "findings": [
+            "PAGE_COLLECTS_PAYMENT_IDENTIFIER",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        }
+      ]
+    },
+    "apks": {
+      "n": 15,
+      "accuracy": 0.867,
+      "benign_flagged_high": 2,
+      "wrong": [
+        {
+          "id": "a015",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 100,
+          "findings": [
+            "PERM_READ_SMS",
+            "PERM_RECEIVE_SMS",
+            "PERM_READ_CONTACTS",
+            "PERM_SEND_SMS",
+            "COMBO_LOAN_APP_HARVESTING",
+            "COMBO_OTP_EXFILTRATION",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        },
+        {
+          "id": "a018",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 71,
+          "findings": [
+            "PERM_READ_CONTACTS",
+            "PERM_READ_CALL_LOG",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        }
+      ]
+    }
+  },
+  "all": {
+    "split": "all",
+    "messages": {
+      "n": 300,
+      "confusion": {
+        "SCAM": {
+          "SCAM": 128,
+          "SUSPICIOUS": 4,
+          "SAFE": 1
+        },
+        "SUSPICIOUS": {
+          "SCAM": 2,
+          "SUSPICIOUS": 5,
+          "SAFE": 5
+        },
+        "SAFE": {
+          "SAFE": 147,
+          "SUSPICIOUS": 5,
+          "SCAM": 3
+        }
+      },
+      "per_class": {
+        "SCAM": {
+          "precision": 0.962,
+          "recall": 0.962,
+          "f1": 0.962,
+          "support": 133
+        },
+        "SUSPICIOUS": {
+          "precision": 0.357,
+          "recall": 0.417,
+          "f1": 0.385,
+          "support": 12
+        },
+        "SAFE": {
+          "precision": 0.961,
+          "recall": 0.948,
+          "f1": 0.955,
+          "support": 155
+        }
+      },
+      "macro_f1": 0.767,
+      "scam_precision": 0.962,
+      "risky_recall": 0.959,
+      "safe_specificity": 0.948,
+      "risky_recall_hi_hinglish": 0.973,
+      "by_language": {
+        "en": {
+          "n": 153,
+          "risky_recall": 0.944,
+          "false_alarm_rate": 0.012
+        },
+        "hi": {
+          "n": 72,
+          "risky_recall": 0.971,
+          "false_alarm_rate": 0.081
+        },
+        "hinglish": {
+          "n": 75,
+          "risky_recall": 0.974,
+          "false_alarm_rate": 0.108
+        }
+      },
+      "by_category": {
+        "ADVISORY": {
+          "n": 23,
+          "accuracy": 0.826
+        },
+        "APPOINTMENT": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "BANK_ALERT": {
+          "n": 20,
+          "accuracy": 0.85
+        },
+        "BETTING_GAMBLING": {
+          "n": 6,
+          "accuracy": 1.0
+        },
+        "COURIER_SCAM": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "DELIVERY": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "DIGITAL_ARREST": {
+          "n": 15,
+          "accuracy": 0.933
+        },
+        "EDUCATION": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "FAKE_JOB": {
+          "n": 14,
+          "accuracy": 0.929
+        },
+        "GOVERNMENT_IMPERSONATION": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "GOVT": {
+          "n": 16,
+          "accuracy": 1.0
+        },
+        "HEALTH": {
+          "n": 5,
+          "accuracy": 1.0
+        },
+        "INVESTMENT_FRAUD": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "KYC_SCAM": {
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "LOAN_APP_FRAUD": {
+          "n": 13,
+          "accuracy": 0.846
+        },
+        "LOTTERY_PRIZE": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "MALICIOUS_APP": {
+          "n": 12,
+          "accuracy": 1.0
+        },
+        "MARKETPLACE_FRAUD": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "OTP": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "OTP_THEFT": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "PERSONAL": {
+          "n": 24,
+          "accuracy": 1.0
+        },
+        "PHISHING_LINK": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "PONZI_MLM": {
+          "n": 7,
+          "accuracy": 1.0
+        },
+        "PROMO": {
+          "n": 10,
+          "accuracy": 1.0
+        },
+        "ROMANCE_SCAM": {
+          "n": 2,
+          "accuracy": 1.0
+        },
+        "SEXTORTION": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "TECH_SUPPORT": {
+          "n": 3,
+          "accuracy": 1.0
+        },
+        "TRAVEL": {
+          "n": 8,
+          "accuracy": 1.0
+        },
+        "UNKNOWN": {
+          "n": 2,
+          "accuracy": 0.0
+        },
+        "UPI_FRAUD": {
+          "n": 4,
+          "accuracy": 1.0
+        },
+        "UTILITY": {
+          "n": 16,
+          "accuracy": 0.938
+        },
+        "UTILITY_BILL_SCAM": {
+          "n": 11,
+          "accuracy": 1.0
+        },
+        "WORK": {
+          "n": 7,
+          "accuracy": 1.0
+        }
+      },
+      "category_match_on_scams": 0.91,
+      "misses": [
+        {
+          "id": "m031",
+          "lang": "hi",
+          "category": "DIGITAL_ARREST",
+          "text": "प्रवर्तन निदेशालय: आपके विरुद्ध गिरफ्तारी वारंट जारी हुआ है। किसी को न बताएँ, वीडियो कॉल पर बने रहें और जमानत राशि ट्रां"
+        },
+        {
+          "id": "m136",
+          "lang": "en",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Need a personal loan? Quick approval, low interest. Reply LOAN to get a call back."
+        },
+        {
+          "id": "m137",
+          "lang": "en",
+          "category": "FAKE_JOB",
+          "text": "Hiring now! Online work, flexible hours, good pay. Send your name and city to get details."
+        },
+        {
+          "id": "m139",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Hello dear, I got your number from a friend. Can we talk on WhatsApp? I have a business proposal."
+        },
+        {
+          "id": "m142",
+          "lang": "hinglish",
+          "category": "LOAN_APP_FRAUD",
+          "text": "Personal loan chahiye? Jaldi approval, kam byaj. LOAN likh ke reply karo."
+        },
+        {
+          "id": "m144",
+          "lang": "en",
+          "category": "UNKNOWN",
+          "text": "Your account shows unusual activity. If this was not you, contact support."
+        }
+      ],
+      "false_alarms": [
+        {
+          "id": "s006",
+          "lang": "en",
+          "predicted": "SUSPICIOUS",
+          "text": "Your ICICI Bank Credit Card XX2210 has been used for Rs 3,499 at FLIPKART on 12-Nov. If not done by you, block the card "
+        },
+        {
+          "id": "s068",
+          "lang": "hi",
+          "predicted": "SCAM",
+          "text": "राजस्थान पुलिस: कोई भी पुलिस अधिकारी वीडियो कॉल पर डिजिटल अरेस्ट नहीं करता। ठगी होने पर तुरंत 1930 पर कॉल करें।"
+        },
+        {
+          "id": "s088",
+          "lang": "hi",
+          "predicted": "SUSPICIOUS",
+          "text": "आपके अनुरोध पर कार्ड ब्लॉक कर दिया गया है। नया कार्ड आपके पंजीकृत पते पर भेजा जाएगा।"
+        },
+        {
+          "id": "s093",
+          "lang": "hi",
+          "predicted": "SUSPICIOUS",
+          "text": "ऑनलाइन नौकरी के नाम पर पैसे मांगने वालों से सावधान रहें। असली कंपनियाँ नौकरी के लिए शुल्क नहीं लेतीं।"
+        },
+        {
+          "id": "s103",
+          "lang": "hinglish",
+          "predicted": "SUSPICIOUS",
+          "text": "Rajasthan Police: koi bhi police video call par digital arrest nahi karti. Thagi hone par turant 1930 par call karein."
+        },
+        {
+          "id": "s104",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Bijli katne ke fake message se savdhan rahein. Discom kabhi personal mobile number par call karne ko nahi kehta."
+        },
+        {
+          "id": "s108",
+          "lang": "hinglish",
+          "predicted": "SCAM",
+          "text": "Vaishali Nagar me 27 Nov ko 10 se 2 baje tak maintenance ke liye bijli band rahegi."
+        },
+        {
+          "id": "s129",
+          "lang": "hinglish",
+          "predicted": "SUSPICIOUS",
+          "text": "Aapke request par card block kar diya gaya hai, naya card registered address par aayega."
+        }
+      ]
+    },
+    "urls": {
+      "n": 120,
+      "phishing_recall": 0.85,
+      "precision": 1.0,
+      "official_false_positives": 0,
+      "official_total": 60,
+      "official_fp_list": [],
+      "phishing_missed": [
+        {
+          "id": "u101",
+          "url": "https://richplan-invest.xyz/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u102",
+          "url": "https://bet777.vip/register",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u103",
+          "url": "https://quickcash-loan.top/app.apk",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u104",
+          "url": "https://colour-prediction-win.online",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u105",
+          "url": "https://double-money-plan.site",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u106",
+          "url": "https://task-earn-daily.live/join",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u107",
+          "url": "https://aviator-hack-predictor.top",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u108",
+          "url": "https://instant-loan-noncibil.shop/apply",
+          "kind": "scheme",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        },
+        {
+          "id": "u114",
+          "url": "https://google-pay-cashback.store",
+          "kind": "lookalike",
+          "risk": "LOW",
+          "signals": [
+            "HIGH_RISK_TLD"
+          ]
+        }
+      ]
+    },
+    "identifiers": {
+      "n": 80,
+      "micro_f1": 0.97,
+      "micro_precision": 0.941,
+      "micro_recall": 1.0,
+      "per_type": {
+        "BANK_ACCOUNT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_BTC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "CRYPTO_ETH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "CRYPTO_TRON": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "DOMAIN": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933,
+          "support": 14
+        },
+        "EMAIL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "FIREBASE_DB": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "IFSC": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "IMEI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "IP": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.857,
+          "support": 3
+        },
+        "PACKAGE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "PHONE": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933,
+          "support": 14
+        },
+        "TELEGRAM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "TELEGRAM_BOT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "UPI": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 11
+        },
+        "URL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        }
+      },
+      "mistakes": [
+        {
+          "id": "i032",
+          "missing": [],
+          "extra": [
+            "DOMAIN:api.telegram.org"
+          ]
+        },
+        {
+          "id": "i050",
+          "missing": [],
+          "extra": [
+            "DOMAIN:wa.me"
+          ]
+        },
+        {
+          "id": "n014",
+          "missing": [],
+          "extra": [
+            "PHONE:+914523671890"
+          ]
+        },
+        {
+          "id": "n016",
+          "missing": [],
+          "extra": [
+            "IP:1.2.3.4"
+          ]
+        },
+        {
+          "id": "i055",
+          "missing": [],
+          "extra": [
+            "PHONE:+911800111109"
+          ]
+        }
+      ]
+    },
+    "websites": {
+      "n": 30,
+      "accuracy": 0.833,
+      "wrong": [
+        {
+          "id": "w006",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 28,
+          "findings": [
+            "INSTANT_LOAN_NO_CHECKS"
+          ]
+        },
+        {
+          "id": "w009",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 0,
+          "findings": []
+        },
+        {
+          "id": "w015",
+          "label": "SCAM",
+          "risk": "LOW",
+          "score": 16,
+          "findings": [
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w022",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 72,
+          "findings": [
+            "REFERRAL_CHAIN_INCOME",
+            "JOINING_PACKAGE_FEE",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        },
+        {
+          "id": "w025",
+          "label": "SAFE",
+          "risk": "MEDIUM",
+          "score": 41,
+          "findings": [
+            "PAGE_COLLECTS_PAYMENT_IDENTIFIER",
+            "MISSING_LEGITIMACY_MARKERS"
+          ]
+        }
+      ]
+    },
+    "apks": {
+      "n": 20,
+      "accuracy": 0.9,
+      "benign_flagged_high": 2,
+      "wrong": [
+        {
+          "id": "a015",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 100,
+          "findings": [
+            "PERM_READ_SMS",
+            "PERM_RECEIVE_SMS",
+            "PERM_READ_CONTACTS",
+            "PERM_SEND_SMS",
+            "COMBO_LOAN_APP_HARVESTING",
+            "COMBO_OTP_EXFILTRATION",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        },
+        {
+          "id": "a018",
+          "label": "SAFE",
+          "risk": "HIGH",
+          "score": 71,
+          "findings": [
+            "PERM_READ_CONTACTS",
+            "PERM_READ_CALL_LOG",
+            "UNSIGNED_OR_UNREADABLE_SIGNATURE"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#b7c4ff",
+          "secondary": "#984800",
+          "outline-variant": "#c4c5d7",
+          "inverse-surface": "#283044",
+          "on-surface": "#131b2e",
+          "surface-dim": "#d2d9f4",
+          "on-secondary-fixed": "#311300",
+          "on-background": "#131b2e",
+          "surface-tint": "#2151da",
+          "on-surface-variant": "#434655",
+          "tertiary": "#802500",
+          "on-error-container": "#93000a",
+          "inverse-primary": "#b7c4ff",
+          "surface-variant": "#dae2fd",
+          "on-secondary-container": "#6b3100",
+          "surface-container-low": "#f2f3ff",
+          "on-tertiary-fixed": "#390c00",
+          "tertiary-fixed-dim": "#ffb59d",
+          "on-primary-container": "#cad3ff",
+          "secondary-fixed": "#ffdbc8",
+          "on-tertiary-fixed-variant": "#832600",
+          "tertiary-container": "#a83300",
+          "primary-container": "#1d4ed8",
+          "tertiary-fixed": "#ffdbd0",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "on-primary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "background": "#faf8ff",
+          "secondary-fixed-dim": "#ffb689",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#ffc9b8",
+          "error-container": "#ffdad6",
+          "surface-container": "#eaedff",
+          "surface": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "on-secondary-fixed-variant": "#743500",
+          "on-primary-fixed": "#001551",
+          "primary-fixed": "#dce1ff",
+          "on-primary-fixed-variant": "#0039b5",
+          "surface-bright": "#faf8ff",
+          "secondary-container": "#ff9245",
+          "primary": "#0037b0",
+          "outline": "#747686",
+          "inverse-on-surface": "#eef0ff",
+          "surface-container-high": "#e2e7ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-3xl": "4rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "space-2xl": "3rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem",
+          "space-2xs": "0.25rem",
+          "space-xl": "2rem",
+          "space-xs": "0.5rem",
+          "margin": "2rem",
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-ui": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "title-md": ["Plus Jakarta Sans"],
+          "label-mono-sm": ["JetBrains Mono"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "label-mono-md": ["JetBrains Mono"],
+          "display-hero-mobile": ["Plus Jakarta Sans"],
+          "display-hero": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-ui": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+          "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+          "label-mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+          "label-mono-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+          "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+          "display-hero": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full max-w-[1440px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group text-left" data-path="check" href="#"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(0,55,176,0.25)]"><span class="material-symbols-outlined text-on-primary text-[22px]">verified_user</span></div><div class="flex flex-col"><div class="flex items-baseline gap-space-2xs"><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">PARAKH</span><span class="font-title-md text-title-md text-secondary font-semibold">परख</span></div><span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Rajasthan Police • Citizen Portal</span></div></a><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg"><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="check" href="#">Check / सत्यापन</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="app-check" href="#">App Check / ऐप जांच</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="learn" href="#">Learn / सीखें</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="evidence" href="#">Evidence / साक्ष्य</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="help" href="#">Help / सहायता</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center p-space-2xs bg-surface-container rounded-full"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest font-label-ui text-label-ui text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)]" type="button">EN</button><button class="px-space-sm py-space-2xs rounded-full font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-colors" type="button">हिंदी</button></div><a class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-error text-on-error hover:bg-error/90 transition-all shadow-[0_2px_10px_rgba(186,26,26,0.22)]" href="tel:1930"><span class="material-symbols-outlined text-[18px]">emergency</span><span class="font-title-md text-title-md tracking-wide font-bold">1930</span><span class="hidden md:inline font-label-ui text-label-ui uppercase tracking-wider text-on-error/90">Helpline</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- Sub-header & Breadcrumb Telemetry Bar -->
+<section class="w-full bg-surface-container-lowest shadow-sm">
+<div class="max-w-[1440px] mx-auto px-margin py-space-sm flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-2xs text-primary font-label-ui text-label-ui">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-bold tracking-wider uppercase">राजस्थान पुलिस साइबर सुरक्षा सेल</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface-variant font-label-mono-sm text-label-mono-sm">FORENSIC TRIAGE • APK DECOMPILER</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-label-mono-sm">
+          REF: PRK-20261129-APK401
+        </span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-primary font-label-mono-sm text-label-mono-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">security</span>
+<span>STATIC SANDBOX (शून्य रन-टाइम निष्पादन)</span>
+</div>
+<div class="hidden md:flex items-center gap-space-2xs text-secondary font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Live Bytecode Engine v4.2</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero Section & Interactive Drop Zone -->
+<section class="w-full bg-gradient-to-b from-surface to-surface-container-low py-space-2xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="max-w-3xl mx-auto text-center mb-space-xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-primary-fixed text-on-primary-fixed font-label-ui text-label-ui mb-space-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px]">android</span>
+<span>CITIZEN CYBER DEFENSE • नागरिक ऐप सुरक्षा</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight mb-space-xs">
+          Got an app file on WhatsApp? Check before you install.
+        </h1>
+<p class="font-headline-sm text-headline-sm text-secondary font-semibold mb-space-sm">
+          व्हाट्सएप या अनजान लिंक से मिली APK फ़ाइल को इंस्टॉल करने से पहले परखें
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+          Upload any Android <span class="font-label-mono-sm font-semibold text-primary">.apk</span> package for instantaneous static bytecode decompilation and dangerous permission graph triangulation. Zero execution on servers, ephemeral RAM inspection, and zero disk storage.
+        </p>
+</div>
+<!-- Upload Drop Zone Card -->
+<div class="max-w-4xl mx-auto">
+<div class="relative rounded-2xl bg-surface-container-lowest p-space-xl md:p-space-2xl text-center shadow-md transition-all duration-300 hover:shadow-xl group" id="apkDropZone">
+<!-- Ambient decorative light glow -->
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center">
+<!-- Icon Composition -->
+<div class="relative mb-space-md">
+<div class="w-20 h-20 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-[44px]">apk_install</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">search_check</span>
+</div>
+</div>
+<!-- Drag Prompt -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">
+              Drag &amp; Drop your Android package here
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+              अपनी .apk फ़ाइल यहाँ खींचकर छोड़ें या डिवाइस से अपलोड करें
+            </p>
+<!-- File Upload Trigger & Input -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm mb-space-lg">
+<label class="cursor-pointer inline-flex items-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-primary text-on-primary hover:bg-primary-container font-title-md text-title-md font-semibold transition-all shadow-md hover:shadow-lg" for="apkFileInput">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+<span>Choose .apk file from device (फ़ाइल चुनें)</span>
+</label>
+<input accept=".apk" class="hidden" id="apkFileInput" type="file"/>
+<button class="inline-flex items-center gap-space-2xs px-space-md py-space-sm rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface font-title-md text-title-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<span>Paste APK Direct URL</span>
+</button>
+</div>
+<!-- Limits & Reassurance Specs -->
+<div class="flex flex-wrap items-center justify-center gap-y-space-xs gap-x-space-lg text-on-surface-variant font-label-ui text-label-ui">
+<span class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-primary">data_object</span>
+                Supports APK, XAPK, APKS up to 100MB
+              </span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span class="flex items-center gap-space-2xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">lock_reset</span>
+                Zero-Run Guarantee (Ephemeral RAM)
+              </span>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<span class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+                No storage on police server disk
+              </span>
+</div>
+</div>
+</div>
+<!-- Pre-loaded Forensic Evidence File Banner -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">inventory_2</span>
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+<span class="font-semibold text-primary">Current Active Inspection:</span> QuickCash_Loan_v2.4_release.apk (14.8 MB)
+            </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm px-space-xs py-space-2xs rounded bg-surface-container-highest text-on-surface">
+              CRC32: 9C4E01B8
+            </span>
+<span class="font-label-ui text-label-ui px-space-xs py-space-2xs rounded bg-error-container text-on-error-container font-bold">
+              MALICIOUS APPARENT
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Analysis Progress Pipeline Diagram -->
+<section class="w-full bg-surface-container-lowest py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm mb-space-lg">
+<div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-bold">Bytecode Execution Pipeline</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Static Forensic Analysis Trace • विश्लेषण क्रम
+          </h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-mono-sm text-label-mono-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+<span>Engine Wall Time: <strong class="text-on-surface">380ms</strong> (0.38 sec)</span>
+</div>
+</div>
+<!-- Sequential Pipeline Flow -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md relative">
+<!-- Layer 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">LAYER 01</span>
+<span class="inline-flex items-center gap-space-2xs px-space-2xs py-0.5 rounded bg-surface-container text-primary font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Decompiled
+              </span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">AndroidManifest.xml</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Manifest parsed, 37 exported activities unpacked, 4 rogue background services detected.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs font-label-mono-sm text-label-mono-sm text-outline flex items-center justify-between">
+<span>Target SDK: 33</span>
+<span>Min SDK: 24</span>
+</div>
+</div>
+<!-- Layer 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">LAYER 02</span>
+<span class="inline-flex items-center gap-space-2xs px-space-2xs py-0.5 rounded bg-surface-container text-primary font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Analyzed
+              </span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">Permissions Graph</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Dangerous capability clusters mapped. SMS and Contact exfiltration linkages established.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs font-label-mono-sm text-label-mono-sm text-error flex items-center justify-between font-bold">
+<span>Critical Nodes: 5</span>
+<span>Cluster: High</span>
+</div>
+</div>
+<!-- Layer 3 -->
+<div class="p-space-md rounded-xl bg-error-container/40 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">LAYER 03</span>
+<span class="inline-flex items-center gap-space-2xs px-space-2xs py-0.5 rounded bg-error text-on-error font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[14px]">warning</span> Flagged
+              </span>
+</div>
+<h4 class="font-title-md text-title-md text-on-error-container font-bold mb-space-2xs">Signing Certificate</h4>
+<p class="font-body-sm text-body-sm text-on-error-container">
+              Self-signed debug keystore discovered. No cryptographic link to verified software publisher.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs font-label-mono-sm text-label-mono-sm text-error flex items-center justify-between font-bold">
+<span>Debug Keystore</span>
+<span>Untrusted</span>
+</div>
+</div>
+<!-- Layer 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">LAYER 04</span>
+<span class="inline-flex items-center gap-space-2xs px-space-2xs py-0.5 rounded bg-surface-container text-primary font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Extracted
+              </span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">Hardcoded Endpoints</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Rogue C2 servers, Telegram scraper bot tokens, and extortion mule UPI addresses retrieved.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs font-label-mono-sm text-label-mono-sm text-secondary flex items-center justify-between font-bold">
+<span>Artifacts: 14</span>
+<span>Foreign C2: Yes</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Police FIR Match Alert Banner -->
+<section class="w-full bg-surface py-space-md">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="p-space-md md:p-space-lg rounded-2xl bg-error text-on-error shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-on-error/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px] text-on-error">report_problem</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs mb-space-2xs">
+<span class="px-space-xs py-space-2xs rounded bg-on-error text-error font-label-ui text-label-ui font-black uppercase">
+                EXTREME RISK • तात्कालिक ख़तरा
+              </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-error/80">WATCHLIST: CYB-LOAN-2025-09</span>
+</div>
+<p class="font-headline-sm text-headline-sm font-bold leading-snug">
+              Already seen in police cases — Cryptographic signature matches 3 active cyber-extortion FIRs in Jaipur &amp; Alwar
+            </p>
+<p class="font-body-sm text-body-sm text-on-error/90 mt-space-2xs">
+              यह ऐप्लिकेशन राजस्थान पुलिस के केंद्रीय साइबर डेटाबेस में ब्लैकलिस्टेड है। इसे किसी भी हाल में इंस्टॉल न करें।
+            </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-space-sm w-full md:w-auto">
+<a class="w-full md:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-surface-container-lowest text-error font-title-md text-title-md font-bold shadow-md hover:bg-surface-container-low transition-colors" href="tel:1930">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Dial 1930 Now</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Verdict & App Identity Section -->
+<section class="w-full bg-surface py-space-lg">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- LEFT: App Identity Metadata Card (7 cols) -->
+<div class="lg:col-span-7 rounded-2xl bg-surface-container-lowest p-space-lg md:p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-md">
+<!-- App Icon Placeholder -->
+<div class="relative w-16 h-16 rounded-2xl bg-secondary-container/20 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Counterfeit fast loan android app logo with a deceptive golden dollar coin and aggressive red warning triangle emblem, clean flat modern mobile app icon vector render." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjesAsr-YyHGu2XzQCbltLV9VtyjpR51Jik1F9UM2akIfF5MRVhphvrIoeli-7evcH0m3MDsZ6TAXV7fXjCypIVOHD0-7pMt5KWS1GqWPz8Bt5oCNOrrYHeS1qESIZRxmj2gjZe-8hhs0CmduF37JTH9LPfDtAxhtxwCY4fF_56PCYpCcwL75FfvseSGwItz2dRFqLmsA71nzZIL9QDiy4aBpA-j-wq4IU5suHwA8"/>
+<div class="absolute inset-0 bg-error/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[28px]">block</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-extrabold">QuickCash Loan</h3>
+<span class="font-title-md text-title-md text-on-surface-variant font-medium">(क्विककैश लोन)</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-2xs">
+<span class="px-space-xs py-space-2xs rounded bg-surface-container-high text-primary font-label-mono-sm text-label-mono-sm font-semibold">
+                      com.quickcash.instantloan
+                    </span>
+<span class="font-body-sm text-body-sm text-outline">v2.4.1 (Build 204)</span>
+</div>
+</div>
+</div>
+<span class="hidden sm:inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui font-bold">
+<span class="w-2 h-2 rounded-full bg-error"></span> ROGUE APK
+              </span>
+</div>
+<!-- Forensic Key-Value Attributes -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md py-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block mb-space-2xs">File Size &amp; Architecture</span>
+<p class="font-title-md text-title-md text-on-surface font-semibold">14.8 MB • arm64-v8a, armeabi-v7a</p>
+<p class="font-body-sm text-body-sm text-outline">Compacted multi-dex payload</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block mb-space-2xs">Distribution Channel</span>
+<div class="flex items-center gap-space-2xs text-error font-title-md text-title-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">cloud_off</span>
+<span>Unverified Sideload</span>
+</div>
+<p class="font-body-sm text-body-sm text-error">Not found on Google Play Store</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block mb-space-2xs">Signing Certificate</span>
+<p class="font-title-md text-title-md text-error font-semibold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">key_off</span>
+<span>Android Debug Keystore</span>
+</p>
+<p class="font-label-mono-sm text-label-mono-sm text-on-surface-variant truncate">CN=Android Debug, O=Android, C=US</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block mb-space-2xs">Rajasthan Police Database</span>
+<p class="font-title-md text-title-md text-error font-semibold flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+<span>3 Active Extortion FIRs</span>
+</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Jaipur Cyber PS &amp; Alwar South PS</p>
+</div>
+</div>
+<!-- SHA-256 Hash Row with Copy Action -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container flex items-center justify-between gap-space-sm">
+<div class="min-w-0">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block">SHA-256 Cryptographic Hash</span>
+<p class="font-label-mono-sm text-label-mono-sm text-on-surface font-semibold truncate mt-space-2xs">
+                  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                </p>
+</div>
+<button class="px-space-sm py-space-2xs rounded-lg bg-surface-container-lowest text-primary hover:bg-primary-container hover:text-on-primary font-label-ui text-label-ui transition-all flex items-center gap-space-2xs shrink-0 shadow-sm" onclick="navigator.clipboard.writeText('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>Copy Hash</span>
+</button>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm flex flex-wrap items-center justify-between text-on-surface-variant font-label-ui text-label-ui">
+<span>Analyzer: Parakh Decompiler Core v3.1</span>
+<span>Target OS Compatibility: Android 8.0 through 14</span>
+</div>
+</div>
+<!-- RIGHT: Threat Gauge & Immediate Advisory (5 cols) -->
+<div class="lg:col-span-5 rounded-2xl bg-surface-container-lowest p-space-lg md:p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-error font-bold">Forensic Threat Index</span>
+<span class="px-space-xs py-space-2xs rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-black">
+                CRITICAL SEVERITY
+              </span>
+</div>
+<!-- Threat Gauge SVG (100 / 100) -->
+<div class="flex flex-col items-center justify-center my-space-md">
+<div class="relative w-56 h-32 flex items-end justify-center">
+<svg class="w-56 h-28" viewbox="0 0 200 100">
+<!-- Arc Background -->
+<path d="M 20 90 A 80 80 0 0 1 180 90" fill="none" stroke="#e2e7ff" stroke-linecap="round" stroke-width="16"></path>
+<!-- Arc Filled Extreme Threat -->
+<path d="M 20 90 A 80 80 0 0 1 180 90" fill="none" stroke="#ba1a1a" stroke-dasharray="251.2" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></path>
+</svg>
+<div class="absolute bottom-0 flex flex-col items-center">
+<span class="font-display-hero text-display-hero text-error font-black leading-none">100</span>
+<span class="font-label-ui text-label-ui uppercase tracking-widest text-on-surface font-extrabold mt-1">/ 100 THREAT</span>
+</div>
+</div>
+<span class="mt-space-xs font-label-ui text-label-ui text-error font-bold tracking-wide uppercase">
+                Predatory Spyware Pattern
+              </span>
+</div>
+<!-- Verdict Headline & Message -->
+<div class="text-center mb-space-md">
+<h4 class="font-headline-sm text-headline-sm text-error font-black mb-space-2xs">
+                Do NOT install this app!
+              </h4>
+<p class="font-title-md text-title-md text-on-surface font-bold">
+                इस ऐप को तुरंत डिलीट करें
+              </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs text-left">
+                This package contains predatory Chinese-origin loan-shark spyware designed to exfiltrate private contacts, gallery images, and SMS records for systematic extortion and harassment.
+              </p>
+</div>
+</div>
+<div class="space-y-space-xs">
+<a class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-xl bg-error text-on-error font-title-md text-title-md font-bold shadow-md hover:bg-error/90 transition-all" href="tel:1930">
+<span class="material-symbols-outlined text-[20px]">phone_in_talk</span>
+<span>Report Extortion Call to 1930</span>
+</a>
+<p class="font-label-ui text-label-ui text-center text-outline">
+              Rajasthan Police Cyber Emergency Network • 24x7 Assistance
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dangerous Combination Triangulation Node Diagram -->
+<section class="w-full bg-surface-container-lowest py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="max-w-3xl mb-space-lg">
+<div class="inline-flex items-center gap-space-2xs px-space-xs py-space-2xs rounded bg-error-container text-on-error-container font-label-ui text-label-ui font-bold uppercase mb-space-2xs">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span>Capability Triangulation Analysis</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+          Dangerous Permission Triangulation (ख़तरनाक अनुमति तालमेल)
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          In isolation, single permissions seem benign. When merged by this malicious package, they constitute the exact legal signature of extortionware.
+        </p>
+</div>
+<!-- Architectural Node Converge Block -->
+<div class="p-space-lg md:p-space-xl rounded-2xl bg-surface-container-low shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- 3 Feeder Source Nodes (6 cols) -->
+<div class="lg:col-span-6 space-y-space-md">
+<!-- Node A -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">sms</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">android.permission.READ_SMS</span>
+<span class="font-label-ui text-label-ui text-error font-semibold">Node A</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mt-space-2xs">संदेश पढ़ना (SMS Interception)</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Intercepts incoming 2-Factor Authentication (2FA) bank OTPs and confidential balance alerts in real time.
+                </p>
+</div>
+</div>
+<!-- Node B -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">contacts</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">android.permission.READ_CONTACTS</span>
+<span class="font-label-ui text-label-ui text-error font-semibold">Node B</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mt-space-2xs">संपर्क सूची (Address Book Harvesting)</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Silently uploads complete address book—including parents, spouses, colleagues, and employers—to extortion databases.
+                </p>
+</div>
+</div>
+<!-- Node C -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/30 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">photo_library</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">android.permission.READ_MEDIA_IMAGES</span>
+<span class="font-label-ui text-label-ui text-secondary font-semibold">Node C</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mt-space-2xs">फ़ोटो गैलरी (Gallery Exfiltration)</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Scans DCIM folders for personal citizen photographs to generate morphed extortion imagery for blackmail.
+                </p>
+</div>
+</div>
+</div>
+<!-- Convergence Vector Indicator (1 col) -->
+<div class="hidden lg:flex lg:col-span-1 flex-col items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-error text-on-error flex items-center justify-center shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[24px]">trending_flat</span>
+</div>
+</div>
+<!-- The Converged Threat Node (5 cols) -->
+<div class="lg:col-span-5 rounded-2xl bg-error text-on-error p-space-lg md:p-space-xl shadow-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs font-label-mono-sm text-label-mono-sm text-on-error/80 uppercase">
+<span class="material-symbols-outlined text-[18px]">crisis_alert</span>
+<span>Synthesized Police Risk Matrix</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm font-extrabold mt-space-xs mb-space-sm leading-snug">
+                Predatory Harassment &amp; Blackmail Mechanism
+              </h4>
+<p class="font-body-md text-body-md text-on-error/95 mb-space-md">
+<strong>Why this is catastrophic:</strong> When combined with background internet transmission, the APK reads your confidential bank OTPs to drain accounts, then automatically messages every contact in your phonebook with morphed defamatory pictures demanding ransom.
+              </p>
+<div class="p-space-sm rounded-xl bg-on-error/10 space-y-space-2xs">
+<div class="flex items-center gap-space-2xs font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Categorized under BNS Section 308 &amp; 351 (Extortion &amp; Blackmail)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-error/80">
+                  Evidence logged for immediate prosecution upon citizen filing.
+                </p>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm flex items-center justify-between text-on-error/80 font-label-mono-sm text-label-mono-sm">
+<span>Risk Severity: 100/100</span>
+<span>Vector: Spyware/LoanShark</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Complete Permission Breakdown Grouped by Severity -->
+<section class="w-full bg-surface py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm mb-space-lg">
+<div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-bold">Manifest Disassembly</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Full Permission Breakdown • अनुमतियों का विवरण
+          </h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-ui text-label-ui">
+<span class="px-space-xs py-space-2xs rounded bg-error-container text-on-error-container font-bold">3 Critical</span>
+<span class="px-space-xs py-space-2xs rounded bg-secondary-fixed text-on-secondary-fixed font-bold">2 Sensitive</span>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface-variant font-bold">3 Normal</span>
+</div>
+</div>
+<!-- Permission Groups Grid -->
+<div class="space-y-space-lg">
+<!-- Group 1: Critical Threats -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-md">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<h3 class="font-title-md text-title-md text-error font-extrabold uppercase tracking-wide">
+              Group 1: Critical Threat Permissions (अति संवेदनशील एवं ख़तरनाक)
+            </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-error-container/20 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-2xs">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">READ_SMS</span>
+<span class="material-symbols-outlined text-error text-[18px]">sms_failed</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">Full SMS Interception</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Reads all text messages including financial transaction alerts, 2FA codes, and private conversations.
+                </p>
+</div>
+<span class="mt-space-md text-error font-label-ui text-label-ui font-bold">High Risk of Bank Fraud</span>
+</div>
+<div class="p-space-md rounded-xl bg-error-container/20 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-2xs">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">READ_CONTACTS</span>
+<span class="material-symbols-outlined text-error text-[18px]">person_alert</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">Contact Book Exfiltration</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Uploads complete list of family, friends, and coworkers for organized harassment and blackmail calls.
+                </p>
+</div>
+<span class="mt-space-md text-error font-label-ui text-label-ui font-bold">Severe Extortion Threat</span>
+</div>
+<div class="p-space-md rounded-xl bg-error-container/20 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-2xs">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">CAMERA &amp; MEDIA</span>
+<span class="material-symbols-outlined text-error text-[18px]">no_photography</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mb-space-2xs">Gallery &amp; Live Camera</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Accesses private camera feed and stored photos, creating immediate danger of morphed non-consensual imagery.
+                </p>
+</div>
+<span class="mt-space-md text-error font-label-ui text-label-ui font-bold">Cyber Defamation Risk</span>
+</div>
+</div>
+</div>
+<!-- Group 2: Sensitive Permissions -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-md">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<h3 class="font-title-md text-title-md text-secondary font-extrabold uppercase tracking-wide">
+              Group 2: Sensitive Surveillance Permissions (गोपनीयता हनन)
+            </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0">my_location</span>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">ACCESS_FINE_LOCATION</span>
+<span class="font-label-ui text-label-ui px-space-2xs py-0.5 rounded bg-surface-container text-on-surface-variant">GPS / Cell</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mt-space-2xs">Real-Time Precise GPS Tracking</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Continuously streams exact physical coordinates of the citizen to external command hosts without notification.
+                </p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0">phone_callback</span>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">READ_CALL_LOG</span>
+<span class="font-label-ui text-label-ui px-space-2xs py-0.5 rounded bg-surface-container text-on-surface-variant">Metadata</span>
+</div>
+<h5 class="font-title-md text-title-md text-on-surface font-bold mt-space-2xs">Call Duration &amp; Recipient Logs</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Catalogs frequency and identity of incoming/outgoing calls to identify high-value pressure targets.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 3: Standard Capabilities -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-md">
+<span class="w-3 h-3 rounded-full bg-outline"></span>
+<h3 class="font-title-md text-title-md text-on-surface-variant font-extrabold uppercase tracking-wide">
+              Group 3: Standard Capabilities (सामान्य अनुमतियाँ)
+            </h3>
+</div>
+<div class="flex flex-wrap gap-space-xs font-label-mono-sm text-label-mono-sm">
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-outline">wifi</span>
+              android.permission.INTERNET
+            </span>
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-outline">network_check</span>
+              android.permission.ACCESS_NETWORK_STATE
+            </span>
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-outline">screen_lock_portrait</span>
+              android.permission.WAKE_LOCK
+            </span>
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-outline">vibration</span>
+              android.permission.VIBRATE
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Extracted Forensic Artifacts Chip Grid -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm mb-space-lg">
+<div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-bold">Bytecode Forensic Extraction</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            Hidden Inside the App • ऐप में छिपे संदिग्ध लिंक और सर्वर
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">
+            Direct indicators extracted from compiled classes.dex strings and network configuration files.
+          </p>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm px-space-sm py-space-2xs rounded-full bg-primary-fixed text-on-primary-fixed font-bold">
+          14 Artifacts Extracted
+        </span>
+</div>
+<!-- Forensics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Artifact 1: C2 Server IPs -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-error font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">dns</span>
+                Rogue C2 Server IPs
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm">Foreign Host</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Remote bulletproof hosting servers where victim contacts and photos are uploaded.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-error font-bold">185.220.101.44</span>
+<span class="text-on-surface-variant text-[11px]">Bulletproof / Moscow</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-error font-bold">103.251.167.12</span>
+<span class="text-on-surface-variant text-[11px]">Offshore Proxy</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-outline font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span>Reported to CERT-In for DNS sinkholing</span>
+</div>
+</div>
+<!-- Artifact 2: Phishing Endpoints -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-error font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">link</span>
+                Exfiltration Endpoints
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm">Hardcoded</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Active backend sync APIs discovered in hardcoded configuration bytecode.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between truncate">
+<span class="text-on-surface font-semibold truncate">https://api.quickcash-lend.top/v1/sync</span>
+<button class="material-symbols-outlined text-outline text-[16px] ml-1" type="button">content_copy</button>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between truncate">
+<span class="text-on-surface font-semibold truncate">http://loan-collector-c2.cc</span>
+<button class="material-symbols-outlined text-outline text-[16px] ml-1" type="button">content_copy</button>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-outline font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">public_off</span>
+<span>Blocked across Raj Police Perimeter</span>
+</div>
+</div>
+<!-- Artifact 3: Telegram Scraper Bots -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-primary font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">smart_toy</span>
+                Telegram Bot Token
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-mono-sm text-label-mono-sm">Exfiltration Channel</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Automated bot hooks sending stolen citizen OTPs directly into cybercriminal chatrooms.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-primary font-bold">@LoanRecoveryAdmin_bot</span>
+<span class="text-on-surface-variant text-[11px]">Chat ID: -10019284..</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-on-surface font-medium truncate">bot71829381:AAHq_r9...</span>
+<span class="text-error text-[11px]">Active</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-outline font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">policy</span>
+<span>Subpoena issued under IT Act 2000</span>
+</div>
+</div>
+<!-- Artifact 4: Mule Payment UPIs -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-secondary font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">currency_rupee</span>
+                Hardcoded Mule UPIs
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-mono-sm text-label-mono-sm">Lien Triggered</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Recipient VPA accounts configured to drain ransom / processing payments.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-secondary font-bold">mulepay9982@axl</span>
+<span class="text-error text-[11px]">Bank Freeze</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-secondary font-bold">cashfast.recovery@ybl</span>
+<span class="text-error text-[11px]">Bank Freeze</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-secondary font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+<span>Lien request sent via NPCI I4C bridge</span>
+</div>
+</div>
+<!-- Artifact 5: Hardcoded Phone Numbers -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-error font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">call_end</span>
+                VoIP Recovery Phone Lines
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm">Spam Ring</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Telephony numbers used for abusive recovery calls and WhatsApp threats.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-on-surface font-bold">+91 98290 XXXXX</span>
+<span class="text-on-surface-variant text-[11px]">VoIP Routed</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-on-surface font-bold">+91 91160 XXXXX</span>
+<span class="text-on-surface-variant text-[11px]">Virtual SIM</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-outline font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">sim_card_download</span>
+<span>DoT Sanchar Saathi block submitted</span>
+</div>
+</div>
+<!-- Artifact 6: Obfuscation Engine -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-ui text-label-ui text-on-surface font-bold uppercase flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px]">code_blocks</span>
+                Packer &amp; Obfuscation
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono-sm text-label-mono-sm">Bypassed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Commercial packer used to hide payloads from traditional smartphone antivirus.
+            </p>
+<div class="space-y-space-xs font-label-mono-sm text-label-mono-sm">
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-on-surface font-semibold">Tencent Legu / SecShell</span>
+<span class="text-primary text-[11px]">Unpacked</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container flex items-center justify-between">
+<span class="text-on-surface font-semibold">String Encryption: XOR</span>
+<span class="text-primary text-[11px]">Decoded</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs text-outline font-label-ui text-label-ui flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span>Heuristic signature match complete</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Citizen Immediate Action Protocol & Sovereign CTAs -->
+<section class="w-full bg-surface-container-lowest py-space-2xl">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="max-w-3xl mb-space-xl">
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-secondary font-bold">Action Protocol • नागरिक सुरक्षा निर्देश</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          What you should do right now (तुरंत ये 3 कदम उठाएं)
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Follow these immediate containment steps recommended by Rajasthan Police Cyber Cell investigators.
+        </p>
+</div>
+<!-- 3 Ordered Action Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg mb-space-xl">
+<!-- Step 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary font-headline-sm text-headline-sm font-black flex items-center justify-center mb-space-md shadow-sm">
+              01
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">
+              Delete File Immediately
+            </h4>
+<p class="font-title-md text-title-md text-secondary font-semibold mb-space-xs">
+              फ़ाइल को बिना खोले तुरंत डिलीट करें
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              If the file is only in your WhatsApp, Telegram, or Downloads folder: do not tap it. Permanently delete the <span class="font-label-mono-sm font-semibold">.apk</span> file and block the sender.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-xs flex items-center gap-space-2xs text-primary font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+<span>Zero damage if uninstalled</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-space-lg rounded-2xl bg-error-container/20 shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-error text-on-error font-headline-sm text-headline-sm font-black flex items-center justify-center mb-space-md shadow-sm">
+              02
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">
+              If Installed: Safe Mode Removal
+            </h4>
+<p class="font-title-md text-title-md text-error font-semibold mb-space-xs">
+              यदि इंस्टॉल कर लिया है: तुरंत इंटरनेट बंद करें
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Turn off Mobile Data &amp; Wi-Fi immediately to stop contact transmission. Boot your phone into <strong>Android Safe Mode</strong>, go to Settings &gt; Apps, and uninstall "QuickCash Loan".
+            </p>
+</div>
+<div class="mt-space-lg pt-space-xs flex items-center gap-space-2xs text-error font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[18px]">wifi_off</span>
+<span>Sever data exfiltration immediately</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-space-lg rounded-2xl bg-secondary-fixed/30 shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary font-headline-sm text-headline-sm font-black flex items-center justify-center mb-space-md shadow-sm">
+              03
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">
+              Golden Hour Report (1930)
+            </h4>
+<p class="font-title-md text-title-md text-secondary font-semibold mb-space-xs">
+              पैसे कटने या ब्लैकमेल होने पर 1930 पर कॉल करें
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              If cybercriminals are sending morphed photos to your contacts or money was deducted from your bank, call <strong>1930</strong> immediately to activate account freeze protocols.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-xs flex items-center gap-space-2xs text-secondary font-label-ui text-label-ui font-bold">
+<span class="material-symbols-outlined text-[18px]">alarm</span>
+<span>First 2 hours are critical</span>
+</div>
+</div>
+</div>
+<!-- Primary Action Buttons Row -->
+<div class="p-space-lg rounded-2xl bg-surface-container flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[24px]">policy</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">Lodge Sovereign Police Report &amp; Preserve Evidence</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your APK forensic report is ready for FIR attachment.</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm w-full md:w-auto">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-error text-on-error font-title-md text-title-md font-bold shadow-md hover:bg-error/90 transition-all" href="tel:1930">
+<span class="material-symbols-outlined text-[20px]">phone</span>
+<span>Dial 1930</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-primary text-on-primary font-title-md text-title-md font-bold shadow-md hover:bg-primary-container transition-all" href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span>Lodge at Cybercrime.gov.in</span>
+</a>
+<button class="inline-flex items-center justify-center gap-space-2xs px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-on-surface font-title-md text-title-md font-semibold hover:bg-surface-container-high transition-colors shadow-sm" onclick="alert('Forensic Report PRK-20261129-APK401 downloaded with cryptographic signature.');" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">download</span>
+<span>Download PDF Report</span>
+</button>
+</div>
+</div>
+<!-- Limitation Note & Sovereign Disclaimer -->
+<div class="mt-space-xl p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px] shrink-0 mt-0.5">info</span>
+<div class="space-y-space-2xs">
+<p class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider font-bold">
+            Sovereign Disclaimer &amp; Static Sandbox Boundaries
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong>Note:</strong> Static bytecode analysis inspects manifest structures, capability linkages, cryptographic certificates, and hardcoded artifacts without dynamic CPU runtime emulation. While high-risk indicators and known predatory signatures are deterministically surfaced, heavily encrypted zero-day exploits may evade purely static heuristics. Always source software exclusively from verified sovereign platforms and official app repositories.
+          </p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Simple interactive drag-and-drop file mock feedback
+  const dropZone = document.getElementById('apkDropZone');
+  const fileInput = document.getElementById('apkFileInput');
+
+  if (dropZone && fileInput) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add('bg-primary/5', 'scale-[1.01]');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-primary/5', 'scale-[1.01]');
+      }, false);
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        alert('File selected: ' + fileInput.files[0].name + '. Initiating static decompilation pipeline...');
+      }
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1440px] mx-auto px-margin py-space-2xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">shield</span></div><div><p class="font-title-md text-title-md text-on-surface font-semibold">PARAKH • राजस्थान पुलिस साइबर सुरक्षा सेल</p><p class="font-body-sm text-body-sm text-on-surface-variant">Sovereign Digital Verification Platform for Indian Citizens</p></div></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant"><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="help" href="#">Cyber Fraud Advisory</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="evidence" href="#">Submit Tip / रिपोर्ट</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="learn" href="#">Security Guidelines</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-ui text-label-ui"><p>© 2025 Rajasthan Police Cyber Crime Branch. Govt. of Rajasthan. All Rights Reserved.</p><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-2xs text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span>National Cyber Crime Portal (cybercrime.gov.in) Partner</span></div></div></div></footer></body></html>

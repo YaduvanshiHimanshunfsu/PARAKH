@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#b7c4ff",
+          "secondary": "#984800",
+          "outline-variant": "#c4c5d7",
+          "inverse-surface": "#283044",
+          "on-surface": "#131b2e",
+          "surface-dim": "#d2d9f4",
+          "on-secondary-fixed": "#311300",
+          "on-background": "#131b2e",
+          "surface-tint": "#2151da",
+          "on-surface-variant": "#434655",
+          "tertiary": "#802500",
+          "on-error-container": "#93000a",
+          "inverse-primary": "#b7c4ff",
+          "surface-variant": "#dae2fd",
+          "on-secondary-container": "#6b3100",
+          "surface-container-low": "#f2f3ff",
+          "on-tertiary-fixed": "#390c00",
+          "tertiary-fixed-dim": "#ffb59d",
+          "on-primary-container": "#cad3ff",
+          "secondary-fixed": "#ffdbc8",
+          "on-tertiary-fixed-variant": "#832600",
+          "tertiary-container": "#a83300",
+          "primary-container": "#1d4ed8",
+          "tertiary-fixed": "#ffdbd0",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "on-primary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "background": "#faf8ff",
+          "secondary-fixed-dim": "#ffb689",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#ffc9b8",
+          "error-container": "#ffdad6",
+          "surface-container": "#eaedff",
+          "surface": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "on-secondary-fixed-variant": "#743500",
+          "on-primary-fixed": "#001551",
+          "primary-fixed": "#dce1ff",
+          "on-primary-fixed-variant": "#0039b5",
+          "surface-bright": "#faf8ff",
+          "secondary-container": "#ff9245",
+          "primary": "#0037b0",
+          "outline": "#747686",
+          "inverse-on-surface": "#eef0ff",
+          "surface-container-high": "#e2e7ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-3xl": "4rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "space-2xl": "3rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem",
+          "space-2xs": "0.25rem",
+          "space-xl": "2rem",
+          "space-xs": "0.5rem",
+          "margin": "2rem",
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-ui": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "title-md": ["Plus Jakarta Sans"],
+          "label-mono-sm": ["JetBrains Mono"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "label-mono-md": ["JetBrains Mono"],
+          "display-hero-mobile": ["Plus Jakarta Sans"],
+          "display-hero": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-ui": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+          "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+          "label-mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+          "label-mono-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+          "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+          "display-hero": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full max-w-[1440px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group text-left" data-path="check" href="#"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(0,55,176,0.25)]"><span class="material-symbols-outlined text-on-primary text-[22px]">verified_user</span></div><div class="flex flex-col"><div class="flex items-baseline gap-space-2xs"><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">PARAKH</span><span class="font-title-md text-title-md text-secondary font-semibold">परख</span></div><span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Rajasthan Police • Citizen Portal</span></div></a><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg"><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="check" href="#">Check / सत्यापन</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="app-check" href="#">App Check / ऐप जांच</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="learn" href="#">Learn / सीखें</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="evidence" href="#">Evidence / साक्ष्य</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="rescue-help" href="#">Rescue &amp; Help / संकट समाधान</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center p-space-2xs bg-surface-container rounded-full"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest font-label-ui text-label-ui text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)]" type="button">EN</button><button class="px-space-sm py-space-2xs rounded-full font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-colors" type="button">हिंदी</button></div><a class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-error text-on-error hover:bg-error/90 transition-all shadow-[0_2px_10px_rgba(186,26,26,0.22)]" href="tel:1930"><span class="material-symbols-outlined text-[18px]">emergency</span><span class="font-title-md text-title-md tracking-wide font-bold">1930</span><span class="hidden md:inline font-label-ui text-label-ui uppercase tracking-wider text-on-error/90">Helpline</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- Top Sovereign Strip & Verification Banner -->
+<section class="w-full bg-surface-container-low py-space-xl px-margin">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider">Rajasthan Police Citizen Defence • आधिकारिक नागरिक सहायता एवं संस्था सत्यापन</span>
+</div>
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight">
+          Official Help Directory &amp; Organisation Verifier
+        </h1>
+<p class="font-headline-sm text-headline-sm text-secondary font-medium">
+          आधिकारिक हेल्पलाइन एवं संगठन सत्यापन निर्देशिका
+        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant pt-space-xs">
+          Never rely on contact numbers received in SMS, WhatsApp, or sponsored search ads. Verify sovereign communication channels and reach verified law enforcement hotlines immediately.
+        </p>
+</div>
+<!-- Quick Emergency Pill Card -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm bg-surface-container-lowest p-space-sm rounded-xl shadow-sm border border-outline-variant/30">
+<div class="w-12 h-12 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">phone_in_talk</span>
+</div>
+<div class="text-left">
+<div class="flex items-center gap-space-2xs">
+<span class="font-label-ui text-label-ui uppercase text-error font-bold">Golden Hour Helpline</span>
+<span class="inline-block w-2 h-2 rounded-full bg-error animate-ping"></span>
+</div>
+<a class="font-headline-md text-headline-md text-on-surface font-extrabold hover:text-error transition-colors block" href="tel:1930">
+            1930 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">(National Cyber Fraud)</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Organization Verifier Hero Tool -->
+<section class="w-full py-space-2xl px-margin bg-surface">
+<div class="max-w-[1440px] mx-auto">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg sm:p-space-xl shadow-md border border-outline-variant/30 relative overflow-hidden">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-space-xl items-start">
+<!-- Left Column: Input Form -->
+<div class="w-full lg:w-5/12 space-y-space-md">
+<div>
+<div class="flex items-center gap-space-2xs text-primary mb-space-2xs">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider">AI Sovereign Pattern Engine</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+                Verify an Organisation
+              </h2>
+<p class="font-title-md text-title-md text-secondary font-medium">
+                संदिग्ध संदेश अथवा संगठन की प्रामाणिकता जांचें
+              </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">
+                Paste SMS, email headers, electricity notice, courier threat, or bank advisories. Our registry cross-checks against verified TRAI DLT and state department channels.
+              </p>
+</div>
+<!-- Pre-fill triggers -->
+<div class="space-y-space-2xs">
+<span class="font-label-ui text-label-ui text-on-surface-variant block">Try Verified Live Incident Excerpts:</span>
+<div class="flex flex-wrap gap-space-xs">
+<button class="px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary font-label-mono-sm text-label-mono-sm text-on-surface transition-all flex items-center gap-1" id="load-sample-power" type="button">
+<span class="material-symbols-outlined text-[14px]">bolt</span> JVVNL Electricity Alert
+                </button>
+<button class="px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary font-label-mono-sm text-label-mono-sm text-on-surface transition-all flex items-center gap-1" id="load-sample-bank" type="button">
+<span class="material-symbols-outlined text-[14px]">account_balance</span> SBI Reward Points
+                </button>
+<button class="px-space-sm py-space-2xs rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary font-label-mono-sm text-label-mono-sm text-on-surface transition-all flex items-center gap-1" id="load-sample-chalan" type="button">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> e-Challan APK Warning
+                </button>
+</div>
+</div>
+<!-- Forensic Input Box -->
+<div class="space-y-space-sm">
+<div class="relative">
+<textarea class="w-full p-space-md rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner resize-none border border-outline-variant/20" id="verifier-input" placeholder="Paste SMS, WhatsApp message, bill advisory or email link here..." rows="5"></textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">DLT Parser Active</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-xs">
+<button class="flex-1 py-space-sm px-space-md rounded-xl bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all shadow-md flex items-center justify-center gap-space-xs" id="verify-button" type="button">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+                  Verify Claimed Organisation (संगठन सत्यापित करें)
+                </button>
+<button class="py-space-sm px-space-md rounded-xl bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-container-highest transition-colors" id="reset-button" type="button">
+                  Clear
+                </button>
+</div>
+</div>
+<!-- Institutional seal badge -->
+<div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-[24px]">gavel</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Regulated under Rajasthan Police Cyber Crime Cell Database and National Crime Records Bureau (NCRB) repository.
+              </p>
+</div>
+</div>
+<!-- Right Column: Verification Analysis Result Card -->
+<div class="w-full lg:w-7/12">
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm border border-error/30 relative" id="result-card">
+<!-- Result Status Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant/20 gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-ui text-label-ui uppercase tracking-wide text-error font-bold">Threat Evaluation</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-semibold">IMPERSONATION DETECTED ⚠️</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                      Counterfeit Electricity Notice / फ़र्ज़ी बिजली डिस्कॉम बिल नोटिस
+                    </p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant block">Rajasthan Threat Index</span>
+<span class="font-title-md text-title-md text-error font-black">CRITICAL RISK 96%</span>
+</div>
+</div>
+<!-- Citizen Excerpt Analyzed -->
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+<span class="font-label-ui text-label-ui uppercase text-on-surface-variant block mb-1">Citizen Input Excerpt (संदेश का अंश):</span>
+<p class="font-label-mono-md text-label-mono-md text-on-surface italic bg-error-container/20 p-2 rounded border-l-4 border-error">
+                  "Dear consumer, electricity power disconnected tonight at 9:30 PM due to unpaid bill. Update bill via official helpline +91 98123 45670 or visit jv-power-bill.cc"
+                </p>
+</div>
+<!-- Forensic Dissection Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm mt-space-md">
+<!-- Claimed Entity vs Genuine -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+<span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Claimed Organisation</span>
+<p class="font-title-md text-title-md text-on-surface font-semibold">
+                    Jaipur Vidyut Vitran Nigam Ltd (JVVNL / Discom)
+                  </p>
+<p class="font-body-sm text-body-sm text-error font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">cancel</span> Sourced from non-government gateway
+                  </p>
+</div>
+<!-- Genuine TRAI Header -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+<span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Authorized TRAI SMS Sender ID</span>
+<p class="font-label-mono-md text-label-mono-md text-primary font-bold">
+                    JV-JVVNL • RJ-DISCOM
+                  </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Sender used personal +91 98123... (Fraud indicator)
+                  </p>
+</div>
+<!-- Genuine Sovereign Domain -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+<span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Genuine Sovereign Website</span>
+<a class="font-label-mono-md text-label-mono-md text-primary hover:underline font-bold flex items-center gap-1" href="https://energy.rajasthan.gov.in/jvvnl" rel="noopener noreferrer" target="_blank">
+                    energy.rajasthan.gov.in/jvvnl
+                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+<span class="font-label-mono-sm text-label-mono-sm text-primary-container bg-surface-container px-1.5 py-0.5 rounded">Verified NIC Sovereign (.gov.in)</span>
+</div>
+<!-- Genuine Helpline -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+<span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Official Rajasthan Discom Care</span>
+<div class="flex items-center gap-2">
+<a class="font-headline-sm text-headline-sm text-on-surface font-extrabold text-primary hover:underline" href="tel:1912">
+                      1912
+                    </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Toll Free 24x7)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Alternate: 1800-180-6507</p>
+</div>
+</div>
+<!-- Discrepancy Forensic Note -->
+<div class="mt-space-md p-space-sm rounded-lg bg-error-container/30 border border-error/30 text-on-surface">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5">report</span>
+<div>
+<h4 class="font-title-md text-title-md text-error font-bold">Investigator Forensics &amp; Discrepancy Note:</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                      Rajasthan Discoms (JVVNL, AVVNL, JdVVNL) <strong>NEVER</strong> direct consumers to personal 10-digit mobile numbers or third-party web links ending in unverified TLDs (.cc, .top, .live, .apk). Paying via this unauthorized portal will trigger malicious screen sharing APK download (AnyDesk/TeamViewer spoof).
+                    </p>
+</div>
+</div>
+</div>
+<!-- Verification CTAs -->
+<div class="mt-space-md flex flex-wrap items-center gap-space-sm justify-between">
+<div class="flex items-center gap-space-xs">
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all flex items-center gap-1 shadow-sm" href="https://energy.rajasthan.gov.in/jvvnl" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">public</span>
+                    Visit Verified Portal
+                  </a>
+<a class="px-space-md py-space-xs rounded-lg bg-error text-on-error font-title-md text-title-md hover:bg-error/90 transition-all flex items-center gap-1 shadow-sm" href="tel:1930">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+                    Report Impersonator
+                  </a>
+</div>
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-container-highest transition-colors" id="sample-verify-another" type="button">
+                  Verify Another Message
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Official Sovereign Citizen Emergency Directory -->
+<section class="w-full py-space-2xl px-margin bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto space-y-space-xl">
+<!-- Section Header with Search & Filter Tabs -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="inline-flex items-center gap-space-2xs text-secondary mb-space-2xs">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider">Statutory Escalation Rails</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Sovereign Citizen Emergency Directory
+          </h2>
+<p class="font-title-md text-title-md text-on-surface-variant font-medium">
+            आधिकारिक सहायता केंद्र एवं हेल्पलाइन निर्देशिका
+          </p>
+</div>
+<!-- Filter Pill Row -->
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container-lowest p-1.5 rounded-xl shadow-sm border border-outline-variant/30">
+<button class="dir-filter active px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-ui text-label-ui transition-all" data-category="all" type="button">
+            All Channels
+          </button>
+<button class="dir-filter px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui transition-all" data-category="police" type="button">
+            Law Enforcement
+          </button>
+<button class="dir-filter px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui transition-all" data-category="telecom" type="button">
+            Telecom &amp; DoT
+          </button>
+<button class="dir-filter px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui transition-all" data-category="banking" type="button">
+            Banking &amp; RBI
+          </button>
+<button class="dir-filter px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui transition-all" data-category="identity" type="button">
+            Identity &amp; Utilities
+          </button>
+</div>
+</div>
+<!-- Directory Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="directory-grid">
+<!-- Card 1: 1930 -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="police">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-bold">
+                MHA / I4C • 24x7 Toll Free
+              </span>
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                National Cyber Crime Helpline (1930)
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                राष्ट्रीय साइबर वित्तीय अपराध हेल्पलाइन
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Immediate banking freeze and financial transaction blockage within the <strong>Golden Hour (1–2 hrs)</strong> of fraudulent UPI, IMPS, or Card debits across Indian banking networks.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              Standard Response SLA: &lt; 8 Minutes
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between gap-space-xs">
+<a class="flex-1 py-space-xs px-space-sm rounded-lg bg-error text-on-error font-title-md text-title-md text-center hover:bg-error/90 transition-all flex items-center justify-center gap-1" href="tel:1930">
+<span class="material-symbols-outlined text-[18px]">phone</span> Call 1930 Now
+            </a>
+<button class="py-space-xs px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-ui text-label-ui show-protocol-modal" data-title="1930 Golden Hour Protocol" type="button">
+              Protocol
+            </button>
+</div>
+</div>
+<!-- Card 2: NCRP cybercrime.gov.in -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="police">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-primary-container/10 text-primary font-label-mono-sm text-label-mono-sm font-bold">
+                cybercrime.gov.in • Official Portal
+              </span>
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                National Cybercrime Reporting Portal (NCRP)
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Statutory FIR lodging platform for financial fraud, sextortion, digital arrest impersonation, cyber stalking, and online harassment directly routed to your jurisdictional Rajasthan police station.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              Accepts: CSV bank logs, screenshots, hash
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between gap-space-xs">
+<a class="w-full py-space-xs px-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md text-center hover:bg-primary-container transition-all flex items-center justify-center gap-1" href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span> Open cybercrime.gov.in
+            </a>
+</div>
+</div>
+<!-- Card 3: DoT Sanchar Saathi & Chakshu -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="telecom">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-secondary-container/20 text-secondary font-label-mono-sm text-label-mono-sm font-bold">
+                Dept of Telecommunications (DoT)
+              </span>
+<div class="w-10 h-10 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">cell_tower</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                DoT Sanchar Saathi &amp; Chakshu Portal
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                चक्षु पोर्टल • संचार साथी दूरसंचार सुरक्षा
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Report suspected fraud calls, SMS phishing, unauthorized international calls, and request blocking/tracing of lost or stolen mobile IMEI devices via CEIR module.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              Features: TAFCOP SIM Ownership Audit
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs">
+<a class="flex-1 py-space-xs px-space-2xs rounded-lg bg-primary text-on-primary font-title-md text-title-md text-center hover:bg-primary-container transition-all text-xs" href="https://sancharsaathi.gov.in" rel="noopener noreferrer" target="_blank">
+              Chakshu Report
+            </a>
+<a class="flex-1 py-space-xs px-space-2xs rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-title-md text-title-md text-center transition-colors text-xs" href="https://tafcop.sancharsaathi.gov.in" rel="noopener noreferrer" target="_blank">
+              Check SIMs (TAFCOP)
+            </a>
+</div>
+</div>
+<!-- Card 4: RBI CMS & Banking Ombudsman -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="banking">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-primary-container/10 text-primary font-label-mono-sm text-label-mono-sm font-bold">
+                Banking Regulatory • cms.rbi.org.in
+              </span>
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">balance</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                RBI Banking Ombudsman (CMS)
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                भारतीय रिज़र्व बैंक लोकपाल शिकायत प्रणाली
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              File statutory claims against banks for non-adherence to Zero Liability Directives (RBI Circular RBI/2017-18/15) if informed within 3 business days of unauthorized debit.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              SLA: Escalation if bank rejects claim &gt; 30 days
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between gap-space-xs">
+<a class="w-full py-space-xs px-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md text-center hover:bg-primary-container transition-all flex items-center justify-center gap-1" href="https://cms.rbi.org.in" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">assured_workload</span> Access RBI CMS
+            </a>
+</div>
+</div>
+<!-- Card 5: Rajasthan Police State Cyber Crime Cell -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="police">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-secondary-container/20 text-secondary font-label-mono-sm text-label-mono-sm font-bold">
+                Govt of Rajasthan • Jaipur HQ
+              </span>
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
+                RP
+              </div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                Rajasthan Police State Cyber Cell
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                राज्य साइबर पुलिस मुख्यालय (जयपुर)
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Centralized state investigation wing handling sophisticated cyber syndicates, SIM swapping cartels, cryptocurrency honeytraps, and child exploitation forensic investigations.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              Direct Desk: +91 141 230 9450 (Jaipur Control)
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between gap-space-xs">
+<a class="flex-1 py-space-xs px-space-2xs rounded-lg bg-primary text-on-primary font-title-md text-title-md text-center hover:bg-primary-container transition-all text-xs" href="tel:+911412309450">
+              Call Cyber HQ
+            </a>
+<button class="flex-1 py-space-xs px-space-2xs rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-title-md text-title-md text-center text-xs show-thanas-btn" type="button">
+              33 Cyber Thanas
+            </button>
+</div>
+</div>
+<!-- Card 6: UIDAI Aadhaar Lock & Biometric Defense -->
+<div class="dir-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/20 hover:shadow-md transition-all flex flex-col justify-between" data-category="identity">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-1 rounded-md bg-primary-container/10 text-primary font-label-mono-sm text-label-mono-sm font-bold">
+                Official Identity Rail
+              </span>
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">fingerprint</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                UIDAI Aadhaar Lock &amp; Biometric Defence
+              </h3>
+<p class="font-label-ui text-label-ui text-secondary">
+                आधार बायोमेट्रिक सुरक्षा एवं लॉक प्रणाली
+              </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Instantly lock Aadhaar biometrics and switch to Virtual ID (VID). Prevents unauthorized AePS (Aadhaar Enabled Payment System) thumbprint withdrawals at rural banking points.
+            </p>
+<div class="p-space-xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm">
+              Helpline: 1947 (UIDAI Toll-Free)
+            </div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between gap-space-xs">
+<a class="w-full py-space-xs px-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md text-center hover:bg-primary-container transition-all flex items-center justify-center gap-1" href="https://myaadhaar.uidai.gov.in/lock-unlock-aadhaar" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">lock</span> Lock Aadhaar Biometrics
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Bank Fraud Hotline Rapid Selector (Interactive Grid) -->
+<section class="w-full py-space-2xl px-margin bg-surface">
+<div class="max-w-[1440px] mx-auto space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm border-b border-outline-variant/20 pb-space-sm">
+<div>
+<div class="inline-flex items-center gap-space-2xs text-error mb-space-2xs">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider">Emergency Financial Freezing</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Bank Fraud Hotline Rapid Freezing Rails
+          </h2>
+<p class="font-title-md text-title-md text-on-surface-variant font-medium">
+            प्रमुख बैंक आपातकालीन खाता व कार्ड ब्लॉकिंग हेल्पलाइन
+          </p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+          Immediate automated card/account blocking will prevent unauthorized sweep transfers. Tap directly to trigger instant dialer.
+        </p>
+</div>
+<!-- Quick Bank Tiles -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-sm">
+<!-- SBI -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Public Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">State Bank of India</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">SBI Card &amp; NetBanking</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:1800111109">
+<span>1800 11 1109</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">Alt: 1800 1234</span>
+</div>
+</div>
+<!-- HDFC Bank -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Private Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">HDFC Bank</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">Fraud Desk 24x7</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:18002583838">
+<span>1800 258 3838</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">IVR Option 1 &gt; 9</span>
+</div>
+</div>
+<!-- ICICI Bank -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Private Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">ICICI Bank</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">iMobile / Debit Freeze</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:18001080">
+<span>1800 1080</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">Instant Block Channel</span>
+</div>
+</div>
+<!-- Punjab National Bank -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Public Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">PNB</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">Punjab National Bank</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:18001802222">
+<span>1800 180 2222</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">Alt: 1800 103 2222</span>
+</div>
+</div>
+<!-- Bank of Baroda -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Public Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">Bank of Baroda</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">bob World Security</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:18002584455">
+<span>1800 258 4455</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">National Toll-Free</span>
+</div>
+</div>
+<!-- Axis Bank -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary transition-all flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Private Sector</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">Axis Bank</h4>
+<p class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold mt-1">Emergency Blocking</p>
+</div>
+<div class="mt-space-md space-y-1">
+<a class="w-full py-space-xs px-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-all font-label-mono-md text-label-mono-md text-on-surface font-bold flex items-center justify-between" href="tel:18604195555">
+<span>1860 419 5555</span>
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant block text-center text-xs">Priority Desk</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Peace of Mind Guarantee & Digital Arrest Advisory -->
+<section class="w-full py-space-2xl px-margin bg-surface-container">
+<div class="max-w-[1440px] mx-auto">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg sm:p-space-xl shadow-md border-l-8 border-secondary relative overflow-hidden">
+<div class="flex flex-col lg:flex-row items-center gap-space-xl">
+<div class="w-20 h-20 rounded-2xl bg-secondary-container/30 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[44px]">security</span>
+</div>
+<div class="space-y-space-xs flex-1 text-left">
+<div class="inline-flex items-center gap-space-2xs px-space-sm py-1 rounded bg-secondary-container/20 text-on-secondary-container">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+<span class="font-label-ui text-label-ui uppercase font-bold">Important Law Enforcement Directive</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+              There is No Legal Provision for "Digital Arrest" (डिजिटल अरेस्ट का कोई कानूनी प्रावधान नहीं है)
+            </h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+              Rajasthan Police and statutory agencies (CBI, ED, NIA, Mumbai Police, TRAI, Customs) will <strong>NEVER</strong> contact citizens on WhatsApp or Skype video call wearing police uniforms, and will <strong>NEVER</strong> demand money to "clear cases" or issue bail.
+            </p>
+<div class="pt-space-xs flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-mono-sm text-label-mono-sm">
+<span class="flex items-center gap-1 text-error font-semibold">
+<span class="material-symbols-outlined text-[16px]">block</span> Never Share OTPs
+              </span>
+<span class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span> Never install remote APKs (.apk)
+              </span>
+<span class="flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span> Always verify at nearby Cyber Thana
+              </span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col gap-space-xs w-full sm:w-auto">
+<a class="py-space-sm px-space-lg rounded-xl bg-secondary text-on-secondary hover:bg-secondary/90 transition-all font-title-md text-title-md font-bold text-center shadow-md flex items-center justify-center gap-2" href="tel:1930">
+<span class="material-symbols-outlined text-[20px]">call</span>
+              Speak with Officer (1930)
+            </a>
+<a class="py-space-sm px-space-lg rounded-xl bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-title-md text-title-md font-medium text-center" href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">
+              Lodge NCRP Complaint
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive District Cyber Thanas Modal / Sheet (Simulated In-Page) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-margin" id="district-modal">
+<div class="bg-surface-container-lowest max-w-2xl w-full rounded-2xl shadow-2xl p-space-lg max-h-[85vh] flex flex-col border border-outline-variant/30">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">local_police</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+            Rajasthan Cyber Police Stations (33 Districts)
+          </h3>
+</div>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface" id="close-modal" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<div class="py-space-md space-y-space-sm overflow-y-auto flex-1 pr-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Walk-in forensic assistance is available across all 33 authorized District Cyber Police Stations in Rajasthan:
+        </p>
+<div class="space-y-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Jaipur Commissionerate Cyber Thana</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Police Line, Commissionerate Campus, MI Road, Jaipur</p>
+</div>
+<a class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-mono-sm text-label-mono-sm" href="tel:+911412205555">0141-2205555</a>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Jodhpur Commissionerate Cyber Thana</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ratanada Police Complex, Jodhpur</p>
+</div>
+<a class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-mono-sm text-label-mono-sm" href="tel:+912912543300">0291-2543300</a>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Kota Cyber Police Station</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SP Office Compound, Nayapura, Kota</p>
+</div>
+<a class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-mono-sm text-label-mono-sm" href="tel:+917442322300">0744-2322300</a>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Udaipur Cyber Police Station</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Chetak Circle Police Campus, Udaipur</p>
+</div>
+<a class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-mono-sm text-label-mono-sm" href="tel:+912942414100">0294-2414100</a>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Bikaner Cyber Police Station</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sadul Colony Police Lines, Bikaner</p>
+</div>
+<a class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-mono-sm text-label-mono-sm" href="tel:+911512226100">0151-2226100</a>
+</div>
+</div>
+</div>
+<div class="pt-space-sm border-t border-outline-variant/20 flex justify-end">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface font-title-md text-title-md" id="close-modal-bottom" type="button">
+          Close Directory
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Client-side Script for Page Functionality -->
+<script>
+  (function initDirectoryPage() {
+    // Top Nav Active Highlight Sync for 'Rescue & Help / संकट समाधान'
+    try {
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(link => {
+        const path = link.getAttribute('data-path');
+        if (path === 'rescue-help') {
+          link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+          link.classList.add('bg-primary-container', 'text-on-primary', 'font-bold');
+        } else {
+          link.classList.remove('bg-primary-container', 'text-on-primary');
+          link.classList.add('text-on-surface-variant');
+        }
+      });
+    } catch(e) {}
+
+    // Organization Verifier Interactive Samples
+    const textarea = document.getElementById('verifier-input');
+    const resultCard = document.getElementById('result-card');
+
+    const samplePower = "Dear consumer, electricity power disconnected tonight at 9:30 PM due to unpaid bill. Update bill via official helpline +91 98123 45670 or visit jv-power-bill.cc";
+    const sampleBank = "SBI Alert: Your 4,850 reward points worth Rs 4,850 are expiring today! Redeem cash now by downloading APK from http://sbi-reward-claim.top";
+    const sampleChallan = "E-Challan Notice: Fine pending Rs 1,500 on RJ-14-EA-4921. Court warrant issued. Pay instantly via vehicle-echallan-portal.apk or call 9182348123";
+
+    if (textarea) {
+      textarea.value = samplePower;
+    }
+
+    document.getElementById('load-sample-power')?.addEventListener('click', () => {
+      if (textarea) textarea.value = samplePower;
+      renderSampleVerdict('power');
+    });
+
+    document.getElementById('load-sample-bank')?.addEventListener('click', () => {
+      if (textarea) textarea.value = sampleBank;
+      renderSampleVerdict('bank');
+    });
+
+    document.getElementById('load-sample-chalan')?.addEventListener('click', () => {
+      if (textarea) textarea.value = sampleChallan;
+      renderSampleVerdict('challan');
+    });
+
+    document.getElementById('reset-button')?.addEventListener('click', () => {
+      if (textarea) textarea.value = '';
+    });
+
+    document.getElementById('sample-verify-another')?.addEventListener('click', () => {
+      if (textarea) {
+        textarea.value = '';
+        textarea.focus();
+      }
+    });
+
+    function renderSampleVerdict(type) {
+      if (!resultCard) return;
+      if (type === 'bank') {
+        resultCard.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant/20 gap-space-sm">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 shadow-sm">
+                <span class="material-symbols-outlined text-[24px]">gpp_bad</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-space-xs">
+                  <span class="font-label-ui text-label-ui uppercase tracking-wide text-error font-bold">Threat Evaluation</span>
+                  <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-semibold">TROJAN MALWARE (APK) ⚠️</span>
+                </div>
+                <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                  SBI Reward Scam / फ़र्ज़ी रिवॉर्ड पाइंट एपीके जालसाज़ी
+                </p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant block">Rajasthan Threat Index</span>
+              <span class="font-title-md text-title-md text-error font-black">CRITICAL RISK 99%</span>
+            </div>
+          </div>
+
+          <div class="mt-space-md p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+            <span class="font-label-ui text-label-ui uppercase text-on-surface-variant block mb-1">Citizen Input Excerpt:</span>
+            <p class="font-label-mono-md text-label-mono-md text-on-surface italic bg-error-container/20 p-2 rounded border-l-4 border-error">
+              "${sampleBank}"
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm mt-space-md">
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Claimed Organisation</span>
+              <p class="font-title-md text-title-md text-on-surface font-semibold">State Bank of India (SBI)</p>
+              <p class="font-body-sm text-body-sm text-error font-medium">Domain '.top' is unauthorized external rogue server</p>
+            </div>
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Authorized TRAI Sender ID</span>
+              <p class="font-label-mono-md text-label-mono-md text-primary font-bold">SBIBNK • SBINB</p>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Banks never send reward links as raw APK installations</p>
+            </div>
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Genuine Sovereign Website</span>
+              <a href="https://onlinesbi.sbi" target="_blank" rel="noopener noreferrer" class="font-label-mono-md text-label-mono-md text-primary hover:underline font-bold flex items-center gap-1">
+                onlinesbi.sbi
+                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+              <span class="font-label-mono-sm text-label-mono-sm text-primary-container bg-surface-container px-1.5 py-0.5 rounded">Verified .sbi Bank TLD</span>
+            </div>
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Official SBI Helpline</span>
+              <a href="tel:18001234" class="font-headline-sm text-headline-sm text-primary font-extrabold hover:underline block">1800 1234</a>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Or call 1930 within Golden Hour</p>
+            </div>
+          </div>
+
+          <div class="mt-space-md p-space-sm rounded-lg bg-error-container/30 border border-error/30 text-on-surface">
+            <h4 class="font-title-md text-title-md text-error font-bold">Investigator Forensics Note:</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              This malicious APK installs a foreground SMS interception overlay designed to steal 2-factor OTPs while draining funds. Do not install.
+            </p>
+          </div>
+
+          <div class="mt-space-md flex flex-wrap items-center gap-space-sm justify-between">
+            <a href="https://onlinesbi.sbi" target="_blank" rel="noopener noreferrer" class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[18px]">public</span> Open Verified SBI Portal
+            </a>
+            <button type="button" onclick="location.reload()" class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface font-title-md text-title-md">
+              Reset Query
+            </button>
+          </div>
+        `;
+      } else if (type === 'challan') {
+        resultCard.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md border-b border-outline-variant/20 gap-space-sm">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 shadow-sm">
+                <span class="material-symbols-outlined text-[24px]">car_crash</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-space-xs">
+                  <span class="font-label-ui text-label-ui uppercase tracking-wide text-error font-bold">Threat Evaluation</span>
+                  <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-semibold">FAKE E-CHALLAN SPYWARE ⚠️</span>
+                </div>
+                <p class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                  Counterfeit Traffic Challan / फ़र्ज़ी ई-चालान नोटिस
+                </p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant block">Rajasthan Threat Index</span>
+              <span class="font-title-md text-title-md text-error font-black">CRITICAL RISK 94%</span>
+            </div>
+          </div>
+
+          <div class="mt-space-md p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+            <span class="font-label-ui text-label-ui uppercase text-on-surface-variant block mb-1">Citizen Input Excerpt:</span>
+            <p class="font-label-mono-md text-label-mono-md text-on-surface italic bg-error-container/20 p-2 rounded border-l-4 border-error">
+              "${sampleChallan}"
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm mt-space-md">
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Claimed Organisation</span>
+              <p class="font-title-md text-title-md text-on-surface font-semibold">Rajasthan Traffic Police / Parivahan</p>
+              <p class="font-body-sm text-body-sm text-error font-medium">Traffic Challans are NEVER delivered as an APK</p>
+            </div>
+            <div class="p-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-1">
+              <span class="font-label-ui text-label-ui uppercase text-on-surface-variant">Genuine Sovereign Website</span>
+              <a href="https://echallan.parivahan.gov.in" target="_blank" rel="noopener noreferrer" class="font-label-mono-md text-label-mono-md text-primary hover:underline font-bold flex items-center gap-1">
+                echallan.parivahan.gov.in
+                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+              <span class="font-label-mono-sm text-label-mono-sm text-primary-container bg-surface-container px-1.5 py-0.5 rounded">Official MoRTH Sovereign Rail</span>
+            </div>
+          </div>
+
+          <div class="mt-space-md flex flex-wrap items-center gap-space-sm justify-between">
+            <a href="https://echallan.parivahan.gov.in" target="_blank" rel="noopener noreferrer" class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[18px]">verified</span> Open Official Parivahan Challan Portal
+            </a>
+            <button type="button" onclick="location.reload()" class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-on-surface font-title-md text-title-md">
+              Reset Query
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    // Directory Filtering
+    const filterButtons = document.querySelectorAll('.dir-filter');
+    const cards = document.querySelectorAll('.dir-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary');
+        btn.classList.remove('text-on-surface-variant');
+
+        const cat = btn.getAttribute('data-category');
+        cards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // District Police Station Modal
+    const modal = document.getElementById('district-modal');
+    const openBtns = document.querySelectorAll('.show-thanas-btn');
+    const closeBtn = document.getElementById('close-modal');
+    const closeBtnBtm = document.getElementById('close-modal-bottom');
+
+    openBtns.forEach(b => b.addEventListener('click', () => {
+      if (modal) modal.classList.remove('hidden');
+    }));
+
+    if (closeBtn) closeBtn.addEventListener('click', () => modal?.classList.add('hidden'));
+    if (closeBtnBtm) closeBtnBtm.addEventListener('click', () => modal?.classList.add('hidden'));
+
+  })();
+</script></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1440px] mx-auto px-margin py-space-2xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">shield</span></div><div><p class="font-title-md text-title-md text-on-surface font-semibold">PARAKH • राजस्थान पुलिस साइबर सुरक्षा सेल</p><p class="font-body-sm text-body-sm text-on-surface-variant">Sovereign Digital Verification Platform for Indian Citizens</p></div></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant"><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="rescue-help" href="#">Emergency Rescue &amp; SOS</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="evidence" href="#">Submit Tip / रिपोर्ट</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="learn" href="#">Security Guidelines</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-ui text-label-ui"><p>© 2025 Rajasthan Police Cyber Crime Branch. Govt. of Rajasthan. All Rights Reserved.</p><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-2xs text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span>National Cyber Crime Portal (cybercrime.gov.in) Partner</span></div></div></div></footer></body></html>

@@ -10,6 +10,25 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 logger = logging.getLogger(__name__)
 
+# Fonts and icons are self-hosted by the frontend build (planversionalpha.md
+# H.0), so no third-party origin is allowed anywhere. 'unsafe-inline' remains
+# for style attributes set by React and Framer Motion; scripts stay 'self' only.
+CONTENT_SECURITY_POLICY = "; ".join(
+    (
+        "default-src 'self'",
+        "base-uri 'self'",
+        "object-src 'none'",
+        "frame-ancestors 'none'",
+        "form-action 'self'",
+        "script-src 'self'",
+        "style-src 'self' 'unsafe-inline'",
+        "font-src 'self'",
+        "img-src 'self' data: blob:",
+        "media-src 'self' blob:",
+        "connect-src 'self'",
+    )
+) + ";"
+
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
     def __init__(self, app, production: bool = False) -> None:
@@ -31,7 +50,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Referrer-Policy"] = "no-referrer"
         response.headers["Cache-Control"] = "no-store"
-        response.headers["Content-Security-Policy"] = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self';"
+        response.headers["Content-Security-Policy"] = CONTENT_SECURITY_POLICY
         response.headers["Permissions-Policy"] = "microphone=(self), camera=(), geolocation=(), payment=(), usb=()"
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
         response.headers["Cross-Origin-Resource-Policy"] = "same-origin"

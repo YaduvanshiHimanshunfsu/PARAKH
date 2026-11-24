@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#b7c4ff",
+          "secondary": "#984800",
+          "outline-variant": "#c4c5d7",
+          "inverse-surface": "#283044",
+          "on-surface": "#131b2e",
+          "surface-dim": "#d2d9f4",
+          "on-secondary-fixed": "#311300",
+          "on-background": "#131b2e",
+          "surface-tint": "#2151da",
+          "on-surface-variant": "#434655",
+          "tertiary": "#802500",
+          "on-error-container": "#93000a",
+          "inverse-primary": "#b7c4ff",
+          "surface-variant": "#dae2fd",
+          "on-secondary-container": "#6b3100",
+          "surface-container-low": "#f2f3ff",
+          "on-tertiary-fixed": "#390c00",
+          "tertiary-fixed-dim": "#ffb59d",
+          "on-primary-container": "#cad3ff",
+          "secondary-fixed": "#ffdbc8",
+          "on-tertiary-fixed-variant": "#832600",
+          "tertiary-container": "#a83300",
+          "primary-container": "#1d4ed8",
+          "tertiary-fixed": "#ffdbd0",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "on-primary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "background": "#faf8ff",
+          "secondary-fixed-dim": "#ffb689",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#ffc9b8",
+          "error-container": "#ffdad6",
+          "surface-container": "#eaedff",
+          "surface": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "on-secondary-fixed-variant": "#743500",
+          "on-primary-fixed": "#001551",
+          "primary-fixed": "#dce1ff",
+          "on-primary-fixed-variant": "#0039b5",
+          "surface-bright": "#faf8ff",
+          "secondary-container": "#ff9245",
+          "primary": "#0037b0",
+          "outline": "#747686",
+          "inverse-on-surface": "#eef0ff",
+          "surface-container-high": "#e2e7ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-3xl": "4rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "space-2xl": "3rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem",
+          "space-2xs": "0.25rem",
+          "space-xl": "2rem",
+          "space-xs": "0.5rem",
+          "margin": "2rem",
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-ui": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "title-md": ["Plus Jakarta Sans"],
+          "label-mono-sm": ["JetBrains Mono"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "label-mono-md": ["JetBrains Mono"],
+          "display-hero-mobile": ["Plus Jakarta Sans"],
+          "display-hero": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-ui": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+          "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+          "label-mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+          "label-mono-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+          "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+          "display-hero": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full max-w-[1440px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group text-left" data-path="check" href="#"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_2px_8px_rgba(0,55,176,0.25)]"><span class="material-symbols-outlined text-on-primary text-[22px]">verified_user</span></div><div class="flex flex-col"><div class="flex items-baseline gap-space-2xs"><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">PARAKH</span><span class="font-title-md text-title-md text-secondary font-semibold">परख</span></div><span class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider">Rajasthan Police • Citizen Portal</span></div></a><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg"><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="check" href="#">Check / सत्यापन</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="app-check" href="#">App Check / ऐप जांच</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="learn" href="#">Learn / सीखें</a><a class="px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="evidence" href="#">Evidence / साक्ष्य</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary font-title-md rounded-lg" data-path="rescue-help" href="#">Rescue &amp; Help / संकट समाधान</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center p-space-2xs bg-surface-container rounded-full"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest font-label-ui text-label-ui text-primary shadow-[0_1px_2px_rgba(0,0,0,0.05)]" type="button">EN</button><button class="px-space-sm py-space-2xs rounded-full font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-colors" type="button">हिंदी</button></div><a class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-error text-on-error hover:bg-error/90 transition-all shadow-[0_2px_10px_rgba(186,26,26,0.22)]" href="tel:1930"><span class="material-symbols-outlined text-[18px]">emergency</span><span class="font-title-md text-title-md tracking-wide font-bold">1930</span><span class="hidden md:inline font-label-ui text-label-ui uppercase tracking-wider text-on-error/90">Helpline</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- Top Sovereign Triage Status Ribbon -->
+<section class="w-full bg-surface-container-low/70 py-space-xs px-margin">
+<div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-error"></span>
+</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-on-surface-variant">
+          Rajasthan Police Incident Response Desk • 24x7 Citizen Rescue Rail
+        </span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-2xs bg-surface-container-lowest px-space-sm py-space-2xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">Zero-Retention Mode: Ephemeral Memory Only</span>
+</div>
+<div class="hidden md:flex items-center gap-space-2xs text-on-surface-variant font-label-mono-sm text-label-mono-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+<span>Node #RJ-JAIPUR-CR904</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero Reassurance & Sovereign Triage Banner -->
+<section class="w-full px-margin pt-space-xl pb-space-lg">
+<div class="max-w-[1440px] mx-auto">
+<div class="relative bg-surface-container-lowest rounded-xl p-space-xl shadow-sm overflow-hidden">
+<!-- Accent Sandstone & Police Blue Gradient Ambient Backing -->
+<div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-secondary-fixed/30 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-primary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-space-xl">
+<div class="max-w-3xl space-y-space-xs">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-primary font-label-ui text-label-ui tracking-wide">
+<span class="material-symbols-outlined text-[16px]">health_and_safety</span>
+<span>CITIZEN EMERGENCY RAPID PROTOCOL • नागरिक आपात सुरक्षा</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              Cyber Incident Emergency Rescue / <span class="text-secondary font-headline-md text-headline-md font-semibold">साइबर संकट मोचन एवं त्वरित सहायता</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface font-medium pt-space-2xs">
+              आप सुरक्षित हैं। घबराएं नहीं — राजस्थान पुलिस साइबर क्राइम सेल आपके साथ है। नीचे अपनी स्थिति चुनें और तुरंत दिए गए कदम उठाएं।
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              You are safe. Do not panic. Our automated forensic triage generates immediate intervention protocols to freeze illicit money channels, isolate compromised handsets, and legally anchor your complaint.
+            </p>
+</div>
+<!-- Rapid Hotline Dock -->
+<div class="flex-shrink-0 flex flex-col sm:flex-row xl:flex-col gap-space-xs w-full xl:w-80">
+<a class="flex items-center justify-between p-space-md rounded-xl bg-error text-on-error shadow-md hover:bg-error/90 transition-all group" href="tel:1930">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px] animate-pulse">ring_volume</span>
+</div>
+<div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-on-error/80 block">National Cyber Helpline</span>
+<span class="font-display-hero-mobile text-display-hero-mobile font-bold tracking-tight">1930</span>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">support_agent</span>
+<div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-on-surface-variant block">Rajasthan Police Cyber Cell</span>
+<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface">+91 141 230 9450</span>
+</div>
+</div>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container-lowest font-label-ui text-label-ui text-on-surface-variant">24x7</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 1: Incident Scenario Matrix -->
+<section class="w-full px-margin py-space-lg">
+<div class="max-w-[1440px] mx-auto space-y-space-md">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-2xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-mono-sm text-label-mono-sm flex items-center justify-center font-bold">1</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-semibold">Incident Classifier / स्थिति चयन</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">
+            WHAT HAPPENED? / क्या हुआ? अपनी स्थिति चुनें
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Select the scenario that matches your incident. The emergency protocol will instantly adapt with customized recovery steps.
+          </p>
+</div>
+<div class="font-label-mono-sm text-label-mono-sm text-on-surface-variant bg-surface-container px-space-sm py-space-2xs rounded-lg">
+          Active Scenario: <span class="font-bold text-error">FINANCIAL LOSS (DEBIT / TRANSFER)</span>
+</div>
+</div>
+<!-- 3x2 Scenario Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="scenarioGrid">
+<!-- Card 1: Received only -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all shadow-sm flex flex-col justify-between h-full group" data-scenario="received" type="button">
+<div class="space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">mark_email_unread</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded-full bg-surface-container-high text-on-surface-variant font-label-ui text-label-ui uppercase tracking-wider">
+                Preventive / सुरक्षित
+              </span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">I only received it</h3>
+<p class="font-body-md text-body-md text-secondary font-medium">केवल संदिग्ध संदेश, ईमेल या कॉल आया</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                No money was sent, no link was opened, no credentials shared. Need threat verification &amp; preventive blacklisting.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Zero Harm Reported</span>
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</button>
+<!-- Card 2: Clicked a link -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all shadow-sm flex flex-col justify-between h-full group" data-scenario="clicked" type="button">
+<div class="space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">link_off</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui uppercase tracking-wider">
+                Phishing Alert
+              </span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">I clicked a link</h3>
+<p class="font-body-md text-body-md text-secondary font-medium">मैंने लिंक पर क्लिक किया</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                Opened an SMS/WhatsApp web link, lottery URL, fake electricity bill portal, or counterfeit government web address.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-secondary font-semibold">Browser Sandbox Protocol</span>
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</button>
+<!-- Card 3: Shared personal details -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all shadow-sm flex flex-col justify-between h-full group" data-scenario="details" type="button">
+<div class="space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">badge</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui uppercase tracking-wider">
+                Identity Breach
+              </span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">I shared personal details</h3>
+<p class="font-body-md text-body-md text-secondary font-medium">व्यक्तिगत जानकारी साझा की</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                Shared Aadhaar number, PAN, voter ID, residential address, mother's name, or date of birth with unverified caller.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-secondary font-semibold">UIDAI &amp; KYC Lock Required</span>
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</button>
+<!-- Card 4: Shared OTP / PIN -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all shadow-sm flex flex-col justify-between h-full group" data-scenario="otp" type="button">
+<div class="space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-on-error-container group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">password</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded-full bg-error-container text-on-error-container font-label-ui text-label-ui uppercase tracking-wider">
+                High Vulnerability
+              </span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">I shared OTP/PIN/password</h3>
+<p class="font-body-md text-body-md text-error font-medium">ओटीपी, यूपीआई पिन या पासवर्ड बता दिया</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                Gave a one-time banking passkey, ATM PIN, UPI secret PIN, or card CVV under pretenses of refund, KYC, or courier update.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-error font-semibold">Active Auth Compromise</span>
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</button>
+<!-- Card 5: Installed App / Screen share -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all shadow-sm flex flex-col justify-between h-full group" data-scenario="app" type="button">
+<div class="space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">screen_share</span>
+</div>
+<span class="px-space-xs py-space-2xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-ui text-label-ui uppercase tracking-wider">
+                Device Takeover
+              </span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Installed app / shared screen</h3>
+<p class="font-body-md text-body-md text-tertiary font-medium">ऐप इंस्टॉल किया या स्क्रीन शेयर की</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                Downloaded AnyDesk, RustDesk, TeamViewer, QuickSupport, or installed a 3rd party `.apk` file sent via WhatsApp.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-tertiary font-semibold">Remote RAT Threat</span>
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</button>
+<!-- Card 6: SELECTED / ACTIVE - I sent money -->
+<button class="scenario-card text-left p-space-lg rounded-xl bg-surface-container-lowest transition-all shadow-md flex flex-col justify-between h-full relative overflow-hidden bg-gradient-to-br from-error-container/20 to-surface-container-lowest" data-scenario="money" type="button">
+<!-- Active Highlight Accent Indicator -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-error"></div>
+<div class="space-y-space-sm pt-space-2xs">
+<div class="flex items-start justify-between">
+<div class="w-12 h-12 rounded-xl bg-error text-on-error flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[26px]">payments</span>
+</div>
+<span class="px-space-sm py-space-2xs rounded-full bg-error text-on-error font-label-ui text-label-ui uppercase tracking-wider font-bold">
+                CRITICAL THREAT • सक्रिय
+              </span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-title-md text-title-md font-bold text-on-surface">I sent money / Funds debited</h3>
+<span class="material-symbols-outlined text-error text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-body-md text-body-md text-error font-bold">पैसे कट गए या धोखे से भेज दिए</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+                Unauthorized UPI debit, bank transfer to mule account, QR scan cheat, fake job deposit, or sextortion payment.
+              </p>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">GOLDEN HOUR FREEZE APPLIES</span>
+<div class="w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- STEP 2: Selected Scenario Dynamic Protocol Panel -->
+<section class="w-full px-margin py-space-md" id="protocolSection">
+<div class="max-w-[1440px] mx-auto space-y-space-xl">
+<!-- A. CRITICAL URGENCY BANNER (GOLDEN HOUR) -->
+<div class="rounded-xl bg-error-container p-space-xl text-on-error-container shadow-md relative overflow-hidden">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-space-2xs rounded bg-error text-on-error font-label-ui text-label-ui font-bold uppercase tracking-wider">
+                CRITICAL ACTION REQUIRED • आपातकालीन वित्तीय सुरक्षा
+              </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-error-container font-semibold">T-0 to T-120 Minutes</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-error-container">
+              GOLDEN HOUR IN PROGRESS: Banking Freeze Window Is Active
+            </h2>
+<p class="font-body-md text-body-md text-on-error-container/90">
+              Immediate intervention within the first 1-2 hours offers an <strong class="underline decoration-error font-bold">82% chance</strong> of freezing illicit funds across RBI banking rails before cybercriminals can withdraw via micro-ATMs or transfer to crypto brokers.
+            </p>
+</div>
+<!-- Dual Sovereign Action Launcher -->
+<div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-space-sm flex-shrink-0">
+<a class="flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-xl bg-error text-on-error font-title-md text-title-md font-bold hover:bg-error/90 transition-all shadow-md group" href="tel:1930">
+<span class="material-symbols-outlined text-[24px] group-hover:animate-bounce">call</span>
+<span>Call 1930 Helpline / तुरंत कॉल करें</span>
+</a>
+<a class="flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-xl bg-primary text-on-primary font-title-md text-title-md font-semibold hover:bg-primary-container transition-all shadow-md" href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[22px]">open_in_new</span>
+<span>Report at cybercrime.gov.in</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Layout: Vertical Action Timeline (Left 7 Cols) + Evidence Vault & Bank Quick-Dial (Right 5 Cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Chronological Action Protocol Timeline -->
+<div class="lg:col-span-7 space-y-space-xl">
+<div class="flex items-center justify-between pb-space-xs">
+<div>
+<div class="flex items-center gap-space-2xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-mono-sm text-label-mono-sm flex items-center justify-center font-bold">2</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-semibold">Triage Execution Rail</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+                Chronological Recovery Checklist / क्रमबद्ध सुरक्षा प्रक्रिया
+              </h3>
+</div>
+<button class="text-on-surface-variant font-label-ui text-label-ui hover:text-primary transition-colors flex items-center gap-space-2xs" onclick="resetChecklist()" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset List</span>
+</button>
+</div>
+<!-- Group 1: NEXT 15 MINUTES (CRITICAL) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-low -mx-space-lg -mt-space-lg p-space-md rounded-t-xl">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-error font-bold">
+                  PHASE 1: IN THE NEXT 15 MINUTES (अगले 15 मिनट के भीतर)
+                </span>
+</div>
+<span class="px-space-xs py-space-2xs rounded bg-error-container text-on-error-container font-label-mono-sm text-label-mono-sm font-semibold">
+                Priority: IMMEDIATE
+              </span>
+</div>
+<!-- Steps in Group 1 -->
+<div class="space-y-space-md pt-space-xs">
+<!-- Step 1.1 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Call your bank's 24/7 fraud helpline to freeze your account
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">Step 1.1</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Tell them: <span class="font-bold text-on-surface">"My account has suffered an unauthorized cyber debit. Put an immediate debit-freeze and block net-banking access."</span>
+</p>
+<!-- Quick Bank Call Shortcuts -->
+<div class="pt-space-2xs flex flex-wrap items-center gap-space-xs">
+<span class="font-label-ui text-label-ui text-on-surface-variant uppercase">Quick Bank Hotlines:</span>
+<a class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm hover:bg-primary hover:text-on-primary transition-colors" href="tel:1800111109">
+                      SBI: 1800 11 1109
+                    </a>
+<a class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm hover:bg-primary hover:text-on-primary transition-colors" href="tel:18002583838">
+                      HDFC: 1800 258 3838
+                    </a>
+<a class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm hover:bg-primary hover:text-on-primary transition-colors" href="tel:18001080">
+                      ICICI: 1800 1080
+                    </a>
+<a class="px-space-xs py-space-2xs rounded bg-surface-container text-on-surface font-label-mono-sm text-label-mono-sm hover:bg-primary hover:text-on-primary transition-colors" href="tel:18001802222">
+                      PNB: 1800 180 2222
+                    </a>
+</div>
+</div>
+</div>
+<!-- Step 1.2 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Reset UPI PIN from an independent clean device
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">Step 1.2</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    If your phone had any screen sharing app active, do NOT type your PIN on it. Open PhonePe/GPay/BHIM on a family member's clean phone or call customer care to deregister UPI handles.
+                  </p>
+</div>
+</div>
+<!-- Step 1.3 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Record 12-digit UPI UTR number and transaction SMS
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-error font-bold">Step 1.3</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Check your bank debit SMS. Copy the 12-digit numeric code starting with <span class="font-label-mono-sm text-label-mono-sm bg-surface-container px-space-2xs rounded">UTR / Ref No: 4192XXXXXXXX</span>. This is essential for the 1930 operator to trace the receiver's intermediary wallet.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 2: WITHIN 1 HOUR -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-low -mx-space-lg -mt-space-lg p-space-md rounded-t-xl">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-secondary font-bold">
+                  PHASE 2: WITHIN 1 HOUR (1 घंटे के अंदर)
+                </span>
+</div>
+<span class="px-space-xs py-space-2xs rounded bg-secondary-fixed text-on-secondary-fixed font-label-mono-sm text-label-mono-sm font-semibold">
+                Priority: HIGH
+              </span>
+</div>
+<!-- Steps in Group 2 -->
+<div class="space-y-space-md pt-space-xs">
+<!-- Step 2.1 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Lodge formal ticket at cybercrime.gov.in under 'Financial Fraud'
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">Step 2.1</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Submit the incident on the National Cybercrime Reporting Portal. Select Rajasthan as state. Note down the generated 14-digit acknowledgement number for your police FIR.
+                  </p>
+</div>
+</div>
+<!-- Step 2.2 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Purge screen-sharing utilities or unfamiliar downloaded APKs
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">Step 2.2</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Uninstall AnyDesk, RustDesk, QuickSupport, or any recently installed APK. Put phone in Airplane Mode if unexpected popups or automated taps are occurring.
+                  </p>
+</div>
+</div>
+<!-- Step 2.3 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Change linked primary email &amp; password credentials
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-bold">Step 2.3</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Reset your Google/Apple account password and revoke all active sessions ("Log out from all devices") from a trusted laptop or desktop.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 3: WITHIN 24 HOURS -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-low -mx-space-lg -mt-space-lg p-space-md rounded-t-xl">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-primary font-bold">
+                  PHASE 3: WITHIN 24 HOURS (24 घंटे के भीतर)
+                </span>
+</div>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container-high text-on-surface-variant font-label-mono-sm text-label-mono-sm font-semibold">
+                Recovery &amp; Legal
+              </span>
+</div>
+<!-- Steps in Group 3 -->
+<div class="space-y-space-md pt-space-xs">
+<!-- Step 3.1 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Present acknowledgement at nearest Rajasthan Cyber Police Station
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">Step 3.1</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Carry printed copies of your 1930 / cybercrime.gov.in acknowledgement slip, bank account statement with marked debits, and suspect chat screenshots to convert your entry into a registered FIR.
+                  </p>
+</div>
+</div>
+<!-- Step 3.2 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Demand written Lien / Debit Freeze confirmation from Bank Manager
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">Step 3.2</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Submit a physical letter with your branch manager citing RBI Circular <span class="font-label-mono-sm text-label-mono-sm font-semibold text-on-surface">RBI/2017-18/15</span> regarding zero liability for timely reported unauthorized electronic banking transactions.
+                  </p>
+</div>
+</div>
+<!-- Step 3.3 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg bg-surface hover:bg-surface-container-low transition-colors">
+<label class="relative flex items-center pt-1 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary cursor-pointer accent-primary" type="checkbox"/>
+</label>
+<div class="space-y-space-xs flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md font-bold text-on-surface">
+                      Re-issue replacement cards and clean Net Banking credentials
+                    </span>
+<span class="font-label-mono-sm text-label-mono-sm text-primary font-bold">Step 3.3</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Ensure the compromised plastic card is hot-listed permanently, not merely paused, and apply for a freshly minted card number.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Evidence Locker & Tactical Artifact Vault -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- C. EVIDENCE TO KEEP CHECKLIST -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div>
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">folder_special</span>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-secondary font-semibold">Evidence Preservation / साक्ष्य संग्रह</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                Evidence Required For Police FIR &amp; Chargeback
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Do not delete chats or clear call logs. Courts and cyber investigators require original forensic artifacts.
+              </p>
+</div>
+<!-- 4 Artifact Cards -->
+<div class="space-y-space-sm">
+<!-- Item 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+<div class="space-y-space-2xs flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md font-bold text-on-surface">1. Transaction Proof</h4>
+<span class="font-label-ui text-label-ui text-error font-bold uppercase">Mandatory</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    12-digit UTR number, bank debit SMS, passbook entry or PDF statement highlighting the debit timestamp and receiving UPI VPA.
+                  </p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">screenshot</span>
+</div>
+<div class="space-y-space-2xs flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md font-bold text-on-surface">2. Visual Screenshots</h4>
+<span class="font-label-ui text-label-ui text-error font-bold uppercase">Mandatory</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Uncropped full screen captures showing sender contact header, time of message, profile photo, and full conversational dialogue.
+                  </p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary-container flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">contacts</span>
+</div>
+<div class="space-y-space-2xs flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md font-bold text-on-surface">3. Sender Identifiers</h4>
+<span class="font-label-ui text-label-ui text-primary font-bold uppercase">Critical</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Suspect's mobile number, UPI handle (e.g. <span class="font-label-mono-sm text-label-mono-sm">merchant99@okaxis</span>), email headers, or Telegram @username.
+                  </p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-on-surface-variant flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</div>
+<div class="space-y-space-2xs flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md font-bold text-on-surface">4. Digital Traces</h4>
+<span class="font-label-ui text-label-ui text-on-surface-variant font-semibold uppercase">Forensic</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    The exact web link clicked, APK installer filename if still inside Download folder, or QR code image scanned.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Evidence Tool Action Buttons -->
+<div class="pt-space-xs space-y-space-xs">
+<button class="w-full flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md font-semibold hover:bg-primary-container transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">archive</span>
+<span>Package Evidence on Device (Client Encrypted)</span>
+</button>
+<button class="w-full flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container text-on-surface font-title-md text-title-md font-medium hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download Rajasthan FIR Evidence Template PDF</span>
+</button>
+</div>
+</div>
+<!-- Police Station & Cyber Cell Locator Map Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">local_police</span>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Nearest Cyber Police Station</h4>
+</div>
+<span class="font-label-ui text-label-ui text-secondary font-bold">Jaipur Range</span>
+</div>
+<!-- Map Container with Data-Location Pipeline -->
+<div class="w-full h-44 rounded-lg bg-cover bg-center relative overflow-hidden flex items-end p-space-md shadow-inner" data-location="Jaipur, Rajasthan Police Cyber Cell HQ" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYoDPRNihNi-ZqWm6gsLlYM7m9rv_SxEcg4zswLpPouiKohM6gOKgWWJONwim1ewGGiyt5i1fqwrV_nm5zIGFneSzDPIaHHM9ViaAktZNY2asoqZq_zhjL2moPfAuQHcBeVD0WuU-PJN1CJlOiMC_13UQ9cYTOjkU5jWZuit8EsKZA4XnaEHQin_4Qs2Um6K-hTqo5U-MhSLGG0qJs4hc0v9ahxCPnPkW9OPywbxo')">
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-space-xs rounded-md shadow-sm w-full flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">Cyber Thana, Ghat Gate</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Jaipur Police Commissionerate</p>
+</div>
+<a class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center" href="https://maps.google.com" target="_blank">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+</a>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<p class="font-label-ui text-label-ui uppercase tracking-wider text-on-surface-variant">Station Incharge Officer</p>
+<p class="font-title-md text-title-md font-semibold text-on-surface">Insp. R. S. Shekhawat</p>
+</div>
+<a class="px-space-sm py-space-xs rounded-lg bg-surface-container-lowest font-label-mono-sm text-label-mono-sm font-semibold text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" href="tel:01412309450">
+                Dial Station
+              </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. REASSURANCE & EMOTIONAL SUPPORT STRIP -->
+<section class="w-full px-margin py-space-xl">
+<div class="max-w-[1440px] mx-auto">
+<div class="bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low rounded-xl p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col lg:flex-row items-center gap-space-lg">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest flex items-center justify-center text-secondary shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">handshake</span>
+</div>
+<div class="space-y-space-2xs text-center lg:text-left flex-1">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
+              धोखाधड़ी किसी के साथ भी हो सकती है — यह आपकी व्यक्तिगत गलती नहीं है
+            </h3>
+<p class="font-body-lg text-body-lg text-secondary font-medium">
+              Cybercriminals engineer aggressive social engineering and psychological manipulation. Rajasthan Police is dedicated to shielding you and recovering your assets.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Victims often experience distress, guilt, or isolation. You are dealing with organized international syndicates. Our counseling wing and free legal advisory are available to walk through recovery alongside you.
+            </p>
+</div>
+</div>
+<!-- 3 Support Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Victim Counseling Support</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Confidential emotional support for financial fraud and sextortion distress managed by trained cyber psychologists.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-primary">Toll-Free: 1800 891 4416</span>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container font-label-ui text-label-ui text-on-surface-variant">9 AM - 9 PM</span>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">gavel</span>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Free Legal Aid Clinic</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Assistance with Section 457 CrPC application for de-freezing frozen legitimate accounts and filing RBI ombudsman chargebacks.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-secondary">RSLSA Helpdesk</span>
+<a class="font-label-ui text-label-ui text-primary font-bold hover:underline" href="#">Apply Assistance →</a>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">security</span>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Handset Forensic Cleanse</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Walk into any district cyber cell kiosk to receive a free hardware sanitization and malware extraction audit report.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-on-surface">33 District Kiosks</span>
+<span class="px-space-xs py-space-2xs rounded bg-surface-container font-label-ui text-label-ui text-tertiary font-semibold">Free Govt Service</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript Controller for Checklist and Scenarios -->
+<script>
+    function resetChecklist() {
+      const checkboxes = document.querySelectorAll('#protocolSection input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        cb.checked = false;
+        const row = cb.closest('.p-space-sm');
+        if (row) {
+          row.classList.remove('bg-surface-container-low', 'opacity-60');
+          row.classList.add('bg-surface');
+        }
+      });
+    }
+
+    // Attach strike-through and soft styling when checklists are completed
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkboxes = document.querySelectorAll('#protocolSection input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', (e) => {
+          const row = e.target.closest('.p-space-sm');
+          if (e.target.checked) {
+            row.classList.add('bg-surface-container-low', 'opacity-60');
+            row.classList.remove('bg-surface');
+          } else {
+            row.classList.remove('bg-surface-container-low', 'opacity-60');
+            row.classList.add('bg-surface');
+          }
+        });
+      });
+
+      // Quick tab selection mock for scenarios
+      const cards = document.querySelectorAll('.scenario-card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          cards.forEach(c => {
+            c.classList.remove('bg-gradient-to-br', 'from-error-container/20', 'to-surface-container-lowest', 'shadow-md');
+            c.classList.add('bg-surface-container-lowest', 'shadow-sm');
+            const topBar = c.querySelector('.h-1.5');
+            if (topBar) topBar.remove();
+          });
+
+          card.classList.add('bg-gradient-to-br', 'from-error-container/20', 'to-surface-container-lowest', 'shadow-md');
+          card.classList.remove('shadow-sm');
+        });
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1440px] mx-auto px-margin py-space-2xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">shield</span></div><div><p class="font-title-md text-title-md text-on-surface font-semibold">PARAKH • राजस्थान पुलिस साइबर सुरक्षा सेल</p><p class="font-body-sm text-body-sm text-on-surface-variant">Sovereign Digital Verification Platform for Indian Citizens</p></div></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant"><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="rescue-help" href="#">Emergency Rescue &amp; SOS</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="evidence" href="#">Submit Tip / रिपोर्ट</a><a class="font-body-sm text-body-sm hover:text-on-surface transition-colors" data-path="learn" href="#">Security Guidelines</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-ui text-label-ui"><p>© 2025 Rajasthan Police Cyber Crime Branch. Govt. of Rajasthan. All Rights Reserved.</p><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-2xs text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span>National Cyber Crime Portal (cybercrime.gov.in) Partner</span></div></div></div></footer></body></html>
