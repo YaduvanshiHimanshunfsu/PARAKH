@@ -1293,7 +1293,7 @@ Status as of 24 Nov 2026 (commits `a37368b`, `36e9712`, `1d4e5e3`, `ada5c55`):
 - [ ] H.5 screens: identifier pivot, evidence locker and report status are **built**; action pack, review queue and document review are **not built** — build or cut them from the Phase I storyline
 
 Follow-ups found while building:
-- Material Symbols font is 4 MB; subset it to the icons used (an icon-name check already exists in the build notes).
+- Material Symbols font is 4 MB; subset it to the icons used, and add a test that every icon name exists in `material-symbols` (checked by hand during H.2; three invalid names were found and fixed).
 - Chart risk colours (`CHART_RISK` in `Charts.jsx`) are separate from the text risk tokens because the amber/red pair failed the normal-vision separation check; amber is below 3:1 on white, so every chart using it ships a table view.
 - The report-status endpoint exposes only stage and dates for citizen-filed cases; officer cases answer 404 like unknown references.
 
