@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Apk Malware Scanner | PARAKH</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed": "#dce1ff", "background": "#faf8ff", "on-primary-fixed": "#001551", "secondary-fixed": "#ffdbc8", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#832600", "surface-container-highest": "#dae2fd", "on-surface": "#131b2e", "tertiary-fixed-dim": "#ffb59d", "surface-container": "#eaedff", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b7c4ff", "outline": "#747686", "on-primary-container": "#cad3ff", "tertiary-fixed": "#ffdbd0", "on-secondary-container": "#6b3100", "outline-variant": "#c4c5d7", "inverse-surface": "#283044", "error-container": "#ffdad6", "on-background": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container-low": "#f2f3ff", "primary": "#0037b0", "surface-tint": "#2151da", "error": "#ba1a1a", "surface-dim": "#d2d9f4", "on-surface-variant": "#434655", "inverse-primary": "#b7c4ff", "secondary-container": "#ff9245", "on-tertiary": "#ffffff", "on-tertiary-container": "#ffc9b8", "on-primary-fixed-variant": "#0039b5", "secondary": "#984800", "surface": "#faf8ff", "tertiary": "#802500", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#743500", "surface-bright": "#faf8ff", "on-error-container": "#93000a", "secondary-fixed-dim": "#ffb689", "on-secondary-fixed": "#311300", "on-error": "#ffffff", "on-tertiary-fixed": "#390c00", "tertiary-container": "#a83300", "surface-variant": "#dae2fd", "on-secondary": "#ffffff", "primary-container": "#1d4ed8" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "margin-mobile": "1rem", "margin": "2rem", "space-3xl": "4rem", "space-2xl": "3rem", "space-sm": "0.75rem", "space-xs": "0.5rem", "space-md": "1rem", "gutter": "1.5rem", "space-2xs": "0.25rem", "space-xl": "2rem", "gutter-mobile": "1rem" }, fontFamily: { "body-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-mono-md": ["JetBrains Mono"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-ui": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-mono-sm": ["JetBrains Mono"] }, fontSize: { "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "label-mono-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-ui": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}</style></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(0,55,176,0.25)]"><span class="material-symbols-outlined text-on-primary text-[24px]">verified_user</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5 leading-none"><span class="font-title-md text-title-md font-bold tracking-tight text-primary">PARAKH</span><span class="font-title-md text-title-md font-bold text-secondary">परख</span></div><span class="font-label-ui text-[10px] uppercase tracking-wider text-on-surface-variant truncate">Raj. Police Cyber Safety</span></div></div><div class="flex items-center gap-space-2xs shrink-0"><a aria-label="National Cyber Helpline 1930" class="min-h-[44px] min-w-[44px] px-2 rounded-lg bg-error-container/60 hover:bg-error-container text-error flex items-center justify-center gap-1 transition-colors" href="tel:1930"><span class="material-symbols-outlined text-[18px]">call</span><span class="font-label-mono-sm text-label-mono-sm font-bold">1930</span></a><button aria-label="Language Toggle" class="min-h-[44px] min-w-[44px] px-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" type="button"><span class="font-label-ui text-label-ui font-semibold">EN|हिं</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface px-gutter-mobile min-h-screen"><div class="flex flex-col w-full pb-28 space-y-space-md">
+<!-- Live Regional Threat Banner -->
+<div class="w-full rounded-xl bg-error-container/80 text-on-error-container p-space-sm shadow-sm transition-transform active:scale-[0.99]">
+<div class="flex items-start gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-error font-bold">राजस्थान साइबर अलर्ट • Current Threat</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-error text-on-error font-label-mono-sm text-[10px] font-bold animate-pulse">42 FIRs</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-error-container mt-1">
+<strong class="font-semibold text-error">Fake JVVNL / Bijli Bill APKs</strong> circulating via WhatsApp. Silently intercepts banking OTPs.
+        </p>
+</div>
+</div>
+</div>
+<!-- Hero Value Proposition Section -->
+<div class="w-full rounded-2xl bg-surface-container-low p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-primary-fixed/30 pointer-events-none blur-2xl"></div>
+<div class="flex flex-col space-y-1 relative z-10">
+<div class="inline-flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-ui text-label-ui font-semibold uppercase tracking-wider">Cloud Forensic Sandbox</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+        Got an app on WhatsApp?
+      </h1>
+<p class="font-body-md text-body-md text-secondary font-medium">
+        व्हाट्सएप पर ऐप फाइल मिली? इंस्टॉल करने से पहले परखें।
+      </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1">
+        Verify unknown Android installers before giving away SMS, device permissions, and financial access.
+      </p>
+</div>
+</div>
+<!-- Primary Upload / Triage Zone -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-space-md shadow-md space-y-space-md relative">
+<!-- Visual Sandbox Badge -->
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">security</span>
+<span class="font-title-md text-title-md text-on-surface">APK Triage Engine</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-mono-sm text-label-mono-sm">
+        Max 100MB
+      </span>
+</div>
+<!-- Interactive Dashed Dropper Zone -->
+<div class="w-full rounded-xl bg-surface-container-low p-space-lg flex flex-col items-center justify-center text-center cursor-pointer transition-all active:scale-[0.98] select-none hover:bg-surface-container relative" id="drop-zone">
+<input accept=".apk,.xapk" class="hidden" id="apk-file-input" type="file"/>
+<div class="relative mb-space-xs">
+<div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 text-on-primary">
+<span class="material-symbols-outlined text-[36px]">android</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container absolute -bottom-1 -right-1 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[15px]">add</span>
+</div>
+</div>
+<span class="font-title-md text-title-md text-on-surface font-bold mt-1">
+        Tap to select .APK file
+      </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+        फोन से फाइल चुनें (.apk, .xapk समर्थित)
+      </span>
+<div class="flex items-center gap-2 mt-space-sm text-primary font-label-ui text-label-ui font-semibold bg-surface-container-lowest px-3 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[16px]">cloud_upload</span>
+<span>Browse Device Storage</span>
+</div>
+</div>
+<!-- URL Alternative Input -->
+<div class="space-y-space-2xs">
+<label class="font-label-ui text-label-ui text-on-surface-variant uppercase tracking-wider block">
+        Or paste download link / Telegram file URL
+      </label>
+<div class="relative flex items-center">
+<div class="absolute left-3 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</div>
+<input class="w-full h-12 pl-10 pr-24 rounded-xl bg-surface-container-low text-on-surface font-label-mono-sm text-label-mono-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="url-input" placeholder="https://t.me/... or http://.../setup.apk" type="url"/>
+<button class="absolute right-1.5 h-9 px-3 rounded-lg bg-primary text-on-primary font-label-ui text-label-ui font-semibold transition-opacity hover:opacity-90 active:scale-95 flex items-center gap-1 shadow-sm" id="btn-inspect-url" type="button">
+<span>Fetch</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Sample Inspection Interactive Chip -->
+<div class="pt-1 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-ui text-label-ui text-on-surface-variant">Curious how detection works?</span>
+</div>
+<button class="w-full flex items-center justify-between p-2.5 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed transition-all hover:opacity-95 active:scale-[0.99] text-left" id="demo-chip-btn" type="button">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0">bug_report</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-label-mono-sm font-bold truncate">Discom_Bijli_Update.apk</span>
+<span class="font-label-ui text-[11px] opacity-80">Test live sandbox threat heuristics</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded-lg bg-surface-container-lowest text-tertiary font-label-ui text-[11px] font-bold shrink-0 shadow-sm">
+          Try Sample
+        </span>
+</button>
+</div>
+</div>
+<!-- Dynamic Scan Progress Drawer (Hidden until trigger) -->
+<div class="hidden w-full rounded-2xl bg-surface-container-lowest p-space-md shadow-lg space-y-space-sm animate-in fade-in zoom-in-95 duration-200" id="scan-progress-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface" id="scanned-filename">Analyzing payload...</span>
+<span class="font-label-ui text-[11px] text-on-surface-variant" id="scan-substatus">Unpacking AndroidManifest.xml</span>
+</div>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-primary" id="scan-percentage">34%</span>
+</div>
+<!-- Visual Progress Bar -->
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-300 w-1/3" id="progress-indicator"></div>
+</div>
+<!-- Forensic Threat Checklist -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span class="font-label-ui text-[11px] text-on-surface">Dex decompilation</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span class="font-label-ui text-[11px] text-on-surface">SMS permission check</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant animate-pulse">radio_button_unchecked</span>
+<span class="font-label-ui text-[11px] text-on-surface">I4C threat registry</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant animate-pulse">radio_button_unchecked</span>
+<span class="font-label-ui text-[11px] text-on-surface">C2 Server IP lookup</span>
+</div>
+</div>
+<!-- Instant Result Box (revealed when scan finishes) -->
+<div class="hidden mt-space-sm p-space-sm rounded-xl bg-error-container text-on-error-container space-y-1" id="scan-verdict-box">
+<div class="flex items-center gap-1.5 text-error font-bold font-title-md text-title-md">
+<span class="material-symbols-outlined">gpp_bad</span>
+<span>High-Risk Trojan Detected!</span>
+</div>
+<p class="font-body-sm text-body-sm">
+        Contains <strong>Android.Banker.SpyMax</strong> variant. Infiltrates SMS to bypass OTP protection. <strong>DO NOT INSTALL.</strong>
+</p>
+<div class="pt-2 flex gap-2">
+<a class="flex-1 h-9 rounded-lg bg-error text-on-error font-label-ui text-label-ui font-bold flex items-center justify-center gap-1 shadow-sm" href="tel:1930">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Report (1930)</span>
+</a>
+<button class="px-3 h-9 rounded-lg bg-surface-container-lowest text-on-surface font-label-ui text-label-ui font-semibold" id="dismiss-scan-btn" type="button">
+          Reset
+        </button>
+</div>
+</div>
+</div>
+<!-- Zero-Device Cloud Execution Guarantee -->
+<div class="w-full rounded-2xl bg-surface-container-low p-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">lock</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Zero-Device Execution</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary-container font-label-mono-sm text-[10px]">Cloud ISO</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          The file is analyzed inside an ephemeral, air-gapped Rajasthan Cyber Command cloud sandbox. <strong>It is never executed or installed on your phone.</strong>
+</p>
+</div>
+</div>
+</div>
+<!-- Anatomy of APK Fraud / 3-Step Scam Graphic -->
+<div class="w-full space-y-space-sm pt-1">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">How APK Scammers Trap You</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ठगी का तरीका: 3 घातक चरण</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-[24px]">psychology_alt</span>
+</div>
+<!-- Step 1 Card -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-space-sm shadow-sm flex items-center gap-space-sm">
+<div class="relative w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up smartphone screen displaying a fraudulent urgent electricity disconnection warning message on WhatsApp with red caution glyphs, modern clean editorial photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBepVBGBgJNktyM9aMgNt2SkDMpvgBLVYVVQ8FRmNGsI0sLZhmaeGeAf-Jl5RKvM_YifgaLezUxPsNI8HlkuG9V_OutMQLJVRW2phEWwlP_zWG2RrbuGPc7dDj4vI1DEedTpQjkd-pZDWiQC8gf4EASZHWgbD3y_kOHyX4THeYCt7aVIVPU97i3y_x_Iw7XMjr0nmjs__YkX32HyeRnMR4jF6gJ-tfzjc_fsdi56fc"/>
+<div class="absolute top-1 left-1 w-5 h-5 rounded-full bg-primary text-on-primary font-label-mono-sm text-[11px] font-bold flex items-center justify-center shadow-sm">
+          1
+        </div>
+</div>
+<div class="flex flex-col min-w-0 pr-1">
+<span class="font-title-md text-title-md text-on-surface font-bold truncate">WhatsApp Panic Trigger</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          Scammers send fake power disconnection warnings with an urgent resolution link.
+        </p>
+</div>
+</div>
+<!-- Step 2 Card -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-space-sm shadow-sm flex items-center gap-space-sm">
+<div class="relative w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Android smartphone settings screen prompting user to enable Install unknown apps or sideload third party APK file, digital illustration realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcuo_8tEvnF68dm0fFjt5DpeG3Nh3VGSOarKIU2tF-HnNAEGfK1fugvK7zT5n5L-CB5GGACof6DRK5u84gcMfsdiDrMvaKAHxnhZaazw4ErDNyXx_P_6Bkk1fSTpz3F5pxL23OUTII2wChcz8bweH9rDcTahGPUaNsFDpkZIoNSKK94lAKI1XSK4HU1mLCpddEPgZtivNCml63aX8ukAwYB6HWcx1QczdPLrO0trU"/>
+<div class="absolute top-1 left-1 w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container font-label-mono-sm text-[11px] font-bold flex items-center justify-center shadow-sm">
+          2
+        </div>
+</div>
+<div class="flex flex-col min-w-0 pr-1">
+<span class="font-title-md text-title-md text-on-surface font-bold truncate">Sideload Trick (.apk)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          Victim is coached to bypass Google Play Protect and install an unverified APK payload.
+        </p>
+</div>
+</div>
+<!-- Step 3 Card -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-space-sm shadow-sm flex items-center gap-space-sm">
+<div class="relative w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Cyber fraud concept showing digital banking SMS notification intercepted by shadowy lines, sovereign blue and sandstone lighting aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuP65uoTrV2uKDmgvmIiZTnLBPF-h6xuTEWJBSiD2IByA0uyDAuX8nfqAaLYY-azqaQe1HXjlHZs_t4Pck5krwlDyOVFX8OW66K6Jee-RgEw-o6Jy1kadVZTnzHnxSbkl5JcrfDq3svfs4AAgACzpg-aeFF8lRTAQ4BRAItx91PmWJX5qnQW9ikDriE5dDt6hcECOKjlzr1jz4s6n66tf15ZdhhieG8KpCP3KWML0"/>
+<div class="absolute top-1 left-1 w-5 h-5 rounded-full bg-error text-on-error font-label-mono-sm text-[11px] font-bold flex items-center justify-center shadow-sm">
+          3
+        </div>
+</div>
+<div class="flex flex-col min-w-0 pr-1">
+<span class="font-title-md text-title-md text-on-surface font-bold truncate">Silent Bank SMS Theft</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+          Trojan reads 2FA OTP codes silently, emptying bank accounts without triggering rings.
+        </p>
+</div>
+</div>
+</div>
+<!-- Regional Cyber Tip Accordion Card -->
+<div class="w-full rounded-2xl bg-surface-container-high p-space-md shadow-sm">
+<div class="flex items-center gap-2 text-on-surface font-bold font-title-md text-title-md">
+<span class="material-symbols-outlined text-secondary">tips_and_updates</span>
+<span>Rajasthan Cyber Advisory</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+      Never enable <em>"Install from Unknown Sources"</em> upon a caller's request. Official discom utilities (JVVNL, AVVNL, JdVVNL) are ONLY published on Google Play Store.
+    </p>
+</div>
+<!-- Sticky Bottom Thumb Action Bar (Positioned above standard bottom nav) -->
+<div class="fixed bottom-20 left-0 right-0 px-gutter-mobile z-40 max-w-md mx-auto pointer-events-none">
+<div class="w-full pointer-events-auto">
+<button class="w-full h-14 rounded-2xl bg-primary text-on-primary shadow-xl shadow-primary/30 flex items-center justify-between px-space-md font-title-md text-title-md font-bold transition-all hover:bg-primary-container active:scale-[0.98]" id="btn-sticky-trigger" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[26px]">android</span>
+<div class="flex flex-col text-left leading-tight">
+<span>Select APK to Scan</span>
+<span class="text-[11px] font-normal text-on-primary/80">फाइल चुनें और सुरक्षित जाँचें</span>
+</div>
+</div>
+<div class="w-9 h-9 rounded-xl bg-on-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<script>
+  (function initApkScannerUX() {
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('apk-file-input');
+    const stickyBtn = document.getElementById('btn-sticky-trigger');
+    const demoBtn = document.getElementById('demo-chip-btn');
+    const progressCard = document.getElementById('scan-progress-card');
+    const progressBar = document.getElementById('progress-indicator');
+    const progressPct = document.getElementById('scan-percentage');
+    const substatus = document.getElementById('scan-substatus');
+    const scannedName = document.getElementById('scanned-filename');
+    const verdictBox = document.getElementById('scan-verdict-box');
+    const dismissBtn = document.getElementById('dismiss-scan-btn');
+    const inspectUrlBtn = document.getElementById('btn-inspect-url');
+    const urlInput = document.getElementById('url-input');
+
+    function startSimulation(fileName) {
+      if (!progressCard) return;
+      
+      progressCard.classList.remove('hidden');
+      verdictBox.classList.add('hidden');
+      scannedName.textContent = fileName || 'Uploaded_App.apk';
+      progressCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      let progress = 10;
+      progressBar.style.width = '10%';
+      progressPct.textContent = '10%';
+      substatus.textContent = 'Uploading to isolated cloud sandbox...';
+
+      const interval = setInterval(() => {
+        progress += 18;
+        if (progress > 95 && progress < 100) {
+          substatus.textContent = 'Comparing permissions with Rajasthan Police I4C threat intel...';
+        } else if (progress > 60) {
+          substatus.textContent = 'Decompiling bytecode for hidden SMS listeners...';
+        } else if (progress > 30) {
+          substatus.textContent = 'Verifying digital signatures & hashes...';
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          progressBar.style.width = '100%';
+          progressPct.textContent = '100%';
+          substatus.textContent = 'Static & dynamic heuristics complete';
+          verdictBox.classList.remove('hidden');
+        } else {
+          progressBar.style.width = progress + '%';
+          progressPct.textContent = progress + '%';
+        }
+      }, 260);
+    }
+
+    if (dropZone && fileInput) {
+      dropZone.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          startSimulation(e.target.files[0].name);
+        }
+      });
+    }
+
+    if (stickyBtn && fileInput) {
+      stickyBtn.addEventListener('click', () => fileInput.click());
+    }
+
+    if (demoBtn) {
+      demoBtn.addEventListener('click', () => {
+        startSimulation('Discom_Bijli_Update.apk');
+      });
+    }
+
+    if (inspectUrlBtn && urlInput) {
+      inspectUrlBtn.addEventListener('click', () => {
+        const val = urlInput.value.trim();
+        if (val) {
+          const parts = val.split('/');
+          const tail = parts[parts.length - 1] || 'telegram_payload.apk';
+          startSimulation(tail);
+        } else {
+          urlInput.focus();
+        }
+      });
+    }
+
+    if (dismissBtn && progressCard) {
+      dismissBtn.addEventListener('click', () => {
+        progressCard.classList.add('hidden');
+        if (fileInput) fileInput.value = '';
+        if (urlInput) urlInput.value = '';
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-bold"><div class="h-20 px-space-xs flex items-center justify-around"><a class="min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1 text-on-surface-variant transition-colors" data-path="home-screen" href="#"><span class="material-symbols-outlined text-[22px]">shield</span><span class="font-label-ui text-[11px] leading-tight text-center">होम<br/><span class="text-[9px] opacity-80">Home</span></span></a><a class="min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1 text-on-surface-variant transition-colors" data-path="verify-identifier" href="#"><span class="material-symbols-outlined text-[22px]">fingerprint</span><span class="font-label-ui text-[11px] leading-tight text-center">जाँच<br/><span class="text-[9px] opacity-80">Check</span></span></a><a aria-current="page" class="min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1 transition-colors text-primary font-bold" data-path="apk-malware-scanner" href="#"><span class="material-symbols-outlined text-[22px]">android</span><span class="font-label-ui text-[11px] leading-tight text-center">ऐप जाँच<br/><span class="text-[9px] opacity-80">Apps</span></span></a><a class="min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1 text-on-surface-variant transition-colors" data-path="cyber-awareness-hub" href="#"><span class="material-symbols-outlined text-[22px]">school</span><span class="font-label-ui text-[11px] leading-tight text-center">सीखें<br/><span class="text-[9px] opacity-80">Learn</span></span></a><a class="min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-1 text-on-surface-variant transition-colors" data-path="emergency-incident-rescue" href="#"><span class="material-symbols-outlined text-[22px]">e911_emergency</span><span class="font-label-ui text-[11px] leading-tight text-center">मदद<br/><span class="text-[9px] opacity-80">Rescue</span></span></a></div></nav></body></html>

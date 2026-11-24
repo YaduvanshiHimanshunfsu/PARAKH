@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Scan And Check - PARAKH</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#b7c4ff", "secondary": "#984800", "outline-variant": "#c4c5d7", "inverse-surface": "#283044", "on-surface": "#131b2e", "surface-dim": "#d2d9f4", "on-secondary-fixed": "#311300", "on-background": "#131b2e", "surface-tint": "#2151da", "on-surface-variant": "#434655", "tertiary": "#802500", "on-error-container": "#93000a", "inverse-primary": "#b7c4ff", "surface-variant": "#dae2fd", "on-secondary-container": "#6b3100", "surface-container-low": "#f2f3ff", "on-tertiary-fixed": "#390c00", "tertiary-fixed-dim": "#ffb59d", "on-primary-container": "#cad3ff", "secondary-fixed": "#ffdbc8", "on-tertiary-fixed-variant": "#832600", "tertiary-container": "#a83300", "primary-container": "#1d4ed8", "tertiary-fixed": "#ffdbd0", "error": "#ba1a1a", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "background": "#faf8ff", "secondary-fixed-dim": "#ffb689", "on-error": "#ffffff", "on-tertiary-container": "#ffc9b8", "error-container": "#ffdad6", "surface-container": "#eaedff", "surface": "#faf8ff", "surface-container-highest": "#dae2fd", "on-secondary-fixed-variant": "#743500", "on-primary-fixed": "#001551", "primary-fixed": "#dce1ff", "on-primary-fixed-variant": "#0039b5", "surface-bright": "#faf8ff", "secondary-container": "#ff9245", "primary": "#0037b0", "outline": "#747686", "inverse-on-surface": "#eef0ff", "surface-container-high": "#e2e7ff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-3xl": "4rem", "space-lg": "1.5rem", "gutter": "1.5rem", "space-2xl": "3rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-2xs": "0.25rem", "space-xl": "2rem", "space-xs": "0.5rem", "margin": "2rem", "space-sm": "0.75rem", "margin-mobile": "1rem" }, fontFamily: { "label-ui": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "label-mono-sm": ["JetBrains Mono"], "headline-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-mono-md": ["JetBrains Mono"], "display-hero-mobile": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, fontSize: { "label-ui": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "label-mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "label-mono-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#faf8ff;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[22px]">shield</span></div><div class="flex flex-col"><span class="font-title-md text-title-md text-primary leading-tight font-bold tracking-tight">PARAKH</span><span class="font-label-ui text-label-ui text-on-surface-variant text-[10px] leading-none">राज. पुलिस</span></div></div><div class="flex items-center gap-space-xs"><a class="h-9 px-space-sm rounded-full bg-error-container text-error flex items-center gap-1 font-label-mono-sm text-label-mono-sm font-semibold active:opacity-80 transition-opacity" href="tel:1930"><span class="material-symbols-outlined text-[16px]">call</span><span>1930</span></a><button aria-label="Switch Language" class="h-9 px-space-xs rounded-lg bg-surface-container-high text-on-surface-variant flex items-center gap-1 font-label-ui text-label-ui hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">translate</span><span>अ/A</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-6 px-gutter-mobile space-y-space-md">
+<!-- Civic Shield Eyebrow & Hero Header -->
+<section class="flex flex-col space-y-space-xs pt-space-xs">
+<div class="inline-flex items-center gap-1.5 self-start px-space-xs py-1 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">local_police</span>
+<span class="font-label-ui text-[10px] tracking-wide uppercase">राजस्थान पुलिस साइबर सतर्कता • Citizen Shield</span>
+</div>
+<div class="flex flex-col">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold tracking-tight">
+        Check suspicious content <br/>
+<span class="text-primary font-bold">कुछ संदिग्ध जाँचें</span>
+</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+        Paste or scan any SMS, WhatsApp text, link, QR code, or APK. <span class="font-semibold text-on-surface">100% confidential</span>, citizen-first &amp; zero forensic retention.
+      </p>
+</div>
+</section>
+<!-- State Preview Switcher (Interactive Playground Trigger) -->
+<div class="flex items-center justify-between p-1 bg-surface-container rounded-xl shadow-sm">
+<button class="flex-1 py-1.5 px-2 rounded-lg text-center font-label-ui text-label-ui transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm font-bold" id="tab-filled" onclick="switchState('filled')">
+      Filled Scan
+    </button>
+<button class="flex-1 py-1.5 px-2 rounded-lg text-center font-label-ui text-label-ui transition-all duration-150 text-on-surface-variant hover:text-on-surface" id="tab-empty" onclick="switchState('empty')">
+      Empty Input
+    </button>
+<button class="flex-1 py-1.5 px-2 rounded-lg text-center font-label-ui text-label-ui transition-all duration-150 text-on-surface-variant hover:text-on-surface" id="tab-error" onclick="switchState('error')">
+      Validation Alert
+    </button>
+</div>
+<!-- Horizontal Scrollable Segmented Mode Picker -->
+<div class="relative w-full">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-gutter-mobile px-gutter-mobile snap-x scroll-smooth">
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-primary text-on-primary font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">sms</span>
+<span>Message (संदेश)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high" onclick="scrollToCard('link-card')">
+<span class="material-symbols-outlined text-[18px] text-secondary">link</span>
+<span>Link (लिंक)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high" onclick="scrollToCard('screenshot-card')">
+<span class="material-symbols-outlined text-[18px] text-primary">screenshot</span>
+<span>Screenshot (स्क्रीनशॉट)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high" onclick="scrollToCard('qr-card')">
+<span class="material-symbols-outlined text-[18px] text-tertiary">qr_code_scanner</span>
+<span>QR Code (क्यूआर)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high" onclick="scrollToCard('voice-card')">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">mic</span>
+<span>Voice (वॉइस)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px] text-outline">alternate_email</span>
+<span>Email (ईमेल)</span>
+</button>
+<button class="snap-start shrink-0 flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-ui text-label-ui shadow-sm active:scale-95 transition-transform hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px] text-error">android</span>
+<span>APK (.apk फ़ाइल)</span>
+</button>
+</div>
+</div>
+<!-- STATE 1: PRIMARY VERIFICATION CARD (Filled & Extracted Artifacts) -->
+<div class="flex flex-col space-y-space-md" id="state-filled-view">
+<div class="relative bg-surface-container-lowest rounded-xl p-space-md shadow-md space-y-space-sm overflow-hidden">
+<!-- Glow ambient accent -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Top control pill and counter -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-ui text-label-ui">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>Auto-detect (हिंदी + EN)</span>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">214/2000</span>
+</div>
+<!-- SMS Extortion Sample Textarea Input Area -->
+<div class="relative w-full rounded-lg bg-surface-container-low p-space-sm">
+<label class="sr-only" for="message-input-filled">Message content</label>
+<textarea class="w-full bg-transparent border-0 outline-none text-on-surface font-body-md text-body-md resize-none leading-relaxed focus:ring-0" id="message-input-filled" rows="4">Dear Customer, your electricity power will be disconnected tonight at 9:30 PM due to unpaid bill. Update KYC or call +91 98123 45670. Pay on http://sbi-verify-kyc.in or UPI discom.bill98@ybl</textarea>
+<div class="flex justify-end gap-2 pt-2">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-surface-variant hover:text-error text-label-ui font-label-ui" onclick="clearInput()">
+<span class="material-symbols-outlined text-[14px]">backspace</span>
+<span>Clear</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-primary text-label-ui font-label-ui" onclick="pasteClipboard()">
+<span class="material-symbols-outlined text-[14px]">content_paste</span>
+<span>Paste</span>
+</button>
+</div>
+</div>
+<!-- Live Identified Artifacts Tray -->
+<div class="flex flex-col space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="font-label-ui text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">hub</span>
+            3 Forensic Artifacts Detected (जाँच योग्य तत्व)
+          </span>
+<span class="font-label-mono-sm text-[11px] text-primary font-semibold">Triage Live</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Artifact 1: Phone -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-on-surface truncate">+91 98123 45670</span>
+<span class="font-body-sm text-[11px] text-error flex items-center gap-0.5 font-medium">
+<span class="material-symbols-outlined text-[12px]">warning</span> 28 complaints across Rajasthan
+                </span>
+</div>
+</div>
+<button aria-label="Copy phone number" class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant shrink-0" onclick="copySnippet('+919812345670', this)">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<!-- Artifact 2: Domain -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">dangerous</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-on-surface truncate">sbi-verify-kyc.in</span>
+<span class="font-body-sm text-[11px] text-error font-medium">Domain Registered 3 days ago (Fake Phishing)</span>
+</div>
+</div>
+<button aria-label="Copy link" class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant shrink-0" onclick="copySnippet('http://sbi-verify-kyc.in', this)">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<!-- Artifact 3: Flagged UPI -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-mono-sm text-label-mono-sm font-bold text-on-surface truncate">discom.bill98@ybl</span>
+<span class="font-body-sm text-[11px] text-secondary font-medium">Flagged MULE Account (NPCI Watchlist)</span>
+</div>
+</div>
+<button aria-label="Copy UPI ID" class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant shrink-0" onclick="copySnippet('discom.bill98@ybl', this)">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Verification CTA Button -->
+<button class="w-full h-13 py-3.5 px-4 rounded-xl bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]">shield_with_heart</span>
+<span>Analyse Message / जाँच शुरू करें</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Trust footprint -->
+<div class="flex items-center justify-center gap-2 text-on-surface-variant font-label-ui text-[11px]">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+<span>AI Engine + Rajasthan Cyber Crime Cell Database</span>
+</div>
+</div>
+</div>
+<!-- STATE 2: EMPTY STATE (Hidden by default, toggled via switcher) -->
+<div class="hidden flex-col space-y-space-md" id="state-empty-view">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg text-center shadow-md space-y-space-sm flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-1">
+<span class="material-symbols-outlined text-[32px]">document_scanner</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Nothing pasted yet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs leading-relaxed">
+        Copy any suspicious SMS, threat message, suspicious lottery alert, or bank warning and tap below to scan instantly.
+      </p>
+<div class="w-full pt-2">
+<button class="w-full py-3 px-4 rounded-xl bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform" onclick="pasteClipboard()">
+<span class="material-symbols-outlined text-[18px]">content_paste</span>
+<span>Paste Extortion or Suspicious Text</span>
+</button>
+</div>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Rajasthan Police keeps zero history logs of your inquiry</span>
+</div>
+</div>
+<!-- STATE 3: VALIDATION ERROR SIMULATION (Hidden by default) -->
+<div class="hidden flex-col space-y-space-md" id="state-error-view">
+<div class="bg-error-container text-on-error-container rounded-xl p-space-md shadow-md space-y-space-sm">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">error</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-title-md text-title-md text-on-error-container font-bold">ध्यान दें / Input Error</span>
+<p class="font-body-sm text-body-sm text-on-error-container/90 leading-snug">
+            No valid text, phone number, UPI ID, or URL was detected in the input box. Please paste content to run forensic verification.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest/80 rounded-lg p-space-sm flex items-center justify-between">
+<span class="font-label-mono-sm text-label-mono-sm text-error font-medium truncate">Field: [EMPTY_PAYLOAD]</span>
+<button class="text-primary font-label-ui text-label-ui font-bold underline" onclick="switchState('filled')">Load Sample</button>
+</div>
+</div>
+</div>
+<!-- MULTI-MODAL PREVIEW ACCORDION & FEATURE SHOWCASE -->
+<section class="flex flex-col space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+        Multi-Modal Verification
+      </h2>
+<span class="font-label-ui text-[11px] text-on-surface-variant font-semibold">4 Specialized Engines</span>
+</div>
+<!-- 1. LINK Mode Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm" id="link-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold leading-tight">Link Inspector</h3>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Check URL safety before clicking</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-ui text-[10px] font-bold">
+          Deep Sandbox
+        </span>
+</div>
+<!-- 3-Step Verification Pipeline Indicator -->
+<div class="grid grid-cols-3 gap-2 pt-1">
+<div class="flex flex-col items-center text-center p-2 rounded-lg bg-surface-container-low space-y-1">
+<span class="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+<span class="font-label-ui text-[10px] font-bold text-on-surface">Domain Age</span>
+<span class="font-label-mono-sm text-[9px] text-error font-semibold">&lt; 7 Days old</span>
+</div>
+<div class="flex flex-col items-center text-center p-2 rounded-lg bg-surface-container-low space-y-1">
+<span class="material-symbols-outlined text-primary text-[20px]">lock_reset</span>
+<span class="font-label-ui text-[10px] font-bold text-on-surface">SSL Spoof</span>
+<span class="font-label-mono-sm text-[9px] text-secondary font-semibold">Self-signed</span>
+</div>
+<div class="flex flex-col items-center text-center p-2 rounded-lg bg-surface-container-low space-y-1">
+<span class="material-symbols-outlined text-error text-[20px]">fingerprint</span>
+<span class="font-label-ui text-[10px] font-bold text-on-surface">Typosquat</span>
+<span class="font-label-mono-sm text-[9px] text-error font-semibold">SBI Impersonated</span>
+</div>
+</div>
+</div>
+<!-- 2. QR Code Mode Card (Interactive Cam Viewfinder Preview) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm" id="qr-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold leading-tight">Dynamic QR Decoder</h3>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Prevent debit trap &amp; malicious payloads</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-ui text-[10px] font-bold">Laser Armed</span>
+</div>
+</div>
+<!-- Viewfinder Mockup Frame -->
+<div class="relative w-full h-40 bg-surface-dim rounded-xl overflow-hidden flex items-center justify-center">
+<!-- Background static map / camera texture -->
+<div class="absolute inset-0 opacity-15 flex items-center justify-center">
+<span class="material-symbols-outlined text-[140px] text-on-surface">qr_code_2</span>
+</div>
+<!-- Scanning Beam Line -->
+<div class="absolute w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse shadow-sm"></div>
+<!-- Corner Frame Brackets -->
+<div class="relative w-28 h-28 border-2 border-primary/40 rounded-lg flex flex-col justify-between p-1">
+<div class="flex justify-between">
+<span class="w-3 h-3 border-t-2 border-l-2 border-primary"></span>
+<span class="w-3 h-3 border-t-2 border-r-2 border-primary"></span>
+</div>
+<div class="flex justify-between">
+<span class="w-3 h-3 border-b-2 border-l-2 border-primary"></span>
+<span class="w-3 h-3 border-b-2 border-r-2 border-primary"></span>
+</div>
+</div>
+<div class="absolute bottom-2 left-2 right-2 bg-surface-container-lowest/90 backdrop-blur-md rounded-lg p-2 flex items-center justify-between">
+<span class="font-label-mono-sm text-[11px] text-on-surface font-bold truncate">upi://pay?pa=rajasthan.discom@axis...</span>
+<span class="px-2 py-0.5 rounded bg-error text-on-error font-label-ui text-[10px] font-bold shrink-0">Unverified Merchant</span>
+</div>
+</div>
+</div>
+<!-- 3. Screenshot OCR Mode Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm" id="screenshot-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">image_search</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold leading-tight">Screenshot OCR</h3>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Extract text from WhatsApp chats &amp; receipts</span>
+</div>
+</div>
+</div>
+<!-- Dropzone frame with consent checkbox -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center space-y-2">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">add_photo_alternate</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Tap to select chat screenshot</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Supports JPG, PNG up to 15MB</span>
+</div>
+<!-- Privacy consent checkbox -->
+<label class="flex items-center gap-2 pt-2 cursor-pointer text-left">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-ui text-[11px] text-on-surface-variant">
+            I agree this image is processed only to extract text &amp; is not stored on disk.
+          </span>
+</label>
+</div>
+<!-- Extracted Text preview chip box -->
+<div class="bg-surface-container p-2.5 rounded-lg flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">check_circle</span>
+<p class="font-label-mono-sm text-[11px] text-on-surface-variant line-clamp-2">
+          OCR Preview: "आपका बिजली बिल बाकी है, आज रात 9:30 बजे कनेक्शन काट दिया जाएगा। तुरंत कॉल करें..."
+        </p>
+</div>
+</div>
+<!-- 4. Voice Note Mode Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm" id="voice-card">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold leading-tight">Digital Arrest / Voice Threat</h3>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Speech-to-Text &amp; extortion classification</span>
+</div>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm text-tertiary font-bold">REC 00:14</span>
+</div>
+<!-- Waveform Simulation -->
+<div class="flex items-center justify-between h-12 bg-surface-container-low px-4 rounded-xl">
+<div class="flex items-center gap-1.5 w-full h-8 justify-center">
+<span class="w-1.5 h-3 bg-primary rounded-full animate-pulse"></span>
+<span class="w-1.5 h-6 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-8 bg-tertiary rounded-full animate-pulse"></span>
+<span class="w-1.5 h-4 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-7 bg-primary rounded-full animate-pulse"></span>
+<span class="w-1.5 h-3 bg-secondary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-6 bg-primary rounded-full animate-pulse"></span>
+<span class="w-1.5 h-5 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-2 bg-primary rounded-full"></span>
+</div>
+</div>
+<div class="p-2 bg-surface-container-low rounded-lg">
+<span class="font-label-ui text-[11px] font-semibold text-on-surface-variant block mb-1">Devanagari Transcript:</span>
+<p class="font-body-md text-body-md text-on-surface italic">
+          "हम पुलिस मुख्यालय जयपुर से बोल रहे हैं। आपके आधार नंबर पर मनी लॉन्ड्रिंग का केस दर्ज हुआ है..."
+        </p>
+</div>
+</div>
+</section>
+<!-- Visual Citizen Safety Advisory Cards (नागरिक सुरक्षा टिप्स) -->
+<section class="flex flex-col space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">lightbulb</span>
+        Safety Reminders / सुरक्षा नियम
+      </h2>
+<span class="font-label-ui text-[11px] text-on-surface-variant">Rajasthan Cyber Cell</span>
+</div>
+<!-- Tip 1 -->
+<div class="flex items-center gap-3 p-space-sm bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[14px] text-on-surface font-bold">Never Share OTP / कभी भी ओटीपी न बताएं</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant leading-snug">No electricity officer, bank manager, or police official ever asks for an SMS code.</span>
+</div>
+</div>
+<!-- Tip 2 -->
+<div class="flex items-center gap-3 p-space-sm bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">pin</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[14px] text-on-surface font-bold">Receiving money NEVER needs PIN</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant leading-snug">UPI PIN is required ONLY to deduct money from your account, never to receive refunds.</span>
+</div>
+</div>
+<!-- Tip 3 -->
+<div class="flex items-center gap-3 p-space-sm bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">apk_install</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[14px] text-on-surface font-bold">Banks never send APK files via WhatsApp</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant leading-snug">Installing an APK enables screen-mirroring and stealth SMS access for cyber syndicates.</span>
+</div>
+</div>
+</section>
+<!-- Golden Hour Emergency Quick-Bar -->
+<section class="pt-2">
+<div class="bg-gradient-to-r from-error/10 via-error/5 to-surface-container-lowest p-space-md rounded-2xl shadow-sm flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error animate-ping"></div>
+<span class="font-label-ui text-label-ui uppercase tracking-wider text-error font-bold">Golden Hour Protocol</span>
+</div>
+<span class="font-label-mono-sm text-[11px] text-on-surface-variant">Report within 2 Hours</span>
+</div>
+<p class="font-body-sm text-[13px] text-on-surface leading-snug">
+        If money was debited under extortion or cyber fraud, prompt reporting enables banks to freeze transit accounts.
+      </p>
+<a class="w-full h-12 py-3 px-4 rounded-xl bg-error text-on-error font-title-md text-title-md flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all text-center" href="tel:1930">
+<span class="material-symbols-outlined text-[22px]">phone_in_talk</span>
+<span>1930 Cyber Helpline (टोल-फ्री डायल करें)</span>
+</a>
+</div>
+</section>
+</div>
+<script>
+  function switchState(state) {
+    const filledView = document.getElementById('state-filled-view');
+    const emptyView = document.getElementById('state-empty-view');
+    const errorView = document.getElementById('state-error-view');
+
+    const tabFilled = document.getElementById('tab-filled');
+    const tabEmpty = document.getElementById('tab-empty');
+    const tabError = document.getElementById('tab-error');
+
+    // Reset visibility
+    filledView.classList.add('hidden');
+    emptyView.classList.add('hidden');
+    errorView.classList.add('hidden');
+
+    // Reset tabs
+    [tabFilled, tabEmpty, tabError].forEach(tab => {
+      tab.className = "flex-1 py-1.5 px-2 rounded-lg text-center font-label-ui text-label-ui transition-all duration-150 text-on-surface-variant hover:text-on-surface";
+    });
+
+    const activeClass = "flex-1 py-1.5 px-2 rounded-lg text-center font-label-ui text-label-ui transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm font-bold";
+
+    if (state === 'filled') {
+      filledView.classList.remove('hidden');
+      tabFilled.className = activeClass;
+    } else if (state === 'empty') {
+      emptyView.classList.remove('hidden');
+      tabEmpty.className = activeClass;
+    } else if (state === 'error') {
+      errorView.classList.remove('hidden');
+      tabError.className = activeClass;
+    }
+  }
+
+  function clearInput() {
+    const input = document.getElementById('message-input-filled');
+    if (input) input.value = '';
+    switchState('empty');
+  }
+
+  function pasteClipboard() {
+    const sample = "Dear Customer, your electricity power will be disconnected tonight at 9:30 PM due to unpaid bill. Update KYC or call +91 98123 45670. Pay on http://sbi-verify-kyc.in or UPI discom.bill98@ybl";
+    const input = document.getElementById('message-input-filled');
+    if (input) input.value = sample;
+    switchState('filled');
+  }
+
+  function copySnippet(text, buttonElement) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    }
+    const icon = buttonElement.querySelector('.material-symbols-outlined');
+    if (icon) {
+      const original = icon.innerText;
+      icon.innerText = 'done';
+      setTimeout(() => {
+        icon.innerText = original;
+      }, 1200);
+    }
+  }
+
+  function scrollToCard(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.classList.add('transition-all');
+      element.classList.add('scale-[1.02]');
+      setTimeout(() => {
+        element.classList.remove('scale-[1.02]');
+      }, 350);
+    }
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-16 px-space-2xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] transition-colors text-primary font-bold" data-path="scan-and-check" href="#"><span class="material-symbols-outlined text-[22px]">verified_user</span><span class="font-label-ui text-label-ui text-[11px] leading-tight">Scan/Check</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="fraud-alerts" href="#"><span class="material-symbols-outlined text-[22px]">notifications_active</span><span class="font-label-ui text-label-ui text-[11px] leading-tight">Alerts</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="safety-guide" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-ui text-label-ui text-[11px] leading-tight">Guide</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="helpline-1930" href="#"><span class="material-symbols-outlined text-[22px]">phone_in_talk</span><span class="font-label-ui text-label-ui text-[11px] leading-tight">Helpline</span></a></div></nav></body></html>
