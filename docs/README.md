@@ -12,6 +12,7 @@
 | [../eval/report.md](../eval/report.md) | Committed accuracy report on the golden dataset |
 | [../DECISIONS.md](../DECISIONS.md) | Architecture decision records |
 | [../DEMO.md](../DEMO.md) | Demo script and failure table |
+| [WIREFRAME_PROMPT.md](WIREFRAME_PROMPT.md) | A paste-ready prompt describing every one of the 22 screens, for regenerating the wireframes in a design tool |
 
 ## Screenshots
 
