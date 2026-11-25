@@ -1,6 +1,5 @@
 import asyncio
 import json
-import sys
 from types import SimpleNamespace
 
 import pytest
@@ -9,8 +8,6 @@ from app.config import Settings
 from app.schemas import MediaKind
 from app.services.media_analyzer import MediaAnalyzer, MediaExtractionUnavailableError
 from app.services.media_validation import ValidatedMedia
-
-pytestmark = pytest.mark.skipif(sys.platform == 'win32', reason='Local Windows asyncio runtime cannot create its self-pipe; run this async provider test on Linux CI/Vercel.')
 
 
 class FakeModels:

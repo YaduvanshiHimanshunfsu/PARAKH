@@ -1,12 +1,9 @@
 import asyncio
-import sys
 
 import httpx
 import pytest
 
 from app.main import create_app
-
-pytestmark = pytest.mark.skipif(sys.platform == 'win32', reason='Local Windows asyncio runtime cannot create its self-pipe; run this ASGI integration test on Linux CI/Vercel.')
 
 
 def test_security_headers_are_set_without_starting_provider_services() -> None:

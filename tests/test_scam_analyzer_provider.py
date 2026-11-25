@@ -1,6 +1,5 @@
 import asyncio
 import json
-import sys
 from types import SimpleNamespace
 
 import pytest
@@ -8,8 +7,6 @@ import pytest
 from app.config import Settings
 from app.schemas import AnalyzeRequest
 from app.services.scam_analyzer import ScamAnalyzer
-
-pytestmark = pytest.mark.skipif(sys.platform == 'win32', reason='Local Windows asyncio runtime cannot create its self-pipe; run this async provider test on Linux CI/Vercel.')
 
 
 class FakeModels:
@@ -32,7 +29,9 @@ def configured_analyzer(response=None, error=None) -> ScamAnalyzer:
 def test_valid_gemini_response_is_schema_validated() -> None:
     payload = json.dumps({'verdict': 'SCAM', 'confidence': 90, 'scam_category': 'OTP_THEFT', 'severity': 'HIGH', 'psychological_tactics': [], 'red_flags': [{'phrase': 'share OTP', 'explanation': 'A secret code is requested.'}], 'action_steps': ['Do not share an OTP.'], 'hindi_summary': 'OTP साझा न करें।'})
     result = asyncio.run(configured_analyzer(response=payload).analyze(AnalyzeRequest(message='share OTP now')))
-    assert result.analysis_source == 'AI'
+    # Phase B.9: a live verdict is always fused with the rule engine, so the
+    # source records both contributors rather than the provider alone.
+    assert result.analysis_source == 'AI+RULES'
     assert result.model_used == 'gemini-2.5-flash'
 
 
